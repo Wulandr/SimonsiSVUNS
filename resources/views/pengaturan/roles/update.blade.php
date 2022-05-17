@@ -1,0 +1,119 @@
+@if(Auth::user()->role == 1)
+@include('dashboards/users/layouts/script')
+
+<body>
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            @include('dashboards/users/layouts/navbar')
+            @include('dashboards/users/layouts/sidebar')
+
+
+            <div id="content-page" class="content-page">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="iq-card">
+                                <div class="iq-card-header d-flex justify-content-between">
+                                    <div class="iq-header-title">
+                                        <!-- <h4 class="card-title">DATA TOR</h4> -->
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <!-- <h4>ROLES</h4> -->
+                                                <!-- <button><a href="{{url('/roles_create')}}">Tambah Role</a></button> -->
+                                                <div class="card-header-action">
+                                                    <!-- <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a> -->
+                                                    <div class="main-content">
+                                                        <section class="section">
+                                                            <div class="section-header">
+                                                                <h4>Update Role Manajement</h4>
+                                                                <!-- <div class="section-header-breadcrumb">
+                            <div class="breadcrumb-item"><a href="{{ url('admin/dashboard') }}">Dashboard</a></div>
+                            <div class="breadcrumb-item"><a href="{{ url('admin/roles') }}">..</a></div>
+                            <div class="breadcrumb-item active"><a href="{{ url('admin/roles/create') }}">..</a></div>
+                        </div> -->
+                                                            </div>
+
+                                                            <input type="hidden" name="id" value="" />
+                                                            <div class="section-body">
+                                                                <!-- <h2 class="section-title">add new</h2> -->
+                                                                <div class="row">
+                                                                    <!-- <div class="col-lg-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                                                    <div class="col-lg-9">
+                                                                        <form method="POST" action="{{route('roles.update',['role'=>$role])}}">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            <div class="card">
+                                                                                <div class="card-header">
+                                                                                    <!-- <h4>permission</h4> -->
+                                                                                </div>
+                                                                                <div class="row row-cols-1 row-cols-md-3 g-4 ml-3 mr-3">
+                                                                                    <div class="row ml-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="name">Nama Aktor</label>
+                                                                                            <input type="text" id="name" name="name" value="{{old('name',$role->name)}}" class="form-control @error('name') is-invalid @enderror" />
+                                                                                            @error('name')
+                                                                                            <span>
+                                                                                                <strong>{{$message}}</strong>
+                                                                                            </span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    @foreach($authorities as $manageName => $permissions)
+                                                                                    <div class="col ml-3">
+                                                                                        <div class="card h-120">
+                                                                                            <div class="card-body">
+                                                                                                <h5 class="card-title"> {{$manageName}}</h5>
+                                                                                                <p class="card-text">
+                                                                                                    @foreach($permissions as $p)
+                                                                                                <div class="form-check">
+                                                                                                    @if(old('permissions',$permissionChecked))
+                                                                                                    <input id="{{$p}}" name="permissions[]" class="form-check-input" type="checkbox" value="{{$p}}" {{in_array($p,old('permissions',$permissionChecked)) ? "checked" : null}}>
+                                                                                                    @else
+                                                                                                    <input id="{{$p}}" name="permissions[]" class="form-check-input" type="checkbox" value="{{$p}}">
+                                                                                                    @endif
+                                                                                                    <label class="form-check-label" for="{{$p}}">
+                                                                                                        {{trans("permissions.{$p}")}}
+                                                                                                        <!-- {{$p}} -->
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                                @endforeach
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    @endforeach
+                                                                                </div>
+                                                                                <div class="card-footer text-right">
+                                                                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                                                    <!-- <a href="" class="btn btn-icon icon-left btn-primary"><i class="fa fa-sync-alt"></i> Save</a> -->
+                                                                                </div>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            </section>
+        </div>
+    </div>
+    </div>
+</body>
+@include('dashboards/users/layouts/footer')
+@endif
