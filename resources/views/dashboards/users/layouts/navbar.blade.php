@@ -56,9 +56,9 @@ use Illuminate\Support\Facades\Auth;
                         <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
                         <div class="caption">
                             <?php if (!empty(Auth::user()->name)) { ?>
-                                <h6 class="mb-0 line-height"><?= Auth::user()->name ?></h6>
+                                <h6 class="mb-0 line-height" style="color:white"><?= Auth::user()->name ?></h6>
                             <?php } ?>
-                            <p class="mb-0 text">
+                            <p class="mb-0 text" style="color:white">
                                 <?= !empty(Auth::user()->getroleNames()) ? Auth::user()->getroleNames() : '' ?> <br />
                                 <?php
                                 if (!empty($unit)) {

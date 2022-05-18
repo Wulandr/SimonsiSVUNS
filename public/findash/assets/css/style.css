@@ -1017,7 +1017,8 @@ body.sidebar-main .iq-sidebar:hover .iq-sidebar-menu .iq-menu li ul.iq-submenu-d
   width: calc(100% - 260px);
   display: inline-block;
   z-index: 999;
-  background: var(--iq-light-card);
+  /* background: var(--iq-light-card); */
+  background: #3f768d;
   /* background: #eceeef; */
   margin: 0;
   transition: all 0.45s ease 0s;
