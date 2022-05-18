@@ -27,6 +27,7 @@ class IkuController extends Controller
                 'iku' => $iku, 'ik' => $ik, 'k' => $k, 'subk' => $subk, 'tabeltahun' => $tabeltahun,
             ]
         );
+        // return $iku;
     }
     public function processAdd(Request $request)
     {

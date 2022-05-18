@@ -70,26 +70,50 @@ class DetailMakController extends Controller
     }
     public function searchDetail(Request $request)
     {
-        $search = $request->get('searchDetail');
+        $cariDetail = $request->get('searchDetail');
+        $cariBelanja = $request->get('searchBelanja');
+        $belanja_mak = DB::table('belanja_mak')->get();
         $mak = DB::table('mak')->get();
         $kelompok_mak = DB::table('kelompok_mak')->get();
-        $belanja_mak = DB::table('belanja_mak')->get();
-        $detail_mak = DB::table('detail_mak')->simplePaginate(15);
-        if (is_null($search)) {
-            // return view('demos.livesearch');
+        if (is_null($cariDetail) && is_null($cariBelanja)) {
+            $detail_mak = DB::table('detail_mak')->simplePaginate(15);
             $joinDetail = DB::table('detail_mak')
                 ->join('belanja_mak', 'detail_mak.id_belanja', '=', 'belanja_mak.id')
                 ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
                 ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
                 ->select('detail_mak.id as idDetail', 'detail_mak.detail', 'belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
                 ->simplePaginate(15);
-        } else {
+        }
+        if (!is_null($cariDetail) && is_null($cariBelanja)) {
+            $detail_mak = DB::table('detail_mak')->where('detail', 'LIKE', "%{$cariDetail}%")->simplePaginate(15);
             $joinDetail = DB::table('detail_mak')
                 ->join('belanja_mak', 'detail_mak.id_belanja', '=', 'belanja_mak.id')
                 ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
                 ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
                 ->select('detail_mak.id as idDetail', 'detail_mak.detail', 'belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
-                ->where('detail', 'LIKE', "%{$search}%")
+                ->where('detail', 'LIKE', "%{$cariDetail}%")
+                ->simplePaginate(15);
+        }
+        if (is_null($cariDetail) && !is_null($cariBelanja)) {
+            $idcariBelanja =
+                $detail_mak = DB::table('detail_mak')->get();
+            $joinDetail = DB::table('detail_mak')
+                ->join('belanja_mak', 'detail_mak.id_belanja', '=', 'belanja_mak.id')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('detail_mak.id as idDetail', 'detail_mak.detail', 'belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->where('belanja', 'LIKE', "%{$cariBelanja}%")
+                ->simplePaginate(15);
+        }
+        if (!is_null($cariDetail) && !is_null($cariBelanja)) {
+            $detail_mak = DB::table('detail_mak')->where('detail', 'LIKE', "%{$cariDetail}%")->simplePaginate(15);
+            $joinDetail = DB::table('detail_mak')
+                ->join('belanja_mak', 'detail_mak.id_belanja', '=', 'belanja_mak.id')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('detail_mak.id as idDetail', 'detail_mak.detail', 'belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->where('belanja', 'LIKE', "%{$cariBelanja}%")
+                ->where('detail', 'LIKE', "%{$cariDetail}%")
                 ->simplePaginate(15);
         }
         return view(

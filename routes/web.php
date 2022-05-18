@@ -150,14 +150,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/iku/delete/{id}', [IkuController::class, 'delete']);
     Route::get('/iku/filtertahun', [IkuController::class, 'filter_tahun']);
 
+    Route::get('/ik', [IkController::class, 'index']);
     Route::post('/ik/create', [IkController::class, 'processAdd']);
     Route::post('/ik/update/{id}', [IkController::class, 'processUpdate']);
     Route::get('/ik/delete/{id}', [IkController::class, 'delete']);
 
+    Route::get('/k', [KController::class, 'index']);
     Route::post('/k/create', [KController::class, 'processAdd']);
     Route::post('/k/update/{id}', [KController::class, 'processUpdate']);
     Route::get('/k/delete/{id}', [KController::class, 'delete']);
 
+    Route::get('/subk', [SubKController::class, 'index']);
     Route::post('/subk/create', [SubKController::class, 'processAdd']);
     Route::post('/subk/update/{id}', [SubKController::class, 'processUpdate']);
     Route::get('/subk/delete/{id}', [SubKController::class, 'delete']);
@@ -202,6 +205,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/detail_mak/update/{id}', [DetailMakController::class, 'processUpdate']);
     Route::get('/detail_mak/delete/{id}', [DetailMakController::class, 'delete']);
     Route::get('/searchDetail', [DetailMakController::class, 'searchDetail']);
+    Route::get('/searchBelanja', [BelanjaMakController::class, 'searchBelanja']);
 
     Route::get('/monitoringUsulan', [MonitoringUsulanController::class, 'index'])->name('monitoringUsulan');
 

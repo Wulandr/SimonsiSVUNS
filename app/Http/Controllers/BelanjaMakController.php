@@ -64,7 +64,56 @@ class BelanjaMakController extends Controller
             abort(404);
         }
     }
-    public function filter_tahun(Request $request)
+    public function searchBelanja(Request $request)
     {
+        $cariKelompok = $request->get('searchKelompok');
+        $cariBelanja = $request->get('searchBelanja');
+
+        $mak = DB::table('mak')->get();
+        $kelompok_mak = DB::table('kelompok_mak')->get();
+
+        if (is_null($cariKelompok) && is_null($cariBelanja)) {
+            $belanja_mak = DB::table('belanja_mak')->simplePaginate(15);
+            $joinKelompok = DB::table('belanja_mak')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->simplePaginate(15);
+        }
+
+        if (!is_null($cariKelompok) && is_null($cariBelanja)) {
+            $belanja_mak = DB::table('belanja_mak')->where('belanja', 'LIKE', "%{$cariBelanja}%")->simplePaginate(15);
+            $joinKelompok = DB::table('belanja_mak')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->where('kelompok', 'LIKE', "%{$cariKelompok}%")
+                ->simplePaginate(15);
+        }
+        if (is_null($cariKelompok) && !is_null($cariBelanja)) {
+            $belanja_mak = DB::table('belanja_mak')->get();
+            $joinKelompok = DB::table('belanja_mak')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->where('belanja', 'LIKE', "%{$cariBelanja}%")
+                ->simplePaginate(15);
+        }
+        if (!is_null($cariKelompok) && !is_null($cariBelanja)) {
+            $belanja_mak = DB::table('belanja_mak')->where('belanja', 'LIKE', "%{$cariBelanja}%")->simplePaginate(15);
+            $joinKelompok = DB::table('belanja_mak')
+                ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
+                ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
+                ->select('belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
+                ->where('kelompok', 'LIKE', "%{$cariKelompok}%")
+                ->where('belanja', 'LIKE', "%{$cariBelanja}%")
+                ->simplePaginate(15);
+        }
+        return view(
+            "pengaturan.mak.belanja_mak.index",
+            [
+                'mak' => $mak, 'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'joinKelompok' => $joinKelompok
+            ]
+        );
     }
 }

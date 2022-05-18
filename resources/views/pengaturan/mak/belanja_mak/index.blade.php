@@ -95,21 +95,17 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="iq-card-body">
                                             <span class="table-add float-right mb-3 mr-2">
                                                 <div class="form-group row">
-                                                    <!-- <form action="{{ url('/iku/filtertahun') }}" method="GET">
-                                                    <div class="row mr-3">
-                                                        <div class="col mr-1">
-                                                            <select class="form-control filter sm-8" name="tahun" id="input">
-                                                                <option value="0">All</option>
-                                                                <?php
-                                                                // for ($thn2 = 0; $thn2 < count($tabeltahun); $thn2++) { 
-                                                                ?>
-                                                                    <option value="$tabeltahun[$thn2]->id}}" $filtertahun==$tabeltahun[$thn2]->tahun ? 'selected':''}}>$tabeltahun[$thn2]->tahun}}</option>
-                                                                <?php  ?>
-                                                            </select>
+                                                    <form action="{{ url('/searchBelanja') }}" method="GET">
+                                                        <div class="row mr-3">
+                                                            <div class="col mr-1">
+                                                                <input type="text" id="searchKelompok" name="searchKelompok" class="form-control" placeholder="search Kelompok MAK">
+                                                            </div>
+                                                            <div class="col mr-1">
+                                                                <input type="text" id="searchBelanja" name="searchBelanja" class="form-control" placeholder="search Belanja MAK">
+                                                            </div>
+                                                            <input type="submit" class="btn btn-primary btn-sm" value="Search">
                                                         </div>
-                                                        <input type="submit" class="btn btn-primary btn-sm" value="Filter">
-                                                    </div>
-                                                </form> -->
+                                                    </form>
                                                 </div>
                                             </span>
                                             <div class="table-responsive">
@@ -183,7 +179,7 @@ use Illuminate\Support\Facades\Auth;
                                             </tbody>
                                             </table>
                                         </div>
-                                        {{$belanja_mak->links()}}
+                                        {{$joinKelompok->links()}}
                                     </div>
                                 </div>
                             </div>

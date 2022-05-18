@@ -14,6 +14,19 @@ class KController extends Controller
 {
     public function index()
     {
+        $filtertahun = 0;
+        $iku = DB::table('indikator_iku')->get();
+        $ik = DB::table('indikator_ik')->get();
+        $k = DB::table('indikator_k')->simplePaginate(15);
+        $subk = DB::table('indikator_subk')->get();
+        $tabeltahun = DB::table('tahun')->get();
+
+        return view(
+            "pengaturan.iku.k.index",
+            [
+                'iku' => $iku, 'ik' => $ik, 'k' => $k, 'subk' => $subk, 'tabeltahun' => $tabeltahun,
+            ]
+        );
     }
     public function processAdd(Request $request)
     {

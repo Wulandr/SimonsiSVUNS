@@ -95,152 +95,141 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="iq-card-body">
                                             <span class="table-add float-right mb-3 mr-2">
                                                 <div class="form-group row">
-                                                    <!-- <form action="{{ url('/iku/filtertahun') }}" method="GET">
-                                                    <div class="row mr-3">
-                                                        <div class="col mr-1">
-                                                            <select class="form-control filter sm-8" name="tahun" id="input">
-                                                                <option value="0">All</option>
-                                                                <?php
-                                                                // for ($thn2 = 0; $thn2 < count($tabeltahun); $thn2++) { 
-                                                                ?>
-                                                                    <option value="$tabeltahun[$thn2]->id}}" $filtertahun==$tabeltahun[$thn2]->tahun ? 'selected':''}}>$tabeltahun[$thn2]->tahun}}</option>
-                                                                <?php  ?>
-                                                            </select>
-                                                        </div>
-                                                        <input type="submit" class="btn btn-primary btn-sm" value="Filter">
-                                                    </div>
-                                                </form> -->
-                                                </div>
-                                                <div class="form-group row">
                                                     <form action="{{ url('/searchDetail') }}" method="GET">
-                                                        <input type="text" id="searchDetail" name="searchDetail" class="form-control" placeholder="start typing">
-                                                        <input type="submit" class="btn btn-sm bg-primary" value="Filter">
+                                                        <div class="row mr-3">
+                                                            <div class="col mr-1">
+                                                                <input type="text" id="searchBelanja" name="searchBelanja" class="form-control" placeholder="search Belanja MAK">
+                                                            </div>
+                                                            <div class="col mr-1">
+                                                                <input type="text" id="searchDetail" name="searchDetail" class="form-control" placeholder="search Detail MAK">
+                                                            </div>
+                                                            <input type="submit" class="btn btn-primary btn-sm" value="Search">
+                                                        </div>
                                                     </form>
                                                 </div>
-                                        </div>
-                                        </span>
+                                            </span>
 
-                                        <div class="table-responsive">
-                                            <div class="form-group row float-right mb-3 mr-2">
-                                            </div>
-                                            <table class="table mb-0">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th scope="col">MAK</th>
-                                                        <th scope="col">Kelompok MAK</th>
-                                                        <th scope="col">Nama Belanja MAK</th>
-                                                        <th scope="col">Detail MAK</th>
-                                                        <th scope="col">Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $num = 1; ?>
-                                                    @foreach ($joinDetail as $k2 => $join)
-                                                    <?php $num =  $joinDetail->firstItem() + $k2 ?>
-                                                    <tr>
-                                                        <td><a href="#">{{$num}}</a></td>
-                                                        <td>{{$join->jenis_belanja}}</td>
-                                                        <td>{{$join->kelompok}}</td>
-                                                        <td>{{$join->belanja}}</td>
-                                                        <td>{{$join->detail}}</td>
-                                                        <td>
-                                                            <div class="flex align-items-center list-user-action">
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Detail" data-original-title="Update Detail" href="" data-target="#update_det<?= $join->idDetail ?>"><i class="ri-pencil-line"></i></a>
-                                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/detail_mak/delete/'.$join->idDetail)}}"><i class="ri-delete-bin-line"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Modal Ubah IK -->
-                                                    <div class="modal fade" tabindex="-1" role="dialog" id="update_det<?= $join->idDetail ?>">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Update Detail</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
+                                            <div class="table-responsive">
+                                                <div class="form-group row float-right mb-3 mr-2">
+                                                </div>
+                                                <table class="table mb-0">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>No.</th>
+                                                            <th scope="col">MAK</th>
+                                                            <th scope="col">Kelompok MAK</th>
+                                                            <th scope="col">Nama Belanja MAK</th>
+                                                            <th scope="col">Detail MAK</th>
+                                                            <th scope="col">Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $num = 1; ?>
+                                                        @foreach ($joinDetail as $k2 => $join)
+                                                        <?php $num =  $joinDetail->firstItem() + $k2 ?>
+                                                        <tr>
+                                                            <td><a href="#">{{$num}}</a></td>
+                                                            <td>{{$join->jenis_belanja}}</td>
+                                                            <td>{{$join->kelompok}}</td>
+                                                            <td>{{$join->belanja}}</td>
+                                                            <td>{{$join->detail}}</td>
+                                                            <td>
+                                                                <div class="flex align-items-center list-user-action">
+                                                                    <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Detail" data-original-title="Update Detail" href="" data-target="#update_det<?= $join->idDetail ?>"><i class="ri-pencil-line"></i></a>
+                                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/detail_mak/delete/'.$join->idDetail)}}"><i class="ri-delete-bin-line"></i></a>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <form class="form-horizontal" method="post" action="{{ url('/detail_mak/update/'.$join->idDetail) }}">
-                                                                        @csrf
-                                                                        <div class="form-group">
-                                                                            <label>Belanja</label>
-                                                                            <select name="id_belanja" id="id_belanja" class="form-control">
-                                                                                <?php for ($b2 = 0; $b2 < count($belanja_mak); $b2++) {
-                                                                                    if ($belanja_mak[$b2]->id == $join->idBelanja) { ?>
-                                                                                        <option value="{{$belanja_mak[$b2]->id}}">{{$belanja_mak[$b2]->belanja}}</option>
-                                                                                <?php
-                                                                                    }
-                                                                                } ?>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Nama Detail Mak</label>
-                                                                            <input name="detail" id="detail" value="{{old('detail',$join->detail)}}" type="text" class="form-control">
-                                                                        </div>
-                                                                        <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                                                                        <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                                                                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                                                    </form>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Modal Ubah IK -->
+                                                        <div class="modal fade" tabindex="-1" role="dialog" id="update_det<?= $join->idDetail ?>">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Update Detail</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form class="form-horizontal" method="post" action="{{ url('/detail_mak/update/'.$join->idDetail) }}">
+                                                                            @csrf
+                                                                            <div class="form-group">
+                                                                                <label>Belanja</label>
+                                                                                <select name="id_belanja" id="id_belanja" class="form-control">
+                                                                                    <?php for ($b2 = 0; $b2 < count($belanja_mak); $b2++) {
+                                                                                        if ($belanja_mak[$b2]->id == $join->idBelanja) { ?>
+                                                                                            <option value="{{$belanja_mak[$b2]->id}}">{{$belanja_mak[$b2]->belanja}}</option>
+                                                                                    <?php
+                                                                                        }
+                                                                                    } ?>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Nama Detail Mak</label>
+                                                                                <input name="detail" id="detail" value="{{old('detail',$join->detail)}}" type="text" class="form-control">
+                                                                            </div>
+                                                                            <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
+                                                                            <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
+                                                                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                        </div>
+                                            </div>
 
-                                        <?php $num += 1; ?>
-                                        @endforeach
-                                        </tbody>
-                                        </table>
+                                            <?php $num += 1; ?>
+                                            @endforeach
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        {{$joinDetail->links()}}
                                     </div>
-                                    {{$detail_mak->links()}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Wrapper END -->
-            <!-- Footer -->
+                <!-- Wrapper END -->
+                <!-- Footer -->
 
 
-            <!-- Footer END -->
+                <!-- Footer END -->
 
-            <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-            <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-            <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-            <!-- Appear JavaScript -->
-            <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-            <!-- Countdown JavaScript -->
-            <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-            <!-- Counterup JavaScript -->
-            <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-            <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-            <!-- Wow JavaScript -->
-            <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-            <!-- Apexcharts JavaScript -->
-            <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-            <!-- Slick JavaScript -->
-            <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-            <!-- Select2 JavaScript -->
-            <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-            <!-- Owl Carousel JavaScript -->
-            <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-            <!-- Magnific Popup JavaScript -->
-            <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-            <!-- Smooth Scrollbar JavaScript -->
-            <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-            <!-- lottie JavaScript -->
-            <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-            <!-- Style Customizer -->
-            <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-            <!-- Chart Custom JavaScript -->
-            <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-            <!-- Custom JavaScript -->
-            <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
+                <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
+                <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
+                <!-- Appear JavaScript -->
+                <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
+                <!-- Countdown JavaScript -->
+                <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
+                <!-- Counterup JavaScript -->
+                <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
+                <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
+                <!-- Wow JavaScript -->
+                <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
+                <!-- Apexcharts JavaScript -->
+                <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
+                <!-- Slick JavaScript -->
+                <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
+                <!-- Select2 JavaScript -->
+                <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
+                <!-- Owl Carousel JavaScript -->
+                <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
+                <!-- Magnific Popup JavaScript -->
+                <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
+                <!-- Smooth Scrollbar JavaScript -->
+                <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
+                <!-- lottie JavaScript -->
+                <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
+                <!-- Style Customizer -->
+                <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
+                <!-- Chart Custom JavaScript -->
+                <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
+                <!-- Custom JavaScript -->
+                <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
 </body>
 
 </html>
