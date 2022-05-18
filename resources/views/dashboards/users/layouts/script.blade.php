@@ -31,3 +31,5 @@
    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </head>
+
+<body class="sidebar-main" style="background-image: url('findash/assets/images/wave.svg');background-repeat:no-repeat">
