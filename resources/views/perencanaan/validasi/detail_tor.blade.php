@@ -199,9 +199,11 @@ use Illuminate\Support\Facades\Auth;
                                                     </a>
                                                 <?php } ?>
                                                 <?php if ($disetujui != 1) { ?>
+                                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                                     <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen4" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                         <i class="las la-plus"></i>
                                                     </a>
+                                                    @endif
                                             </p>
                                             <div class="container collapse col-6" id="komen4">
                                                 <div id="validasi" class="form-group">
@@ -233,9 +235,11 @@ use Illuminate\Support\Facades\Auth;
                                                 </a>
                                             <?php } ?>
                                             <?php if ($disetujui != 1) { ?>
+                                                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                                 <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen5" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                     <i class="las la-plus"></i>
                                                 </a>
+                                                @endif
                                         </p>
                                         <div class="container collapse col-6" id="komen5">
                                             <div id="validasi" class="form-group">
@@ -265,13 +269,15 @@ use Illuminate\Support\Facades\Auth;
                                             </a>
                                         <?php } ?>
                                         <?php if ($disetujui != 1) { ?>
+                                            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                             <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen6" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="las la-plus"></i>
                                             </a>
+                                            @endif
                                     </p>
                                     <div class="container collapse col-6" id="komen6">
                                         <div id="validasi" class="form-group">
-                                            <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_latarbelakang" name="k_latarbelakang" placeholder="Komentar latarbelakang Kegiatan..."></textarea>
+                                            <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_latar_belakang" name="k_latar_belakang" placeholder="Komentar latarbelakang Kegiatan..."></textarea>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -297,9 +303,11 @@ use Illuminate\Support\Facades\Auth;
                                         </a>
                                     <?php } ?>
                                     <?php if ($disetujui != 1) { ?>
+                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                         <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen7" role="button" aria-expanded="false" aria-controls="collapseExample">
                                             <i class="las la-plus"></i>
                                         </a>
+                                        @endif
                                 </p>
                                 <div class="container collapse col-6" id="komen7">
                                     <div id="validasi" class="form-group">
@@ -329,9 +337,11 @@ use Illuminate\Support\Facades\Auth;
                                     </a>
                                 <?php } ?>
                                 <?php if ($disetujui != 1) { ?>
+                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                     <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen8" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         <i class="las la-plus"></i>
                                     </a>
+                                    @endif
                             </p>
                             <div class="container collapse col-6" id="komen8">
                                 <div id="validasi" class="form-group">
@@ -361,9 +371,11 @@ use Illuminate\Support\Facades\Auth;
                                 </a>
                             <?php } ?>
                             <?php if ($disetujui != 1) { ?>
+                                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                                 <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen9" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <i class="las la-plus"></i>
                                 </a>
+                                @endif
                         </p>
                         <div class="container collapse col-6" id="komen9">
                             <div id="validasi" class="form-group">
@@ -442,9 +454,11 @@ use Illuminate\Support\Facades\Auth;
                             </a>
                         <?php } ?>
                         <?php if ($disetujui != 1) { ?>
+                            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                             <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen10" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="las la-plus"></i>
                             </a>
+                            @endif
                     </p>
                     <div class="container collapse col-6" id="komen10">
                         <div id="validasi" class="form-group">
@@ -491,9 +505,11 @@ use Illuminate\Support\Facades\Auth;
                         </a>
                     <?php } ?>
                     <?php if ($disetujui != 1) { ?>
+                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                         <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen11" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <i class="las la-plus"></i>
                         </a>
+                        @endif
                 </p>
                 <div class="container collapse col-6" id="komen11">
                     <div id="validasi" class="form-group">
@@ -540,9 +556,11 @@ use Illuminate\Support\Facades\Auth;
                     </a>
                 <?php } ?>
                 <?php if ($disetujui != 1) { ?>
+                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                     <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen12" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <i class="las la-plus"></i>
                     </a>
+                    @endif
             </p>
             <div class="container collapse col-6" id="komen12">
                 <div id="validasi" class="form-group">
@@ -572,9 +590,11 @@ use Illuminate\Support\Facades\Auth;
                 </a>
             <?php } ?>
             <?php if ($disetujui != 1) { ?>
+                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
                 <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen13" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <i class="las la-plus"></i>
                 </a>
+                @endif
         </p>
         <div class="container collapse col-6" id="komen13">
             <div id="validasi" class="form-group">
@@ -604,9 +624,11 @@ use Illuminate\Support\Facades\Auth;
             </a>
         <?php } ?>
         <?php if ($disetujui != 1) { ?>
+            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
             <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen14" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i class="las la-plus"></i>
             </a>
+            @endif
     </p>
     <div class="container collapse col-6" id="komen14">
         <div id="validasi" class="form-group">
@@ -635,6 +657,7 @@ use Illuminate\Support\Facades\Auth;
 <!-- R A B -->
 @include('perencanaan/validasi/detail_rab')
 <?php if ($disetujui != 1) { ?>
+    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
     <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrab" role="button" aria-expanded="false" aria-controls="collapseExample">
         <i class="las la-plus"></i>
     </a>
@@ -643,6 +666,7 @@ use Illuminate\Support\Facades\Auth;
             <textarea class="form-control" id="k_rab" name="k_rab" style="background:#c7c3c317" rows="1" placeholder="Komentar rab..."></textarea>
         </div>
     </div>
+    @endif
 <?php } ?>
 <?php if (!empty($komentar['rab'])) { ?>
     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#lihatkomentar12" role="button" aria-expanded="false" aria-controls="collapseExample">

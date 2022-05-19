@@ -13,6 +13,10 @@ use App\Models\User;
 
 class MonitoringUsulanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:ajuan_monitoring', ['only' => 'index']);
+    }
     /**
      * Display a listing of the resource.
      *

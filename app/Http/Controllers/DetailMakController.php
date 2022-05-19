@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class DetailMakController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:detailmak_show', ['index', 'searchDetail']);
+        $this->middleware('permission:detailmak_create', ['only' => 'processAdd']);
+        $this->middleware('permission:detailmak_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:detailmak_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $mak = DB::table('mak')->get();

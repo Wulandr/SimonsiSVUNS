@@ -30,9 +30,11 @@ use Illuminate\Support\Facades\Auth;
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Tambah Unit</h5>
+                                                        @can('unit_create')
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
+                                                        @endcan
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="form-horizontal" method="post" action="{{ url('/unit/create') }}">
@@ -99,7 +101,9 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>{{$unit[$a]->email}}</td>
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
+                                                                @can('unit_update')
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Unit" data-original-title="Update Unit" href="" data-target="#update_unit<?= $unit[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                @endcan
                                                                 @can('unit_delete')
                                                                 <a class="iq-bg-primary unit-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/unit/delete/'.$unit[$a]->id)}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan

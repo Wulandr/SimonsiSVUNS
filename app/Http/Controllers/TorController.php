@@ -16,8 +16,7 @@ class TorController extends Controller
     protected $table = 'tor';
     public function __construct()
     {
-        $this->middleware('permission:tor_show', ['only' => 'index']);
-        $this->middleware('permission:tor_create', ['add', 'pengajuan2']);
+        $this->middleware('permission:tor_create', ['add', 'pengajuan2', 'createJadwal', 'updateJadwal', 'deleteJadwal']);
         $this->middleware('permission:tor_delete', ['only' => 'delete']);
         $this->middleware('permission:tor_update', ['only' => 'update']);
     }

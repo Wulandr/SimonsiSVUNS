@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:unit_show', ['only' => 'index']);
+    }
     public function index()
     {
         $unit = DB::table('unit')->get();

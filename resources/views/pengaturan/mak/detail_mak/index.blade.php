@@ -42,8 +42,10 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
                                                 <h4 class="card-text">Detail MAK
+                                                    @can('detailmak_create')
                                                     <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah Detail MAK" data-original-title="Tambah Detail MAK" data-target="#tambahDetMak"><i class="fa fa-plus-circle"></i>
                                                     </button>
+                                                    @endcan
                                                 </h4>
                                                 <!-- T A M B A H    -->
                                                 <div class="modal fade" tabindex="-1" role="dialog" id="tambahDetMak">
@@ -135,8 +137,12 @@ use Illuminate\Support\Facades\Auth;
                                                             <td>{{$join->detail}}</td>
                                                             <td>
                                                                 <div class="flex align-items-center list-user-action">
+                                                                    @can('detailmak_update')
                                                                     <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Detail" data-original-title="Update Detail" href="" data-target="#update_det<?= $join->idDetail ?>"><i class="ri-pencil-line"></i></a>
+                                                                    @endcan
+                                                                    @can('detailmak_delete')
                                                                     <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/detail_mak/delete/'.$join->idDetail)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    @endcan
                                                                 </div>
                                                             </td>
                                                         </tr>

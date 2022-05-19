@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class KelompokMakController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:kelompokmak_show', ['only' => 'index']);
+        $this->middleware('permission:kelompokmak_create', ['only' => 'processAdd']);
+        $this->middleware('permission:kelompokmak_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:kelompokmak_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $mak = DB::table('mak')->get();

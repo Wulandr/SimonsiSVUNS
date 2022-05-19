@@ -24,8 +24,12 @@ if (Auth()->user()->id_unit == 1) {
                                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                     <div class="iq-card-header d-flex justify-content-between">
                                         <div class="iq-header-title">
-                                            <h4 class="card-title">PAGU <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah PAGU" data-original-title="Tambah PAGU" data-target="#tambahpagu"><i class="fa fa-plus-circle"></i>
-                                                </button></h4>
+                                            <h4 class="card-title">PAGU
+                                                @can('pagu_create')
+                                                <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah PAGU" data-original-title="Tambah PAGU" data-target="#tambahpagu"><i class="fa fa-plus-circle"></i>
+                                                </button>
+                                                @endcan
+                                            </h4>
                                             <!-- Modal Tambah TOR -->
                                             <div class="modal fade" tabindex="-1" role="dialog" id="tambahpagu">
                                                 <div class="modal-dialog" role="document">
@@ -134,8 +138,12 @@ if (Auth()->user()->id_unit == 1) {
                                                             <td>{{"Rp. " .  number_format($pagu[$a]->pagu, 2, ',', '.') }}</td>
                                                             <td>
                                                                 <div class="flex align-items-center list-user-action">
+                                                                    @can('pagu_update')
                                                                     <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pagu" data-original-title="Update Pagu" href="" data-target="#update_pagu<?= $pagu[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                    @endcan
+                                                                    @can('pagu_delete')
                                                                     <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/pagu/delete/'.$pagu[$a]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    @endcan
                                                                 </div>
                                                             </td>
                                                         </tr>

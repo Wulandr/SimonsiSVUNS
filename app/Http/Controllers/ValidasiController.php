@@ -17,8 +17,9 @@ class ValidasiController extends Controller
     // protected $table = 'tor';
     public function __construct()
     {
-        $this->middleware('permission:kegiatan_verifikasi', ['only' => 'verifKegiatan']);
-        $this->middleware('permission:kegiatan_validasi', ['only' => 'validKegiatan']);
+        $this->middleware('permission:ajuan_validasi', ['only' => 'index']);
+        $this->middleware('permission:tor_verifikasi', ['only' => 'verifKegiatan']);
+        $this->middleware('permission:tor_validasi', ['only' => 'validKegiatan']);
     }
     public function index()
     {
