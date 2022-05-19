@@ -1,18 +1,16 @@
 <!-- Footer -->
-<footer class="iq-footer">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-lg-6">
+<footer class="iq-footer text-right">
+    <div class="container-fluid">
+        <div class="col-lg-12">
             <ul class="list-inline mb-0">
-               <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-               <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
+                <li class="list-inline-item"><a style="color: #cdd3d6"
+                        href="https://iqonic.design/product/admin-templates/findash-lite-free-html-finance-sales-dashboard/">
+                        &copy; FinDash</a>
+                </li>
+                <li class="list-inline-item"><a href="#">All Rights Reserved.</a></li>
             </ul>
-         </div>
-         <div class="col-lg-6 text-right">
-            Copyright 2020 <a href="#">FinDash</a> All Rights Reserved.
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </footer>
 <!-- Footer END -->
 

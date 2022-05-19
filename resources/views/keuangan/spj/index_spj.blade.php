@@ -21,8 +21,8 @@
                         </div>
                         <div class="iq-card-body">
                             <div id="table" class="table-editable">
-                                <span class="table-add float-left mb-3 mr-2">
-                                    <button class="btn btn-sm bg-info" title="Input SPJ Baru" data-toggle="modal"
+                                <span class="table-add float-right mb-3 mr-2">
+                                    <button class="btn btn-info mb-3" title="Input SPJ Baru" data-toggle="modal"
                                         data-target="#spj_file">
                                         <i class="las la-file-alt"></i><span class="pl-1">SPJ File
                                         </span></i>
