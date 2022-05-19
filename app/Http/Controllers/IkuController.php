@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class IkuController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:iku_show', ['only' => 'index']);
+        $this->middleware('permission:iku_create', ['only' => 'processAdd']);
+        $this->middleware('permission:iku_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:iku_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $filtertahun = 0;

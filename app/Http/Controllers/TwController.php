@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class TwController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:triwulan_show', ['index', 'filter_tahun']);
+    }
     public function index()
     {
         $filtertahun = 0;

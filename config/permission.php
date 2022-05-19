@@ -31,8 +31,8 @@ return [
             'rab_update',
             'rab_detail',
             'rab_delete',
-            'rab_verifikasi',
-            'rab_validasi'
+            // 'rab_verifikasi',
+            // 'rab_validasi'
         ],
         'manage_anggaran' => [
             'anggaran_show',

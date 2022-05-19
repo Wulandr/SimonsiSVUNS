@@ -15,11 +15,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class ProdiController extends Controller
 {
-    public function __construct()
-    {
-        // $namarole = Usernya::namarole();
-        // Usernya::find(2)->assignRole('Prodi');
-    }
+
     function index()
     {
         // $userProdi = User::find(2)->assignRole("Prodi");

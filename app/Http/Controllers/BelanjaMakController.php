@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class BelanjaMakController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:belanjamak_show', ['index', 'searchBelanja']);
+        $this->middleware('permission:belanjamak_create', ['only' => 'processAdd']);
+        $this->middleware('permission:belanjamak_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:belanjamak_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $mak = DB::table('mak')->get();

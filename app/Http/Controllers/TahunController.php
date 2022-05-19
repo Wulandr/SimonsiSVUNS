@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class TahunController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:tahun_show', ['index']);
+    }
     public function index()
     {
         $filtertahun = 0;

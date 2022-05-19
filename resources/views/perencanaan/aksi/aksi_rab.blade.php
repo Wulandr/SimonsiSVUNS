@@ -16,19 +16,28 @@ for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
     }
 }
 ?>
-<?php if ($pengajuan == 0) { ?>
-    @can('rab_update')
-    <button class="badge badge-info rounded" data-toggle="modal" title="Update RAB" data-original-title="Update RAB" data-target="#update_rab<?= $rab[$r]->id ?>">
-        <i class="fa fa-edit"></i>
-    </button>
-    @endcan
-    @can('rab_delete')
-    <a href="{{url('/rab/delete/'.$rab[$r]->id)}}" class="button rab-confirm" title="Delete" id="rab-delete-confirm2">
-        <button class="badge badge-info rounded">
-            <i class="fa fa-trash"></i>
+<?php
+foreach ($role as $roles) {
+    if ($roles->id == Auth::user()->role) {
+        $RoleLogin = $roles->name;
+    }
+}
+?>
+<?php if ($pengajuan == 0 && ($tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin")) { ?>
+    <?php if ($pengajuan == 0) { ?>
+        @can('rab_update')
+        <button class="badge badge-info rounded" data-toggle="modal" title="Update RAB" data-original-title="Update RAB" data-target="#update_rab<?= $rab[$r]->id ?>">
+            <i class="fa fa-edit"></i>
         </button>
-    </a>
-    @endcan
+        @endcan
+        @can('rab_delete')
+        <a href="{{url('/rab/delete/'.$rab[$r]->id)}}" class="button rab-confirm" title="Delete" id="rab-delete-confirm2">
+            <button class="badge badge-info rounded">
+                <i class="fa fa-trash"></i>
+            </button>
+        </a>
+        @endcan
+    <?php } ?>
 <?php } ?>
 <!-- 
 <a href="{{url('/rab/detail/'.  $rab[$r]->id)}}"><button class="badge badge-info rounded"><i class="fa fa-tasks"></i>

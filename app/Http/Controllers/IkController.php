@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class IkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:ik_show', ['only' => 'index']);
+        $this->middleware('permission:ik_create', ['only' => 'processAdd']);
+        $this->middleware('permission:ik_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:ik_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $filtertahun = 0;

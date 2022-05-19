@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class KController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:k_show', ['only' => 'index']);
+        $this->middleware('permission:k_create', ['only' => 'processAdd']);
+        $this->middleware('permission:k_update', ['only' => 'processUpdate']);
+        $this->middleware('permission:k_delete', ['only' => 'delete']);
+    }
     public function index()
     {
         $filtertahun = 0;

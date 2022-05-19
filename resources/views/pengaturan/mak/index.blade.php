@@ -45,8 +45,10 @@ if (Auth()->user()->id_unit == 1) {
                                             <div class="iq-card-header d-flex justify-content-between">
                                                 <div class="iq-header-title">
                                                     <h4 class="card-text">Kategori MAK
+                                                        @can('mak_create')
                                                         <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah MAK" data-original-title="Tambah MAK" data-target="#tambahmak"><i class="fa fa-plus-circle"></i>
                                                         </button>
+                                                        @endcan
                                                     </h4>
                                                     <!-- T A M B A H M A K  -->
                                                     <div class="modal fade" tabindex="-1" role="dialog" id="tambahmak">
@@ -111,8 +113,12 @@ if (Auth()->user()->id_unit == 1) {
                                                                     <td>{{$mak[$k1]->jenis_belanja}}</td>
                                                                     <td>
                                                                         <div class="flex align-items-center list-user-action">
+                                                                            @can('mak_update')
                                                                             <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_mak<?= $mak[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                            @endcan
+                                                                            @can('mak_delete')
                                                                             <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/mak/delete/'.$mak[$k1]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                            @endcan
                                                                         </div>
                                                                     </td>
                                                                 </tr>

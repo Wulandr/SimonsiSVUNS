@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class PaguController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:pagu_show', ['only' => 'index']);
+    }
     public function index()
     {
         $filtertahun = 0;
