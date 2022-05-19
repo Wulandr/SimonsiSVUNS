@@ -101,9 +101,20 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <span class="badge border border-primary text-primary">
+                                                                <button type="button"
+                                                                    class="badge border border-primary text-primary"
+                                                                    data-toggle="modal" data-target="#status_spj">
                                                                     {{ $b->nama_status }}
+                                                                </button>
+                                                                <span type="button" class="badge badge-dark"
+                                                                    title="Validasi" data-toggle="modal"
+                                                                    data-target="#validasi_spj">
+                                                                    <i class="ri-edit-fill"></i>
                                                                 </span>
+                                                                <!-- MODAL - Validasi SPJ -->
+                                                                @include('keuangan/all_modal/validasi_spj')
+                                                                <!-- MODAL - Status SPJ -->
+                                                                @include('keuangan/all_modal/status_spj')
                                                             @endif
                                                         @endforeach
                                                     @else

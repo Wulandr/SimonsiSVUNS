@@ -86,10 +86,20 @@
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'Persekot Kerja')
-                                                                    <span
-                                                                        class="badge border border-primary text-primary">
+                                                                    <button type="button"
+                                                                        class="badge border border-primary text-primary"
+                                                                        data-toggle="modal" data-target="#status_pk">
                                                                         {{ $b->nama_status }}
+                                                                    </button>
+                                                                    <span type="button" class="badge badge-dark"
+                                                                        title="Validasi" data-toggle="modal"
+                                                                        data-target="#validasi_pk">
+                                                                        <i class="ri-edit-fill"></i>
                                                                     </span>
+                                                                    <!-- MODAL - Validasi Persekot Kerja -->
+                                                                    @include('keuangan/all_modal/validasi_pk')
+                                                                    <!-- MODAL - Status Persekot Kerja -->
+                                                                    @include('keuangan/all_modal/status_pk')
                                                                 @endif
                                                             @endif
                                                         @endforeach
@@ -119,13 +129,9 @@
                                                                                 class=" las la-edit"></i></i>
                                                                         </button>
                                                                         <!-- MODAL - Detail Persekot Kerja -->
-                                                                        @include(
-                                                                            'keuangan/all_modal/detail_pk'
-                                                                        )
+                                                                        @include('keuangan/all_modal/detail_pk')
                                                                         <!-- MODAL - Edit Persekot Kerja -->
-                                                                        @include(
-                                                                            'keuangan/all_modal/edit_pk'
-                                                                        )
+                                                                        @include('keuangan/all_modal/edit_pk')
                                                                     @endif
                                                                 @endif
                                                             @endforeach
@@ -150,6 +156,7 @@
 
                                             <!-- MODAL - Input Persekot Kerja -->
                                             @include('keuangan/all_modal/input_pk')
+
                                             <?php
                                                                                         }
                                                                                     }

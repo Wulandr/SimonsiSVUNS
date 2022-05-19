@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body  text-left">
                 <p>Yang bertanda tangan di bawah ini menyatakan bertanggung-jawab tentang penggunaan,
                     pertanggungjawaban, dan pelaporan dana kegiatan sebagai berikut. </p>
                 <form class="needs-validation" enctype="multipart/form-data" method="post"

@@ -108,8 +108,9 @@
                             Tolong tambahkan file sebelum submit!
                         </div>
                     </div>
-                    <?php}
-                                                                                } ?> ?>
+                    <?php
+                        }
+                    } ?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
@@ -117,5 +118,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

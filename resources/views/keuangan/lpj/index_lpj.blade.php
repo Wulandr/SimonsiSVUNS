@@ -20,9 +20,9 @@
                             </div>
                         </div>
                         <div class="iq-card-body">
-                            <div id="table" class="table-editable">
-                                <span class="table-add float-left mb-3 mr-2">
-                                    <button class="btn btn-sm bg-info" title="Template LPJ 2022" data-toggle="modal"
+                            <div id="table" class="table-responsive">
+                                <span class="table-add float-right mb-3 mr-2">
+                                    <button class="btn btn-info mb-3" title="Template LPJ 2022" data-toggle="modal"
                                         data-target="#template_lpj">
                                         <i class="las la-file-alt"></i><span class="pl-1">Template LPJ
                                             2022</span></i>
@@ -104,9 +104,20 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <span class="badge border border-primary text-primary">
+                                                                <button type="button"
+                                                                    class="badge border border-primary text-primary"
+                                                                    data-toggle="modal" data-target="#status_lpj">
                                                                     {{ $b->nama_status }}
+                                                                </button>
+                                                                <span type="button" class="badge badge-dark"
+                                                                    title="Validasi" data-toggle="modal"
+                                                                    data-target="#validasi_lpj">
+                                                                    <i class="ri-edit-fill"></i>
                                                                 </span>
+                                                                <!-- MODAL - Validasi lPJ -->
+                                                                @include('keuangan/all_modal/validasi_lpj')
+                                                                <!-- MODAL - Status lPJ -->
+                                                                @include('keuangan/all_modal/status_lpj')
                                                             @endif
                                                         @endforeach
                                                     @else
@@ -132,13 +143,9 @@
                                                                         class=" las la-edit"></i></i>
                                                                 </button>
                                                                 <!-- MODAL - Detail Persekot Kerja -->
-                                                                @include(
-                                                                    'keuangan/all_modal/detail_lpj'
-                                                                )
+                                                                @include('keuangan/all_modal/detail_lpj')
                                                                 <!-- MODAL - Edit Persekot Kerja -->
-                                                                @include(
-                                                                    'keuangan/all_modal/edit_lpj'
-                                                                )
+                                                                @include('keuangan/all_modal/edit_lpj')
                                                             @endif
                                                         @endforeach
                                                     @else
