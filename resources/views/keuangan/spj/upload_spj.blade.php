@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center">
+                        <div class="iq-card-header d-flex justify-content-center table-primary">
                             <div class="iq-header-title">
                                 <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban (SPJ)</h4>
                             </div>
@@ -56,7 +56,8 @@
                                             aria-labelledby="v-pills-home-tab">
 
                                             <div class="col-12">
-                                                <form enctype="multipart/form-data" method="post" action="">
+                                                <form class="needs-validation" enctype="multipart/form-data"
+                                                    method="post" action="">
                                                     <h5 class="mb-4" style="color: #1E3D73">
                                                         <b>Konsumsi Kegiatan</b>
                                                     </h5>
@@ -64,7 +65,7 @@
                                                         <label for="exampleFormControlFile1">Example file
                                                             input</label>
                                                         <input type="file" class="form-control-file"
-                                                            id="exampleFormControlFile1">
+                                                            id="exampleFormControlFile1" required required>
                                                     </div>
                                                     <div class="float-right mb-3 mr-2">
                                                         <button type="submit" class="btn btn-primary">Upload</button>
@@ -77,7 +78,8 @@
                                         <div class="tab-pane fade show" id="v-pills-profile" role="tabpanel"
                                             aria-labelledby="v-pills-profile-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>Kontribusi/Registrasi Pelatihan/Sekom</b>
@@ -99,7 +101,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -112,7 +114,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -124,7 +126,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -134,7 +136,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -144,7 +146,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -155,7 +157,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -166,7 +168,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -181,7 +183,8 @@
                                         <div class="tab-pane fade show" id="v-pills-messages" role="tabpanel"
                                             aria-labelledby="v-pills-messages-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>Honor Narasumber Kegiatan</b>
@@ -196,7 +199,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -208,7 +211,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -220,7 +223,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -232,7 +235,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -243,7 +246,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -253,7 +256,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -263,7 +266,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -276,7 +279,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -288,7 +291,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -303,7 +306,8 @@
                                         <div class="tab-pane fade show" id="v-pills-settings" role="tabpanel"
                                             aria-labelledby="v-pills-settings-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>Pembelian Barang dan Jasa</b>
@@ -323,7 +327,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -333,7 +337,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -343,7 +347,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -354,7 +358,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -365,7 +369,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -380,7 +384,8 @@
                                         <div class="tab-pane fade show" id="v-pills-profile2" role="tabpanel"
                                             aria-labelledby="v-pills-profile2-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>Honor Magang Mahasiswa/Asisten Praktikum</b>
@@ -394,7 +399,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -405,7 +410,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -417,7 +422,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -427,7 +432,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -437,7 +442,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -452,7 +457,8 @@
                                         <div class="tab-pane fade show" id="v-pills-messages2" role="tabpanel"
                                             aria-labelledby="v-pills-messages2-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>Bantuan Transport/Transport Lokal (Karesidenan
@@ -468,7 +474,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -481,7 +487,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -492,7 +498,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -504,7 +510,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -515,7 +521,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -530,7 +536,8 @@
                                         <div class="tab-pane fade show" id="v-pills-settings2" role="tabpanel"
                                             aria-labelledby="v-pills-settings2-tab">
 
-                                            <form enctype="multipart/form-data" method="post" action="">
+                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                                action="">
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>SPDD</b>
@@ -544,7 +551,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -555,7 +562,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -567,7 +574,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -577,7 +584,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -587,7 +594,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -598,7 +605,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                         <tr class="form-group">
@@ -608,7 +615,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1">
+                                                                    id="exampleFormControlFile1" required>
                                                             </td>
                                                         </tr>
                                                     </table>
