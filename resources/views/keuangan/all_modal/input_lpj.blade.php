@@ -9,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" method="post" action="{{ url('') }}" novalidate>
+                <form class="needs-validation" method="post" enctype="multipart/form-data"
+                    action="{{ url('/input_lpj') }}" novalidate>
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for=" validationCustom01">Nama

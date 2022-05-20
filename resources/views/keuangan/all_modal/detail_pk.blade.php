@@ -69,11 +69,16 @@
                     <?php date_default_timezone_set('Asia/Jakarta'); ?>
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
+                    <?php
+                    for ($a = 0; $a < count($persekot_kerja); $a++) {
+                        if ($persekot_kerja[$a]->id_tor == $tor[$m]->id) {
+                    ?>
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">
                             6. &ensp; Total Anggaran Dialokasikan</label>
                         <div class="col-sm-8">
-                            <input type="text" name="alokasi_anggaran" class="form-control">
+                            <input type="text" class="form-control"
+                                value="{{ $persekot_kerja[$a]->alokasi_anggaran }}" disabled>
                         </div>
                         <div class="invalid-feedback">
                             Tolong inputkan nominal anggaran sebelum submit!
@@ -83,8 +88,8 @@
                         <label class="control-label col-sm-4 align-self-center mb-0">
                             7. &ensp; Tanggal Selesai Pelaporan</label>
                         <div class="col-sm-8">
-                            <input type="date" name="tgl_selesai" class="form-control" placeholder="01-01-2022"
-                                required>
+                            <input type="date" class="form-control" value="{{ $persekot_kerja[$a]->tgl_selesai }}"
+                                disabled>
                         </div>
                         <div class="invalid-feedback">
                             Tolong inputkan tanggal sebelum submit!
@@ -92,10 +97,9 @@
                     </div>
                     <p style="color: darkred">Menyatakan dengan sadar akan menyelelesaikan SPJ paling lambat <b>(2
                             MINGGU SETELAH PELAKSANAAN KEGIATAN)</b></p>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+                    <?php
+                        }
+                    } ?>
                 </form>
             </div>
         </div>

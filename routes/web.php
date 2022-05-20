@@ -240,9 +240,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // LPJ
     Route::get('/lpj', [LPJController::class, 'index']);
-    // Route::get('/template_lpj', function () {
-    //     return view('keuangan.monitoring_kak.index_kak');
-    // });
+    Route::post('/input_lpj', [LPJController::class, 'create']);
 
     // MONITORING KAK
     Route::get('/monitoring_kak', function () {

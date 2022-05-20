@@ -101,26 +101,29 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <button type="button"
-                                                                    class="badge border border-primary text-primary"
-                                                                    data-toggle="modal" data-target="#status_spj">
-                                                                    {{ $b->nama_status }}
-                                                                </button>
-                                                                <span type="button" class="badge badge-dark"
-                                                                    title="Validasi" data-toggle="modal"
-                                                                    data-target="#validasi_spj">
-                                                                    <i class="ri-edit-fill"></i>
-                                                                </span>
-                                                                <!-- MODAL - Validasi SPJ -->
-                                                                @include('keuangan/all_modal/validasi_spj')
-                                                                <!-- MODAL - Status SPJ -->
-                                                                @include('keuangan/all_modal/status_spj')
+                                                                @if ($b->kategori == 'SPJ')
+                                                                    <button type="button"
+                                                                        class="badge border border-primary text-primary"
+                                                                        data-toggle="modal" data-target="#status_spj">
+                                                                        {{ $b->nama_status }}
+                                                                    </button>
+                                                                    <span type="button" class="badge badge-dark"
+                                                                        title="Validasi" data-toggle="modal"
+                                                                        data-target="#validasi_spj">
+                                                                        <i class="ri-edit-fill"></i>
+                                                                    </span>
+                                                                    <!-- MODAL - Validasi SPJ -->
+                                                                    @include('keuangan/all_modal/validasi_spj')
+                                                                    <!-- MODAL - Status SPJ -->
+                                                                    @include('keuangan/all_modal/status_spj')
+                                                                @else
+                                                                    <span
+                                                                        class="badge border border-danger text-danger">
+                                                                        Belum ada status
+                                                                    </span>
+                                                                @endif
                                                             @endif
                                                         @endforeach
-                                                    @else
-                                                        <span class="badge border border-danger text-danger">
-                                                            Belum ada status
-                                                        </span>
                                                     @endif
                                                 @endforeach
                                             </td>
@@ -129,27 +132,30 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <a href="{{ url('upload_spj') }}">
-                                                                    <button class="btn btn-sm bg-info rounded-pill"
-                                                                        title="Input File SPJ">
-                                                                        <i class="las la-external-link-alt"></i></i>
-                                                                    </button>
-                                                                </a>
-                                                                <a href="{{ url('upload_spj') }}">
-                                                                    <button class="btn btn-sm bg-warning rounded-pill"
-                                                                        title="Input File SPJ">
-                                                                        <i class="las la-edit"></i></i>
-                                                                    </button>
-                                                                </a>
+                                                                @if ($b->kategori == 'SPJ')
+                                                                    <a href="{{ url('upload_spj') }}">
+                                                                        <button class="btn btn-sm bg-info rounded-pill"
+                                                                            title="Detail File SPJ">
+                                                                            <i class="las la-external-link-alt"></i></i>
+                                                                        </button>
+                                                                    </a>
+                                                                    <a href="{{ url('upload_spj') }}">
+                                                                        <button
+                                                                            class="btn btn-sm bg-warning rounded-pill"
+                                                                            title="Edit File SPJ">
+                                                                            <i class="las la-edit"></i></i>
+                                                                        </button>
+                                                                    </a>
+                                                                @else
+                                                                    <a href="{{ url('upload_spj') }}">
+                                                                        <button class="btn btn-sm bg-dark rounded-pill"
+                                                                            title="Input File SPJ">
+                                                                            <i class="las la-upload"></i></i>
+                                                                        </button>
+                                                                    </a>
+                                                                @endif
                                                             @endif
                                                         @endforeach
-                                                    @else
-                                                        <a href="{{ url('upload_spj') }}">
-                                                            <button class="btn btn-sm bg-dark rounded-pill"
-                                                                title="Input File SPJ">
-                                                                <i class="las la-upload"></i></i>
-                                                            </button>
-                                                        </a>
                                                     @endif
                                                 @endforeach
                                             </td>

@@ -104,26 +104,29 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <button type="button"
-                                                                    class="badge border border-primary text-primary"
-                                                                    data-toggle="modal" data-target="#status_lpj">
-                                                                    {{ $b->nama_status }}
-                                                                </button>
-                                                                <span type="button" class="badge badge-dark"
-                                                                    title="Validasi" data-toggle="modal"
-                                                                    data-target="#validasi_lpj">
-                                                                    <i class="ri-edit-fill"></i>
-                                                                </span>
-                                                                <!-- MODAL - Validasi lPJ -->
-                                                                @include('keuangan/all_modal/validasi_lpj')
-                                                                <!-- MODAL - Status lPJ -->
-                                                                @include('keuangan/all_modal/status_lpj')
+                                                                @if ($b->kategori == 'LPJ')
+                                                                    <button type="button"
+                                                                        class="badge border border-primary text-primary"
+                                                                        data-toggle="modal" data-target="#status_lpj">
+                                                                        {{ $b->nama_status }}
+                                                                    </button>
+                                                                    <span type="button" class="badge badge-dark"
+                                                                        title="Validasi" data-toggle="modal"
+                                                                        data-target="#validasi_lpj">
+                                                                        <i class="ri-edit-fill"></i>
+                                                                    </span>
+                                                                    <!-- MODAL - Validasi lPJ -->
+                                                                    @include('keuangan/all_modal/validasi_lpj')
+                                                                    <!-- MODAL - Status lPJ -->
+                                                                    @include('keuangan/all_modal/status_lpj')
+                                                                @else
+                                                                    <span
+                                                                        class="badge border border-danger text-danger">
+                                                                        Belum ada status
+                                                                    </span>
+                                                                @endif
                                                             @endif
                                                         @endforeach
-                                                    @else
-                                                        <span class="badge border border-danger text-danger">
-                                                            Belum ada status
-                                                        </span>
                                                     @endif
                                                 @endforeach
                                             </td>
@@ -132,28 +135,30 @@
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
-                                                                <button class="btn btn-sm bg-info rounded-pill"
-                                                                    title="Detail" data-toggle="modal"
-                                                                    data-target="#detail_lpj<?= $tor[$m]->id ?>"><i
-                                                                        class="las la-external-link-alt"></i></i>
-                                                                </button>
-                                                                <button class="btn btn-sm bg-warning rounded-pill"
-                                                                    title="Edit" data-toggle="modal"
-                                                                    data-target="#edit_lpj<?= $tor[$m]->id ?>"><i
-                                                                        class=" las la-edit"></i></i>
-                                                                </button>
-                                                                <!-- MODAL - Detail Persekot Kerja -->
-                                                                @include('keuangan/all_modal/detail_lpj')
-                                                                <!-- MODAL - Edit Persekot Kerja -->
-                                                                @include('keuangan/all_modal/edit_lpj')
+                                                                @if ($b->kategori == 'LPJ')
+                                                                    <button class="btn btn-sm bg-info rounded-pill"
+                                                                        title="Detail" data-toggle="modal"
+                                                                        data-target="#detail_lpj<?= $tor[$m]->id ?>"><i
+                                                                            class="las la-external-link-alt"></i></i>
+                                                                    </button>
+                                                                    <button class="btn btn-sm bg-warning rounded-pill"
+                                                                        title="Edit" data-toggle="modal"
+                                                                        data-target="#edit_lpj<?= $tor[$m]->id ?>"><i
+                                                                            class=" las la-edit"></i></i>
+                                                                    </button>
+                                                                    <!-- MODAL - Detail Persekot Kerja -->
+                                                                    @include('keuangan/all_modal/detail_lpj')
+                                                                    <!-- MODAL - Edit Persekot Kerja -->
+                                                                    @include('keuangan/all_modal/edit_lpj')
+                                                                @else
+                                                                    <button class="btn btn-sm bg-dark rounded-pill"
+                                                                        title="Input Persekot Kerja" data-toggle="modal"
+                                                                        data-target="#input_lpj<?= $tor[$m]->id ?>">
+                                                                        <i class="las la-upload"></i></i>
+                                                                    </button>
+                                                                @endif
                                                             @endif
                                                         @endforeach
-                                                    @else
-                                                        <button class="btn btn-sm bg-dark rounded-pill"
-                                                            title="Input Persekot Kerja" data-toggle="modal"
-                                                            data-target="#input_lpj<?= $tor[$m]->id ?>">
-                                                            <i class="las la-upload"></i></i>
-                                                        </button>
                                                     @endif
                                                 @endforeach
                                             </td>
