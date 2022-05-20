@@ -115,7 +115,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $wd2Permissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail', 'rab_validasi', 'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail', 'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
                     ];
                 }
                 //wd1
