@@ -22,14 +22,12 @@
                         <div class="iq-card-body">
                             <div id="table" class="table-responsive">
                                 <span class="table-add float-right mb-3 mr-2">
-                                    <button class="btn btn-info mb-3" title="Template LPJ 2022" data-toggle="modal"
-                                        data-target="#template_lpj">
+                                    <button class="btn btn-info mb-3" title="Template LPJ 2022" data-toggle="modal" data-target="#template_lpj">
                                         <i class="las la-file-alt"></i><span class="pl-1">Template LPJ
                                             2022</span></i>
                                     </button>
                                 </span>
-                                <table id="datatable"
-                                    class="table table-bordered table-responsive-md table-hover text-center">
+                                <table id="datatable" class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead>
                                         <tr class="bg-primary">
                                             <th>No</th>
@@ -86,85 +84,72 @@
                                                                                         if ($prodi[$v]->id == $tor[$m]->id_unit) {
                                                                                             $namaprodi = $prodi[$v]->nama_unit;
                                             ?>
-                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                            <td>{{ $namaprodi }}</td>
-                                            <?php for ($a = 0; $a < count($memo_cair); $a++) { 
-                                                if ($memo_cair[$a]->id_tor == $tor[$m]->id) {
-                                                ?>
-                                            <td>{{ $memo_cair[$a]->nomor }}</td>
-                                            <?php
-                                                }
-                                            } ?>
-                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
-                                            <td>{{ $tor[$m]->nama_pic }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-center">
-                                                @foreach ($trx_status_keu as $a)
-                                                    @if ($a->id_tor == $tor[$m]->id)
-                                                        @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'LPJ')
-                                                                    <button type="button"
-                                                                        class="badge border border-primary text-primary"
-                                                                        data-toggle="modal" data-target="#status_lpj">
-                                                                        {{ $b->nama_status }}
-                                                                    </button>
-                                                                    <span type="button" class="badge badge-dark"
-                                                                        title="Validasi" data-toggle="modal"
-                                                                        data-target="#validasi_lpj">
-                                                                        <i class="ri-edit-fill"></i>
-                                                                    </span>
-                                                                    <!-- MODAL - Validasi lPJ -->
-                                                                    @include('keuangan/all_modal/validasi_lpj')
-                                                                    <!-- MODAL - Status lPJ -->
-                                                                    @include('keuangan/all_modal/status_lpj')
-                                                                @else
-                                                                    <span
-                                                                        class="badge border border-danger text-danger">
-                                                                        Belum ada status
-                                                                    </span>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td class="text-center">
-                                                @foreach ($trx_status_keu as $a)
-                                                    @if ($a->id_tor == $tor[$m]->id)
-                                                        @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'LPJ')
-                                                                    <button class="btn btn-sm bg-info rounded-pill"
-                                                                        title="Detail" data-toggle="modal"
-                                                                        data-target="#detail_lpj<?= $tor[$m]->id ?>"><i
-                                                                            class="las la-external-link-alt"></i></i>
-                                                                    </button>
-                                                                    <button class="btn btn-sm bg-warning rounded-pill"
-                                                                        title="Edit" data-toggle="modal"
-                                                                        data-target="#edit_lpj<?= $tor[$m]->id ?>"><i
-                                                                            class=" las la-edit"></i></i>
-                                                                    </button>
-                                                                    <!-- MODAL - Detail Persekot Kerja -->
-                                                                    @include('keuangan/all_modal/detail_lpj')
-                                                                    <!-- MODAL - Edit Persekot Kerja -->
-                                                                    @include('keuangan/all_modal/edit_lpj')
-                                                                @else
-                                                                    <button class="btn btn-sm bg-dark rounded-pill"
-                                                                        title="Input Persekot Kerja" data-toggle="modal"
-                                                                        data-target="#input_lpj<?= $tor[$m]->id ?>">
-                                                                        <i class="las la-upload"></i></i>
-                                                                    </button>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <!-- MODAL - Input LPJ -->
-                                            @include('keuangan/all_modal/input_lpj')
-                                            <?php
+                                                                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
+                                                                                            <td>{{ $namaprodi }}</td>
+                                                                                            <?php for ($a = 0; $a < count($memo_cair); $a++) {
+                                                                                                if ($memo_cair[$a]->id_tor == $tor[$m]->id) {
+                                                                                            ?>
+                                                                                                    <td>{{ $memo_cair[$a]->nomor }}</td>
+                                                                                            <?php
+                                                                                                }
+                                                                                            } ?>
+                                                                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
+                                                                                            <td>{{ $tor[$m]->nama_pic }}</td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td class="text-center">
+                                                                                                @foreach ($trx_status_keu as $a)
+                                                                                                @if ($a->id_tor == $tor[$m]->id)
+                                                                                                @foreach ($status_keu as $b)
+                                                                                                @if ($a->id_status == $b->id)
+                                                                                                @if ($b->kategori == 'LPJ')
+                                                                                                <button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj">
+                                                                                                    {{ $b->nama_status }}
+                                                                                                </button>
+                                                                                                <span type="button" class="badge badge-dark" title="Validasi" data-toggle="modal" data-target="#validasi_lpj">
+                                                                                                    <i class="ri-edit-fill"></i>
+                                                                                                </span>
+                                                                                                <!-- MODAL - Validasi lPJ -->
+                                                                                                @include('keuangan/all_modal/validasi_lpj')
+                                                                                                <!-- MODAL - Status lPJ -->
+                                                                                                @include('keuangan/all_modal/status_lpj')
+                                                                                                @else
+                                                                                                <span class="badge border border-danger text-danger">
+                                                                                                    Belum ada status
+                                                                                                </span>
+                                                                                                @endif
+                                                                                                @endif
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                                @endforeach
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                @foreach ($trx_status_keu as $a)
+                                                                                                @if ($a->id_tor == $tor[$m]->id)
+                                                                                                @foreach ($status_keu as $b)
+                                                                                                @if ($a->id_status == $b->id)
+                                                                                                @if ($b->kategori == 'LPJ')
+                                                                                                <button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj<?= $tor[$m]->id ?>"><i class="las la-external-link-alt"></i></i>
+                                                                                                </button>
+                                                                                                <button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj<?= $tor[$m]->id ?>"><i class=" las la-edit"></i></i>
+                                                                                                </button>
+                                                                                                <!-- MODAL - Detail Persekot Kerja -->
+                                                                                                @include('keuangan/all_modal/detail_lpj')
+                                                                                                <!-- MODAL - Edit Persekot Kerja -->
+                                                                                                @include('keuangan/all_modal/edit_lpj')
+                                                                                                @else
+                                                                                                <button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_lpj<?= $tor[$m]->id ?>">
+                                                                                                    <i class="las la-upload"></i></i>
+                                                                                                </button>
+                                                                                                @endif
+                                                                                                @endif
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                                @endforeach
+                                                                                            </td>
+                                                                                            <!-- MODAL - Input LPJ -->
+                                                                                            @include('keuangan/all_modal/input_lpj')
+                                                <?php
                                                                                         }
                                                                                     }
                                                                                 }
@@ -181,7 +166,7 @@
 
                                                 ?>
                                         </tr>
-                                        <?php
+                                    <?php
                                             } ?>
                                     </tbody>
                                 </table>
