@@ -23,7 +23,7 @@
                             <div id="table" class="table-editable">
                                 <table class="table table-bordered table-responsive-md table-hover">
                                     <thead class="text-center">
-                                        <tr class="bg-primary">
+                                        <tr class="bg-info">
                                             <th>No</th>
                                             <th>Nama Unit/Prodi/Ormawa</th>
                                             <th>Penanggungjawab Kegiatan</th>

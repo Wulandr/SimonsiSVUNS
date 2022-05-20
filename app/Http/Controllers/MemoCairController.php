@@ -7,8 +7,6 @@ use App\Models\Dokumen;
 use App\Models\MemoCair;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Validator;
-
 
 class MemoCairController extends Controller
 {

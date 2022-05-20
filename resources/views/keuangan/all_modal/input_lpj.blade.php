@@ -44,9 +44,11 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nama
                             Penanggungjawab Kegiatan</label>
-                        <div class="col-sm-7"> <input type="text" class="form-control" id="validationCustom01"
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="validationCustom01"
                                 value="{{ $tor[$m]->nama_pic }}" disabled>
                         </div>
+                        <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nomor HP
@@ -97,7 +99,6 @@
                             </small>
                         </label>
                         <input type="file" class="form-control-file" name="file" id="file" required>
-                        <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
                         </div>

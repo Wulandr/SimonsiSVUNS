@@ -16,7 +16,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-center">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Upload SPJ</h4>
+                                <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban (SPJ)</h4>
                             </div>
                         </div>
                         <div class="iq-card-body">

@@ -30,7 +30,7 @@
                                 </span>
                                 <table class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead>
-                                        <tr class="bg-primary">
+                                        <tr class="bg-danger">
                                             <th>No</th>
                                             <th>Nama Unit/Prodi/Ormawa</th>
                                             <th>Nomor Memo Cair</th>
@@ -133,23 +133,25 @@
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'SPJ')
-                                                                    <a href="{{ url('upload_spj') }}">
-                                                                        <button class="btn btn-sm bg-info rounded-pill"
-                                                                            title="Detail File SPJ">
-                                                                            <i class="las la-external-link-alt"></i></i>
-                                                                        </button>
-                                                                    </a>
-                                                                    <a href="{{ url('upload_spj') }}">
-                                                                        <button
-                                                                            class="btn btn-sm bg-warning rounded-pill"
-                                                                            title="Edit File SPJ">
-                                                                            <i class="las la-edit"></i></i>
-                                                                        </button>
-                                                                    </a>
+                                                                    <button class="btn btn-sm bg-info rounded-pill"
+                                                                        title="Detail File SPJ" data-toggle="modal"
+                                                                        data-target="#detail_spj">
+                                                                        <i class="las la-external-link-alt"></i></i>
+                                                                    </button>
+                                                                    <button class="btn btn-sm bg-warning rounded-pill"
+                                                                        title="Edit File SPJ" data-toggle="modal"
+                                                                        data-target="#edit_spj">
+                                                                        <i class="las la-edit"></i></i>
+                                                                    </button>
                                                                 @else
-                                                                    <a href="{{ url('upload_spj') }}">
+                                                                    <button class="btn btn-sm bg-secondary rounded-pill"
+                                                                        title="Input Formulir SPJ" data-toggle="modal"
+                                                                        data-target="#input_spj<?= $tor[$m]->id ?>">
+                                                                        <i class="las la-pen"></i></i>
+                                                                    </button>
+                                                                    <a href="{{ url('/upload_spj') }}">
                                                                         <button class="btn btn-sm bg-dark rounded-pill"
-                                                                            title="Input File SPJ">
+                                                                            title="Input Formulir SPJ">
                                                                             <i class="las la-upload"></i></i>
                                                                         </button>
                                                                     </a>
@@ -159,6 +161,8 @@
                                                     @endif
                                                 @endforeach
                                             </td>
+                                            <!-- MODAL - Input SPJ -->
+                                            @include('keuangan/all_modal/input_spj')
 
                                             <?php
                                                                                         }

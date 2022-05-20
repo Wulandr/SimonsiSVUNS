@@ -18,17 +18,18 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubKController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AnggaranController;
 use App\Http\Controllers\MemoCairController;
 use App\Http\Controllers\ValidasiController;
-use Illuminate\Routing\Route as RoutingRoute;
-use App\Http\Controllers\KelompokMakController;
-use App\Http\Controllers\BelanjaMakController;
 use App\Http\Controllers\DetailMakController;
+use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\BelanjaMakController;
+use App\Http\Controllers\KelompokMakController;
+use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\MonitoringUsulanController;
 /*
@@ -243,7 +244,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/input_lpj', [LPJController::class, 'create']);
 
     // MONITORING KAK
-    Route::get('/monitoring_kak', function () {
-        return view('keuangan.monitoring_kak.index_kak');
-    });
+    Route::get('/monitoring_kak', [MonitoringKakController::class, 'index']);
 });

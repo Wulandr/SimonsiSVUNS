@@ -23,8 +23,8 @@
                         <div class="iq-card-body">
                             <div id="table" class="table-editable">
                                 <table class="table table-bordered table-responsive-md table-hover">
-                                    <thead class=" text-center">
-                                        <tr class="bg-primary">
+                                    <thead class="text-center">
+                                        <tr class="bg-warning">
                                             <th style="width: 3%">No</th>
                                             <th style="width:3%">TOR</th>
                                             <th style="width: 25%">Program Studi</th>
