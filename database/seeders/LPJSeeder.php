@@ -16,10 +16,9 @@ class LPJSeeder extends Seeder
     {
         DB::table('lpj')->insert([
             [
-                'id'=>1,
-                'id_tor'=>1,
-                'mitra'=>'Diskominfo',
-                'pks'=>'12345'
+                'id_tor' => 3,
+                'mitra' => 'Kominfo',
+                'pks' => '53321'
             ]
         ]);
     }

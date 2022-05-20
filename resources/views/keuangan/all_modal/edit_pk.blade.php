@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-left">
                 <p>Yang bertanda tangan di bawah ini menyatakan bertanggung-jawab tentang penggunaan,
                     pertanggungjawaban, dan pelaporan dana kegiatan sebagai berikut. </p>
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
@@ -90,7 +90,7 @@
                             7. &ensp; Tanggal Selesai Pelaporan</label>
                         <div class="col-sm-8">
                             <input type="date" name="tgl_selesai" class="form-control"
-                                value="{{ $persekot_kerja[$a]->tgl_Selesai }}">
+                                value="{{ $persekot_kerja[$a]->tgl_selesai }}">
                         </div>
                         <div class="invalid-feedback">
                             Tolong inputkan tanggal sebelum submit!

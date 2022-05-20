@@ -12,6 +12,8 @@
                 <?php
                     for ($a = 0; $a < count($data); $a++) {
                         if ($data[$a]->id_tor == $tor[$m]->id) {
+                            for ($b = 0; $b < count($dokumen); $b++) {
+                                if ($dokumen[$b]->id_tor == $tor[$m]->id) {
                     ?>
                 <b>
                     <table class="table table-borderless">
@@ -30,13 +32,13 @@
                             <td style="width: 5%">:</td>
                         </tr>
                         <tr>
-                            <td colspan="3"><embed src="{{ asset('file/Sistematika Laporan Kegiatan 2022.pdf') }}"
+                            <td colspan="3"><embed src="{{ asset('documents/' . $dokumen[$b]->name) }}"
                                     type="application/pdf" width="100%" height="500px"></embed></td>
                         </tr>
                     </table>
                 </b>
                 <?php
-                }}?>
+                }}}}?>
             </div>
         </div>
     </div>

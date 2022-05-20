@@ -121,24 +121,24 @@
                                                                         <button class="btn btn-sm bg-info rounded-pill"
                                                                             title="Detail" data-toggle="modal"
                                                                             data-target="#detail_pk<?= $tor[$m]->id ?>"><i
-                                                                                class="las la-external-link-alt"></i></i>
+                                                                                class="las la-external-link-alt"></i>
                                                                         </button>
                                                                         <button
                                                                             class="btn btn-sm bg-warning rounded-pill"
                                                                             title="Edit" data-toggle="modal"
                                                                             data-target="#edit_pk<?= $tor[$m]->id ?>"><i
-                                                                                class=" las la-edit"></i></i>
+                                                                                class=" las la-edit"></i>
                                                                         </button>
-                                                                        <!-- MODAL - Detail Persekot Kerja -->
-                                                                        @include('keuangan/all_modal/detail_pk')
                                                                         <!-- MODAL - Edit Persekot Kerja -->
                                                                         @include('keuangan/all_modal/edit_pk')
+                                                                        <!-- MODAL - Detail Persekot Kerja -->
+                                                                        @include('keuangan/all_modal/detail_pk')
                                                                     @else
                                                                         <button class="btn btn-sm bg-dark rounded-pill"
                                                                             title="Input Persekot Kerja"
                                                                             data-toggle="modal"
                                                                             data-target="#input_persekotkerja<?= $tor[$m]->id ?>">
-                                                                            <i class="las la-upload"></i></i>
+                                                                            <i class="las la-upload"></i>
                                                                         </button>
                                                                     @endif
                                                                 @endif
@@ -146,14 +146,6 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-                                                @if (empty($trx_status_keu))
-                                                    <button class="btn btn-sm bg-dark rounded-pill"
-                                                        title="Input Persekot Kerja" data-toggle="modal"
-                                                        data-target="#input_persekotkerja<?= $tor[$m]->id ?>">
-                                                        <i class="las la-upload"></i></i>
-                                                    </button>
-                                                @endif
-
                                             </td>
 
                                             <!-- MODAL - Input Persekot Kerja -->

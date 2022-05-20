@@ -24,7 +24,7 @@ class MemoCairController extends Controller
         $dokumen = DB::table('dokumen')->get();
         $data = MemoCair::all();
         return view('keuangan.memo_cair.index_memocair', compact('data', 'tor', 'trx_status_tor', 'status', 'prodi', 'users', 'roles', 'triwulan', 'dokumen'));
-}
+    }
 
     public function store(Request $request)
     {
@@ -72,7 +72,6 @@ class MemoCairController extends Controller
 
         //kembali ke halaman sebelumnya
         return back();
-
     }
 
     public function edit(Request $request, $id)

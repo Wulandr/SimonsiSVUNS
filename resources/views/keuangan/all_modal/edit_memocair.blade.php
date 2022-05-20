@@ -12,6 +12,8 @@
                     <?php
                     for ($a = 0; $a < count($data); $a++) {
                         if ($data[$a]->id_tor == $tor[$m]->id) {
+                            for ($d = 0; $d < count($dokumen); $d++) {
+                                if ($dokumen[$d]->id_tor == $tor[$m]->id) {
                     ?>
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
@@ -33,13 +35,6 @@
                     <div class="form-group">
                         <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>" class="form-control">
                     </div>
-                    <?php
-                        }
-                    }
-
-                    for ($d = 0; $d < count($dokumen); $d++) {
-                        if ($dokumen[$d]->id_tor  == $tor[$m]->id) {
-                    ?>
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
                         <input type="file" class="form-control-file" name="file" id="file"
@@ -58,6 +53,8 @@
                         </div>
                     </div>
                     <?php
+                        }
+                    }
                         }
                     } ?>
                     <div class="modal-footer">
