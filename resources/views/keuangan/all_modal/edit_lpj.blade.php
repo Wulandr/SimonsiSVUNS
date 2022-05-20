@@ -1,4 +1,4 @@
-<div class="modal fade" id="input_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog" aria-labelledby="Input LPJ"
+<div class="modal fade" id="edit_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog" aria-labelledby="Input LPJ"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-left">
                 <form class="needs-validation" method="post" action="{{ url('') }}" novalidate>
                     {{ csrf_field() }}
                     <div class="form-group row">
@@ -62,8 +62,10 @@
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
 
                     <?php
-                    for ($a = 0; $a < count($lpj); $a++) {
-                        if ($lpj[$a]->id_tor == $tor[$m]->id) {
+                    for ($b = 0; $b < count($lpj); $b++) {
+                        if ($lpj[$b]->id_tor == $tor[$m]->id) {
+                            for ($d = 0; $d < count($dokumen); $d++) {
+                                if ($dokumen[$d]->id_tor == $tor[$m]->id) {
                     ?>
                     <div class="form-group">
                         <label for="validationCustom01">Nama Mitra Kerjasama
@@ -73,7 +75,7 @@
                             </small>
                         </label>
                         <input type="text" name="mitra" class="form-control" id="validationCustom01"
-                            value="{{ $lpj[$a]->mitra }}" required>
+                            value="{{ $lpj[$b]->mitra }}" required>
                         <div class="invalid-feedback">
                             Required!
                         </div>
@@ -87,7 +89,7 @@
                             </small>
                         </label>
                         <input type="text" name="pks" class="form-control" id="validationCustom01"
-                            value="{{ $lpj[$a]->pks }}" required>
+                            value="{{ $lpj[$b]->pks }}" required>
                         <div class="invalid-feedback">
                             Required!
                         </div>
@@ -102,7 +104,8 @@
                                 materiil!
                             </small>
                         </label>
-                        <input type="file" class="form-control-file" name="file" id="file" required>
+                        <input type="file" class="form-control-file" name="file" id="file"
+                            value="{{ $dokumen[$d]->name }}" required>
                         <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
@@ -110,6 +113,7 @@
                     </div>
                     <?php
                         }
+                    }}
                     } ?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>

@@ -19,7 +19,7 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control" value="{{ $tor[$m]->nama_pic }}" disabled>
                         </div>
-                        <input type="hidden" name="jenis" value="Memo Cair" class="custom-file-input" required>
+                        <input type="hidden" name="jenis" value="Persekot Kerja" class="custom-file-input" required>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">2. &ensp; NIP/NIK/NIM</label>

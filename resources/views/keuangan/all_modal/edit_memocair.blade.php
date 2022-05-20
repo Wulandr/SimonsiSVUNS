@@ -40,17 +40,6 @@
                         <input type="file" class="form-control-file" name="file" id="file"
                             value="{{ $dokumen[$d]->name }}" required>
                         <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required>
-                        @error('file')
-                            <div class="alert text-white bg-success" role="alert">
-                                <div class="iq-alert-icon">
-                                    <i class="ri-alert-line"></i>
-                                </div>
-                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                            @enderror
-                            <div class="invalid-feedback">
-                                Tolong tambahkan file sebelum submit!
-                            </div>
-                        </div>
                     </div>
                     <?php
                         }
