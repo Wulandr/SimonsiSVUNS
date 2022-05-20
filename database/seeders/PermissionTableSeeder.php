@@ -67,7 +67,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $bpuPermissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show', 'anggaran_detail',
-                        'rab_verifikasi', 'tor_verifikasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'tor_verifikasi', 'ajuan_monitoring', 'ajuan_validasi'
                     ];
                 }
                 //wd3
@@ -79,7 +79,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $wd3Permissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail', 'rab_validasi', 'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail',  'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
                     ];;
                 }
                 //staf_perencanaan
