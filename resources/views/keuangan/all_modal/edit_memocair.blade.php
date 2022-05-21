@@ -10,10 +10,10 @@
                     action="{{ url('/memocair/edit') }}" novalidate>
                     {{ csrf_field() }}
                     <?php
+                    $cek=1;
                     for ($a = 0; $a < count($data); $a++) {
                         if ($data[$a]->id_tor == $tor[$m]->id) {
-                            for ($d = 0; $d < count($dokumen); $d++) {
-                                if ($dokumen[$d]->id_tor == $tor[$m]->id) {
+                            if($cek=1){
                     ?>
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
@@ -37,15 +37,15 @@
                     </div>
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
-                        <input type="file" class="form-control-file" name="file" id="file"
-                            value="{{ $dokumen[$d]->name }}" required>
+                        <input type="file" class="form-control-file" name="file" id="file" required>
                         <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required>
                     </div>
                     <?php
                         }
+                            $cek+=1;
                     }
                         }
-                    } ?>
+                    ?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>

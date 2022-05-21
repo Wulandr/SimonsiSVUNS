@@ -75,7 +75,6 @@
                                             <th>Anggaran</th>
                                             <th>Realisasi</th>
                                             <th>Sisa</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,25 +85,6 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning rounded-pill sm-3"
-                                                    title="Detail" data-toggle="modal" data-target="#upload_memocair"><i
-                                                        class="las la-edit"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning rounded-pill sm-3"
-                                                    title="Edit Pagu" data-toggle="modal"
-                                                    data-target="#upload_memocair"><i
-                                                        class="las la-edit"></i></button>
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

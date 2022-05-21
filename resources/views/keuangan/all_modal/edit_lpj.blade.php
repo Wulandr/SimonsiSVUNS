@@ -60,12 +60,12 @@
                     <?php date_default_timezone_set('Asia/Jakarta'); ?>
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-
                     <?php
-                    for ($b = 0; $b < count($lpj); $b++) {
-                        if ($lpj[$b]->id_tor == $tor[$m]->id) {
-                            for ($d = 0; $d < count($dokumen); $d++) {
-                                if ($dokumen[$d]->id_tor == $tor[$m]->id) {
+                    $cek=0;
+                    for ($a = 0; $a < count($lpj); $a++) {
+                        $cek+=1;
+                        if($cek>1){
+                        if ($lpj[$a]->id_tor == $tor[$m]->id) {
                     ?>
                     <div class="form-group">
                         <label for="validationCustom01">Nama Mitra Kerjasama
@@ -75,7 +75,7 @@
                             </small>
                         </label>
                         <input type="text" name="mitra" class="form-control" id="validationCustom01"
-                            value="{{ $lpj[$b]->mitra }}" required>
+                            value="{{ $lpj[$a]->mitra }}" required>
                         <div class="invalid-feedback">
                             Required!
                         </div>
@@ -89,11 +89,16 @@
                             </small>
                         </label>
                         <input type="text" name="pks" class="form-control" id="validationCustom01"
-                            value="{{ $lpj[$b]->pks }}" required>
+                            value="{{ $lpj[$a]->pks }}" required>
                         <div class="invalid-feedback">
                             Required!
                         </div>
                     </div>
+                    <?php
+                        }
+                    }
+                    }
+                        ?>
                     <div class="form-group">
                         <label>Unggah Dokumen LPJ
                             <br>
@@ -104,17 +109,12 @@
                                 materiil!
                             </small>
                         </label>
-                        <input type="file" class="form-control-file" name="file" id="file"
-                            value="{{ $dokumen[$d]->name }}" required>
+                        <input type="file" class="form-control-file" name="file" id="file" value="" required>
                         <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
                         </div>
                     </div>
-                    <?php
-                        }
-                    }}
-                    } ?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
