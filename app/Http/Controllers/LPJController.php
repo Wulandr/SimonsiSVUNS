@@ -74,7 +74,21 @@ class LPJController extends Controller
         $upload2->pks = $request->pks;
         $upload2->save();
 
-        //kembali ke halaman sebelumnya
-        return back();
+        //Menyimpan ke TRX Status
+        $upload2 = TrxStatusKeu::create([
+            'id_status' => 8,
+            'id_tor' => $request->id_tor,
+            'create_by' => $request->create_by,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ]);
+        if ($upload2) {
+            return redirect()->back()->with(
+                "success",
+                "Data berhasil ditambahkan"
+            );
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
     }
 }

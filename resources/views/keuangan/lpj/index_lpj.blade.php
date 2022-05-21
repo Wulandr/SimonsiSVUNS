@@ -115,14 +115,13 @@
                                                                     @include('keuangan/all_modal/validasi_lpj')
                                                                     <!-- MODAL - Status LPJ -->
                                                                     @include('keuangan/all_modal/status_lpj')
-                                                                @else
-                                                                    <span
-                                                                        class="badge border border-danger text-danger ">
-                                                                        Belum ada status
-                                                                    </span>
                                                                 @endif
                                                             @endif
                                                         @endforeach
+                                                    @else
+                                                        <span class="badge border border-danger text-danger ">
+                                                            Belum ada status
+                                                        </span>
                                                     @endif
                                                 @endforeach
                                             </td>
@@ -148,17 +147,16 @@
                                                                         @include('keuangan/all_modal/detail_lpj')
                                                                         <!-- MODAL - Edit LPJ -->
                                                                         @include('keuangan/all_modal/edit_lpj')
-                                                                    @else
-                                                                        <button class="btn btn-sm bg-dark rounded-pill"
-                                                                            title="Input LPJ" data-toggle="modal"
-                                                                            data-target="#input_lpj<?= $tor[$m]->id ?>">
-                                                                            <i class="las la-upload"></i>
-                                                                        </button>
                                                                     @endif
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    <button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ"
+                                                        data-toggle="modal" data-target="#input_lpj<?= $tor[$m]->id ?>">
+                                                        <i class="las la-upload"></i>
+                                                    </button>
                                                 @endif
                                             </td>
 

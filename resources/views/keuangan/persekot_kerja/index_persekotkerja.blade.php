@@ -104,10 +104,10 @@
                                                                     <span
                                                                         class="badge border border-danger text-danger ">
                                                                         Belum ada status
-                                                                    </span>
                                                                 @endif
                                                             @endif
                                                         @endforeach
+                                                        </span>
                                                     @endif
                                                 @endforeach
                                             </td>
