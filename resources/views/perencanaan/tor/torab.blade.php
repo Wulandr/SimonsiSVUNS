@@ -332,7 +332,8 @@ use Illuminate\Support\Facades\Auth;
                       <!-- MODAL UPDATE TOR -->
                       @include('perencanaan/modal2/update_tor')
                       <!-- akhir perulangan tor -->
-                    <?php } ?>
+                    <?php
+                        } ?>
                     <?php
                     $semuaanggaran = [0, 0, 0, 0];
                     for ($u = 0; $u < count($totalpertw); $u++) {

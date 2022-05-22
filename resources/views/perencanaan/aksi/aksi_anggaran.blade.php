@@ -12,7 +12,7 @@
         <input type="hidden" name="totalAnggaranTor" value="{{$tor[$t]->jumlah_anggaran}}">
         <input type="hidden" name="anggaranDiHapus" value="{{$anggaran[$i]->anggaran}}">
         <input type="hidden" name="id_tor" value="{{$tor[$t]->id}}">
-        <button style="border:none;" class="iq-bg-danger rounded" type="submit" style="padding: 1%;margin:2%" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')">
+        <button style="border:none;" class="anggaran-confirm  iq-bg-danger rounded" type="submit" style="padding: 1%;margin:2%" data-toggle="tooltip" title="Delete">
             <i class="ri-delete-bin-line"></i>
         </button>
     </form>

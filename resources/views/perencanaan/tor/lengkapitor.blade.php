@@ -371,7 +371,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             <?php if ($pengajuan == 0) { ?>
                                                                                 <div class="flex align-items-center list-user-action">
                                                                                     <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Edit Jadwal" data-original-title="Edit Jadwal" data-target="#edit_jadwal<?= $komponen_jadwal[$j]->id ?>" href=""><i class="ri-pencil-line"></i></a>
-                                                                                    <a class="iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.$komponen_jadwal[$j]->id)}}" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')">
+                                                                                    <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.$komponen_jadwal[$j]->id)}}" data-toggle="tooltip" title="Delete">
                                                                                         <i class="ri-delete-bin-line"></i>
                                                                                     </a>
                                                                                 </div>
@@ -829,41 +829,41 @@ use Illuminate\Support\Facades\Auth;
             window.print();
         };
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.jadwal-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+    <script>
+        $('.anggaran-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+    @include('dashboards/users/layouts/footer')
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-    <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-    <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-    <!-- Appear JavaScript -->
-    <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-    <!-- Countdown JavaScript -->
-    <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-    <!-- Counterup JavaScript -->
-    <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-    <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-    <!-- Wow JavaScript -->
-    <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-    <!-- Apexcharts JavaScript -->
-    <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-    <!-- Slick JavaScript -->
-    <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-    <!-- Select2 JavaScript -->
-    <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-    <!-- Owl Carousel JavaScript -->
-    <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-    <!-- Magnific Popup JavaScript -->
-    <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <!-- Smooth Scrollbar JavaScript -->
-    <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-    <!-- lottie JavaScript -->
-    <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-    <!-- Style Customizer -->
-    <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-    <!-- Chart Custom JavaScript -->
-    <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-    <!-- Custom JavaScript -->
-    <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
 </body>
 
 </html>

@@ -185,7 +185,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-
         DB::beginTransaction();
         try {
             $role->revokePermissionTo($role->permissions->pluck('name')->toArray());
@@ -197,7 +196,7 @@ class RoleController extends Controller
         } finally {
             DB::commit();
         }
-        return redirect()->route('pengaturan.roles.index');
+        return redirect()->back();
     }
     private function attributes()
     {
