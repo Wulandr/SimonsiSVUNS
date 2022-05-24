@@ -9,30 +9,44 @@
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form action="">
+                <form method="post" action="/spj/validasi">
+                    @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
+                        <?php 
+                        for ($s = 0; $s < count($status_keu); $s++) {
+                            if ($status_keu[$s]->kategori == 'SPJ') {
+                            if ($status_keu[$s]->nama_status == 'Revisi') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" id="customRadio-1" name="customRadio-10"
-                                class="custom-control-input bg-primary">
-                            <label class="custom-control-label" for="customRadio-1"> Verfikasi </label>
+                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
+                            <label class=""> Revisi </label>
                         </div>
+                        <?php } 
+                        if ($status_keu[$s]->nama_status == 'Verifikasi') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked">
-                            <input type="radio" id="customRadio-2" name="customRadio-10"
-                                class="custom-control-input bg-danger">
-                            <label class="custom-control-label" for="customRadio-2"> Revisi </label>
+                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
+                            <label class=""> Verifikasi </label>
                         </div>
-                        <div class="custom-control custom-radio custom-radio-color-checked">
-                            <input type="radio" id="customRadio-2" name="customRadio-10"
-                                class="custom-control-input bg-success">
-                            <label class="custom-control-label" for="customRadio-2"> LPJ Selesao </label>
+                        <?php }
+                        if ($status_keu[$s]->nama_status == 'Pelunasan Pembayaran/SPJ Selesai') { ?>
+                        <div class="custom-control custom-radio custom-radio-color-checked ">
+                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
+                            <label class=""> Pelunasan Pembayaran/SPJ Selesai </label>
                         </div>
+                        <?php } 
+                            }
+                        } ?>
                     </div>
-                </form>
+                    <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
+                    <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>">
+                    <?php date_default_timezone_set('Asia/Jakarta'); ?>
+                    <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                    <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

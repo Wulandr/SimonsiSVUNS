@@ -75,82 +75,6 @@
                                                                                         if ($prodi[$v]->id == $tor[$m]->id_unit) {
                                                                                             $namaprodi = $prodi[$v]->nama_unit;
                                             ?>
-                                                                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                                                                            <td>{{ $namaprodi }}</td>
-                                                                                            <td>{{ $tor[$m]->nama_pic }}</td>
-                                                                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
-                                                                                            <td class="text-center">
-                                                                                                <?php $cekstatus = 1;
-                                                                                                $cekstatus2 = 1; ?>
-                                                                                                @foreach ($trx_status_keu as $a)
-                                                                                                @if ($a->id_tor == $tor[$m]->id)
-                                                                                                @foreach ($status_keu as $b)
-                                                                                                @if ($a->id_status == $b->id)
-                                                                                                @if ($b->kategori == 'Persekot Kerja')
-                                                                                                <button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj">
-                                                                                                    {{ $b->nama_status }}
-                                                                                                </button>
-                                                                                                <span type="button" class="badge badge-dark" title="Validasi" data-toggle="modal" data-target="#validasi_lpj">
-                                                                                                    <i class="ri-edit-fill"></i>
-                                                                                                </span>
-                                                                                                <!-- MODAL - Validasi LPJ -->
-                                                                                                @include('keuangan/all_modal/validasi_lpj')
-                                                                                                <!-- MODAL - Status LPJ -->
-                                                                                                @include('keuangan/all_modal/status_lpj')
-                                                                                                @endif
-                                                                                                @endif
-                                                                                                @endforeach
-                                                                                                <?php $cekstatus += 1; ?>
-                                                                                                @else
-                                                                                                @if ($cekstatus == 1)
-                                                                                                <?php if ($cekstatus2 <= 1) { ?>
-                                                                                                    <span class="badge border border-danger text-danger ">
-                                                                                                        Belum ada status
-                                                                                                    </span>
-                                                                                                <?php }
-                                                                                                $cekstatus2 += 1; ?>
-                                                                                                @endif
-                                                                                                @endif
-                                                                                                @endforeach
-                                                                                            </td>
-                                                                                            <td class="text-center">
-                                                                                                <?php $cekstatus = 1;
-                                                                                                $cekstatus2 = 1; ?>
-                                                                                                @foreach ($trx_status_keu as $a)
-                                                                                                @if ($a->id_tor == $tor[$m]->id)
-                                                                                                @foreach ($status_keu as $b)
-                                                                                                @if ($a->id_status == $b->id)
-                                                                                                @if ($b->kategori == 'Persekot Kerja')
-                                                                                                <button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk<?= $tor[$m]->id ?>"><i class="las la-external-link-alt"></i>
-                                                                                                </button>
-                                                                                                <button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_pk<?= $tor[$m]->id ?>"><i class=" las la-edit"></i>
-                                                                                                </button>
-                                                                                                <!-- MODAL - Edit Persekot Kerja -->
-                                                                                                @include('keuangan/all_modal/edit_pk')
-                                                                                                <!-- MODAL - Detail Persekot Kerja -->
-                                                                                                @include('keuangan/all_modal/detail_pk')
-                                                                                                @endif
-                                                                                                @endif
-                                                                                                @endforeach
-                                                                                                <?php $cekstatus += 1; ?>
-                                                                                                @else
-                                                                                                @if ($cekstatus == 1)
-                                                                                                @if ($cekstatus2 <= 1) <button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja<?= $tor[$m]->id ?>">
-                                                                                                    <i class="las la-upload"></i>
-                                                                                                    </button>
-                                                                                                    @endif
-                                                                                                    @endif
-                                                                                                    @endif
-                                                                                                    <?php $cekstatus2 += 1; ?>
-                                                                                                    @endforeach
-                                                                                            </td>
-
-<<<<<<< Updated upstream
-
-                                                                                            @endif
-                                                                                            @endforeach
-                                                                                            @endif
-=======
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
                                             <td>{{ $namaprodi }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
@@ -166,6 +90,10 @@
                                                                 @if ($b->kategori == 'Persekot Kerja')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_pk' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
+                                                                    @if ($b->nama_status == 'Transfer Uang')
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                        ?>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endforeach
@@ -184,6 +112,13 @@
                                                                 @if ($b->kategori == 'Persekot Kerja')
                                                                     <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
                                                                     ?>
+                                                                    @if ($b->nama_status == 'Validasi')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#show_buktitf' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Transfer Uang')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_buktitf' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                        ?>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endforeach
@@ -192,57 +127,18 @@
                                                 <?= $upload ?>
                                             </td>
 
-                                            <!-- MODAL - Edit Persekot Kerja -->
-                                            @include('keuangan/all_modal/edit_pk')
-                                            <!-- MODAL - Detail Persekot Kerja -->
-                                            @include('keuangan/all_modal/detail_pk')
                                             <!-- MODAL - Validasi Persekot Kerja -->
                                             @include('keuangan/all_modal/validasi_pk')
                                             <!-- MODAL - Status Persekot Kerja -->
                                             @include('keuangan/all_modal/status_pk')
+                                            <!-- MODAL - Edit Persekot Kerja -->
+                                            @include('keuangan/all_modal/edit_pk')
+                                            <!-- MODAL - Detail Persekot Kerja -->
+                                            @include('keuangan/all_modal/detail_pk')
                                             <!-- MODAL - Input Persekot Kerja -->
                                             @include('keuangan/all_modal/input_pk')
->>>>>>> Stashed changes
 
-                                                                                            @if($a->id_tor != $tor[$m]->id)
-                                                                                            <span class="badge border border-danger text-danger ">
-                                                                                                Belum ada status
-                                                                                            </span>
-                                                                                            @endif
-
-                                                                                            @endforeach
-                                                                                            </td>
-                                                                                            <td class="text-center">
-                                                                                                @if (!empty($trx_status_keu))
-                                                                                                @foreach ($trx_status_keu as $a)
-                                                                                                @if ($a->id_tor == $tor[$m]->id)
-                                                                                                @foreach ($status_keu as $b)
-                                                                                                @if ($a->id_status == $b->id)
-                                                                                                @if ($b->kategori == 'Persekot Kerja')
-                                                                                                <button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk<?= $tor[$m]->id ?>"><i class="las la-external-link-alt"></i>
-                                                                                                </button>
-                                                                                                <button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_pk<?= $tor[$m]->id ?>"><i class=" las la-edit"></i>
-                                                                                                </button>
-                                                                                                <!-- MODAL - Edit Persekot Kerja -->
-                                                                                                @include('keuangan/all_modal/edit_pk')
-                                                                                                <!-- MODAL - Detail Persekot Kerja -->
-                                                                                                @include('keuangan/all_modal/detail_pk')
-                                                                                                @else
-                                                                                                <button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja<?= $tor[$m]->id ?>">
-                                                                                                    <i class="las la-upload"></i>
-                                                                                                </button>
-                                                                                                @endif
-                                                                                                @endif
-                                                                                                @endforeach
-                                                                                                @endif
-                                                                                                @endforeach
-                                                                                                @endif
-                                                                                            </td>
-
-                                                                                            <!-- MODAL - Input Persekot Kerja -->
-                                                                                            @include('keuangan/all_modal/input_pk')
-
-                                                <?php
+                                            <?php
                                                                                         }
                                                                                     }
                                                                                 }
@@ -259,7 +155,7 @@
 
                                                 ?>
                                         </tr>
-                                    <?php
+                                        <?php
                                             } ?>
                                     </tbody>
                                 </table>

@@ -31,21 +31,27 @@ class PersekotKerjaController extends Controller
         $persekot_kerja = PersekotKerja::all();
         $status_keu =  DB::table('status_keu')->get();
         $trx_status_keu = TrxStatusKeu::all();
-        return view('keuangan.persekot_kerja.index_persekotkerja', 
-        compact('memo_cair', 'persekot_kerja', 'tor', 'trx_status_tor', 
-        'status', 'prodi', 'users', 'roles', 'triwulan', 'dokumen', 'status_keu', 'trx_status_keu'));
+        return view(
+            'keuangan.persekot_kerja.index_persekotkerja',
+            compact(
+                'memo_cair',
+                'persekot_kerja',
+                'tor',
+                'trx_status_tor',
+                'status',
+                'prodi',
+                'users',
+                'roles',
+                'triwulan',
+                'dokumen',
+                'status_keu',
+                'trx_status_keu'
+            )
+        );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
-        $request->validate([
-            
-        ]);
+        $request->validate([]);
 
         $upload2 = new PersekotKerja();
         $upload2->id_tor = $request->id_tor;
@@ -56,7 +62,7 @@ class PersekotKerjaController extends Controller
         $upload2 = TrxStatusKeu::create([
             'id_status' => 1,
             'id_tor' => $request->id_tor,
-            'create_by' => $request->create_by, 
+            'create_by' => $request->create_by,
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at,
         ]);
@@ -66,50 +72,22 @@ class PersekotKerjaController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\PersekotKerja  $persekotKerja
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PersekotKerja $persekotKerja)
+    public function validasiPK(Request $request)
     {
-        //
-    }
+        $userLogin = Auth()->user()->id;
+        $unitUser = Auth()->user()->id_unit; //prodi mana?
+        $roleUser = Auth()->user()->role;
+        if ($roleUser ==  2) {
+            abort(403);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PersekotKerja  $persekotKerja
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PersekotKerja $persekotKerja)
-    {
-        //
-    }
+        $request->validate([]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PersekotKerja  $persekotKerja
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PersekotKerja $persekotKerja)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\PersekotKerja  $persekotKerja
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PersekotKerja $persekotKerja)
-    {
-        //
+        $inserting = DB::table('trx_status_keu')->insert($request->except('_token'));
+        if ($inserting) {
+            return redirect()->back()->with("success", "Data berhasil ditambahkan");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
     }
 }

@@ -220,10 +220,12 @@ Route::group(['middleware' => 'auth'], function () {
     // Persekot Kerja
     Route::get('/persekot_kerja', [PersekotKerjaController::class, 'index']);
     Route::post('/input_pk', [PersekotKerjaController::class, 'create']);
+    Route::post('/persekot_kerja/validasi', [PersekotKerjaController::class, 'validasiPK']);
 
     // SPJ
     Route::get('/spj', [SPJController::class, 'index']);
     Route::get('/upload_spj', [SPJController::class, 'uploadSpj']);
+    Route::get('/spj/validasi', [SPJController::class, 'validasiSpj']);
 
 
     // SPJ SHOW PDF //
@@ -242,6 +244,7 @@ Route::group(['middleware' => 'auth'], function () {
     // LPJ
     Route::get('/lpj', [LPJController::class, 'index']);
     Route::post('/input_lpj', [LPJController::class, 'create']);
+    Route::post('/lpj/validasi', [LPJController::class, 'validasiLpj']);
 
     // MONITORING KAK
     Route::get('/monitoring_kak', [MonitoringKakController::class, 'index']);

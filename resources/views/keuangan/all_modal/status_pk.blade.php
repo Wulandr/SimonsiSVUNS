@@ -10,31 +10,58 @@
             </div>
             <div class="modal-body">
                 <ul class="iq-timeline">
+                    <?php
+                            $indexwarna = 0;
+                            $warnaLingkar = [
+                                'timeline-dots border-primary',
+                                'timeline-dots border-info',
+                                'timeline-dots border-success',
+                                'timeline-dots border-danger',
+                            ];
+                            $ada = 0;
+                            if (!empty($trx_status_keu)) {
+                                for ($q = 0; $q < count($trx_status_keu); $q++) {
+                                    if ($trx_status_keu[$q]->id_tor == $tor[$m]->id) {
+                                        $ada =   $trx_status_keu[$q]->id_status ?>
                     <li>
-                        <div class="timeline-dots"><i class="ri-pantone-line"></i></div>
-                        <h6 class="float-left mb-1">Client Meeting</h6>
-                        <small class="float-right mt-1">19 November 2019</small>
-                        <div class="d-inline-block w-100">
-                            <p>Bonbon macaroon jelly beans gummi bears jelly lollipop apple</p>
+
+                        <?php
+                        $indexwarna += 1;
+                        if ($indexwarna > 3) {
+                            $indexwarna = 0;
+                        }
+        
+                            for ($st = 0; $st < count($status_keu); $st++) {
+                                if ($status_keu[$st]->id == $trx_status_keu[$q]->id_status) {
+                                    if ($status_keu[$st]->kategori == 'Persekot Kerja') {?>
+                        <div class="{{ $warnaLingkar[$indexwarna] }}"><i class="ri-check-fill" style="color:black"></i>
                         </div>
-                    </li>
-                    <li>
-                        <div class="timeline-dots border-success"><i class="ri-pantone-line"></i></div>
-                        <h6 class="float-left mb-1">Client Meeting</h6>
-                        <small class="float-right mt-1">19 November 2019</small>
+                        <h6 class="float-left mb-1">
+                            <?php
+                            echo '<b>' . '' . '</b>' . $status_keu[$st]->nama_status;
+
+                            for ($u = 0; $u < count($users); $u++) { if ($users[$u]->id ==
+                                $trx_status_keu[$q]->create_by) {
+                                for ($rl = 0; $rl < count($roles); $rl++) { if ($roles[$rl]->id == $users[$u]->role) {
+                                    echo '<br />' . ' - Create by : ' . $users[$u]->name . ' - ' . $roles[$rl]->name;
+                                    $pengvalidasi = $roles[$rl]->id;
+
+                                    ?>
+                        </h6>
+                        <small class="float-right mt-1">{{ $trx_status_keu[$q]->created_at }}</small>
                         <div class="d-inline-block w-100">
-                            <p>Bonbon macaroon jelly beans gummi bears jelly lollipop apple</p>
                         </div>
+                        <?php }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } ?>
                     </li>
-                    <li>
-                        <div class="timeline-dots border-danger"><i class="ri-pantone-line"></i></div>
-                        <h6 class="float-left mb-1">Client Meeting</h6>
-                        <small class="float-right mt-1">19 November 2019</small>
-                        <div class="d-inline-block w-100">
-                            <p>Bonbon macaroon jelly beans <a href="#">gummi bears</a>gummi bears jelly lollipop
-                                apple</p>
-                        </div>
-                    </li>
+                    <?php }
+                                }
+                            } ?>
                 </ul>
             </div>
             <div class="modal-footer">

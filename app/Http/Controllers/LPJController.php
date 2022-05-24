@@ -91,4 +91,23 @@ class LPJController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
+
+    public function validasiLpj(Request $request)
+    {
+        $userLogin = Auth()->user()->id;
+        $unitUser = Auth()->user()->id_unit; //prodi mana?
+        $roleUser = Auth()->user()->role;
+        if ($roleUser ==  2) {
+            abort(403);
+        }
+
+        $request->validate([]);
+
+        $inserting = DB::table('trx_status_keu')->insert($request->except('_token'));
+        if ($inserting) {
+            return redirect()->back()->with("success", "Data berhasil ditambahkan");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
+    }
 }
