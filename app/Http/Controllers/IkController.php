@@ -23,7 +23,7 @@ class IkController extends Controller
     {
         $filtertahun = 0;
         $iku = DB::table('indikator_iku')->get();
-        $ik = DB::table('indikator_ik')->simplePaginate(15);
+        $ik = DB::table('indikator_ik')->get();
         $k = DB::table('indikator_k')->get();
         $subk = DB::table('indikator_subk')->get();
         $tabeltahun = DB::table('tahun')->get();

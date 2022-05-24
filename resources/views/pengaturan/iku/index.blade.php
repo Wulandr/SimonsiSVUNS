@@ -100,7 +100,7 @@ if (Auth()->user()->id_unit == 1) {
                                                 <div class="table-responsive">
                                                     <div class="form-group row float-right mb-3 mr-2">
                                                     </div>
-                                                    <table class="table mb-0">
+                                                    <table id="myiku" class="table mb-0">
                                                         <thead class="thead-light">
                                                             <tr>
                                                                 <th>No.</th>
@@ -122,7 +122,7 @@ if (Auth()->user()->id_unit == 1) {
                                                                             <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update IKU" data-original-title="Update IKU" href="" data-target="#update_iku<?= $iku[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                             @endcan
                                                                             @can('iku_delete')
-                                                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/iku/delete/'.$iku[$k1]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                            <a class="iku-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/iku/delete/'.$iku[$k1]->id)}}"><i class="ri-delete-bin-line"></i></a>
                                                                             @endcan
                                                                         </div>
                                                                     </td>
@@ -171,7 +171,32 @@ if (Auth()->user()->id_unit == 1) {
                 </div>
             </div>
             <!-- Wrapper END -->
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
 
+            <script>
+                $('.iku-confirm').on('click', function(event) {
+                    event.preventDefault();
+                    const url = $(this).attr('href');
+                    swal({
+                        title: 'Are you sure?',
+                        text: 'This record and it`s details will be permanantly deleted!',
+                        icon: 'warning',
+                        buttons: ["Cancel", "Yes!"],
+                    }).then(function(value) {
+                        if (value) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            </script>
+
+            <script>
+                $(document).ready(function() {
+                    $.noConflict();
+                    $('#myiku').DataTable();
+                });
+            </script>
             @include('dashboards/users/layouts/footer')
 
     </body>

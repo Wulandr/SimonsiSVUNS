@@ -95,7 +95,7 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
 
                                         <div class="iq-card-body">
-                                            <span class="table-add float-right mb-3 mr-2">
+                                            <!-- <span class="table-add float-right mb-3 mr-2">
                                                 <div class="form-group row">
                                                     <form action="{{ url('/searchBelanja') }}" method="GET">
                                                         <div class="row mr-3">
@@ -109,11 +109,11 @@ use Illuminate\Support\Facades\Auth;
                                                         </div>
                                                     </form>
                                                 </div>
-                                            </span>
+                                            </span> -->
                                             <div class="table-responsive">
                                                 <div class="form-group row float-right mb-3 mr-2">
                                                 </div>
-                                                <table class="table mb-0">
+                                                <table id="mybelmak" class="table mb-0">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>No.</th>
@@ -126,7 +126,8 @@ use Illuminate\Support\Facades\Auth;
                                                     <tbody>
                                                         <?php $num = 1; ?>
                                                         @foreach ($joinKelompok as $k2 => $join)
-                                                        <?php $num =  $joinKelompok->firstItem() + $k2 ?>
+                                                        <?php //$num =  $joinKelompok->firstItem() + $k2 
+                                                        ?>
                                                         <tr>
                                                             <td><a href="#">{{$num}}</a></td>
                                                             <td>{{$join->jenis_belanja}}</td>
@@ -185,7 +186,7 @@ use Illuminate\Support\Facades\Auth;
                                             </tbody>
                                             </table>
                                         </div>
-                                        {{$joinKelompok->links()}}
+                                        <!-- {{$joinKelompok->links() -->
                                     </div>
                                 </div>
                             </div>
@@ -193,45 +194,19 @@ use Illuminate\Support\Facades\Auth;
                     </div>
                 </div>
                 <!-- Wrapper END -->
-                <!-- Footer -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#mybelmak').DataTable();
+        });
+    </script>
 
+    @include('dashboards/users/layouts/footer')
 
-                <!-- Footer END -->
-
-                <!-- Optional JavaScript -->
-                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-                <!-- Appear JavaScript -->
-                <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-                <!-- Countdown JavaScript -->
-                <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-                <!-- Counterup JavaScript -->
-                <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-                <!-- Wow JavaScript -->
-                <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-                <!-- Apexcharts JavaScript -->
-                <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-                <!-- Slick JavaScript -->
-                <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-                <!-- Select2 JavaScript -->
-                <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-                <!-- Owl Carousel JavaScript -->
-                <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-                <!-- Magnific Popup JavaScript -->
-                <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-                <!-- Smooth Scrollbar JavaScript -->
-                <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-                <!-- lottie JavaScript -->
-                <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-                <!-- Style Customizer -->
-                <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-                <!-- Chart Custom JavaScript -->
-                <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-                <!-- Custom JavaScript -->
-                <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
 </body>
 
 </html>

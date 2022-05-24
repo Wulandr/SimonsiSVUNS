@@ -17,7 +17,7 @@ class KelompokMakController extends Controller
     public function index()
     {
         $mak = DB::table('mak')->get();
-        $kelompok_mak = DB::table('kelompok_mak')->simplePaginate(15);
+        $kelompok_mak = DB::table('kelompok_mak')->get();
         return view(
             "pengaturan.mak.kelompok_mak.index",
             [

@@ -19,13 +19,13 @@ class BelanjaMakController extends Controller
     {
         $mak = DB::table('mak')->get();
         $kelompok_mak = DB::table('kelompok_mak')->get();
-        $belanja_mak = DB::table('belanja_mak')->simplePaginate(15);
+        $belanja_mak = DB::table('belanja_mak')->get();
         // $join = BelanjaMak::joinKelompokMak();
         $joinKelompok = DB::table('belanja_mak')
             ->join('kelompok_mak', 'belanja_mak.id_kelompok', '=', 'kelompok_mak.id')
             ->join('mak', 'kelompok_mak.id_mak', '=', 'mak.id')
             ->select('belanja_mak.id as idBelanja', 'belanja_mak.belanja', 'mak.id as idMak', 'mak.jenis_belanja', 'kelompok_mak.id as idKelompok', 'kelompok_mak.kelompok',)
-            ->simplePaginate(15);
+            ->get();
         return view(
             "pengaturan.mak.belanja_mak.index",
             [

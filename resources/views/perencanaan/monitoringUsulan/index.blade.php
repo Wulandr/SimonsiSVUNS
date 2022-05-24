@@ -109,8 +109,6 @@ use Illuminate\Support\Facades\Auth;
                                                                 $x = 0; //agar array tidakduplicate
                                                                 for ($d = 0; $d < count($disetujui['tor']); $d++) {
                                                                     if ($disetujui['tor'][$d] != $x) {
-                                                                        // echo ($disetujui['tor'][$d]);
-                                                                        // echo ($disetujui['anggaran'][$d]);
                                                                         $jml_ang_disetujui += $disetujui['anggaran'][$d];
                                                                         $count2 += 1;
                                                                     }
