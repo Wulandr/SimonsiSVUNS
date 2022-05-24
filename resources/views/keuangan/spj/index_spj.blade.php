@@ -110,6 +110,10 @@
                                                                 @if ($b->kategori == 'SPJ')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_spj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
+                                                                    @if ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                        ?>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endforeach
@@ -144,8 +148,16 @@
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'SPJ')
-                                                                    <?php $file = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_spj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_spj' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
-                                                                    ?>
+                                                                    @if ($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi')
+                                                                        <?php $file = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_spj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_spj' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Verifikasi')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_buktitf_spj' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_buktitf_spj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                        ?>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endforeach

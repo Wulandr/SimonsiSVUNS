@@ -64,7 +64,7 @@ use Illuminate\Support\Facades\Auth;
                 </div>
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-card-header d-flex justify-content-center">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI AJUAN PER TW</h4>
                             </div>
@@ -77,65 +77,11 @@ use Illuminate\Support\Facades\Auth;
                                             <th>No</th>
                                             <th>Nama Kegiatan</th>
                                             <th>Penanggungjawab</th>
-                                            <th>Anggaran</th>
-                                            <th>Realisasi</th>
-                                            <th>Sisa</th>
+                                            <th width="10%">Anggaran</th>
+                                            <th width="10%">Realisasi</th>
+                                            <th width="10%">Sisa</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                                    $jml_ang_ajuan = 0;
-                                    $jml_ang_disetujui = 0;
-                                    $statusTor2 = [];
-                                    $count1 = 0;
-                                    $count2 = 0;
-                                    $cekId = 0;
-                                    $i2 = 0;
-                                    $i3 = 0;
-                                    $udah = 1;
-                                    $disetujui = [
-                                        'tor' => [],
-                                        'anggaran' => [],
-                                    ]; //apakah ketiga wd sudah validasi?
-                                    $tordisetujui = [];
-                                    for ($m2 = 0; $m2 < count($tor); $m2++) {
-                                        $i2 = 0;
-                                        for ($tr2 = 0; $tr2 < count($trx_status_tor); $tr2++) {
-                                            if ($trx_status_tor[$tr2]->id_tor == $tor[$m2]->id) {
-                                                $cekId == $tor[$m2]->id;
-                                                for ($s2 = 0; $s2 < count($status); $s2++) {
-                                                    if ($trx_status_tor[$tr2]->id_status == $status[$s2]->id) {
-                                                        $statusTor2[$tor[$m2]->id][$i2] = $status[$s2]->nama_status . ' , ';
-                                                        for ($u5 = 0; $u5 < count($users); $u5++) {
-                                                            if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
-                                                                for ($r5 = 0; $r5 < count($roles); $r5++) {
-                                                                    if ($users[$u5]->role == $roles[$r5]->id) {
-                                                                        if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
-                                                                            if ($users[$u5]->role == $roles[$r5]->id) {
-                                                                                if ($status[$s2]->nama_status == 'Validasi' && $roles[$r5]->name == 'WD 1') {
-                                                                                    $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran;
-                                                                                    $disetujui['tor'][$i3] = $tor[$m2]->id;
-                                                                                    'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
-                                                                                    $i3 += 1;
-                                                                                }
-                                                                                $i2 += 1;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                if ($tor[$m2]->id != $cekId) {
-                                                    $count1 += 1;
-                                                    $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran;
-                                                    $cekId = $tor[$m2]->id;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ?>
-
                                     <tbody>
                                         <tr>
                                             <?php 
@@ -143,27 +89,24 @@ use Illuminate\Support\Facades\Auth;
                                             for ($m = 0; $m < count($tor); $m++) { 
                                                 $ada=0; //sudah diajukan apa belum 
                                                 //  P R O D I 
-                                                $prodiTor = "";
                                                 for ($p = 0; $p < count($prodi); $p++) {
                                                     if ($tor[$m]->id_unit == $prodi[$p]->id) {
                                                         $prodiTor = $prodi[$p]->nama_unit;
                                                     }
                                                 }
                                             $anggaran = $tor[$m]->jumlah_anggaran;
+                                            $realisasi = 0;
                                             $sisa = $anggaran - $anggaran; ?>
 
-                                            <?php if ($ada == 1) {  ?>
+
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
-                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
+                                            <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
-                                            <td>{{ 'Rp. ' . number_format($anggaran, 2, ',', ',') }}
-                                            </td>
-                                            <td>{{ 'Rp. ' . number_format($anggaran, 2, ',', ',') }}
-                                            </td>
-                                            <td>{{ 'Rp. ' . number_format($sisa, 2, ',', ',') }}
-                                            </td>
+                                            <td>{{ 'Rp ' . number_format($anggaran) }}</td>
+                                            <td>{{ 'Rp ' . number_format($realisasi) }}</td>
+                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                         </tr>
-                                        <?php } }?>
+                                        <?php }?>
                                     </tbody>
                                 </table>
                             </div>

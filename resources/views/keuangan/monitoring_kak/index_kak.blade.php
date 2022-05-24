@@ -83,17 +83,21 @@
                                                                                                     $namatw = $triwulan[$x]->triwulan;
                                                                                                     for ($a = 0; $a < count($data); $a++) {
                                                                                                         if ($data[$a]->id_tor == $tor[$m]->id) {
+                                            
+                                                $anggaran = $tor[$m]->jumlah_anggaran;
+                                                $memocair_nominal = $data[$a]->nominal;
+                                                $memocair_valid = ($memocair_nominal/$anggaran)*100;
                                             ?>
 
-                                                                                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                                                                                            <td>{{ $namaprodi }}</td>
-                                                                                                            <td>{{ 'Rp ' . number_format($tor[$a]->jumlah_anggaran, 2, ',', '.') }}
-                                                                                                            </td>
-                                                                                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
-                                                                                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
-                                                                                                            <td></td>
+                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
+                                            <td>{{ $namaprodi }}</td>
+                                            <td>{{ 'Rp ' . number_format($anggaran, 2, ',', '.') }}
+                                            </td>
+                                            <td></td>
+                                            <td>{{ 'Rp ' . number_format($memocair_nominal, 2, ',', '.') }}</td>
+                                            <td>{{ number_format($memocair_valid, 2) . ' %' }}</td>
 
-                                                        <?php
+                                            <?php
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -110,7 +114,7 @@
                                                         ?>
 
                                         </tr>
-                            <?php
+                                        <?php
                                                     }
                                                 }
                                             } ?>

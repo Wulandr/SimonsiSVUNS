@@ -16,6 +16,12 @@
                         <?php 
                         for ($s = 0; $s < count($status_keu); $s++) {
                             if ($status_keu[$s]->kategori == 'SPJ') {
+                            if ($status_keu[$s]->nama_status == 'Proses Pengajuan') { ?>
+                        <div class="custom-control custom-radio custom-radio-color-checked ">
+                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
+                            <label class=""> Proses Pengajuan </label>
+                        </div>
+                        <?php } 
                             if ($status_keu[$s]->nama_status == 'Revisi') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked ">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
