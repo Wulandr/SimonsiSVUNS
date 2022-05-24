@@ -114,7 +114,7 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="table-responsive">
                                                 <div class="form-group row float-right mb-3 mr-2">
                                                 </div>
-                                                <table class="table mb-0">
+                                                <table id="mydetmak" class="table mb-0">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>No.</th>
@@ -128,7 +128,8 @@ use Illuminate\Support\Facades\Auth;
                                                     <tbody>
                                                         <?php $num = 1; ?>
                                                         @foreach ($joinDetail as $k2 => $join)
-                                                        <?php $num =  $joinDetail->firstItem() + $k2 ?>
+                                                        <?php $num =  $joinDetail->firstItem() + $k2
+                                                        ?>
                                                         <tr>
                                                             <td><a href="#">{{$num}}</a></td>
                                                             <td>{{$join->jenis_belanja}}</td>
@@ -183,7 +184,6 @@ use Illuminate\Support\Facades\Auth;
                                                             </div>
                                                         </div>
                                             </div>
-
                                             <?php $num += 1; ?>
                                             @endforeach
                                             </tbody>
@@ -196,46 +196,12 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                     </div>
                 </div>
-                <!-- Wrapper END -->
-                <!-- Footer -->
+            </div>
+        </div>
+    </div>
 
-
-                <!-- Footer END -->
-
-                <!-- Optional JavaScript -->
-                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-                <!-- Appear JavaScript -->
-                <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-                <!-- Countdown JavaScript -->
-                <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-                <!-- Counterup JavaScript -->
-                <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-                <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-                <!-- Wow JavaScript -->
-                <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-                <!-- Apexcharts JavaScript -->
-                <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-                <!-- Slick JavaScript -->
-                <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-                <!-- Select2 JavaScript -->
-                <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-                <!-- Owl Carousel JavaScript -->
-                <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-                <!-- Magnific Popup JavaScript -->
-                <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-                <!-- Smooth Scrollbar JavaScript -->
-                <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-                <!-- lottie JavaScript -->
-                <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-                <!-- Style Customizer -->
-                <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-                <!-- Chart Custom JavaScript -->
-                <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-                <!-- Custom JavaScript -->
-                <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
+    <!-- Wrapper END -->
+    @include('dashboards/users/layouts/footer')
 </body>
 
 </html>

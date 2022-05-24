@@ -25,7 +25,7 @@ class SubKController extends Controller
         $iku = DB::table('indikator_iku')->get();
         $ik = DB::table('indikator_ik')->get();
         $k = DB::table('indikator_k')->get();
-        $subk = DB::table('indikator_subk')->simplePaginate(15);
+        $subk = DB::table('indikator_subk')->get();
         $tabeltahun = DB::table('tahun')->get();
 
         return view(

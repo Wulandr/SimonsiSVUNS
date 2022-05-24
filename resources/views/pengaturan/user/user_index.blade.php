@@ -24,7 +24,7 @@
                                 <div class="iq-card-body">
                                     <div class="card-body">
                                         <div class="table-responsive table-invoice">
-                                            <table class="table table-striped">
+                                            <table id="myusers" class="table table-striped">
                                                 <tr>
                                                     <th>No.</th>
                                                     <th>Nama</th>
@@ -101,38 +101,34 @@
     </div>
     </section>
     </div>
-    <footer class="main-footer">
-        <div class="footer-left">
-            <!-- Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a> -->
-        </div>
-        <div class="footer-right">
-            2.3.0
-        </div>
-    </footer>
-    </div>
-    </div>
-    @include('dashboards/users/layouts/footer')
-</body>
-<script>
-    $(function() {
-        $('.custom-control-input').change(function() {
-            var is_aktif = $(this).prop('checked') == true ? 1 : 0;
-            var id = $(this).data('id');
+    <script>
+        $(function() {
+            $('.custom-control-input').change(function() {
+                var is_aktif = $(this).prop('checked') == true ? 1 : 0;
+                var id = $(this).data('id');
 
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/user/isaktif',
-                data: {
-                    'is_aktif': is_aktif,
-                    'id': id
-                },
-                success: function(data) {
-                    console.log(data.success)
-                }
-            });
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/user/isaktif',
+                    data: {
+                        'is_aktif': is_aktif,
+                        'id': id
+                    },
+                    success: function(data) {
+                        console.log(data.success)
+                    }
+                });
+            })
         })
-    })
-</script>
+    </script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#myusers').DataTable();
+        });
+    </script>
+    @include('dashboards/users/layouts/footer')
 
-</html>
+    </html>

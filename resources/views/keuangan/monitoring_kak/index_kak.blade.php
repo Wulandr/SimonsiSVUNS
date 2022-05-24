@@ -29,10 +29,10 @@
                                             <th colspan="4" style="width: ">TW 1 (Per 29 Maret 2022)</th>
                                         </tr>
                                         <tr>
-                                            <th style="width: ">RPD</th>
-                                            <th style="width: ">KAK - Disetujui</th>
-                                            <th style="width: ">Memo Cair Valid</th>
-                                            <th style="width: ">% Memo Cair Valid</th>
+                                            <th style="">RPD</th>
+                                            <th style="">KAK - Disetujui</th>
+                                            <th style="">Memo Cair Valid</th>
+                                            <th style="">% Memo Cair Valid</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,20 +80,20 @@
                                                                                             // Mengambil data Triwulan dari tabel TOR
                                                                                             for ($x = 0; $x < count($triwulan); $x++) {
                                                                                                 if ($triwulan[$x]->id == $tor[$m]->id_tw) {
-                                                                                                    $namatw = $triwulan[$x]->triwulan; 
+                                                                                                    $namatw = $triwulan[$x]->triwulan;
                                                                                                     for ($a = 0; $a < count($data); $a++) {
                                                                                                         if ($data[$a]->id_tor == $tor[$m]->id) {
-                                                            ?>
+                                            ?>
 
-                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                            <td>{{ $namaprodi }}</td>
-                                            <td>{{ 'Rp ' . number_format($tor[$a]->jumlah_anggaran, 2, ',', '.') }}
-                                            </td>
-                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
-                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
-                                            <td></td>
+                                                                                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
+                                                                                                            <td>{{ $namaprodi }}</td>
+                                                                                                            <td>{{ 'Rp ' . number_format($tor[$a]->jumlah_anggaran, 2, ',', '.') }}
+                                                                                                            </td>
+                                                                                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
+                                                                                                            <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
+                                                                                                            <td></td>
 
-                                            <?php
+                                                        <?php
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -107,13 +107,13 @@
                                                                 }
                                                             }
                                                         }
-                                                ?>
+                                                        ?>
 
                                         </tr>
-                                        <?php
+                            <?php
+                                                    }
                                                 }
-                                            }
-                                         } ?>
+                                            } ?>
                                     </tbody>
                                 </table>
                             </div>

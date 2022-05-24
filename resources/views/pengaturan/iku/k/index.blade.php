@@ -123,7 +123,7 @@ if (Auth()->user()->id_unit == 1) {
                                                 <div class="table-responsive">
                                                     <div class="form-group row float-right mb-3 mr-2">
                                                     </div>
-                                                    <table class="table mb-0">
+                                                    <table id="myk" class="table mb-0">
                                                         <thead class="thead-light">
                                                             <tr>
                                                                 <th>No.</th>
@@ -139,7 +139,9 @@ if (Auth()->user()->id_unit == 1) {
                                                             $kodeIKU = 0;
                                                             $kodeIK = 0; ?>
                                                             <?php foreach ($k as $indexK => $indikatorK) { ?>
-                                                                <?php $num =  $k->firstItem() + $indexK ?>
+                                                                <?php
+                                                                // $num =  $k->firstItem() + $indexK 
+                                                                ?>
                                                                 <tr>
                                                                     <td><a href="#">{{$num}}</a></td>
                                                                     <?php
@@ -164,7 +166,7 @@ if (Auth()->user()->id_unit == 1) {
                                                                             <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update K" href="" data-target="#update_k<?= $indikatorK->id ?>"><i class="ri-pencil-line"></i></a>
                                                                             @endcan
                                                                             @can('ik_delete')
-                                                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/k/delete/'.$indikatorK->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                            <a class="k-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/k/delete/'.$indikatorK->id)}}"><i class="ri-delete-bin-line"></i></a>
                                                                             @endcan
                                                                         </div>
                                                                     </td>
@@ -212,7 +214,7 @@ if (Auth()->user()->id_unit == 1) {
                                                             <?php } ?>
                                                         </tbody>
                                                     </table>
-                                                    {{$k->links()}}
+                                                    <!-- $k->links()}} -->
                                                 </div>
                                             </div>
                                         </div>
@@ -223,6 +225,49 @@ if (Auth()->user()->id_unit == 1) {
                     </div>
                 </div>
             </div>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                $('.k-confirm').on('click', function(event) {
+                    event.preventDefault();
+                    const url = $(this).attr('href');
+                    swal({
+                        title: 'Are you sure?',
+                        text: 'This record and it`s details will be permanantly deleted!',
+                        icon: 'warning',
+                        buttons: ["Cancel", "Yes!"],
+                    }).then(function(value) {
+                        if (value) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            </script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                $('.subk-confirm').on('click', function(event) {
+                    event.preventDefault();
+                    const url = $(this).attr('href');
+                    swal({
+                        title: 'Are you sure?',
+                        text: 'This record and it`s details will be permanantly deleted!',
+                        icon: 'warning',
+                        buttons: ["Cancel", "Yes!"],
+                    }).then(function(value) {
+                        if (value) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            </script>
+
+            <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $.noConflict();
+                    $('#myk').DataTable();
+                });
+            </script>
+
             @include('dashboards/users/layouts/footer')
     </body>
 
