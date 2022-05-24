@@ -39,10 +39,28 @@ class HomeController extends Controller
         $user = Usernya::all()->where('id', Auth()->user()->id)->first()->syncRoles($assignrole);
         $unit = Unit::all();
         $tor = Tor::all();
-        // dd($user->roles);
+        $trx_status_tor = DB::table('trx_status_tor')->get();
+        $status = DB::table('status')->get();
+        $prodi = DB::table('unit')->get();
+        $users = DB::table('users')->get();
+        $roles = DB::table('roles')->get();
+        $tw = DB::table('triwulan')->get();
+        $tahun = DB::table('tahun')->get();
+
+        $dokMemo = DB::table('dokumen')->get();
+        $trx_status_keu = DB::table('trx_status_keu')->get();
+        $status_keu = DB::table('status_keu')->get();
+        $filtertw = 0;
 
         $userrole = Usernya::join();
-        return view('dashboards.users.index', ['userrole' => $userrole, 'unit' => $unit, 'tor' => $tor]);
-        // return $userrole;
+        return view(
+            "dashboards.users.index",
+            [
+                'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor,
+                'status' => $status, 'prodi' => $prodi, 'users' => $users, 'roles' => $roles,
+                'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
+                'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun
+            ]
+        );
     }
 }

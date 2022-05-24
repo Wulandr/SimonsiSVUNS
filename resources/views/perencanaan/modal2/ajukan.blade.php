@@ -1,5 +1,5 @@
 <!-- MODAL AJUKAN TOR -->
-<div class="modal fade" tabindex="-1" role="dialog" id="veriftor{{$tor[$t]->id}}">
+<div class="modal fade" tabindex="-1" role="dialog" id="veriftor{{ $tor[$t]->id }}">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -32,38 +32,39 @@
                                 for ($q = 0; $q < count($trx_status_tor); $q++) {
                                     if ($trx_status_tor[$q]->id_tor == $tor[$t]->id) {
                                         $ada =   $trx_status_tor[$q]->id_status ?>
-                                        <li>
-                                            <div class="{{$warnaLingkar[$indexwarna]}}"><i class="ri-check-fill" style="color:black"></i></div>
-                                            <?php
-                                            $indexwarna += 1;
-                                            if ($indexwarna > 3) {
-                                                $indexwarna = 0;
-                                            }
-                                            ?>
+                            <li>
+                                <div class="{{ $warnaLingkar[$indexwarna] }}"><i class="ri-check-fill"
+                                        style="color:black"></i></div>
+                                <?php
+                                $indexwarna += 1;
+                                if ($indexwarna > 3) {
+                                    $indexwarna = 0;
+                                }
+                                ?>
 
-                                            <h6 class="float-left mb-1">
-                                                <?php
-                                                for ($st = 0; $st < count($status); $st++) {
-                                                    if ($status[$st]->id == $trx_status_tor[$q]->id_status) {
-                                                        echo "<b>" . "" . "</b>" . $status[$st]->nama_status;
-                                                        for ($u = 0; $u < count($user); $u++) {
-                                                            if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
-                                                                for ($rl = 0; $rl < count($role); $rl++) {
-                                                                    if ($role[$rl]->id == $user[$u]->role) {
-                                                                        echo "<br/>" . " - create by : " . $user[$u]->name . " - " . $role[$rl]->name;
-                                                                        $pengvalidasi = $role[$rl]->id;
-                                                                    }
-                                                                }
-                                                            }
+                                <h6 class="float-left mb-1">
+                                    <?php
+                                    for ($st = 0; $st < count($status); $st++) {
+                                        if ($status[$st]->id == $trx_status_tor[$q]->id_status) {
+                                            echo '<b>' . '' . '</b>' . $status[$st]->nama_status;
+                                            for ($u = 0; $u < count($user); $u++) {
+                                                if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
+                                                    for ($rl = 0; $rl < count($role); $rl++) {
+                                                        if ($role[$rl]->id == $user[$u]->role) {
+                                                            echo '<br/>' . ' - create by : ' . $user[$u]->name . ' - ' . $role[$rl]->name;
+                                                            $pengvalidasi = $role[$rl]->id;
                                                         }
                                                     }
                                                 }
-                                                ?>
-                                            </h6>
-                                            <small class="float-right mt-1">{{$trx_status_tor[$q]->created_at}}</small>
-                                            <div class="d-inline-block w-100">
-                                            </div>
-                                        </li>
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </h6>
+                                <small class="float-right mt-1">{{ $trx_status_tor[$q]->created_at }}</small>
+                                <div class="d-inline-block w-100">
+                                </div>
+                            </li>
                             <?php }
                                 }
                             } ?>
@@ -96,43 +97,45 @@
                                 foreach ($trx_status_keu as $tsk) {
                                     if ($tsk->id_tor == $tor[$t]->id) {
                             ?>
-                                        <li>
-                                            <div class="{{$warnaLingkar2[$indexwarna2]}}"><i class="ri-check-fill" style="color:black"></i></div>
+                            <li>
+                                <div class="{{ $warnaLingkar2[$indexwarna2] }}"><i class="ri-check-fill"
+                                        style="color:black"></i></div>
+                                <?php
+                                $indexwarna2 += 1;
+                                if ($indexwarna2 > 3) {
+                                    $indexwarna2 = 0;
+                                }
+                                ?>
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h6 style="text-align:left;">
                                             <?php
-                                            $indexwarna2 += 1;
-                                            if ($indexwarna2 > 3) {
-                                                $indexwarna2 = 0;
-                                            }
-                                            ?>
-                                            <div class="row">
-                                                <div class="col-lg-7">
-                                                    <h6 style="text-align:left;">
-                                                        <?php
-                                                        foreach ($status_keu as $statusKeu) {
-                                                            if ($statusKeu->id == $tsk->id_status) {
-                                                                $statusMemo = 1;
-                                                                echo  $statusKeu->nama_status . " " . $statusKeu->kategori;
-                                                                foreach ($user as $us) {
-                                                                    if ($us->id == $tsk->create_by) {
-                                                                        foreach ($role as $rl2) {
-                                                                            if ($rl2->id == $us->role) {
-                                                                                echo "<br/>" . " - create by : " . $us->name . " - " . $rl2->name;
-                                                                                $pengvalidasi = $rl2->id;
-                                                                            }
-                                                                        }
-                                                                    }
+                                            foreach ($status_keu as $statusKeu) {
+                                                if ($statusKeu->id == $tsk->id_status) {
+                                                    $statusMemo = 1;
+                                                    echo $statusKeu->nama_status . ' ' . $statusKeu->kategori;
+                                                    foreach ($user as $us) {
+                                                        if ($us->id == $tsk->create_by) {
+                                                            foreach ($role as $rl2) {
+                                                                if ($rl2->id == $us->role) {
+                                                                    echo '<br/>' . ' - create by : ' . $us->name . ' - ' . $rl2->name;
+                                                                    $pengvalidasi = $rl2->id;
                                                                 }
                                                             }
                                                         }
-                                                        ?>
-                                                    </h6>
-                                                </div>
-                                                <div class="col">
-                                                    <small style="font-size: smaller;color:grey" class="float-right mt-1">{{$tsk->created_at}}</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <br />
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </h6>
+                                    </div>
+                                    <div class="col">
+                                        <small style="font-size: smaller;color:grey"
+                                            class="float-right mt-1">{{ $tsk->created_at }}</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <br />
                             <?php }
                                 }
                             } ?>
@@ -144,7 +147,7 @@
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Pengajuant TOR & RAB ke Sekolah Vokasi</h4>
+                            <h4 class="card-title">Pengajuan TOR & RAB ke Sekolah Vokasi</h4>
                         </div>
                     </div>
                     <div class="iq-card-body">
@@ -157,23 +160,29 @@
                                     <?php for ($s = 0; $s < count($status); $s++) {
                                         if ($status[$s]->kategori == 'TOR') {
                                             if ($status[$s]->nama_status == 'Proses Pengajuan') { ?>
-                                                <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                <label class="" for="danger-outlined">{{$status[$s]->nama_status}} Baru</label><br />
-                                            <?php } ?>
+                                    <input type="radio" class="btn-check" name="id_status" id="id_status"
+                                        value="{{ $status[$s]->id }}" autocomplete=" off">
+                                    <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}
+                                        Baru</label><br />
+                                    <?php } ?>
 
-                                            <?php
+                                    <?php
                                             if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
-                                                <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                    <input type="radio" class="btn-check" name="id_status" id="id_status"
+                                        value="{{ $status[$s]->id }}" autocomplete=" off">
+                                    <label class=""
+                                        for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
                                     <?php }
                                         }
                                     } ?>
                                     <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
                                     <input type="hidden" name="id_tor" value="<?= $tor[$t]->id ?>">
                                     <?php date_default_timezone_set('Asia/Jakarta'); ?>
-                                    <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                    <input name="created_at" id="created_at" type="hidden"
+                                        value="<?= date('Y-m-d H:i:s') ?>">
                                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                                    <button class="btn btn-primary btn-sm" {{$statusMemo == 1 ? 'disabled' : ''}} type="submit">OK</button>
+                                    <button class="btn btn-primary btn-sm" {{ $statusMemo == 1 ? 'disabled' : '' }}
+                                        type="submit">OK</button>
                         </form>
                     </div>
                 </div>

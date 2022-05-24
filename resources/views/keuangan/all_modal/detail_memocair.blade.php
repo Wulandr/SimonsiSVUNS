@@ -10,10 +10,17 @@
             </div>
             <div class="modal-body">
                 <?php
+                    $cek=1;
+                    $cekdok=1;
                     for ($a = 0; $a < count($data); $a++) {
+                        $cek+=1;
                         if ($data[$a]->id_tor == $tor[$m]->id) {
                             for ($b = 0; $b < count($dokumen); $b++) {
-                                if ($dokumen[$b]->id_tor == $tor[$m]->id) {
+                                $cekdok+=1;
+                                if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
+                                    if ($dokumen[$b]->jenis == "Memo Cair") {
+                            if($cek=1 ){
+                                
                     ?>
                 <b>
                     <table class="table table-borderless">
@@ -38,7 +45,13 @@
                     </table>
                 </b>
                 <?php
-                }}}}?>
+                    }
+                        }
+                    }       
+                    }
+                        }
+                    
+                    }?>
             </div>
         </div>
     </div>

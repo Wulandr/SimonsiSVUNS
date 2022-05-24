@@ -1,6 +1,6 @@
 <div class="modal fade" id="detail_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog" aria-labelledby="Input LPJ"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="input_lpj">Unggah Dokumen Laporan Pertanggungjawaban (LPJ)</h5>
@@ -94,25 +94,30 @@
                             Required!
                         </div>
                     </div>
+                    <?php
+                    $cekdok=0;
+                    for ($b = 0; $b < count($dokumen); $b++) { 
+                        $cekdok+=1; 
+                        if ($dokumen[$b]->id_tor == $tor[$m]->id) {
+                        if ($dokumen[$b]->jenis == "LPJ") {
+                            ?>
                     <div class="form-group">
                         <label>Unggah Dokumen LPJ
                             <br>
                             <small style="color: darkred">
-                                Seluruh dokumen dijadikan 1 file PDF dengan urutan sesuai dengan penjelasan pada menu
+                                Seluruh dokumen dijadikan 1 file PDF dengan urutan sesuai dengan penjelasan pada
+                                menu
                                 unduh Template LPJ.
                                 Dokumen yang diunggah harus merupakan dokumen yang sudah lengkap secara formal dan
                                 materiil!
                             </small>
                         </label>
-                        <input type="file" class="form-control-file" name="file" id="file" value="" disabled>
-                        <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
-                        <div class="invalid-feedback">
-                            Tolong tambahkan file sebelum submit!
-                        </div>
+                        <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf"
+                            width="100%" height="500px"></embed>
                     </div>
                     <?php
                         }
-                    }}?>
+                    }}}}}?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>

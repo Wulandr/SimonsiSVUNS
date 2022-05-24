@@ -11,9 +11,16 @@
                     {{ csrf_field() }}
                     <?php
                     $cek=1;
+                    $cekdok=1;
                     for ($a = 0; $a < count($data); $a++) {
+                        $cek+=1;
                         if ($data[$a]->id_tor == $tor[$m]->id) {
-                            if($cek=1){
+                            for ($b = 0; $b < count($dokumen); $b++) {
+                                $cekdok+=1;
+                                if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
+                                    if ($dokumen[$b]->jenis == "Memo Cair") {
+                                        if($cek=1 ){
+                                
                     ?>
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
@@ -38,14 +45,18 @@
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
                         <input type="file" class="form-control-file" name="file" id="file" required>
-                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required>
+                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required><br>
+                        <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf"
+                            width="100%" height="200px"></embed>
                     </div>
                     <?php
-                        }
-                            $cek+=1;
                     }
                         }
-                    ?>
+                    }       
+                    }
+                        }
+                    
+                    }?>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>

@@ -31,13 +31,17 @@
                                 <table class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead>
                                         <tr class="bg-danger">
-                                            <th>No</th>
-                                            <th>Nama Unit/Prodi/Ormawa</th>
-                                            <th>Nomor Memo Cair</th>
-                                            <th>Penanggungjawab</th>
-                                            <th>Nilai Total SPJ</th>
-                                            <th>Nilai Pengembalian</th>
-                                            <th colspan="2">Aksi</th>
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Nama Unit/Prodi/Ormawa</th>
+                                            <th rowspan="2">Nomor Memo Cair</th>
+                                            <th rowspan="2">Judul Kegiatan</th>
+                                            <th rowspan="2">Penanggungjawab</th>
+                                            <th colspan="3" style="width: 35%">Aksi</th>
+                                        </tr>
+                                        <tr class="bg-danger">
+                                            <th>Status</th>
+                                            <th>Form</th>
+                                            <th>File</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,77 +97,69 @@
                                             <?php
                                                 }
                                             } ?>
+                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
-                                            <td></td>
-                                            <td></td>
                                             <td class="text-center">
+                                                <?php
+                                                $tidakada_status = '<span class="badge border border-danger text-danger">Belum ada status</span>';
+                                                ?>
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'SPJ')
-                                                                    <button type="button"
-                                                                        class="badge border border-primary text-primary"
-                                                                        data-toggle="modal" data-target="#status_spj">
-                                                                        {{ $b->nama_status }}
-                                                                    </button>
-                                                                    <span type="button" class="badge badge-dark"
-                                                                        title="Validasi" data-toggle="modal"
-                                                                        data-target="#validasi_spj">
-                                                                        <i class="ri-edit-fill"></i>
-                                                                    </span>
-                                                                    <!-- MODAL - Validasi SPJ -->
-                                                                    @include('keuangan/all_modal/validasi_spj')
-                                                                    <!-- MODAL - Status SPJ -->
-                                                                    @include('keuangan/all_modal/status_spj')
-                                                                @else
-                                                                    <span
-                                                                        class="badge border border-danger text-danger">
-                                                                        Belum ada status
-                                                                    </span>
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_spj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                    ?>
                                                                 @endif
                                                             @endif
                                                         @endforeach
                                                     @endif
                                                 @endforeach
+                                                <?= $tidakada_status ?>
                                             </td>
                                             <td class="text-center">
+                                                <?php
+                                                $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-pen"></i></button>';
+                                                ?>
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'SPJ')
-                                                                    <button class="btn btn-sm bg-info rounded-pill"
-                                                                        title="Detail File SPJ" data-toggle="modal"
-                                                                        data-target="#detail_spj">
-                                                                        <i class="las la-external-link-alt"></i></i>
-                                                                    </button>
-                                                                    <button class="btn btn-sm bg-warning rounded-pill"
-                                                                        title="Edit File SPJ" data-toggle="modal"
-                                                                        data-target="#edit_spj">
-                                                                        <i class="las la-edit"></i></i>
-                                                                    </button>
-                                                                @else
-                                                                    <button class="btn btn-sm bg-secondary rounded-pill"
-                                                                        title="Input Formulir SPJ" data-toggle="modal"
-                                                                        data-target="#input_spj<?= $tor[$m]->id ?>">
-                                                                        <i class="las la-pen"></i></i>
-                                                                    </button>
-                                                                    <a href="{{ url('/upload_spj') }}">
-                                                                        <button class="btn btn-sm bg-dark rounded-pill"
-                                                                            title="Input Formulir SPJ">
-                                                                            <i class="las la-upload"></i></i>
-                                                                        </button>
-                                                                    </a>
+                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_spj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_spj' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                    ?>
                                                                 @endif
                                                             @endif
                                                         @endforeach
                                                     @endif
                                                 @endforeach
+                                                <?= $upload ?>
                                             </td>
-                                            <!-- MODAL - Input SPJ -->
-                                            @include('keuangan/all_modal/input_spj')
+                                            <td class="text-center">
+                                                <?php
+                                                $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Input Formulir SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                ?>
+                                                @foreach ($trx_status_keu as $a)
+                                                    @if ($a->id_tor == $tor[$m]->id)
+                                                        @foreach ($status_keu as $b)
+                                                            @if ($a->id_status == $b->id)
+                                                                @if ($b->kategori == 'SPJ')
+                                                                    <?php $file = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_spj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_spj' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                    ?>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                                <?= $file ?>
+                                            </td>
 
+                                            <!-- MODAL - Validasi spj -->
+                                            @include('keuangan/all_modal/validasi_spj')
+                                            <!-- MODAL - Status spj -->
+                                            @include('keuangan/all_modal/status_spj')
+                                            <!-- MODAL - Input spj -->
+                                            @include('keuangan/all_modal/input_spj')
                                             <?php
                                                                                         }
                                                                                     }
