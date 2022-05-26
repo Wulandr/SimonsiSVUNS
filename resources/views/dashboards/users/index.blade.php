@@ -84,29 +84,29 @@ use Illuminate\Support\Facades\Auth;
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <?php 
+                                            <?php
                                             $no = 0;
-                                            for ($m = 0; $m < count($tor); $m++) { 
-                                                $ada=0; //sudah diajukan apa belum 
+                                            for ($m = 0; $m < count($tor); $m++) {
+                                                $ada = 0; //sudah diajukan apa belum 
                                                 //  P R O D I 
-                                                for ($p = 0; $p < count($prodi); $p++) {
-                                                    if ($tor[$m]->id_unit == $prodi[$p]->id) {
-                                                        $prodiTor = $prodi[$p]->nama_unit;
+                                                foreach ($unit as $p) {
+                                                    if ($tor[$m]->id_unit == $p->id) {
+                                                        $prodiTor = $p->nama_unit;
                                                     }
                                                 }
-                                            $anggaran = $tor[$m]->jumlah_anggaran;
-                                            $realisasi = 0;
-                                            $sisa = $anggaran - $anggaran; ?>
+                                                $anggaran = $tor[$m]->jumlah_anggaran;
+                                                $realisasi = 0;
+                                                $sisa = $anggaran - $anggaran; ?>
 
 
-                                            <td>{{ $no + 1 }}</td><?php $no++; ?>
-                                            <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
-                                            <td>{{ $tor[$m]->nama_pic }}</td>
-                                            <td>{{ 'Rp ' . number_format($anggaran) }}</td>
-                                            <td>{{ 'Rp ' . number_format($realisasi) }}</td>
-                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
+                                                <td>{{ $no + 1 }}</td><?php $no++; ?>
+                                                <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
+                                                <td>{{ $tor[$m]->nama_pic }}</td>
+                                                <td>{{ 'Rp ' . number_format($anggaran) }}</td>
+                                                <td>{{ 'Rp ' . number_format($realisasi) }}</td>
+                                                <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                         </tr>
-                                        <?php }?>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

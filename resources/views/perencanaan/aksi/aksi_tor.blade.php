@@ -105,12 +105,16 @@ foreach ($role as $roles) {
     </button>
     @endcan
     <?php for ($sr = 0; $sr < count($rab); $sr++) {
-        if ($rab[$sr]->id_tor == $tor[$t]->id) { ?>
-            @can('tor_ajuan')
-            <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
-            </button>
-            @endcan
+        if ($rab[$sr]->id_tor == $tor[$t]->id) {
+            foreach ($anggaran as $anggaran1) {
+                if ($anggaran1->id_rab == $rab[$sr]->id) { ?>
+                    @can('tor_ajuan')
+                    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
+                    </button>
+                    @endcan
     <?php }
+            }
+        }
     } ?>
 <?php } ?>
 <?php if ($pengajuan >= 1) { ?>
@@ -121,12 +125,12 @@ foreach ($role as $roles) {
     <a href="{{url('/tor/update/'.  $tor[$t]->id)}}"><button class="badge badge-danger rounded">Segera Revisi
         </button></a>
 <?php } ?>
+@can('tor_ajuan')
 <?php if ($tor[$t]->jenis_ajuan == "Perbaikan" && $pengajuan == 1) { ?>
-    @can('tor_ajuan')
     <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
     </button>
-    @endcan
 <?php } ?>
+@endcan
 <?php if ($validasi == 3) { ?>
     <badge class="badge badge-info rounded" data-toggle="modal"> SELESAI
     </badge>

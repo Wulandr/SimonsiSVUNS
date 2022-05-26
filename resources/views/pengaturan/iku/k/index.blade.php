@@ -188,9 +188,7 @@ if (Auth()->user()->id_unit == 1) {
                                                                                         <label>IK</label>
                                                                                         <select name="id_ik" id="id_ik" class="form-control">
                                                                                             @foreach($ik as $iniIk)
-                                                                                            <?php if ($iniIk->id == $indikatorK->id_ik) { ?>
-                                                                                                <option value="{{$iniIk->id}}">{{$iniIk->IK}}</option>
-                                                                                            <?php } ?>
+                                                                                            <option value="{{old('id_ik',$iniIk->id)}}" {{$iniIk->id == $indikatorK->id_ik ? 'selected' : ''}}>{{$iniIk->IK}}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -242,23 +240,7 @@ if (Auth()->user()->id_unit == 1) {
                     });
                 });
             </script>
-            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            <script>
-                $('.subk-confirm').on('click', function(event) {
-                    event.preventDefault();
-                    const url = $(this).attr('href');
-                    swal({
-                        title: 'Are you sure?',
-                        text: 'This record and it`s details will be permanantly deleted!',
-                        icon: 'warning',
-                        buttons: ["Cancel", "Yes!"],
-                    }).then(function(value) {
-                        if (value) {
-                            window.location.href = url;
-                        }
-                    });
-                });
-            </script>
+
 
             <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
             <script>

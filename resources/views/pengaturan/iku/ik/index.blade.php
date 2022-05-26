@@ -174,9 +174,7 @@ if (Auth()->user()->id_unit == 1) {
                                                                                 <label>IKU</label>
                                                                                 <select name="id_iku" id="id_iku" class="form-control">
                                                                                     @foreach($iku as $iniIku)
-                                                                                    <?php if ($iniIku->id == $indikatorIK->id_iku) { ?>
-                                                                                        <option value="{{$iniIku->id}}">{{$iniIku->IKU}}</option>
-                                                                                    <?php } ?>
+                                                                                    <option value="{{old('id_iku',$iniIku->id)}}" {{$iniIku->id == $indikatorIK->id_iku ? 'selected' : ''}}>{{$iniIku->IKU}}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>

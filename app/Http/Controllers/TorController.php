@@ -86,11 +86,11 @@ class TorController extends Controller
         $tabeltahun = DB::table('tahun')->get();
         $pagu = DB::table('pagu')->get();
         $subkeg = DB::table('indikator_subK')->get();
+        $indikator_k = DB::table('indikator_k')->get();
         $rab_ang = Anggaran::Rab_Ang();
         $totalpertw = Anggaran::total_anggaran_tw();
         $status = DB::table('status')->get();
         $status_keu = DB::table('status_keu')->get();
-        $subkeg = DB::table('indikator_subK')->get();
         $kategori_subK =  SubKegiatan::Kategori_Sub();
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
@@ -106,7 +106,7 @@ class TorController extends Controller
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'user' => $user, 'status' => $status,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
                 'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role,
-                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu
+                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu, 'indikator_k' => $indikator_k
             ]
         );
         // return $totalpertw;
@@ -140,6 +140,7 @@ class TorController extends Controller
         $subkeg = DB::table('indikator_subK')->get();
         $kategori_subK =  SubKegiatan::Kategori_Sub();
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
+        $indikator_k = DB::table('indikator_k')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
         $users = DB::table('users')->get();
         $anggaran = DB::table('anggaran')->get();
@@ -159,6 +160,7 @@ class TorController extends Controller
                 'kategori_subK',
                 'komponen_jadwal',
                 'users',
+                'indikator_k',
                 'indikator_iku',
                 'id',
                 'trx_status_tor',

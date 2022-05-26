@@ -169,7 +169,7 @@ if (Auth()->user()->id_unit == 1) {
                                                             <td>
                                                                 <div class="flex align-items-center list-user-action">
                                                                     @can('subk_update')
-                                                                    <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update K" href="" data-target="#update_subk<?= $k4->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                    <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update SUB K" href="" data-target="#update_subk<?= $k4->id ?>"><i class="ri-pencil-line"></i></a>
                                                                     @endcan
                                                                     @can('subk_delete')
                                                                     <a class="subk-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/subk/delete/'.$k4->id)}}"><i class="ri-delete-bin-line"></i></a>
@@ -194,9 +194,7 @@ if (Auth()->user()->id_unit == 1) {
                                                                                 <label>K</label>
                                                                                 <select name="id_k" id="id_k" class="form-control">
                                                                                     @foreach($k as $inik)
-                                                                                    <?php if ($inik->id == $k4->id_k) { ?>
-                                                                                        <option value="{{$inik->id}}">{{$inik->K}}</option>
-                                                                                    <?php } ?>
+                                                                                    <option value="{{old('id_k',$inik->id)}}" {{$inik->id == $k4->id_k ? 'selected' : ''}}>{{$inik->K}}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
@@ -229,6 +227,23 @@ if (Auth()->user()->id_unit == 1) {
                     </div>
                 </div>
             </div>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                $('.subk-confirm').on('click', function(event) {
+                    event.preventDefault();
+                    const url = $(this).attr('href');
+                    swal({
+                        title: 'Are you sure?',
+                        text: 'This record and it`s details will be permanantly deleted!',
+                        icon: 'warning',
+                        buttons: ["Cancel", "Yes!"],
+                    }).then(function(value) {
+                        if (value) {
+                            window.location.href = url;
+                        }
+                    });
+                });
+            </script>
             <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
             <script>
                 $(document).ready(function() {

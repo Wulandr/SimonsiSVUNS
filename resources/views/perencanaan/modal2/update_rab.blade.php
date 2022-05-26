@@ -12,11 +12,11 @@
                     @csrf
                     <div class="form-group">
                         <label>Masukan</label>
-                        <textarea class="form-control" id="masukan" name="masukan" value="{{old('masukan',$rab[$r]->masukan)}}" rows="2" cols="50"></textarea>
+                        <textarea class="form-control" id="masukan" name="masukan" value="{{old('masukan',$rab[$r]->masukan)}}" rows="2" cols="50">{{$rab[$r]->masukan}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Keluaran</label>
-                        <textarea class="form-control" id="keluaran" name="keluaran" value="{{old('keluaran',$rab[$r]->keluaran)}}" rows="2" cols="50"></textarea>
+                        <textarea class="form-control" id="keluaran" name="keluaran" value="{{old('keluaran',$rab[$r]->keluaran)}}" rows="2" cols="50">{{$rab[$r]->keluaran}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>TOR</label>

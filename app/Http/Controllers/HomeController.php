@@ -57,7 +57,7 @@ class HomeController extends Controller
             "dashboards.users.index",
             [
                 'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor,
-                'status' => $status, 'prodi' => $prodi, 'users' => $users, 'roles' => $roles,
+                'status' => $status, 'unit' => $unit, 'users' => $users, 'roles' => $roles,
                 'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
                 'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun
             ]

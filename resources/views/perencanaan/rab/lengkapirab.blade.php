@@ -20,11 +20,30 @@ for ($r = 0; $r < count($rab); $r++) {
                             <th>Tahun</th>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Kegiatan</b> : {{$tor[$t]->nama_kegiatan}}</td>
-                            <td rowspan="2">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</td>
+                            <?php
+                            $id_subk = 0;
+                            $nama_subK = "";
+                            $desk_subK = "";
+                            $nama_k = "";
+                            $desk_k = "";
+                            foreach ($kategori_subK as $subK1) {
+                                if ($subK1->id == $tor[$t]->id_subK) {
+                                    $id_subk = $subK1->id;
+                                    $nama_subK = $subK1->subK;
+                                    $desk_subK = $subK1->deskripsi;
+                                    $nama_k = $subK1->K;
+                                    $desk_k = $subK1->deskripsi_k;
+                                }
+                            }
+                            ?>
+                            <td colspan="7"><b>Indikator Kegiatan</b> : {{ $nama_k." : ".$desk_k}}</td>
+                            <td rowspan="3">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Sub Kegiatan</b> : {{$tor[$t]->id_subK}}</td>
+                            <td colspan="7"><b>Sub Kegiatan</b> : {{$nama_subK." : ". $desk_subK}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7"><b>Kegiatan</b> : {{$tor[$t]->nama_kegiatan}}</td>
                         </tr>
                         <tr>
                             <td colspan="7" style="text-align: center;"><b>Indikator</b></td>

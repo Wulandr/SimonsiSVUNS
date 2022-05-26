@@ -400,7 +400,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                                 </div>
                                                                                                 <div class="form-group ">
                                                                                                     <label>Komponen</label>
-                                                                                                    <textarea class="form-control" name="komponen" id="komponen" value="{{old('komponen',$komponen_jadwal[$j]->komponen)}}" rows="2">
+                                                                                                    <textarea class="form-control" name="komponen" id="komponen" value="{{old('komponen',$komponen_jadwal[$j]->komponen)}}" rows="2">{{$komponen_jadwal[$j]->komponen}}
                                                                                                     </textarea>
                                                                                                 </div>
                                                                                                 <div class="row">
@@ -846,6 +846,7 @@ use Illuminate\Support\Facades\Auth;
             });
         });
     </script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $('.anggaran-confirm').on('click', function(event) {
             event.preventDefault();
@@ -861,7 +862,7 @@ use Illuminate\Support\Facades\Auth;
                 }
             });
         });
-    </script>
+    </script> -->
     @include('dashboards/users/layouts/footer')
 
 </body>

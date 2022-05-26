@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Unit;
+use App\Models\Tor;
 
 
 
@@ -56,12 +59,17 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
 
             if (auth()->user()->role == 1) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route(
+                    'admin.dashboard',
+                );
             } elseif (auth()->user()->role != 1) { //selain admin
-                return redirect()->route('sv.dashboard');
+                return redirect()->route(
+                    'sv.dashboard',
+                );
             }
         } else {
             session()->flash('error', 'Alamat Email atau Password Anda salah!.');

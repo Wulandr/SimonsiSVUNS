@@ -69,7 +69,7 @@ use Illuminate\Support\Facades\Auth;
                                                     <div class="form-group">
                                                         <label>Jenis Ajuan</label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="customRadio6" name="jenis_ajuan" id="jenis_ajuan" value="Baru" class="custom-control-input">
+                                                            <input type="radio" id="customRadio6" name="jenis_ajuan" id="jenis_ajuan" value="Baru" class="custom-control-input" checked>
                                                             <label class="custom-control-label" for="customRadio6"> Baru </label>
                                                         </div>
                                                     </div>
@@ -109,7 +109,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <label>Kode Sub Kegiatan</label>
                                                         <select name="id_subK" id="id_subK" class="form-control">
                                                             <?php for ($s = 0; $s < count($subkeg); $s++) { ?>
-                                                                <option value="<?= $subkeg[$s]->id ?>"><?= $subkeg[$s]->subK . " - " . substr($subkeg[$s]->deskripsi, 0, 100) ?></option>
+                                                                <option value="{{old('id_subK',$subkeg[$s]->id)}}" {{$subkeg[$s]->id == $tor['id_subK'] ? 'selected' : '' }}>{{$subkeg[$s]->subK . " - " . substr($subkeg[$s]->deskripsi, 0, 100) }}</option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -253,10 +253,12 @@ use Illuminate\Support\Facades\Auth;
                                                     <label>Rencana Penarikan Dana</label>
                                                     <select name="id_tw" id="id_tw" class="form-control">
                                                         <?php for ($t2 = 0; $t2 < count($tw); $t2++) { ?>
-                                                            <option value="{{$tw[$t2]->id}}"><?= $tw[$t2]->triwulan ?></option>
+                                                            <option value="{{old('id_tw',$tw[$t2]->id)}}" {{$tw[$t2]->id == $tor['id_tw'] ? 'selected' : ''}}><?= $tw[$t2]->triwulan ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
+                                                <input type="hidden" name="create_by" value="{{$tor['create_by']}}">
+                                                <input type="hidden" name="update_by" value="{{Auth()->user()->id}}">
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary next action-button float-right">Submit</button>
