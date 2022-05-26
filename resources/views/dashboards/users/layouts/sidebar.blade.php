@@ -14,7 +14,7 @@
         <nav class=" iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 {{-- DASHBOARD --}}
-                <li class="{{ Request::is('home') ? 'active' : '' }}">
+                <li class="{{ Request::is('home', 'admin/dashboard') ? 'active' : '' }}">
                     <a href="{{ route('home') }}" class="iq-waves-effect custom-tooltip">
                         <span class="ripple rippleEffect"></span>
                         <i class="las la-home iq-arrow-left" data-toggle="tooltip" data-placement="right"
@@ -117,6 +117,17 @@
                     <ul id="pengaturan"
                         class="iq-submenu {{ Request::is('tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'collapse show' : 'collapse' }}"
                         data-parent="#iq-sidebar-toggle">
+                        <li class="{{ Request::is('spj_kategori') ? 'active' : '' }}">
+                            <a href="{{ url('/spj_kategori') }}"><i class="las la-calendar-check"
+                                    data-toggle="tooltip" data-placement="right" title="SPJ Kategori">
+                                </i>SPJ Kategori</a>
+                        </li>
+                        <li class="{{ Request::is('spj_subkategori') ? 'active' : '' }}">
+                            <a href="{{ url('/spj_subkategori') }}"><i class="las la-calendar-check"
+                                    data-toggle="tooltip" data-placement="right" title="SPJ Sub-Kategori">
+                                </i>SPJ Sub-Kategori</a>
+                        </li>
+
                         @can('tahun_show')
                             <li class="{{ Request::is('tahun') ? 'active' : '' }}">
                                 <a href="{{ url('/tahun') }}"><i class="las la-calendar-check" data-toggle="tooltip"

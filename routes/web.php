@@ -29,8 +29,10 @@ use App\Http\Controllers\DetailMakController;
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\BelanjaMakController;
 use App\Http\Controllers\KelompokMakController;
+use App\Http\Controllers\SPJKategoriController;
 use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
+use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
 /*
 |--------------------------------------------------------------------------
@@ -227,6 +229,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/upload_spj', [SPJController::class, 'uploadSpj']);
     Route::get('/spj/validasi', [SPJController::class, 'validasiSpj']);
 
+    // SPJ Kategori & Sub-Kategori
+    Route::get('/spj_kategori', [SPJKategoriController::class, 'index']);
+    Route::get('/spj_subkategori', [SPJSubKategoriController::class, 'index']);
 
     // SPJ SHOW PDF //
     Route::get('/dasarhukumspj1', [SPJController::class, 'viewSPJfile_1']);

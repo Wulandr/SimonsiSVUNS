@@ -10483,7 +10483,7 @@ if(jQuery('#home-perfomer-chart').length){
     if(jQuery('#iq-chart-box1').length){
     	var options = {
           series: [{
-            name: "Total sales",
+            name: "Total Anggaran",
             data: [10, 10, 35, 10]
         }],
        	  colors: ["#1e3d73"],

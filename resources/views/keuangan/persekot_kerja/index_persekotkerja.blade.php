@@ -100,6 +100,10 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $tidakada_status ?>
+                                                <!-- MODAL - Edit Persekot Kerja -->
+                                                @include('keuangan/all_modal/edit_pk')
+                                                <!-- MODAL - Detail Persekot Kerja -->
+                                                @include('keuangan/all_modal/detail_pk')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -125,16 +129,12 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $upload ?>
+                                                <!-- MODAL - Validasi Persekot Kerja -->
+                                                @include('keuangan/all_modal/validasi_pk')
+                                                <!-- MODAL - Status Persekot Kerja -->
+                                                @include('keuangan/all_modal/status_pk')
                                             </td>
 
-                                            <!-- MODAL - Validasi Persekot Kerja -->
-                                            @include('keuangan/all_modal/validasi_pk')
-                                            <!-- MODAL - Status Persekot Kerja -->
-                                            @include('keuangan/all_modal/status_pk')
-                                            <!-- MODAL - Edit Persekot Kerja -->
-                                            @include('keuangan/all_modal/edit_pk')
-                                            <!-- MODAL - Detail Persekot Kerja -->
-                                            @include('keuangan/all_modal/detail_pk')
                                             <!-- MODAL - Input Persekot Kerja -->
                                             @include('keuangan/all_modal/input_pk')
 

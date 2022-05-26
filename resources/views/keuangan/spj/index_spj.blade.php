@@ -123,7 +123,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <?php
-                                                $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-pen"></i></button>';
+                                                $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Formulir SPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-pen"></i></button>';
                                                 ?>
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
@@ -141,7 +141,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <?php
-                                                $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Input Formulir SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                 ?>
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
