@@ -59,8 +59,17 @@ class TwController extends Controller
     public function processUpdate(Request $request, $id)
     {
         $request->validate([]);
-
-        $process =  DB::table('triwulan')->where('id', $id)->update($request->except('_token'));
+        $tahunDiPilih = Tahun::select('tahun')->where('id', $request->id_tahun)->first();
+        $tahunDiPilih = (string) $tahunDiPilih->tahun;
+        $namatw = $tahunDiPilih . "-" . $request->triwulan;
+        $process =  DB::table('triwulan')->where('id', $id)->update([
+            'id_tahun' => $request->id_tahun,
+            'triwulan' => $namatw,
+            'periode_awal' => $request->periode_awal,
+            'periode_akhir' => $request->periode_akhir,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ]);
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
         } else {

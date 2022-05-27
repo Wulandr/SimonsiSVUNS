@@ -91,6 +91,11 @@ if (Auth()->user()->id_unit == 1) {
                                             <div class="form-group row">
                                             </div>
                                         </span> -->
+                                        @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                        @endif
                                         <div class="table-responsive">
                                             <div class="form-group row float-right mb-3 mr-2">
                                             </div>
@@ -164,7 +169,13 @@ if (Auth()->user()->id_unit == 1) {
                     $('#mymak').DataTable();
                 });
             </script>
-
+            <script>
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                        $(this).remove();
+                    });
+                }, 2000);
+            </script>
             @include('dashboards/users/layouts/footer')
     </body>
 

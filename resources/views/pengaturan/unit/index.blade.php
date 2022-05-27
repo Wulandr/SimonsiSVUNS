@@ -78,6 +78,11 @@ use Illuminate\Support\Facades\Auth;
 
                                         </div>
                                     </span> -->
+                                    @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
                                         </div>
@@ -181,6 +186,13 @@ use Illuminate\Support\Facades\Auth;
             $.noConflict();
             $('#myunit').DataTable();
         });
+    </script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
     </script>
     @include('dashboards/users/layouts/footer')
 

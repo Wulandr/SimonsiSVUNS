@@ -88,6 +88,11 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
+                                    @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                     <span class="table-add float-right mb-3 mr-2">
                                         <div class="form-group row">
                                             <form action="{{ url('/triwulan/filtertahun') }}" method="GET">
@@ -159,29 +164,29 @@ use Illuminate\Support\Facades\Auth;
                                                                     <form class="form-horizontal" method="post" action="{{ url('/triwulan/update/'.$triwulan[$a]->id) }}">
                                                                         @csrf
                                                                         <div class="form-group">
-                                                                            <label>Nama Triwulan</label>
+                                                                            <label>Nama Triwulan </label>
                                                                             <select name="triwulan" id="triwulan" class="form-control">
-                                                                                <option value="triwulan-1">Triwulan 1</option>
-                                                                                <option value="triwulan-2">Triwulan 2</option>
-                                                                                <option value="triwulan-3">Triwulan 3</option>
-                                                                                <option value="triwulan-4">Triwulan 4</option>
+                                                                                <option value="triwulan-1" {{substr($triwulan[$a]->triwulan,5) == 'triwulan-1' ? 'selected' : ''}}>Triwulan 1</option>
+                                                                                <option value="triwulan-2" {{substr($triwulan[$a]->triwulan,5) == 'triwulan-2' ? 'selected' : ''}}>Triwulan 2</option>
+                                                                                <option value="triwulan-3" {{substr($triwulan[$a]->triwulan,5) == 'triwulan-3' ? 'selected' : ''}}>Triwulan 3</option>
+                                                                                <option value="triwulan-4" {{substr($triwulan[$a]->triwulan,5) == 'triwulan-4' ? 'selected' : ''}}>Triwulan 4</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Tahun</label>
                                                                             <select name="id_tahun" id="id_tahun" class="form-control">
                                                                                 @foreach($tabeltahun as $pt)
-                                                                                <option value="{{$pt->id}}">{{$pt->tahun}}</option>
+                                                                                <option value="{{old('id_tahun',$triwulan[$a]->id_tahun)}}" {{$triwulan[$a]->id_tahun == $pt->id ? 'selected' : ''}}>{{$pt->tahun}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Periode Awal</label>
-                                                                            <input name="periode_awal" id="periode_awal" type="date" class="form-control">
+                                                                            <input name="periode_awal" id="periode_awal" type="date" value="{{old('periode_awal',$triwulan[$a]->periode_awal)}}" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Periode Akhir</label>
-                                                                            <input name="periode_akhir" id="periode_akhir" type="date" class="form-control">
+                                                                            <input name="periode_akhir" id="periode_akhir" type="date" value="{{old('periode_akhir',$triwulan[$a]->periode_akhir)}}" class="form-control">
                                                                         </div>
                                                                         <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                                                                         <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
@@ -229,6 +234,14 @@ use Illuminate\Support\Facades\Auth;
             $.noConflict();
             $('#mytw').DataTable();
         });
+    </script>
+
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
     </script>
     @include('dashboards/users/layouts/footer')
 

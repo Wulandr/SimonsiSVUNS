@@ -165,7 +165,7 @@ class RoleController extends Controller
             //alert
 
             if ($role) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect()->back()->with("success", "Data berhasil diupdate");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -196,7 +196,7 @@ class RoleController extends Controller
         } finally {
             DB::commit();
         }
-        return redirect()->back();
+        return redirect()->back()->with("success", "Data berhasil dihapus");
     }
     private function attributes()
     {

@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
                                                     @endcan
                                                 </h4>
                                                 <!-- T A M B A H    -->
-                                                <div class="modal fade" tabindex="-1" role="dialog" id="tambahDetMak">
+                                                <div class="modal fade" role="dialog" id="tambahDetMak" style="overflow:hidden;">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     @csrf
                                                                     <div class="form-group">
                                                                         <label>Belanja MAK</label>
-                                                                        <select name="id_belanja" id="id_belanja" class="form-control">
+                                                                        <select name="id_belanja" id="id_belanja" class="js-example-basic-single1" aria-hidden="true" data-select2-id="select2-data-58-6f8l" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                             @foreach($belanja_mak as $iniBel)
                                                                             <option value="{{$iniBel->id}}">{{$iniBel->belanja}}</option>
                                                                             @endforeach
@@ -95,6 +95,11 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
 
                                         <div class="iq-card-body">
+                                            @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                            @endif
                                             <span class="table-add float-right mb-3 mr-2">
                                                 <div class="form-group row">
                                                     <form action="{{ url('/searchDetail') }}" method="GET">
@@ -148,11 +153,11 @@ use Illuminate\Support\Facades\Auth;
                                                             </td>
                                                         </tr>
                                                         <!-- Modal Ubah IK -->
-                                                        <div class="modal fade" tabindex="-1" role="dialog" id="update_det<?= $join->idDetail ?>">
+                                                        <div class="modal fade" style="overflow:hidden;" role="dialog" id="update_det<?= $join->idDetail ?>">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Update Detail</h5>
+                                                                        <h5 class="modal-title">Update Detail MAK</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -162,12 +167,10 @@ use Illuminate\Support\Facades\Auth;
                                                                             @csrf
                                                                             <div class="form-group">
                                                                                 <label>Belanja</label>
-                                                                                <select name="id_belanja" id="id_belanja" class="form-control">
-                                                                                    <?php for ($b2 = 0; $b2 < count($belanja_mak); $b2++) {
-                                                                                        if ($belanja_mak[$b2]->id == $join->idBelanja) { ?>
-                                                                                            <option value="{{$belanja_mak[$b2]->id}}">{{$belanja_mak[$b2]->belanja}}</option>
+                                                                                <select name="id_belanja" id="id_belanja" class="js-example-basic-single2" aria-hidden="true" data-select2-id="select2-data-58-6f8l" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                                                                                    <?php for ($b2 = 0; $b2 < count($belanja_mak); $b2++) { ?>
+                                                                                        <option value="{{old('id_belanja',$belanja_mak[$b2]->id)}}" {{$belanja_mak[$b2]->id == $join->idBelanja ? 'selected' : ''}}>{{$belanja_mak[$b2]->belanja}}</option>
                                                                                     <?php
-                                                                                        }
                                                                                     } ?>
                                                                                 </select>
                                                                             </div>
@@ -201,6 +204,81 @@ use Illuminate\Support\Facades\Auth;
     </div>
 
     <!-- Wrapper END -->
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single1').select2();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single1').select2().on('change', function() {
+                var id_belanja = $(this).val();
+                if (id_belanja) {
+                    $.ajax({
+                        url: '/getbelanjaMak/' + id_mak,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="id_belanja"]').empty();
+                            $('select[name="id_belanja"]').append('<option hidden>Choose Course</option>');
+                            $.each(data, function(key, namabelanja) {
+                                $('select[name="id_belanja"]').append('<option value="' + namabelanja.id + '">' + namabelanja.belanja + '-' + namabelanja.id + '</option>');
+                            });
+
+                        }
+                    });
+                } else {
+                    $('select[name="id_belanja"]').empty();
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single2').select2();
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single2').select2().on('change', function() {
+                var id_belanja = $(this).val();
+                if (id_belanja) {
+                    $.ajax({
+                        url: '/getbelanjaMak/' + id_mak,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="id_belanja"]').empty();
+                            $('select[name="id_belanja"]').append('<option hidden>Choose Course</option>');
+                            $.each(data, function(key, namabelanja) {
+                                $('select[name="id_belanja"]').append('<option value="' + namabelanja.id + '">' + namabelanja.belanja + '-' + namabelanja.id + '</option>');
+                            });
+
+                        }
+                    });
+                } else {
+                    $('select[name="id_belanja"]').empty();
+                }
+            });
+        });
+    </script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
     @include('dashboards/users/layouts/footer')
 </body>
 

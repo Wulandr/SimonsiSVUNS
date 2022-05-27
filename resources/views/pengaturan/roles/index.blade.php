@@ -30,6 +30,11 @@
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
+                                    @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                     <div class="table-responsive">
                                         <table id="myroles" class="table table-striped">
                                             <tr>
@@ -76,6 +81,13 @@
             $.noConflict();
             $('#myroles').DataTable();
         });
+    </script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
     </script>
     @include('dashboards/users/layouts/footer')
 

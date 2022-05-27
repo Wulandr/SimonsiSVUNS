@@ -101,6 +101,11 @@ if (Auth()->user()->id_unit == 1) {
 
                                             </div>
                                             <div class="iq-card-body">
+                                                @if (session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
+                                                </div>
+                                                @endif
                                                 <span class="table-add float-right mb-3 mr-2">
                                                     <div class="form-group row">
                                                         <!-- <form action="{{ url('/iku/filtertahun') }}" method="GET">
@@ -249,7 +254,13 @@ if (Auth()->user()->id_unit == 1) {
                     $('#myk').DataTable();
                 });
             </script>
-
+            <script>
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                        $(this).remove();
+                    });
+                }, 2000);
+            </script>
             @include('dashboards/users/layouts/footer')
     </body>
 
