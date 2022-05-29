@@ -87,8 +87,12 @@ use Illuminate\Support\Facades\Auth;
                                                 <tr>
                                                     <th>No.</th>
                                                     <th scope="col">Tahun</th>
+                                                    @can('tahun_create')
                                                     <th scope="col">Status</th>
+                                                    @endcan
+                                                    @can('tahun_update')
                                                     <th scope="col">Action</th>
+                                                    @endcan
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -97,6 +101,7 @@ use Illuminate\Support\Facades\Auth;
                                                     <tr>
                                                         <td><a href="#">{{$num}}</a></td>
                                                         <td>{{$thn->tahun}}</td>
+                                                        @can('tahun_create')
                                                         <td>
                                                             <div class="custom-control custom-switch custom-switch-text custom-switch-color custom-control-inline">
                                                                 <div class="custom-switch-inner">
@@ -106,6 +111,8 @@ use Illuminate\Support\Facades\Auth;
                                                                 </div>
                                                             </div>
                                                         </td>
+                                                        @endcan
+                                                        @if(Gate::check('tahun_update') || Gate::check('tahun_delete'))
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('tahun_update')
@@ -119,6 +126,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 @endcan
                                                             </div>
                                                         </td>
+                                                        @endif
                                                     </tr>
                                                     <!-- Modal Ubah TAHUN -->
                                                     <div class="modal fade" tabindex="-1" role="dialog" id="update_thn<?= $thn->id ?>">
@@ -162,6 +170,12 @@ use Illuminate\Support\Facades\Auth;
     <!-- Wrapper END -->
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
     <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#mytahun').DataTable();
+        });
+    </script>
+    <script>
         $(function() {
             $('.custom-control-input').change(function() {
                 var is_aktif = $(this).prop('checked') == true ? 1 : 0;
@@ -197,12 +211,6 @@ use Illuminate\Support\Facades\Auth;
                     window.location.href = url;
                 }
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $.noConflict();
-            $('#mytahun').DataTable();
         });
     </script>
     <script>

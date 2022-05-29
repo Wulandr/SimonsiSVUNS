@@ -40,9 +40,9 @@
                                                     <td><a href="#">{{$num}}</a></td>
                                                     <td class="font-weight-600">{{$u -> name}}</td>
                                                     <td class="font-weight-600">{{$u->email}}</td>
-                                                    <?php for ($i = 0; $i < count($roleMasuk); $i++) { ?>
-                                                        <?php if ($u->role == $roleMasuk[$i]->id) { ?>
-                                                            <td class="font-weight-600">{{$roleMasuk[$i]->name}}</td>
+                                                    <?php for ($i = 0; $i < count($role); $i++) { ?>
+                                                        <?php if ($u->role == $role[$i]->id) { ?>
+                                                            <td class="font-weight-600">{{$role[$i]->name}}</td>
                                                         <?php } ?>
                                                     <?php } ?>
 

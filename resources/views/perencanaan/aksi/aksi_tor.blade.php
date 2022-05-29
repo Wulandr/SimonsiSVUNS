@@ -100,37 +100,56 @@ foreach ($role as $roles) {
     @endcan
     <!-- <button class="search-toggle iq-waves-effect badge badge-primary rounded" data-toggle="modal" title="Detail TOR" data-original-title="Detail TOR" data-target="#detail_tor<?= $tor[$t]->id ?>"><i class="fa fa-tasks"></i><br />
 </button> -->
+    <?php $sudahAdaRAB = 0;
+    foreach ($rab as $sr) {
+        if ($sr->id_tor == $tor[$t]->id) {
+            $sudahAdaRAB = 1;
+        }
+    } ?>
     @can('rab_create')
-    <button class="search-toggle iq-waves-effect badge badge-info rounded" data-toggle="modal" title="Tambah RAB" data-original-title="Tambah RAB" data-target="#tambah_rab<?= $tor[$t]->id ?>"><i class="fa fa-plus-circle"></i><br />
-    </button>
+    <?php if ($sudahAdaRAB == 0) { ?>
+        <button class="search-toggle iq-waves-effect badge badge-info rounded" data-toggle="modal" title="Tambah RAB" data-original-title="Tambah RAB" data-target="#tambah_rab<?= $tor[$t]->id ?>">Tambah RAB<br />
+        </button>
+    <?php } ?>
     @endcan
-    <?php for ($sr = 0; $sr < count($rab); $sr++) {
+    @can('tor_ajuan')
+    <?php
+    $buttonAjukan = 1; //agar button ajukan tidak berulang ulang
+    for ($sr = 0; $sr < count($rab); $sr++) {
         if ($rab[$sr]->id_tor == $tor[$t]->id) {
             foreach ($anggaran as $anggaran1) {
-                if ($anggaran1->id_rab == $rab[$sr]->id) { ?>
-                    @can('tor_ajuan')
+                if ($anggaran1->id_rab == $rab[$sr]->id && $buttonAjukan == 1) { ?>
                     <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
                     </button>
-                    @endcan
-    <?php }
+    <?php $buttonAjukan += 1;
+                }
             }
         }
     } ?>
+    @endcan
 <?php } ?>
 <?php if ($pengajuan >= 1) { ?>
     <button class="badge badge-success rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}">Status
     </button>
 <?php } ?>
-<?php if ($revisi >= 1 && $jumlahval == 4 && $tor[$t]->jenis_ajuan == "Baru") { ?>
-    <a href="{{url('/tor/update/'.  $tor[$t]->id)}}"><button class="badge badge-danger rounded">Segera Revisi
-        </button></a>
+
+<?php if ($revisi >= 1 && $tor[$t]->jenis_ajuan == "Baru") { ?>
+    <form class="form-horizontal" method="get" action="{{ url('/tor/revisi/'.  $tor[$t]->id) }}">
+        @csrf
+        <input type="hidden" name="akses" value="1">
+        <button class="badge badge-danger rounded" type="submit">
+            Segera Revisi
+        </button>
+    </form>
 <?php } ?>
+
 @can('tor_ajuan')
 <?php if ($tor[$t]->jenis_ajuan == "Perbaikan" && $pengajuan == 1) { ?>
     <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
     </button>
 <?php } ?>
 @endcan
+
 <?php if ($validasi == 3) { ?>
     <badge class="badge badge-info rounded" data-toggle="modal"> SELESAI
     </badge>

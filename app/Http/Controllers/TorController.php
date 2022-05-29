@@ -8,8 +8,11 @@ use App\Models\Tor;
 use App\Models\Unit;
 use App\Models\Triwulan;
 use App\Models\User;
+use App\Models\TrxStatusTor;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use TrxStatusKeu;
 
 class TorController extends Controller
 {
@@ -251,6 +254,12 @@ class TorController extends Controller
             abort(403);
         }
 
+        $statusTor =  json_decode(TrxStatusTor::TrxStatus($id), true); //ingin tau statusnya apa saja
+        //jika TOR sudah diajukan oleh prodi, jangan dibolehkan untuk update
+        if ($statusTor[0]['nama_status'] == "Proses Pengajuan") {
+            abort(403);
+        }
+
         $id = $id;
         $data = 0;
         $filtertahun = date('Y');
@@ -261,11 +270,13 @@ class TorController extends Controller
         $mak = DB::table('mak')->get();
         $tahun = DB::table('tor')->get();
         $tabeltahun = DB::table('tahun')->get();
+        $trx_status_tor = DB::table('trx_status_tor')->get();
         $pagu = DB::table('pagu')->get();
         $subkeg = DB::table('indikator_subK')->get();
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
         $roles2 = DB::table('roles')->get();
+        $status = DB::table('status')->get();
 
         return view(
             "perencanaan.tor.update",
@@ -273,12 +284,78 @@ class TorController extends Controller
                 'tor' => $tor, 'unit' => $unit, 'tw' => $tw, 'userrole' => $userrole,  'mak' => $mak,
                 'tahun' => $tahun,  'filtertahun' => $filtertahun, 'data' => $data, 'id' => $id,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
-                'users' => $users, 'roles' => $roles, 'roles2' => $roles2
+                'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'trx_status_tor' => $trx_status_tor,
+                'status' => $status
             ]
         );
     }
 
     public function processUpdate(Request $request, $id)
+    {
+        $request->validate([]);
+        $process = Tor::findOrFail($id)->update($request->except('_token'));
+        if ($process) {
+            return redirect('/torab')->with("success", "Data berhasil diperbarui");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
+    }
+
+    public function revisi($id, Request $request)
+    {
+        $tor = Tor::findOrFail($id);
+        $userLogin = Auth()->user()->name;
+        $roleLogin2 = DB::table('roles')->select('name')->where('id', Auth()->user()->role)->get();
+
+        $pic = DB::table('tor')->select('nama_pic')->where('id', $id)->get();
+        // pic tidak bisa mengakses update tor jika bukan tanggung jawabnya
+        if (($roleLogin2[0]->name == "PIC" && $userLogin != $pic[0]->nama_pic) || empty($request->akses)) {
+            abort(403);
+        }
+
+        // kalo sudah ada perbaikan, tidak boleh ada lagi
+        $statusTOR =  TrxStatusTor::TrxStatus($id)->toArray();
+        $perbaikan =  TrxStatusTor::StatusPerbaikan($id)->toArray();
+        $revisi =  TrxStatusTor::Revisi($id)->toArray();
+
+        /* ABORT : tidak ada revisi,
+         ABORT : ada revisi, tapi ada perbaikan */
+        if ((empty($perbaikan) && empty($revisi)) || (!empty($perbaikan) && !empty($revisi))) {
+            abort(403);
+        }
+
+        $id = $id;
+        $data = 0;
+        $filtertahun = date('Y');
+        $filterprodi = 0;
+        $unit = Unit::all();
+        $userrole = User::join();
+        $tw = Triwulan::all();
+        $mak = DB::table('mak')->get();
+        $tahun = DB::table('tor')->get();
+        $tabeltahun = DB::table('tahun')->get();
+        $trx_status_tor = DB::table('trx_status_tor')->get();
+        $pagu = DB::table('pagu')->get();
+        $subkeg = DB::table('indikator_subK')->get();
+        $users = DB::table('users')->get();
+        $roles = DB::table('roles')->get();
+        $roles2 = DB::table('roles')->get();
+        $status = DB::table('status')->get();
+
+        return view(
+            "perencanaan.tor.revisi",
+            [
+                'tor' => $tor, 'unit' => $unit, 'tw' => $tw, 'userrole' => $userrole,  'mak' => $mak,
+                'tahun' => $tahun,  'filtertahun' => $filtertahun, 'data' => $data, 'id' => $id,
+                'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
+                'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'trx_status_tor' => $trx_status_tor,
+                'status' => $status
+            ]
+        );
+        // return ($perbaikan);
+    }
+
+    public function processRevisi(Request $request, $id)
     {
         $request->validate([]);
         $process = Tor::findOrFail($id)->update($request->except('_token'));

@@ -64,7 +64,7 @@ class ValidasiController extends Controller
                 ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
                 ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
                 ->where('status.nama_status', "Proses Pengajuan")
-                ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*')->simplepaginate(4);
+                ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*')->get();
         }
         if ($prodi == 0) {
             $join = DB::table('tor')
@@ -72,7 +72,7 @@ class ValidasiController extends Controller
                 ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
                 ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
                 ->where('status.nama_status', "Proses Pengajuan")
-                ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->simplepaginate(4);
+                ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->get();
         }
         $ajuanTW =  DB::table('tor')
             ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
@@ -269,7 +269,7 @@ class ValidasiController extends Controller
                     ->where('status.nama_status', "Proses Pengajuan")
                     ->where('id_unit', $filterprodi)
                     ->where('triwulan.triwulan', 'LIKE', $request->triwulan)
-                    ->simplepaginate(4);
+                    ->simplepaginate(5);
             }
             if (empty($request->triwulan)) {
                 $join = DB::table('tor')
@@ -279,7 +279,7 @@ class ValidasiController extends Controller
                     ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
                     ->where('status.nama_status', "Proses Pengajuan")
                     ->where('id_unit', $filterprodi)
-                    ->simplepaginate(4);
+                    ->simplepaginate(5);
             }
         }
 

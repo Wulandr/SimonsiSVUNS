@@ -23,12 +23,12 @@ use Illuminate\Support\Facades\Auth;
                         <div class="iq-card">
                             <div class="iq-card-header d-flex justify-content-between">
                                 <div class="iq-header-title">
-                                    <h4 class="card-title">UPDATE PENGAJUAN TOR</h4>
+                                    <h4 class="card-title">PENGAJUAN PERBAIKAN TOR</h4>
                                 </div>
                             </div>
                             <?php $data = 1 ?>
                             <div class="iq-card-body">
-                                <form id="form-wizard1" class="text-center mt-4" method="post" action="{{ url('/tor/update/'.$id) }}">
+                                <form id="form-wizard1" class="text-center mt-4" method="post" action="{{ url('/tor/revisi/'.$id) }}">
                                     @csrf
                                     <ul id="top-tab-list" class="p-0">
                                         <li class="active" id="account">
@@ -92,8 +92,8 @@ use Illuminate\Support\Facades\Auth;
                                                     <div class="form-group mt-3">
                                                         <label>Jenis Ajuan</label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="customRadio6" name="jenis_ajuan" id="jenis_ajuan" value="Baru" class="custom-control-input" {{$ch}}>
-                                                            <label class="custom-control-label" for="customRadio6"> Baru </label>
+                                                            <input type="radio" name="jenis_ajuan" id="jenis_ajuan" value="Perbaikan" class="custom-control-input" {{$ch}}>
+                                                            <label class="custom-control-label" for="danger-outlined">Perbaikan</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

@@ -49,16 +49,15 @@ use Illuminate\Support\Facades\Auth;
                                                         </select> -->
                                                     </div>
                                                     <div class="col-xs-4 mr-3">
-                                                        <select class="form-control filter sm-8" name="triwulan"
-                                                            id="triwulan">
+                                                        <select class="form-control filter sm-8" name="triwulan" id="triwulan">
                                                             <option value="0">All</option>
                                                             <?php for ($tw1 = 0; $tw1 < count($triwulan); $tw1++) {
                                                                 foreach ($tabeltahun as $thn) {
                                                                     if ($thn->is_aktif == 1) {
                                                                         if ($thn->tahun == substr($triwulan[$tw1]->triwulan, 0, 4)) {  ?>
-                                                            <option value="{{ $triwulan[$tw1]->triwulan }}"
-                                                                {{ $filtertw == $triwulan[$tw1]->triwulan ? 'selected' : '' }}>
-                                                                {{ $triwulan[$tw1]->triwulan }} </option>
+                                                                            <option value="{{ $triwulan[$tw1]->triwulan }}" {{ $filtertw == $triwulan[$tw1]->triwulan ? 'selected' : '' }}>
+                                                                                {{ $triwulan[$tw1]->triwulan }}
+                                                                            </option>
                                                             <?php }
                                                                     }
                                                                 }
@@ -66,22 +65,20 @@ use Illuminate\Support\Facades\Auth;
                                                         </select>
                                                     </div>
                                                     <?php if ($filterprodi != 0) { ?>
-                                                    <input type="hidden" name="prodi" id="prodi"
-                                                        value="{{ $prodi }}">
+                                                        <input type="hidden" name="prodi" id="prodi" value="{{ $prodi }}">
                                                     <?php } ?>
                                                     <?php if ($filterprodi == 0) { ?>
-                                                    <div class="col-xs-4 mr-3">
-                                                        <select class="form-control filter sm-8" name="prodi"
-                                                            id="prodi">
-                                                            <option value="0">All</option>
-                                                            <?php
+                                                        <div class="col-xs-4 mr-3">
+                                                            <select class="form-control filter sm-8" name="prodi" id="prodi">
+                                                                <option value="0">All</option>
+                                                                <?php
                                                                 for ($pr = 0; $pr < count($unit); $pr++) { ?>
-                                                            <option value="{{ $unit[$pr]->id }}"
-                                                                {{ $filterprodi == $unit[$pr]->id ? 'selected' : '' }}>
-                                                                {{ $unit[$pr]->nama_unit }}</option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
+                                                                    <option value="{{ $unit[$pr]->id }}" {{ $filterprodi == $unit[$pr]->id ? 'selected' : '' }}>
+                                                                        {{ $unit[$pr]->nama_unit }}
+                                                                    </option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
                                                     <?php } ?>
                                                     <input type="submit" class="btn btn-primary btn-sm" value="Filter">
                                                 </div>
@@ -134,76 +131,74 @@ use Illuminate\Support\Facades\Auth;
 
                                                 ?>
 
-                                                <?php
-                                                if (!empty($trx_status_tor)) {
-                                                    for ($q3 = 0; $q3 < count($trx_status_tor); $q3++) {
-                                                        if ($trx_status_tor[$q3]->id_tor == $join[$a]->tor_id) {
-                                                            $jmltor += 1;
-                                                            $ada += 1;
-                                                            for ($s4 = 0; $s4 < count($status); $s4++) {
-                                                                if ($trx_status_tor[$q3]->id_status == $status[$s4]->id) {
-                                                                    $statuskeg = $status[$s4]->nama_status;
-                                                                }
-                                                            }
-                                                            for ($st3 = 0; $st3 < count($status); $st3++) {
-                                                                if ($status[$st3]->id == $trx_status_tor[$q3]->id_status) {
-                                                                    for ($u = 0; $u < count($user); $u++) {
-                                                                        if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
-                                                                            for ($rl = 0; $rl < count($role); $rl++) {
-                                                                                if ($role[$rl]->id == $user[$u]->role) {
-                                                                                    $pengvalidasi = $role[$rl]->name;
+                                                            <?php
+                                                            if (!empty($trx_status_tor)) {
+                                                                for ($q3 = 0; $q3 < count($trx_status_tor); $q3++) {
+                                                                    if ($trx_status_tor[$q3]->id_tor == $join[$a]->tor_id) {
+                                                                        $jmltor += 1;
+                                                                        $ada += 1;
+                                                                        for ($s4 = 0; $s4 < count($status); $s4++) {
+                                                                            if ($trx_status_tor[$q3]->id_status == $status[$s4]->id) {
+                                                                                $statuskeg = $status[$s4]->nama_status;
+                                                                            }
+                                                                        }
+                                                                        for ($st3 = 0; $st3 < count($status); $st3++) {
+                                                                            if ($status[$st3]->id == $trx_status_tor[$q3]->id_status) {
+                                                                                for ($u = 0; $u < count($user); $u++) {
+                                                                                    if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
+                                                                                        for ($rl = 0; $rl < count($role); $rl++) {
+                                                                                            if ($role[$rl]->id == $user[$u]->role) {
+                                                                                                $pengvalidasi = $role[$rl]->name;
+                                                                                            }
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         }
                                                                     }
                                                                 }
+                                                            } elseif (empty($trx_status_tor)) {
+                                                                $statuskeg = '';
+                                                                $pengvalidasi = '';
+                                                            } else {
+                                                                $statuskeg = '';
                                                             }
-                                                        }
-                                                    }
-                                                } elseif (empty($trx_status_tor)) {
-                                                    $statuskeg = '';
-                                                    $pengvalidasi = '';
-                                                } else {
-                                                    $statuskeg = '';
-                                                }
-                                                ?>
+                                                            ?>
 
-                                                <!-- W A R N A  R O W  -->
-                                                <?php
-                                                $warnaRow = '';
-                                                if ($statuskeg . ' ' . $pengvalidasi == 'Validasi WD 1') {
-                                                    $warnaRow = 'background-color:#D3D3D3';
-                                                }
-                                                ?>
+                                                            <!-- W A R N A  R O W  -->
+                                                            <?php
+                                                            $warnaRow = '';
+                                                            if ($statuskeg . ' ' . $pengvalidasi == 'Validasi WD 1') {
+                                                                $warnaRow = 'background-color:#D3D3D3';
+                                                            }
+                                                            ?>
 
-                                                <!-- jk sebelumnya sudah ditulis, jangan ditulis lagi -->
-                                                <tr style="<?= $warnaRow ?>">
-                                                    <td>{{ $no + 1 }}</td><?php $no++; ?>
-                                                    <td>{{ $prodiTor }}</td>
-                                                    <td>{{ $join[$a]->nama_kegiatan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
-                                                    </td>
-                                                    <td><?php
-                                                    $date = date_create($join[$a]->tgl_mulai_pelaksanaan);
-                                                    echo date_format($date, 'M d, Y'); ?></td>
-                                                    <td>{{ $join[$a]->nama_pic }}</td>
-                                                    <td>{{ 'Rp. ' . number_format($join[$a]->jumlah_anggaran, 2, ',', ',') }}
-                                                    </td>
-                                                    <td>
-                                                        <div class="badge badge-pill badge-warning">
-                                                            {{ $statuskeg . ' ' . $pengvalidasi }}</div>
-                                                        <button class="badge badge-info" data-toggle="modal"
-                                                            data-placement="top"
-                                                            data-target="#detail_tor{{ $x }}">
-                                                            <i class="fa fa-tasks"></i>
-                                                        </button>
-                                                        @include('perencanaan/validasi/modal/tor/detail')
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ url('/detailtor/' . $join[$a]->tor_id) }}"><button
-                                                                class="badge badge-warning rounded">Detail
-                                                            </button></a>
-                                                    </td>
-                                                </tr>
+                                                            <!-- jk sebelumnya sudah ditulis, jangan ditulis lagi -->
+                                                            <tr style="<?= $warnaRow ?>">
+                                                                <td>{{ $no + 1 }}</td><?php $no++; ?>
+                                                                <td>{{ $prodiTor }}</td>
+                                                                <td>{{ $join[$a]->nama_kegiatan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
+                                                                </td>
+                                                                <td><?php
+                                                                    $date = date_create($join[$a]->tgl_mulai_pelaksanaan);
+                                                                    echo date_format($date, 'M d, Y'); ?></td>
+                                                                <td>{{ $join[$a]->nama_pic }}</td>
+                                                                <td>{{ 'Rp. ' . number_format($join[$a]->jumlah_anggaran, 2, ',', ',') }}
+                                                                </td>
+                                                                <td>
+                                                                    <div class="badge badge-pill badge-warning">
+                                                                        {{ $statuskeg . ' ' . $pengvalidasi }}
+                                                                    </div>
+                                                                    <button class="badge badge-info" data-toggle="modal" data-placement="top" data-target="#detail_tor{{ $x }}">
+                                                                        <i class="fa fa-tasks"></i>
+                                                                    </button>
+                                                                    @include('perencanaan/validasi/modal/tor/detail')
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ url('/detailtor/' . $join[$a]->tor_id) }}"><button class="badge badge-warning rounded">Detail
+                                                                        </button></a>
+                                                                </td>
+                                                            </tr>
                                                 <?php
                                                             $nomer = 1;
                                                         }
@@ -212,7 +207,6 @@ use Illuminate\Support\Facades\Auth;
                                             </div>
                                         </tbody>
                                     </table>
-                                    {{ $join->links() }}
                                 </div>
                             </div>
                         </div>
@@ -228,6 +222,14 @@ use Illuminate\Support\Facades\Auth;
         </div>
     </div>
     </div>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#monitoring').DataTable();
+        });
+    </script>
     @include('dashboards/users/layouts/footer')
 
 </body>
