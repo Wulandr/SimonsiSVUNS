@@ -9,8 +9,8 @@ class AddIdSpjKategoriToSpjSubkategoriTable extends Migration
     public function up()
     {
         Schema::table('spj_subkategori', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_subkategori')->after('id');
-            $table->foreign('id_subkategori')->references('id')->on('spj_kategori');
+            $table->unsignedBigInteger('id_kategori')->after('id');
+            $table->foreign('id_kategori')->references('id')->on('spj_kategori');
         });
     }
 }

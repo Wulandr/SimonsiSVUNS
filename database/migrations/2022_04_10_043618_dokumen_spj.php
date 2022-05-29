@@ -15,6 +15,8 @@ class DokumenSpj extends Migration
     {
         Schema::create('dokumen_spj', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('path');
             $table->timestamps();
         });
     }

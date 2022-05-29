@@ -115,16 +115,16 @@
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                     </a>
                     <ul id="pengaturan"
-                        class="iq-submenu {{ Request::is('tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'collapse show' : 'collapse' }}"
+                        class="iq-submenu {{ Request::is('spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'collapse show' : 'collapse' }}"
                         data-parent="#iq-sidebar-toggle">
                         <li class="{{ Request::is('spj_kategori') ? 'active' : '' }}">
-                            <a href="{{ url('/spj_kategori') }}"><i class="las la-calendar-check"
-                                    data-toggle="tooltip" data-placement="right" title="SPJ Kategori">
+                            <a href="{{ url('/spj_kategori') }}"><i class="las la-stream" data-toggle="tooltip"
+                                    data-placement="right" title="SPJ Kategori">
                                 </i>SPJ Kategori</a>
                         </li>
                         <li class="{{ Request::is('spj_subkategori') ? 'active' : '' }}">
-                            <a href="{{ url('/spj_subkategori') }}"><i class="las la-calendar-check"
-                                    data-toggle="tooltip" data-placement="right" title="SPJ Sub-Kategori">
+                            <a href="{{ url('/spj_subkategori') }}"><i class="las la-stream" data-toggle="tooltip"
+                                    data-placement="right" title="SPJ Sub-Kategori">
                                 </i>SPJ Sub-Kategori</a>
                         </li>
 

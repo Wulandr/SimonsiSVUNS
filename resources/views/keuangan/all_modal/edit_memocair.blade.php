@@ -45,9 +45,12 @@
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
                         <input type="file" class="form-control-file" name="file" id="file" required>
-                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required><br>
-                        <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf"
-                            width="100%" height="200px"></embed>
+                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required>
+                        <small>File yang sudah diupload:
+                            <a class="text-primary" href="{{ asset('documents/' . $dokumen[$b]->name) }}"
+                                target="_blank"><?= $dokumen[$b]->name ?></a>
+                        </small>
+
                     </div>
                     <?php
                     }
