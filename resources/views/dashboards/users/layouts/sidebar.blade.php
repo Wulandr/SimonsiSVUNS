@@ -18,7 +18,10 @@
                     <a href="{{ route('home') }}" class="iq-waves-effect custom-tooltip">
                         <span class="ripple rippleEffect"></span>
                         <i class="las la-home iq-arrow-left" data-toggle="tooltip" data-placement="right"
-                            title="Dashboard"></i><span>Dashboard</span>
+                            title="Dashboard"></i><span>Dashboard
+                            <div role="status" class="spinner-grow spinner-grow-sm text-info">
+                            </div>
+                        </span>
                     </a>
                 </li>
 
@@ -31,7 +34,9 @@
                         <span class="ripple rippleEffect"></span>
                         <i class="las la-clipboard iq-arrow-left" data-toggle="tooltip" data-placement="right"
                             title="Perencanaan"></i>
-                        <span>Perencanaan</span>
+                        <span>Perencanaan<div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                            </div></span>
+
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                     </a>
 
@@ -70,7 +75,10 @@
                         aria-expanded="{{ Request::is('memo_cair', 'persekot_kerja', 'spj', 'lpj', 'monitoring_kak', 'upload_spj') ? 'true' : 'false' }}">
                         <span class="ripple rippleEffect"></span>
                         <i class="las la-money-bill iq-arrow-left" data-toggle="tooltip" data-placement="right"
-                            title="Keuangan"></i><span>Keuangan</span>
+                            title="Keuangan"></i><span>Keuangan
+                            <div role="status" class="spinner-grow spinner-grow-sm text-info">
+                            </div>
+                        </span>
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="keuangan"
                         class="iq-submenu {{ Request::is('memo_cair', 'persekot_kerja', 'spj', 'lpj', 'monitoring_kak', 'upload_spj') ? 'collapse show' : 'collapse' }}"
@@ -127,51 +135,74 @@
                                     data-placement="right" title="SPJ Sub-Kategori">
                                 </i>SPJ Sub-Kategori</a>
                         </li>
-
                         @can('tahun_show')
                             <li class="{{ Request::is('tahun') ? 'active' : '' }}">
                                 <a href="{{ url('/tahun') }}"><i class="las la-calendar-check" data-toggle="tooltip"
-                                        data-placement="right" title="Tahun"></i>Tahun</a>
+                                        data-placement="right" title="Tahun"></i>Tahun
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('triwulan_show')
                             <li class="{{ Request::is('triwulan') ? 'active' : '' }}">
                                 <a href="{{ url('/triwulan') }}"><i class="las la-hourglass-start" data-toggle="tooltip"
-                                        data-placement="right" title="Triwulan"></i>Triwulan</a>
+                                        data-placement="right" title="Triwulan"></i>Triwulan
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('unit_show')
                             <li class="{{ Request::is('unit') ? 'active' : '' }}">
                                 <a href="{{ url('/unit') }}"><i class="las la-university" data-toggle="tooltip"
-                                        data-placement="right" title="Unit"></i>Unit</a>
+                                        data-placement="right" title="Unit"></i>Unit
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('pagu_show')
                             <li class="{{ Request::is('pagu') ? 'active' : '' }}">
                                 <a href="{{ url('/pagu') }}"><i class="las la-laptop-code" data-toggle="tooltip"
-                                        data-placement="right" title="Pagu"></i>Pagu</a>
+                                        data-placement="right" title="Pagu"></i>Pagu
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('mak_show')
                             <li class="{{ Request::is('mak') ? 'active' : '' }}">
                                 <a href="{{ url('/mak') }}"><i class="las la-th-list" data-toggle="tooltip"
-                                        data-placement="right" title="MAK"></i>MAK</a>
+                                        data-placement="right" title="MAK"></i>MAK
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('iku_show')
                             <li class="{{ Request::is('iku') ? 'active' : '' }}">
                                 <a href="{{ url('/iku') }}"><i class="las la-list" data-toggle="tooltip"
-                                        data-placement="right" title="IKU"></i>IKU</a>
+                                        data-placement="right" title="IKU"></i>IKU
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                         @can('role_show')
                             <li><a href="{{ url('/roles') }}"><i class="las la-users" data-toggle="tooltip"
-                                        data-placement="right" title="Roles"></i>Roles</a></li>
+                                        data-placement="right" title="Roles"></i>Roles
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a></li>
                         @endcan
                         @can('user_show')
                             <li>
                                 <a href="{{ url('/user') }}"><i class="las la-user-tie" data-toggle="tooltip"
-                                        data-placement="right" title="Users"></i>User</a>
+                                        data-placement="right" title="Users"></i>User
+                                    <div role="status" class="spinner-grow spinner-grow-sm text-warning">
+                                    </div>
+                                </a>
                             </li>
                         @endcan
                     </ul>

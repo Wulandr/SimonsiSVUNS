@@ -117,7 +117,7 @@ use Illuminate\Support\Facades\Auth;
                   </span>
                 </div>
                 <div style="overflow-x:auto;" class="container mt-2 mr-5">
-                  <table class="table table-bordered table-responsive-md table-striped text-center" style="box-shadow:5px;">
+                  <table id="torab" class="table table-bordered table-responsive-md table-striped text-center" style="box-shadow:5px;">
                     <thead class="bg-primary" style="color: white;">
                       <tr>
                         <th colspan="3">
@@ -449,6 +449,7 @@ use Illuminate\Support\Facades\Auth;
       });
     });
   </script>
+
   @include('dashboards/users/layouts/footer')
 
 </body>

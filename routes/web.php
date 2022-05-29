@@ -131,6 +131,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tor/create', [TorController::class, 'processAdd']);
     Route::get('/tor/update/{id}', [TorController::class, 'update']);
     Route::post('/tor/update/{id}', [TorController::class, 'processUpdate']);
+    Route::get('/tor/revisi/{id}', [TorController::class, 'revisi']);
+    Route::post('/tor/revisi/{id}', [TorController::class, 'processRevisi']);
     Route::get('/tor/delete/{id}', [TorController::class, 'delete']);
     Route::get('/tor/changeStatus', [TorController::class, 'changeStatus']);
     Route::post('/tor/ajuanKeg', [TorController::class, 'ajuanProdi']);

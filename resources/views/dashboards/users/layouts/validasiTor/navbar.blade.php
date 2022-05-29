@@ -74,6 +74,7 @@ use Illuminate\Support\Facades\Auth;
                                             $i = 0;
                                             $simpanId = [];
                                             $length = 0;
+                                            $count = 0; //hitung total tor yang blm
                                             foreach ($trx_status_tor as $tstor) {
                                                 foreach ($status as $sts) {
                                                     if ($sts->nama_status == "Proses Pengajuan") {
@@ -117,14 +118,14 @@ use Illuminate\Support\Facades\Auth;
                                                                                     if ($tstor3->id_status == $sts3->id) {
                                                                                         $namastat = $sts3->nama_status . " " . $r->name;
                                                                                         if ($namastat != "Validasi WD 1") {
+                                                                                            $count += 1;
                                                         ?>
-                                                                                            <a href="#" class="iq-sub-card">
+                                                                                            <a href="{{url('/detailtor/'.$tor2->id)}}" class="iq-sub-card">
                                                                                                 <div class="media align-items-center">
-                                                                                                    <!-- <div class="">
-                                                                    <img class="avatar-40 rounded" src="images/user/01.jpg" alt="">
-                                                                </div> -->
-                                                                                                    <div class="media-body ml-3">
-                                                                                                        <h6 class="mb-0 ">{{$s1." - ".$tor2->nama_kegiatan." ".$sts3->nama_status." ".$r->name}}</h6>
+                                                                                                    <div class="media-body">
+                                                                                                        <h6>{{$s1." - ".$tor2->nama_kegiatan." "}}
+                                                                                                        </h6>
+                                                                                                        <small class="badge badge-warning">{{$sts3->nama_status." ".$r->name}}</small>
                                                                                                         <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
                                                                                                         <p class="mb-0">
                                                                                                         </p>
