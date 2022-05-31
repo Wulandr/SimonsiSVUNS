@@ -86,7 +86,7 @@ class UserController extends Controller
             $inserting->assignRole($assignrole);
             //allert
             if ($inserting) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect('/user')->back()->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -175,7 +175,7 @@ class UserController extends Controller
             $user->save();
             //allert
             if ($user) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect('/user')->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }

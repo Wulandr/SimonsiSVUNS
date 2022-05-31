@@ -27,20 +27,20 @@
                           </div>
                           <div class="form-group">
                             <label>Email</label>
-                            <input name="email" id="email" value="{{old('name',$user->email)}}" type="text" class="form-control">
+                            <input name="email" id="email" value="{{old('email',$user->email)}}" type="text" class="form-control">
                           </div>
                           <div class="form-group">
                             <label>Password</label>
                             <input name="password" id="password" type="password" class="form-control">
                           </div>
                           <div class="form-group">
-                            <label>Role</label>
+                            <label>Role{{$user->role}}</label>
                             <select name="role" id="role" class="form-control">
                               <!-- @if(old('role',$roleSelected))
                           <option value="{{old('role',$roleSelected->id)}}" selected>{{old('role',$roleSelected->name)}} </option>
                           @endif -->
                               @foreach($role as $role)
-                              <option value="{{$role->id}}">{{$role->name}} </option>
+                              <option value="{{$role->id}}" {{$role->id == $user->role ? 'selected' : ''}}>{{$role->name}} </option>
                               @endforeach
                             </select>
                           </div>
@@ -48,7 +48,7 @@
                             <label>Unit</label>
                             <select name="id_unit" id="id_unit" class="form-control">
                               @foreach($unit as $unit)
-                              <option value="{{$unit->id}}">{{$unit->nama_unit}}</option>
+                              <option value="{{$unit->id}}" {{$unit->id == $user->id_unit ? 'selected' : ''}}>{{$unit->nama_unit}}</option>
                               @endforeach
                             </select>
                           </div>

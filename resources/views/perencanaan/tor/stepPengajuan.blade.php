@@ -233,35 +233,40 @@ use Illuminate\Support\Facades\Auth;
                                                             if (Auth::user()->role == $roles[$pi2]->id) {
                                                                 if ($roles[$pi2]->name == "PIC") { ?>
                                                                     <option value="<?= Auth::user()->name; ?>"><?= Auth::user()->name; ?></option>
-                                                                    <?php } elseif ($roles[$pi2]->name == "Prodi") {
-                                                                    for ($pi1 = 0; $pi1 < count($users); $pi1++) {
-                                                                        for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
-                                                                            if ($users[$pi1]->role == $roles2[$pi3]->id) {
-                                                                                if ($roles2[$pi3]->name == "PIC") { ?>
-                                                                                    <option value="<?= $users[$pi1]->name ?>"><?= $users[$pi1]->name ?></option>
-                                                                                <?php }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } elseif ($roles[$pi2]->name == "Admin") {
-                                                                    for ($pi1 = 0; $pi1 < count($users); $pi1++) {
-                                                                        for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
-                                                                            if ($users[$pi1]->role == $roles2[$pi3]->id) {
-                                                                                if ($roles2[$pi3]->name == "PIC") { ?>
-                                                                                    <option value="<?= $users[$pi1]->name ?>"><?= $users[$pi1]->name ?></option>
-                                                                <?php }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
+                                                                <?php } elseif ($roles[$pi2]->name == "Prodi") {
+                                                                    // for ($pi1 = 0; $pi1 < count($users); $pi1++) {
+                                                                    //     for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
+                                                                    //         if ($users[$pi1]->role == $roles2[$pi3]->id) {
+                                                                    //             if ($roles2[$pi3]->name == "PIC") { 
                                                                 ?>
-                                                        <?php
+                                                                    @foreach($PIC as $pic)
+                                                                    <option value="<?= $pic->name_users ?>"><?= $pic->name_users ?></option>
+                                                                    @endforeach
+                                                                    <?php
+                                                                    //             }
+                                                                    //         }
+                                                                    //     }
+                                                                    // } 
+                                                                    ?><?php
+                                                                    } elseif ($roles[$pi2]->name == "Admin") {
+                                                                        for ($pi1 = 0; $pi1 < count($users); $pi1++) {
+                                                                            for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
+                                                                                if ($users[$pi1]->role == $roles2[$pi3]->id) {
+                                                                                    if ($roles2[$pi3]->name == "PIC") { ?>
+                                                                    <option value="<?= $users[$pi1]->name ?>"><?= $users[$pi1]->name ?></option>
+                                                <?php }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                ?>
+                                        <?php
                                                             }
                                                         }
-                                                        ?>
-                                                        @error('nama_pic')
-                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                        @enderror
+                                        ?>
+                                        @error('nama_pic')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

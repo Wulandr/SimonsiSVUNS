@@ -48,15 +48,18 @@ class TorController extends Controller
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
         $roles2 = DB::table('roles')->get();
+        $PIC = User::pic(auth()->user()->id_unit);
+
         return view(
             "perencanaan.tor.stepPengajuan",
             [
                 'tor' => $tor, 'unit' => $unit, 'tw' => $tw, 'userrole' => $userrole,
                 'filtertahun' => $filtertahun, 'data' => $data,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
-                'users' => $users, 'roles' => $roles, 'roles2' => $roles2
+                'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'PIC' => $PIC
             ]
         );
+        // return $PIC;
     }
     public function pengajuan2()
     {

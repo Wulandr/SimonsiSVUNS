@@ -78,4 +78,15 @@ class User extends Authenticatable
             ->get();
         return $joinUser->toArray();
     }
+    public function pic($idunit)
+    {
+        $joinUser = DB::table('users')
+            ->leftjoin('roles', 'users.role', '=', 'roles.id')
+            ->leftjoin('unit', 'users.id_unit', '=', 'unit.id')
+            ->select('roles.name as name_role', 'users.name as name_users', 'users.*', 'unit.nama_unit')
+            ->where('roles.name', 'PIC')
+            ->where('unit.id', $idunit)
+            ->get('*');
+        return $joinUser;
+    }
 }
