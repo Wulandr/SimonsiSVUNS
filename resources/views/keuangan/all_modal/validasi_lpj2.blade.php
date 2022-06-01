@@ -1,4 +1,4 @@
-<div class="modal fade" id="validasi_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="validasi_lpj2<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -16,19 +16,7 @@
                         <?php 
                         for ($s = 0; $s < count($status_keu); $s++) {
                             if ($status_keu[$s]->kategori == 'LPJ') {
-                            if ($status_keu[$s]->nama_status == 'Revisi') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Revisi </label>
-                        </div>
-                        <?php } 
-                        if ($status_keu[$s]->nama_status == 'Verifikasi') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Verifikasi </label>
-                        </div>
-                        <?php }
-                        if ($status_keu[$s]->nama_status == 'LPJ Selesai') { ?>
+                            if ($status_keu[$s]->nama_status == 'LPJ Selesai') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked ">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
                             <label class=""> LPJ Selesai </label>

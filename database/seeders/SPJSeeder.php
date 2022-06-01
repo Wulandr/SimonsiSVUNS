@@ -7,19 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class SPJSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('spj')->insert([
             [
-                'id'=>1,
-                'id_tor'=>1,
-                'nilai_total'=>'50000000',
-                'nilai_kembali'=>'700000'
+                'id_tor' => 3,
+                'nilai_total' => '22000000',
+                'nilai_kembali' => '780000'
             ]
         ]);
     }

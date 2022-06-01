@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SPJKategori;
 use Illuminate\Http\Request;
 use App\Models\SPJSubKategori;
 
@@ -9,11 +10,13 @@ class SPJSubKategoriController extends Controller
 {
     public function index()
     {
-        $spj_kategori = SPJSubKategori::all();
+        $spj_kategori = SPJKategori::all();
+        $spj_subkategori = SPJSubKategori::all();
         return view(
             "pengaturan.spj_subkategori.index_spjsubkategori",
             [
                 'spj_kategori' => $spj_kategori,
+                'spj_subkategori' => $spj_subkategori,
             ]
         );
     }
@@ -21,6 +24,11 @@ class SPJSubKategoriController extends Controller
     {
         $request->validate([]);
 
+        // $inserting = new SPJSubKategori();
+        // $inserting = SPJSubKategori::select('nama_subkategori')->where('id', $request->id_kategori)->first();
+        // $inserting->id_kategori = $request->id_kategori;
+        // $inserting->nama_subkategori = $request->nama_subkategori;
+        // $inserting->save();
         $inserting = SPJSubKategori::all()->insert($request->except('_token'));
         if ($inserting) {
             return redirect()->back()->with("success", "Data berhasil ditambahkan");

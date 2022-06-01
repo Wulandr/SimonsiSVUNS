@@ -16,10 +16,10 @@ class MemoCairSeeder extends Seeder
     {
         DB::table('memo_cair')->insert([
             [
-        'id'=> 1,
-        'id_tor'=>'3',
-        'nomor'=>'1',
-        'nominal'=>1000000
+                'id' => 1,
+                'id_tor' => '3',
+                'nomor' => '1',
+                'nominal' => 16000000
             ],
 
         ]);

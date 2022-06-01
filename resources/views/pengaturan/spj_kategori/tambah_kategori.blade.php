@@ -1,5 +1,6 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="#add_kategori">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="add_kategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Kategori</h5>
@@ -16,7 +17,7 @@
                     </div>
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </form>
             </div>
         </div>

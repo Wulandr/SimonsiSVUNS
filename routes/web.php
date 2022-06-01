@@ -228,19 +228,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     // SPJ
     Route::get('/spj', [SPJController::class, 'index']);
+    Route::post('/input_spj', [SPJController::class, 'create']);
     Route::get('/upload_spj', [SPJController::class, 'uploadSpj']);
-    Route::get('/spj/validasi', [SPJController::class, 'validasiSpj']);
+    Route::post('/spj/validasi', [SPJController::class, 'validasiSpj']);
 
     // SPJ Kategori
     Route::get('/spj_kategori', [SPJKategoriController::class, 'index']);
-    Route::get('/spj_kategori/add', [SPJKategoriController::class, 'processAdd']);
-    Route::get('/spj_kategori/update', [SPJKategoriController::class, 'processUpdate']);
+    Route::post('/spj_kategori/add', [SPJKategoriController::class, 'processAdd']);
+    Route::post('/spj_kategori/update', [SPJKategoriController::class, 'processUpdate']);
     Route::get('/spj_kategori/delete', [SPJKategoriController::class, 'delete']);
 
     // SPJ Sub-Kategori
     Route::get('/spj_subkategori', [SPJSubKategoriController::class, 'index']);
-    Route::get('/spj_subkategori/add', [SPJSubKategoriController::class, 'processAdd']);
-    Route::get('/spj_subkategori/update', [SPJSubKategoriController::class, 'processUpdate']);
+    Route::post('/spj_subkategori/add', [SPJSubKategoriController::class, 'processAdd']);
+    Route::post('/spj_subkategori/update', [SPJSubKategoriController::class, 'processUpdate']);
     Route::get('/spj_subkategori/delete', [SPJSubKategoriController::class, 'delete']);
 
     // SPJ SHOW PDF //

@@ -1,41 +1,29 @@
-<div class="modal fade" id="validasi_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="validasi_pk2<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center">Update Status LPJ</h5>
+                <h5 class="modal-title text-center">Validasi Persekot Kerja</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form method="post" action="/lpj/validasi">
+                <form method="post" action="/persekot_kerja/validasi">
                     @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
                         <?php 
                         for ($s = 0; $s < count($status_keu); $s++) {
-                            if ($status_keu[$s]->kategori == 'LPJ') {
-                            if ($status_keu[$s]->nama_status == 'Revisi') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Revisi </label>
-                        </div>
-                        <?php } 
-                        if ($status_keu[$s]->nama_status == 'Verifikasi') { ?>
+                            if ($status_keu[$s]->kategori == 'Persekot Kerja') {}
+                        if ($status_keu[$s]->nama_status == 'Transfer Uang') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Verifikasi </label>
+                            <label class=""> Transfer Uang </label>
                         </div>
                         <?php }
-                        if ($status_keu[$s]->nama_status == 'LPJ Selesai') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> LPJ Selesai </label>
-                        </div>
-                        <?php } 
                             }
-                        } ?>
+                        ?>
                     </div>
                     <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
                     <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>">

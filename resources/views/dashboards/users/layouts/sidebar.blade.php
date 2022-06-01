@@ -114,7 +114,7 @@
                 <?php if (Auth()->user()->id_unit == 1) { ?>
 
                 <li
-                    class="{{ Request::is('tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'active' : '' }}">
+                    class="{{ Request::is('spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'active' : '' }}">
                     <a href="#pengaturan" class="iq-waves-effect collapsed" data-toggle="collapse"
                         aria-expanded="{{ Request::is('tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'true' : 'false' }}">
                         <span class="ripple rippleEffect"></span>
@@ -127,13 +127,15 @@
                         data-parent="#iq-sidebar-toggle">
                         <li class="{{ Request::is('spj_kategori') ? 'active' : '' }}">
                             <a href="{{ url('/spj_kategori') }}"><i class="las la-stream" data-toggle="tooltip"
-                                    data-placement="right" title="SPJ Kategori">
-                                </i>SPJ Kategori</a>
+                                    data-placement="right" title="SPJ Kategori"></i>SPJ Kategori
+                                <div role="status" class="spinner-grow spinner-grow-sm text-info"></div>
+                            </a>
                         </li>
                         <li class="{{ Request::is('spj_subkategori') ? 'active' : '' }}">
                             <a href="{{ url('/spj_subkategori') }}"><i class="las la-stream" data-toggle="tooltip"
-                                    data-placement="right" title="SPJ Sub-Kategori">
-                                </i>SPJ Sub-Kategori</a>
+                                    data-placement="right" title="SPJ Sub-Kategori"></i>SPJ Sub-Kategori
+                                <div role="status" class="spinner-grow spinner-grow-sm text-info"></div>
+                            </a>
                         </li>
                         @can('tahun_show')
                             <li class="{{ Request::is('tahun') ? 'active' : '' }}">

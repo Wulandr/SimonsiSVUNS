@@ -12,9 +12,6 @@
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
                     action="{{ url('/input_spj') }}" novalidate>
                     {{ csrf_field() }}
-                    <input type="hidden" name="id_tor" class="form-control" value="<?= $tor[$m]->id ?>">
-                    <input type="hidden" name="jenis" value="SPJ" class="custom-file-input" required>
-
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">
                             Nama Unit/Prodi/Ormawa</label>
@@ -42,7 +39,6 @@
                             <input type="text" class="form-control" id="validationCustom01"
                                 value="{{ $tor[$m]->nama_pic }}" disabled>
                         </div>
-                        <input type="hidden" name="jenis" value="LPJ" class="custom-file-input" required>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nomor HP
@@ -63,6 +59,13 @@
                             Required!
                         </div>
                     </div>
+                    <input type="hidden" name="id_tor" class="form-control" value="<?= $tor[$m]->id ?>">
+                    <input type="hidden" name="jenis" value="SPJ" class="custom-file-input" required>
+                    <input type="hidden" name="id_status" class="form-control" value="4">
+                    <input type="hidden" name="create_by" class="form-control" value="<?= Auth()->user()->id ?>">
+                    <?php date_default_timezone_set('Asia/Jakarta'); ?>
+                    <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                    <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nilai
                             Pengembalian
@@ -73,24 +76,6 @@
                         </div>
                         <div class="invalid-feedback">
                             Required!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Unggah Dokumen SPJ
-                            <br>
-                            <small style="color: darkred">
-                                Seluruh dokumen dijadikan 1 file PDF dengan urutan sesuai dengan penjelasan pada
-                                menu
-                                unduh Template SPJ.
-                                <b>Dokumen harus sudah lengkap!</b>
-                            </small>
-                        </label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" required>
-                            <label class="custom-file-label" for="customFile">Tambahkan File</label>
-                            <div class="invalid-feedback">
-                                Tolong tambahkan file sebelum submit!
-                            </div>
                         </div>
                     </div>
             </div>

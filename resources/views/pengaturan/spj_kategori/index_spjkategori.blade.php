@@ -59,7 +59,7 @@ use Illuminate\Support\Facades\Auth;
                                         <table id="myunit" class="table mb-0">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>No.</th>
+                                                    <th class="text-center" width="5%">No.</th>
                                                     <th scope="col">Nama Kategori</th>
                                                     <th scope="col">Aksi</th>
                                                 </tr>
@@ -68,8 +68,8 @@ use Illuminate\Support\Facades\Auth;
                                                 <?php $num = 1; ?>
                                                 <?php for ($a = 0; $a < count($spj_kategori); $a++) { ?>
                                                 <tr>
-                                                    <td><a href="#">{{ $num }}</a></td>
-                                                    <td>{{ $spj_kategori[$a]->nama_kategori }}</td>>
+                                                    <td class="text-center"><a href="#">{{ $num }}</a></td>
+                                                    <td>{{ $spj_kategori[$a]->nama_kategori }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
                                                             <a class="iq-bg-primary" data-toggle="modal"

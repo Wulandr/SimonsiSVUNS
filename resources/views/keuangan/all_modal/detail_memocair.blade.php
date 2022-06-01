@@ -19,8 +19,7 @@
                                 $cekdok+=1;
                                 if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
                                     if ($dokumen[$b]->jenis == "Memo Cair") {
-                            if($cek=1 ){
-                                
+                            if($cek=1 ){         
                     ?>
                 <b>
                     <table class="table table-borderless">
@@ -34,8 +33,14 @@
                             <td style="width: 5%">:</td>
                             <td>{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}</td>
                         </tr>
+                        <?php $persen = ($data[$a]->nominal / $tor[$m]->jumlah_anggaran) * 100; ?>
                         <tr>
-                            <td style="width: 20%">3. &ensp; Sertifikat Memo Cair</td>
+                            <td style="width: 20%">3. &ensp; Persentase Dana Cair</td>
+                            <td style="width: 5%">:</td>
+                            <td>{{ number_format($persen) . '%' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">4. &ensp; Sertifikat Memo Cair</td>
                             <td style="width: 5%">:</td>
                         </tr>
                         <tr>

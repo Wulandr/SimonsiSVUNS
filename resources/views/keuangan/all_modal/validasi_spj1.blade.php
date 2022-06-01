@@ -1,25 +1,25 @@
-<div class="modal fade" id="validasi_lpj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="validasi_spj1<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center">Update Status LPJ</h5>
+                <h5 class="modal-title text-center">Update Status SPJ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form method="post" action="/lpj/validasi">
+                <form method="post" action="/spj/validasi">
                     @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
                         <?php 
                         for ($s = 0; $s < count($status_keu); $s++) {
-                            if ($status_keu[$s]->kategori == 'LPJ') {
-                            if ($status_keu[$s]->nama_status == 'Revisi') { ?>
+                            if ($status_keu[$s]->kategori == 'SPJ') {
+                            if ($status_keu[$s]->nama_status == 'Proses Pengajuan') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked ">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Revisi </label>
+                            <label class=""> Proses Pengajuan </label>
                         </div>
                         <?php } 
                         if ($status_keu[$s]->nama_status == 'Verifikasi') { ?>
@@ -28,10 +28,10 @@
                             <label class=""> Verifikasi </label>
                         </div>
                         <?php }
-                        if ($status_keu[$s]->nama_status == 'LPJ Selesai') { ?>
+                        if ($status_keu[$s]->nama_status == 'Pelunasan Pembayaran/SPJ Selesai') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked ">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> LPJ Selesai </label>
+                            <label class=""> Pelunasan Pembayaran/SPJ Selesai </label>
                         </div>
                         <?php } 
                             }

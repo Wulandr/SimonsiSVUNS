@@ -21,7 +21,9 @@ class SPJKategoriController extends Controller
     {
         $request->validate([]);
 
-        $inserting = SPJKategori::all()->insert($request->except('_token'));
+        $inserting = new SPJKategori();
+        $inserting->nama_kategori = $request->nama_kategori;
+        $inserting->save();
         if ($inserting) {
             return redirect()->back()->with("success", "Data berhasil ditambahkan");
         } else {
