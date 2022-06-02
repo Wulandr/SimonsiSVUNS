@@ -13,24 +13,31 @@
                     @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
-                        <?php 
-                        for ($s = 0; $s < count($status_keu); $s++) {
-                            if ($status_keu[$s]->kategori == 'Persekot Kerja') {
-                            if ($status_keu[$s]->nama_status == 'Validasi') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Validasi </label>
-                        </div>
-                        <?php } ?>
-                        <?php
-                        if ($status_keu[$s]->nama_status == 'Transfer Uang') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Transfer Uang </label>
-                        </div>
-                        <?php }
-                            }
-                        } ?>
+                        @for ($s = 0; $s < count($status_keu); $s++)
+                            @foreach ($trx_status_keu as $a)
+                                @if ($a->id_tor == $tor[$m]->id)
+                                    @foreach ($status_keu as $b)
+                                        @if ($a->id_status == $b->id)
+                                            @if ($b->kategori == 'LPJ')
+                                                @if ($b->nama_status == 'Proses Pengajuan')
+                                                    <div class="custom-control custom-radio custom-radio-color-checked ">
+                                                        <input type="radio" name="id_status" id="id_status"
+                                                            value="{{ $status_keu[$s]->id }}">
+                                                        <label class=""> Validasi </label>
+                                                    </div>
+                                                @elseif ($b->nama_status == 'Validasi')
+                                                    <div class="custom-control custom-radio custom-radio-color-checked">
+                                                        <input type="radio" name="id_status" id="id_status"
+                                                            value="{{ $status_keu[$s]->id }}">
+                                                        <label class=""> Transfer Uang </label>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endfor
                     </div>
                     <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
                     <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>">

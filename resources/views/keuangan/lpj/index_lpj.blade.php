@@ -104,16 +104,9 @@
                                                         @foreach ($status_keu as $b)
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'LPJ')
-                                                                    @if ($b->nama_status == 'Proses Pengajuan')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'Revisi')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj1' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'Verifikasi')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj2' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'LPJ Selesai')
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                    ?>
+                                                                    @if ($b->nama_status == 'LPJ Selesai')
                                                                         <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
                                                                         ?>
                                                                     @endif
@@ -157,8 +150,6 @@
                                             @include('keuangan/all_modal/detail_lpj')
                                             <!-- MODAL - Validasi LPJ -->
                                             @include('keuangan/all_modal/validasi_lpj')
-                                            @include('keuangan/all_modal/validasi_lpj1')
-                                            @include('keuangan/all_modal/validasi_lpj2')
                                             <!-- MODAL - Status LPJ -->
                                             @include('keuangan/all_modal/status_lpj')
                                             <!-- MODAL - Input LPJ -->
