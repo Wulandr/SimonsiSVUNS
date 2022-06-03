@@ -119,7 +119,7 @@ foreach ($role as $roles) {
         if ($rab[$sr]->id_tor == $tor[$t]->id) {
             foreach ($anggaran as $anggaran1) {
                 if ($anggaran1->id_rab == $rab[$sr]->id && $buttonAjukan == 1) { ?>
-                    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
+                    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#status{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
                     </button>
     <?php $buttonAjukan += 1;
                 }
@@ -129,7 +129,7 @@ foreach ($role as $roles) {
     @endcan
 <?php } ?>
 <?php if ($pengajuan >= 1) { ?>
-    <button class="badge badge-success rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}">Status
+    <button class="badge badge-success rounded" data-toggle="modal" data-target="#status{{$tor[$t]->id}}">Status
     </button>
 <?php } ?>
 

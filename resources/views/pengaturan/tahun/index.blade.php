@@ -56,6 +56,7 @@ use Illuminate\Support\Facades\Auth;
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="iq-card-header-toolbar d-flex align-items-center">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
@@ -69,11 +70,6 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
-                                    <!-- <span class="table-add float-right mb-3 mr-2">
-                                        <div class="form-group row">
-
-                                        </div>
-                                    </span> -->
                                     @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}

@@ -117,7 +117,8 @@ use Illuminate\Support\Facades\Auth;
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="card iq-mb-3 shadow">
-                                                            <img width="700" src="../assets/contoh/contohiku.png" class="card-img-top">
+                                                            <!-- <p style="color: red;">contoh</p> -->
+                                                            <!-- <img width="500" src="../assets/contoh/contohiku.png" class="card-img-top"> -->
                                                             <div class="card-body">
                                                                 <b>
                                                                     <h6 class="card-title">Indikator Kinerja Utama (IKU)</h6>
@@ -141,7 +142,8 @@ use Illuminate\Support\Facades\Auth;
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="card iq-mb-3 shadow">
-                                                            <img width="700" src="../assets/contoh/contohik.png" class="card-img-top">
+                                                            <!-- <p style="color: red;">contoh</p> -->
+                                                            <!-- <img width="700" src="../assets/contoh/contohik.png" class="card-img-top"> -->
                                                             <div class="card-body">
                                                                 <b>
                                                                     <h6 class="card-title">Indikator Kinerja Kegiatan (IK)</h6>

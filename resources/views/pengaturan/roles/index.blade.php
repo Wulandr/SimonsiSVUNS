@@ -75,6 +75,7 @@
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {

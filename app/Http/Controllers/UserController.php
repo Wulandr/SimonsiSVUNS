@@ -67,6 +67,7 @@ class UserController extends Controller
         $role = DB::table('roles')->where('id', $request->role)->first();
         $assignrole = $role->name;
         // return ($role->name);
+        // return $request->all();
         DB::beginTransaction();
         try {
             $inserting = User::create(
@@ -75,6 +76,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'role' => $request->role,
+                    'nip' => 0,
                     'is_aktif' => 0,
                     'email_verified_at' => now(),
                     'password' => Hash::make($request->password),
@@ -86,7 +88,7 @@ class UserController extends Controller
             $inserting->assignRole($assignrole);
             //allert
             if ($inserting) {
-                return redirect('/user')->back()->with("success", "Data berhasil ditambahkan");
+                return redirect()->back()->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -175,7 +177,7 @@ class UserController extends Controller
             $user->save();
             //allert
             if ($user) {
-                return redirect('/user')->with("success", "Data berhasil ditambahkan");
+                return redirect()->back()->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
