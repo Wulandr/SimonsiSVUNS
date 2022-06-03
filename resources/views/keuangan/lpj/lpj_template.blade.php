@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title text-center" id="template_lpj">Unggah Dokumen Laporan
+                <h4 class="modal-title text-center" id="template_lpj">Panduan Penyusunan Laporan
                     Pertanggungjawaban
                     (LPJ)</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

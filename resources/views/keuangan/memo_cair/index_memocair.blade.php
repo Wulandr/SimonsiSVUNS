@@ -107,9 +107,9 @@
                                                     data-target="#edit_memocair<?= $tor[$m]->id ?>"><i
                                                         class=" las la-edit"></i></i></button>
                                                 <!-- MODAL - Detail Memo Cair -->
-                                                @include('keuangan/all_modal/detail_memocair')
+                                                @include('keuangan/memo_cair/detail_memocair')
                                                 <!-- MODAL - Edit Memo Cair -->
-                                                @include('keuangan/all_modal/edit_memocair')
+                                                @include('keuangan/memo_cair/edit_memocair')
                                                 <?php } else { ?>
                                                 <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
                                                     title="Upload File Memo Cair" data-toggle="modal"
@@ -118,7 +118,7 @@
                                                 </button>
                                             </td>
                                             <!-- MODAL - Upload Memo Cair -->
-                                            @include('keuangan/all_modal/upload_memocair')
+                                            @include('keuangan/memo_cair/upload_memocair')
 
 
                                             <?php

@@ -10,6 +10,6 @@ class Pedoman extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     public $keyType = 'string';
-    protected $table = 'pedoman';
+    protected $table = 'tb_pedoman';
     protected $guarded = [];
 }

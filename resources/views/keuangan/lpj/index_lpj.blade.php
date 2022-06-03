@@ -117,9 +117,9 @@
                                                 @endforeach
                                                 <?= $tidakada_status ?>
                                                 <!-- MODAL - Validasi LPJ -->
-                                                @include('keuangan/all_modal/validasi_lpj')
+                                                @include('keuangan/lpj/validasi_lpj')
                                                 <!-- MODAL - Status LPJ -->
-                                                @include('keuangan/all_modal/status_lpj')
+                                                @include('keuangan/lpj/status_lpj')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -147,13 +147,13 @@
                                                 @endforeach
                                                 <?= $upload ?>
                                                 <!-- MODAL - Edit LPJ -->
-                                                @include('keuangan/all_modal/edit_lpj')
+                                                @include('keuangan/lpj/edit_lpj')
                                                 <!-- MODAL - Detail LPJ -->
-                                                @include('keuangan/all_modal/detail_lpj')
+                                                @include('keuangan/lpj/detail_lpj')
                                             </td>
 
                                             <!-- MODAL - Input LPJ -->
-                                            @include('keuangan/all_modal/input_lpj')
+                                            @include('keuangan/lpj/input_lpj')
                                             <?php
                                                                                         }
                                                                                     }
@@ -188,6 +188,6 @@
 </body>
 
 <!-- MODAL - Template LPJ -->
-@include('keuangan/all_modal/lpj_template')
+@include('keuangan/lpj/lpj_template')
 
 </html>

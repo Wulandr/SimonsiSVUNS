@@ -24,25 +24,25 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <?php 
-                                        for ($a = 0; $a < count($spj_kategori); $a++) {
+                                    for ($a = 0; $a < count($spj_kategori); $a++) {
                                     ?>
                                     <div class="nav flex-column nav-pills text-left" id="v-pills-tab" role="tablist"
                                         aria-orientation="vertical">
-                                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
-                                            href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                        <a class="nav-link active" id="spj" data-toggle="pill" href="#list" role="tab"
+                                            aria-controls="v-pills-home"
                                             aria-selected="true">{{ $spj_kategori[$a]->nama_kategori }}</a>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <div class="tab-content mt-0" id="v-pills-tabContent">
                                         <?php 
+                                        for ($a = 0; $a < count($spj_kategori); $a++) {
                                             for ($b = 0; $b < count($spj_subkategori); $b++) {
                                                 if($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id){
-                                                    echo $spj_subkategori[$b]->nama_subkategori;
                                         ?>
-                                    </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="tab-content mt-0" id="v-pills-home">
-
-                                        {{-- SPPD --}}
-                                        <div class="tab-pane fade show" id="v-pills-home" role="tabpanel"
+                                        <div class="tab-pane fade show" id="list" role="tabpanel"
                                             aria-labelledby="v-pills-home-tab">
 
                                             <form class="needs-validation" enctype="multipart/form-data" method="post"
@@ -50,7 +50,7 @@
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
-                                                        <b> {{ $spj_subkategori[$b]->nama_subkategori }}</b>
+                                                        <b>{{ $spj_subkategori[$b]->nama_subkategori }}</b>
                                                     </h5>
                                                     <table class="table">
                                                         <tr class="form-group">
@@ -72,7 +72,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <?php }} } ?>
+                                        <?php }}} ?>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,19 @@
             </div>
         </div>
     </div>
-
+    {{-- Dropdown on Click Radio Button --}}
+    <script>
+        const spj = document.getElementById("spj");
+        const list = document.getElementById("list");
+        list.style.display = "block";
+        spj.addEventListener("click", (event) => {
+            if (list.style.display = "block") {
+                list.style.display = "none";
+            } else {
+                list.style.display = "block";
+            }
+        })
+    </script>
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')
 

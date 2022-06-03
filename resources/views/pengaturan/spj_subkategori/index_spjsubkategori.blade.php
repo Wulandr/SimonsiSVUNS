@@ -76,7 +76,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <?php }
                                                             } ?>
                                                     </td>
-                                                    <td>{{ $spj_subkategori[$a]->nama_subkategori }}</td>>
+                                                    <td>{{ $spj_subkategori[$a]->nama_subkategori }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
                                                             <a class="iq-bg-primary" data-toggle="modal"

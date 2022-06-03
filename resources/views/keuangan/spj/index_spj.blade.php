@@ -125,9 +125,9 @@
                                                 @endforeach
                                                 <?= $tidakada_status ?>
                                                 <!-- MODAL - Validasi spj -->
-                                                @include('keuangan/all_modal/validasi_spj')
+                                                @include('keuangan/spj/validasi_spj')
                                                 <!-- MODAL - Status spj -->
-                                                @include('keuangan/all_modal/status_spj')
+                                                @include('keuangan/spj/status_spj')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -177,9 +177,9 @@
                                             </td>
 
                                             <!-- MODAL - Input spj -->
-                                            @include('keuangan/all_modal/input_Spj')
+                                            @include('keuangan/spj/input_Spj')
                                             <!-- MODAL - Input spj -->
-                                            @include('keuangan/all_modal/input_spj')
+                                            @include('keuangan/spj/input_spj')
                                             <?php
                                                                                         }
                                                                                     }
@@ -208,7 +208,7 @@
         </div>
     </div>
     <!-- MODAL - SPJ FILE -->
-    @include('keuangan/all_modal/spj_file')
+    @include('keuangan/spj/spj_file')
 
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')

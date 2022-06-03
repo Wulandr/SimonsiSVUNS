@@ -101,11 +101,11 @@
                                                 @endforeach
                                                 <?= $tidakada_status ?>
                                                 <!-- MODAL - Validasi Persekot Kerja -->
-                                                @include('keuangan/all_modal/validasi_pk')
+                                                @include('keuangan/persekot_kerja/validasi_pk')
                                                 <!-- MODAL - Validasi Persekot Kerja -->
-                                                @include('keuangan/all_modal/validasi_pk2')
+                                                @include('keuangan/persekot_kerja/validasi_pk2')
                                                 <!-- MODAL - Status Persekot Kerja -->
-                                                @include('keuangan/all_modal/status_pk')
+                                                @include('keuangan/persekot_kerja/status_pk')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -119,10 +119,10 @@
                                                                     <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Validasi')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#show_buktitf' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm btn-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Transfer Uang')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_buktitf' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
                                                                         ?>
                                                                     @endif
                                                                 @endif
@@ -131,14 +131,18 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $upload ?>
+                                                <!-- MODAL - Input Bukti TF Persekot Kerja -->
+                                                @include('keuangan/persekot_kerja/input_tf_pk')
+                                                <!-- MODAL - Show Bukti TF Persekot Kerja -->
+                                                @include('keuangan/persekot_kerja/show_tf_pk')
                                                 <!-- MODAL - Edit Persekot Kerja -->
-                                                @include('keuangan/all_modal/edit_pk')
+                                                @include('keuangan/persekot_kerja/edit_pk')
                                                 <!-- MODAL - Detail Persekot Kerja -->
-                                                @include('keuangan/all_modal/detail_pk')
+                                                @include('keuangan/persekot_kerja/detail_pk')
                                             </td>
 
                                             <!-- MODAL - Input Persekot Kerja -->
-                                            @include('keuangan/all_modal/input_pk')
+                                            @include('keuangan/persekot_kerja/input_pk')
 
                                             <?php
                                                                                         }

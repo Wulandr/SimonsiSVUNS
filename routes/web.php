@@ -231,12 +231,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/persekot_kerja', [PersekotKerjaController::class, 'index']);
     Route::post('/input_pk', [PersekotKerjaController::class, 'create']);
     Route::post('/persekot_kerja/validasi', [PersekotKerjaController::class, 'validasiPK']);
+    Route::post('/persekot_kerja/input_buktitransfer', [PersekotKerjaController::class, 'input_transferPK']);
+
 
     // SPJ
     Route::get('/spj', [SPJController::class, 'index']);
     Route::post('/input_spj', [SPJController::class, 'create']);
     Route::get('/upload_spj', [SPJController::class, 'uploadSpj']);
     Route::post('/spj/validasi', [SPJController::class, 'validasiSpj']);
+    Route::post('/spj/input_buktitransfer', [SPJController::class, 'input_transferSpj']);
 
     // SPJ Kategori
     Route::get('/spj_kategori', [SPJKategoriController::class, 'index']);
