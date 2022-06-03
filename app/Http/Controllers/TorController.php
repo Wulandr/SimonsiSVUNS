@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggaran;
+use App\Models\Pedoman;
 use App\Models\SubKegiatan;
 use App\Models\Tor;
 use App\Models\Unit;
@@ -102,6 +103,7 @@ class TorController extends Controller
         $indikator_iku = DB::table('indikator_iku')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
+        $pedoman = Pedoman::all();
 
         return view(
             "perencanaan.tor.torab",
@@ -112,7 +114,7 @@ class TorController extends Controller
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'user' => $user, 'status' => $status,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
                 'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role,
-                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu, 'indikator_k' => $indikator_k
+                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu, 'indikator_k' => $indikator_k, 'pedoman' => $pedoman
             ]
         );
         // return $totalpertw;
@@ -259,8 +261,10 @@ class TorController extends Controller
 
         $statusTor =  json_decode(TrxStatusTor::TrxStatus($id), true); //ingin tau statusnya apa saja
         //jika TOR sudah diajukan oleh prodi, jangan dibolehkan untuk update
-        if ($statusTor[0]['nama_status'] == "Proses Pengajuan") {
-            abort(403);
+        if (!empty($statusTor[0]['nama_status'])) {
+            if ($statusTor[0]['nama_status'] == "Proses Pengajuan") {
+                abort(403);
+            }
         }
 
         $id = $id;

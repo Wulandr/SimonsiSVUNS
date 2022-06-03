@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
 
               </div>
               <br />
-              <?php if (Auth()->user()->role == 2) { ?>
+              <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-3">
                   <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-body iq-box-relative">
@@ -78,7 +78,31 @@ use Illuminate\Support\Facades\Auth;
                     </div>
                   </div>
                 </div>
-              <?php } ?>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                  <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                    <div class="iq-card-body iq-box-relative">
+                      <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
+                        <i class="ri-focus-2-line"></i>
+                      </div>
+                      <p class="text-secondary">Standar Biaya Masukan</p>
+                      <div class="d-flex align-items-center justify-content-between" style="position: relative;">
+                        <div class="row ml-1">
+                          @foreach($pedoman as $pedomansbm)
+                          <a href="{{asset('/pedoman/'.$pedomansbm->file)}}">{{$pedomansbm->tahun . " : " .$pedomansbm->nama}}</a>
+                          @endforeach
+                        </div>
+                        <div class="resize-triggers">
+                          <div class="expand-trigger">
+                            <div style="width: 202px; height: 60px;"></div>
+                          </div>
+                          <div class="contract-trigger"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="iq-card-body">
                 <div id="table" class="table-editable">
                   <span class="table-add float-left ml-3 mr-2">
@@ -159,6 +183,7 @@ use Illuminate\Support\Facades\Auth;
                       <!-- TAMBAH RAB -->
                       @include('perencanaan/modal2/tambah_rab')
                       <!-- button untuk prodi mengajukan tor -->
+                      @include('perencanaan/modal2/status')
                       @include('perencanaan/modal2/ajukan')
                       <!-- NAMA RAB JADI 1 BARIS  -->
                       <?php

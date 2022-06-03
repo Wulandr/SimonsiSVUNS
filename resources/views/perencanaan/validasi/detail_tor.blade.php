@@ -734,8 +734,13 @@ use Illuminate\Support\Facades\Auth;
                                 <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                 <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                             <?php }
-                                                            } elseif ($roles[$r3]->name == "WD 1" || $roles[$r3]->name == "WD 2" || $roles[$r3]->name == "WD 3") {
+                                                            } elseif ($roles[$r3]->name == "WD 1") {
                                                                 if ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi") { ?>
+                                <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                            <?php }
+                                                            } elseif ($roles[$r3]->name == "WD 1" || $roles[$r3]->name == "WD 2" || $roles[$r3]->name == "WD 3") {
+                                                                if ($status[$s]->nama_status == "Sudah Direview") { ?>
                                 <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                 <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                             <?php }

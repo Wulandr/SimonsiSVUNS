@@ -34,6 +34,7 @@ use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
+use App\Http\Controllers\PedomanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -175,6 +176,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/triwulan/update/{id}', [TwController::class, 'processUpdate']);
     Route::get('/triwulan/delete/{id}', [TwController::class, 'delete']);
     Route::get('/triwulan/filtertahun', [TwController::class, 'filter_tahun']);
+
+    Route::get('/pedomans', [PedomanController::class, 'index']);
+    Route::post('/pedomans/create', [PedomanController::class, 'store']);
+    Route::post('/pedomans/update/{id}', [PedomanController::class, 'processUpdate']);
+    Route::get('/pedomans/delete/{id}', [PedomanController::class, 'delete']);
 
     Route::get('/tahun', [TahunController::class, 'index']);
     Route::post('/tahun/create', [TahunController::class, 'processAdd']);
