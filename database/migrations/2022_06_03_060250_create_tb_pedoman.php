@@ -13,7 +13,7 @@ class CreateTbPedoman extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pedoman', function (Blueprint $table) {
+        Schema::create('pedoman', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->enum("jenis", ["SBM"]);
