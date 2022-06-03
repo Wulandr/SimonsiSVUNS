@@ -102,6 +102,8 @@
                                                 <?= $tidakada_status ?>
                                                 <!-- MODAL - Validasi Persekot Kerja -->
                                                 @include('keuangan/all_modal/validasi_pk')
+                                                <!-- MODAL - Validasi Persekot Kerja -->
+                                                @include('keuangan/all_modal/validasi_pk2')
                                                 <!-- MODAL - Status Persekot Kerja -->
                                                 @include('keuangan/all_modal/status_pk')
                                             </td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SPJKategori;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SPJKategoriController extends Controller
@@ -35,7 +36,7 @@ class SPJKategoriController extends Controller
     {
         $request->validate([]);
 
-        $process = SPJKategori::all()->where('id', $id)->update($request->except('_token'));
+        $process = DB::table('spj_kategori')->where('id', $id)->update($request->except('_token'));
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
         } else {
@@ -46,7 +47,7 @@ class SPJKategoriController extends Controller
     public function delete($id)
     {
         try {
-            $process = SPJKategori::all()->where('id', $id)->delete();
+            $process = DB::table('spj_kategori')->where('id', $id)->delete();
             if ($process) {
                 return redirect()->back()->with("success", "Data berhasil dihapus");
             } else {
@@ -55,5 +56,6 @@ class SPJKategoriController extends Controller
         } catch (\Exception $e) {
             abort(404);
         }
+        // return $id;
     }
 }

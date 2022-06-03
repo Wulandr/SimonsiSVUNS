@@ -235,14 +235,14 @@ Route::group(['middleware' => 'auth'], function () {
     // SPJ Kategori
     Route::get('/spj_kategori', [SPJKategoriController::class, 'index']);
     Route::post('/spj_kategori/add', [SPJKategoriController::class, 'processAdd']);
-    Route::post('/spj_kategori/update', [SPJKategoriController::class, 'processUpdate']);
-    Route::get('/spj_kategori/delete', [SPJKategoriController::class, 'delete']);
+    Route::post('/spj_kategori/update/{id}', [SPJKategoriController::class, 'processUpdate']);
+    Route::get('/spj_kategori/delete/{id}', [SPJKategoriController::class, 'delete']);
 
     // SPJ Sub-Kategori
     Route::get('/spj_subkategori', [SPJSubKategoriController::class, 'index']);
     Route::post('/spj_subkategori/add', [SPJSubKategoriController::class, 'processAdd']);
-    Route::post('/spj_subkategori/update', [SPJSubKategoriController::class, 'processUpdate']);
-    Route::get('/spj_subkategori/delete', [SPJSubKategoriController::class, 'delete']);
+    Route::post('/spj_subkategori/update/{id}', [SPJSubKategoriController::class, 'processUpdate']);
+    Route::get('/spj_subkategori/delete/{id}', [SPJSubKategoriController::class, 'delete']);
 
     // SPJ SHOW PDF //
     Route::get('/dasarhukumspj1', [SPJController::class, 'viewSPJfile_1']);

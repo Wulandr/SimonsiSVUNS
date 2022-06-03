@@ -6,9 +6,11 @@ use App\Models\SPJ;
 use App\Models\Tor;
 use App\Models\MemoCair;
 use App\Models\DokumenSPJ;
+use App\Models\SPJKategori;
 use App\Models\TrxStatusKeu;
 use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
+use App\Models\SPJSubKategori;
 use Illuminate\Support\Facades\DB;
 
 class SPJController extends Controller
@@ -29,6 +31,8 @@ class SPJController extends Controller
           $dok_spj = DokumenSPJ::all();
           $status_keu =  DB::table('status_keu')->get();
           $trx_status_keu = TrxStatusKeu::all();
+          $spj_kategori = SPJKategori::all();
+          $spj_subkategori = SPJSubKategori::all();
           return view(
                'keuangan.spj.index_spj',
                compact(
@@ -45,7 +49,9 @@ class SPJController extends Controller
                     'spj',
                     'dok_spj',
                     'status_keu',
-                    'trx_status_keu'
+                    'trx_status_keu',
+                    'spj_kategori',
+                    'spj_subkategori'
                )
           );
      }
@@ -66,6 +72,8 @@ class SPJController extends Controller
           $dok_spj = DokumenSPJ::all();
           $status_keu =  DB::table('status_keu')->get();
           $trx_status_keu = TrxStatusKeu::all();
+          $spj_kategori = SPJKategori::all();
+          $spj_subkategori = SPJSubKategori::all();
           return view(
                'keuangan.spj.upload_spj',
                compact(
@@ -82,7 +90,9 @@ class SPJController extends Controller
                     'spj',
                     'dok_spj',
                     'status_keu',
-                    'trx_status_keu'
+                    'trx_status_keu',
+                    'spj_kategori',
+                    'spj_subkategori'
                )
           );
      }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SPJKategori;
 use Illuminate\Http\Request;
 use App\Models\SPJSubKategori;
+use Illuminate\Support\Facades\DB;
 
 class SPJSubKategoriController extends Controller
 {
@@ -24,12 +25,12 @@ class SPJSubKategoriController extends Controller
     {
         $request->validate([]);
 
-        // $inserting = new SPJSubKategori();
-        // $inserting = SPJSubKategori::select('nama_subkategori')->where('id', $request->id_kategori)->first();
-        // $inserting->id_kategori = $request->id_kategori;
-        // $inserting->nama_subkategori = $request->nama_subkategori;
-        // $inserting->save();
-        $inserting = SPJSubKategori::all()->insert($request->except('_token'));
+        $inserting = SPJSubKategori::create([
+            'id_kategori' => $request->id_kategori,
+            'nama_subkategori' => $request->nama_subkategori,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ]);
         if ($inserting) {
             return redirect()->back()->with("success", "Data berhasil ditambahkan");
         } else {
@@ -41,7 +42,7 @@ class SPJSubKategoriController extends Controller
     {
         $request->validate([]);
 
-        $process = SPJSubKategori::all()->where('id', $id)->update($request->except('_token'));
+        $process = DB::table('spj_subkategori')->where('id', $id)->update($request->except('_token'));
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
         } else {
@@ -52,7 +53,7 @@ class SPJSubKategoriController extends Controller
     public function delete($id)
     {
         try {
-            $process = SPJSubKategori::all()->where('id', $id)->delete();
+            $process = DB::table('spj_subkategori')->where('id', $id)->delete();
             if ($process) {
                 return redirect()->back()->with("success", "Data berhasil dihapus");
             } else {
