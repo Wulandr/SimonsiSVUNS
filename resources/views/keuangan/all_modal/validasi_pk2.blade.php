@@ -1,4 +1,4 @@
-<div class="modal fade" id="validasi_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="validasi_pk2<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -14,16 +14,9 @@
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
                         <?php 
-                        for ($s = 0; $s < count($status_keu); $s++) {
-                            if ($status_keu[$s]->kategori == 'Persekot Kerja') {
-                            if ($status_keu[$s]->nama_status == 'Validasi') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class=""> Validasi </label>
-                        </div>
-                        <?php } ?>
-                        <?php
-                        if ($status_keu[$s]->nama_status == 'Transfer Uang') { ?>
+                        for ($a = 0; $a < count($status_keu); $a++) {
+                            if ($status_keu[$a]->kategori == 'Persekot Kerja') {
+                        if ($status_keu[$a]->nama_status == 'Transfer Uang') { ?>
                         <div class="custom-control custom-radio custom-radio-color-checked">
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
                             <label class=""> Transfer Uang </label>

@@ -124,6 +124,10 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $tidakada_status ?>
+                                                <!-- MODAL - Validasi spj -->
+                                                @include('keuangan/all_modal/validasi_spj')
+                                                <!-- MODAL - Status spj -->
+                                                @include('keuangan/all_modal/status_spj')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -174,10 +178,6 @@
 
                                             <!-- MODAL - Input spj -->
                                             @include('keuangan/all_modal/input_Spj')
-                                            <!-- MODAL - Validasi spj -->
-                                            @include('keuangan/all_modal/validasi_spj')
-                                            <!-- MODAL - Status spj -->
-                                            @include('keuangan/all_modal/status_spj')
                                             <!-- MODAL - Input spj -->
                                             @include('keuangan/all_modal/input_spj')
                                             <?php

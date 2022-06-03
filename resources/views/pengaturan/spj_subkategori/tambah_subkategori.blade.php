@@ -12,7 +12,7 @@
                 <form class="form-horizontal" method="post" action="{{ url('/spj_subkategori/add') }}">
                     @csrf
                     <label>Kategori</label>
-                    <select name="nama_kategori" id="nama_kategori" class="form-control">
+                    <select name="id_kategori" id="id_kategori" class="form-control">
                         @foreach ($spj_kategori as $a)
                             <option value="{{ $a->id }}">{{ $a->nama_kategori }}</option>
                         @endforeach

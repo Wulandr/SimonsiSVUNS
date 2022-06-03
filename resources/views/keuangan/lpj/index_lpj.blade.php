@@ -116,6 +116,10 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $tidakada_status ?>
+                                                <!-- MODAL - Validasi LPJ -->
+                                                @include('keuangan/all_modal/validasi_lpj')
+                                                <!-- MODAL - Status LPJ -->
+                                                @include('keuangan/all_modal/status_lpj')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -142,16 +146,12 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $upload ?>
+                                                <!-- MODAL - Edit LPJ -->
+                                                @include('keuangan/all_modal/edit_lpj')
+                                                <!-- MODAL - Detail LPJ -->
+                                                @include('keuangan/all_modal/detail_lpj')
                                             </td>
 
-                                            <!-- MODAL - Edit LPJ -->
-                                            @include('keuangan/all_modal/edit_lpj')
-                                            <!-- MODAL - Detail LPJ -->
-                                            @include('keuangan/all_modal/detail_lpj')
-                                            <!-- MODAL - Validasi LPJ -->
-                                            @include('keuangan/all_modal/validasi_lpj')
-                                            <!-- MODAL - Status LPJ -->
-                                            @include('keuangan/all_modal/status_lpj')
                                             <!-- MODAL - Input LPJ -->
                                             @include('keuangan/all_modal/input_lpj')
                                             <?php
