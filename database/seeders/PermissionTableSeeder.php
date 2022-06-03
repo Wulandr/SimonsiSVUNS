@@ -38,7 +38,21 @@ class PermissionTableSeeder extends Seeder
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ];
-                $adminPermissions[] = $permission;
+                // $adminPermissions[] = $permission;
+                //admin
+                if (in_array($label, [
+                    'manage_tor', 'manage_rab', 'manage_anggaran', 'manage_buttonpengajuan',
+                    'manage_tahun', 'manage_triwulan', 'manage_unit', 'manage_pagu', 'manage_mak', 'manage_kelompokmak',
+                    'manage_belanjamak', 'manage_detailmak', 'manage_iku', 'manage_ik', 'manage_k', 'manage_subk',
+                    'manage_roles', 'manage_users'
+                ])) {
+                    $adminPermissions[] = [
+                        'ajuan_monitoring', 'tahun_show', 'triwulan_show', 'unit_show', 'pagu_show', 'mak_show',
+                        'kelompokmak_show', 'belanjamak_show', 'detailmak_show', 'iku_show', 'ik_show', 'k_show',
+                        'subk_show', 'role_show', 'role_create', 'role_update', 'role_detail', 'role_delete',
+                        'user_show', 'user_create', 'user_update', 'user_detail', 'user_delete'
+                    ];
+                }
 
                 //prodi
                 if (in_array($label, ['manage_tor', 'manage_rab', 'manage_anggaran', 'manage_buttonpengajuan'])) {
