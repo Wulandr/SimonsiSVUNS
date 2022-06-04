@@ -90,7 +90,10 @@
                                                                 @if ($b->kategori == 'Persekot Kerja')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_pk' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'Transfer Uang')
+                                                                    @if ($b->nama_status == 'Validasi')
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Transfer Uang')
                                                                         <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
                                                                         ?>
                                                                     @endif

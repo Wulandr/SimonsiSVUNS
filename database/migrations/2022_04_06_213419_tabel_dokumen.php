@@ -15,7 +15,7 @@ class TabelDokumen extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
-            $table->enum("jenis", ["Memo Cair", "LPJ"]);
+            $table->enum("jenis", ["Memo Cair", "LPJ", "SPJ Bukti Transfer", "Persekot Kerja Bukti Transfer"]);
             $table->string('name');
             $table->string('path');
             $table->timestamps();

@@ -16,11 +16,11 @@ class DokumenSeeder extends Seeder
     {
         DB::table('dokumen')->insert([
             [
-        'id'=> 1,
-        'id_tor'=>'3',
-        'jenis'=>'Memo Cair',
-        'name'=>'Profile.pdf',
-        'path'=>'Profile.pdf'
+                'id' => 1,
+                'id_tor' => '3',
+                'jenis' => 'Memo Cair',
+                'name' => 'Profile.pdf',
+                'path' => 'Profile.pdf'
             ],
 
         ]);

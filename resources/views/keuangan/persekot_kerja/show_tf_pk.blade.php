@@ -58,8 +58,16 @@
                     </div>
                 </div>
                 <?php
+                    $cek=1;
+                    $cekdok=1;
                     for ($a = 0; $a < count($persekot_kerja); $a++) {
+                        $cek+=1;
                         if ($persekot_kerja[$a]->id_tor == $tor[$m]->id) {
+                            for ($b = 0; $b < count($dokumen); $b++) {
+                                $cekdok+=1;
+                                if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
+                                    if ($dokumen[$b]->jenis == "Persekot Kerja Bukti Transfer") {
+                            if($cek=1 ){         
                     ?>
                 <div class="form-group row">
                     <label class="control-label col-sm-4 align-self-center mb-0">
@@ -77,23 +85,19 @@
                             disabled>
                     </div>
                 </div>
-                <small style="color: darkred">Menyatakan dengan sadar akan menyelelesaikan SsmallJ paling lambat
-                    <b>(2
-                        MINGGU SETELAH PELAKSANAAN KEGIATAN)</b></p>
-                    <?php }} ?>
-                    <hr style="border: 1px dashed black">
-                    <?php
-                        for ($b = 0; $b < count($dokumen); $b++) {
-                            if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
-                                if ($dokumen[$b]->jenis == "Persekot Kerja") {
-                        ?>
-                    <div class="form-group">
-                        <h4 class="text-center"><b>Bukti Transfer</b></h4>
-                        <br>
-                        <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf"
-                            width="100%" height="500px"></embed>
-                    </div>
-                    <?php }}} ?>
+                <small style="color: darkred">Menyatakan dengan sadar akan menyelelesaikan paling lambat
+                    <b>(2 MINGGU SETELAH PELAKSANAAN KEGIATAN)</b></small>
+                <hr style="border: 1px dashed black">
+                <div class="form-group text-center">
+                    <h4 class=""><b>Bukti Transfer</b></h4>
+                    <p>Klik untuk mendownload:
+                        <a class="text-primary" href="{{ asset('documents/' . $dokumen[$b]->name) }}"
+                            target="_blank"><?= $dokumen[$b]->name ?></a>
+                    </p>
+                </div>
+                <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf" width="100%"
+                    height="500px"></embed>
+                <?php }}}}}} ?>
             </div>
         </div>
     </div>

@@ -35,14 +35,6 @@
                             <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
                             <label class=""> Verifikasi </label>
                         </div>
-                        <?php } ?>
-                        <?php
-                        if ($status_keu[$s]->nama_status == 'Pelunasan Pembayaran/SPJ Selesai') { ?>
-                        <div class="custom-control custom-radio custom-radio-color-checked ">
-                            <input type="radio" name="id_status" id="id_status" value="{{ $status_keu[$s]->id }}">
-                            <label class="">Pelunasan Pembayaran/SPJ Selesai
-                            </label>
-                        </div>
                         <?php }
                             }
                         } ?>

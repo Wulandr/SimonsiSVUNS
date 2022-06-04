@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SPJ;
 use App\Models\Tor;
+use App\Models\Dokumen;
 use App\Models\MemoCair;
 use App\Models\DokumenSPJ;
 use App\Models\SPJKategori;
@@ -136,6 +137,42 @@ class SPJController extends Controller
 
           $inserting = DB::table('trx_status_keu')->insert($request->except('_token'));
           if ($inserting) {
+               return redirect()->back()->with("success", "Data berhasil ditambahkan");
+          } else {
+               return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+          }
+     }
+
+     public function input_transferSPJ(Request $request)
+     {
+          $request->validate([]);
+
+          //mengambil data file yang diupload
+          $file           = $request->file('file');
+          //mengambil nama file
+          $nama_file      = $file->getClientOriginalName();
+          $jenis          = $request->jenis;
+          $id_tor          = $request->id_tor;
+          //memindahkan file ke folder tujuan
+          $file->move('documents', $file->getClientOriginalName());
+
+          $input_tf         = new Dokumen;
+          $input_tf->name   = $nama_file;
+          $input_tf->path   = $nama_file;
+          $input_tf->jenis  = $jenis;
+          $input_tf->id_tor  = $id_tor;
+
+          //menyimpan data ke database
+          $input_tf->save();
+
+          $input_tf2 = TrxStatusKeu::create([
+               'id_status' => 7,
+               'id_tor' => $request->id_tor,
+               'create_by' => $request->create_by,
+               'created_at' => $request->created_at,
+               'updated_at' => $request->updated_at,
+          ]);
+          if ($input_tf2) {
                return redirect()->back()->with("success", "Data berhasil ditambahkan");
           } else {
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
