@@ -13,9 +13,10 @@ for ($kj = 0; $kj < count($komponen_jadwal); $kj++) {
 
 <?php
 $pengajuan = 0;
+$pengajuanPerbaikan = 0;
 $i = 0;
-$revisi = 0;
 $validasi = 0;
+$final = '';
 $detail = "Lengkapi Data";
 $jumlahval = 0;
 $name = [
@@ -41,14 +42,17 @@ for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
                     $pengajuan += 1;
                     $detail = "Detail";
                 }
-                if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 3") {
-                    $validasi += 1;
-                }
-                if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 2") {
-                    $validasi += 1;
-                }
+                // if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 3") {
+                //     $validasi += 1;
+                // }
+                // if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 2") {
+                //     $validasi += 1;
+                // }
                 if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 1") {
-                    $validasi += 1;
+                    $final = "Validasi WD 1";
+                }
+                if ($status[$st1]->nama_status == "Pengajuan Perbaikan") {
+                    $pengajuanPerbaikan += 1;
                 }
                 $i += 1;
             }
@@ -56,10 +60,15 @@ for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
     }
 }
 
+$revisi = 0;
+$perbaikan = 0;
 for ($st3 = 0; $st3 < count($name['status']); $st3++) {
     $name['status'][$st3];
     if ($name['status'][$st3] == "Revisi") {
-        $revisi = 1;
+        $revisi += 1;
+    }
+    if ($name['status'][$st3] == "Pengajuan Perbaikan") {
+        $perbaikan += 1;
     }
 }
 ?>
@@ -119,7 +128,7 @@ foreach ($role as $roles) {
         if ($rab[$sr]->id_tor == $tor[$t]->id) {
             foreach ($anggaran as $anggaran1) {
                 if ($anggaran1->id_rab == $rab[$sr]->id && $buttonAjukan == 1) { ?>
-                    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#status{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
+                    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#ajukan{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
                     </button>
     <?php $buttonAjukan += 1;
                 }
@@ -133,7 +142,11 @@ foreach ($role as $roles) {
     </button>
 <?php } ?>
 
-<?php if ($revisi >= 1 && $tor[$t]->jenis_ajuan == "Baru") { ?>
+<!-- ------------------------------------------------ ---------------- ---------------- -->
+<!-- ----------------- F I T U R  A L E R T  S E G E R A   R E V I S I ---------------  -->
+<!-- ------------------------------------------------ ---------------- ---------------- -->
+
+<?php if ($perbaikan < $revisi) { ?>
     <form class="form-horizontal" method="get" action="{{ url('/tor/revisi/'.  $tor[$t]->id) }}">
         @csrf
         <input type="hidden" name="akses" value="1">
@@ -143,14 +156,21 @@ foreach ($role as $roles) {
     </form>
 <?php } ?>
 
+<!-- ------------------------------------------------ ---------------- ---------------- -->
+<!-- ------------------------------------------------ ---------------- ---------------- -->
+<!-- ------------------------------------------------ ---------------- ---------------- -->
+
+
+
+
 @can('tor_ajuan')
-<?php if ($tor[$t]->jenis_ajuan == "Perbaikan" && $pengajuan == 1) { ?>
-    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#veriftor{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
+<?php if ($tor[$t]->jenis_ajuan == "Perbaikan" && ($perbaikan < $revisi)) { ?>
+    <button class="badge badge-danger rounded" data-toggle="modal" data-target="#ajukan{{$tor[$t]->id}}" {{$buttonVerif == "Tidak" ? 'disabled' : ''}}>Ajukan TOR & RAB
     </button>
 <?php } ?>
 @endcan
 
-<?php if ($validasi == 3) { ?>
+<?php if ($final == "Validasi WD 1") { ?>
     <badge class="badge badge-info rounded" data-toggle="modal"> SELESAI
     </badge>
 <?php }

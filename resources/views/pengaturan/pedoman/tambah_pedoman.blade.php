@@ -1,5 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman"
-    aria-hidden="true">
+<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,8 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/pedomans/create') }}">
+                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('/pedomans/create') }}">
                     @csrf
                     <div class="form-group">
                         <label>Jenis</label>
@@ -39,8 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="validationCustom01">Nama File</label>
-                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01"
-                            required>
+                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01" required>
                     </div>
                     <div class="form-group">
                         <label>Tahun File</label>
@@ -48,12 +45,13 @@
                     </div>
                     <input type="file" class="form-control-file" name="file" id="file" required>
                     @error('file')
-                        <div class="alert text-white bg-success" role="alert">
-                            <div class="iq-alert-icon">
-                                <i class="ri-alert-line"></i>
-                            </div>
-                            <div class="alert alert-danger mt-1 mb-1">
-                                {{ $message }}</div>
+                    <div class="alert text-white bg-success" role="alert">
+                        <div class="iq-alert-icon">
+                            <i class="ri-alert-line"></i>
+                        </div>
+                        <div class="alert alert-danger mt-1 mb-1">
+                            {{ $message }}
+                        </div>
                         @enderror
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
@@ -74,7 +72,6 @@
 
 {{-- Dropdown on Click Radio Button --}}
 <script>
-    const spj = document.getElementById("spj");
     const lpj = document.getElementById("lpj");
     const sbm = document.getElementById("sbm");
     const list = document.getElementById("list");

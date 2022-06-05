@@ -115,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/validasi', [ValidasiController::class, 'index']);
     Route::get('/validasi/ajuan/{prodi}', [ValidasiController::class, 'ajuan']);
     Route::get('/validasi_filter', [ValidasiController::class, 'filter_tahun']);
+    Route::post('/validasi/pengajuanProdi', [ValidasiController::class, 'pengajuanProdi']);
     Route::post('/validasi/createVerTor', [ValidasiController::class, 'verifTor']);
     Route::post('/validasi/createValTor', [ValidasiController::class, 'validTor']);
     Route::get('/detailtor/{id}', [ValidasiController::class, 'detail']);

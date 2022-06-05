@@ -1,5 +1,5 @@
 <!-- MODAL AJUKAN TOR -->
-<div class="modal fade" tabindex="-1" role="dialog" id="veriftor{{ $tor[$t]->id }}">
+<div class="modal fade" tabindex="-1" role="dialog" id="ajukan{{ $tor[$t]->id }}">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="iq-card-body">
-                        <form method="post" action="/validasi/createVerTor">
+                        <form method="post" action="/validasi/pengajuanProdi">
                             @csrf
                             <div class="form-group">
                                 <i>Lengkapi Data TOR & RAB Sebelum Diajukan</i>
@@ -37,26 +37,36 @@
                                                         }
                                                     }
                                                 }
+                                            } else {
+                                                $jenisDiajukan = "Belum Diajukan";
                                             }
                                         }
                                     } else {
                                         $jenisDiajukan = "";
                                     }
-
                                     for ($s = 0; $s < count($status); $s++) {
                                         if ($status[$s]->kategori == 'TOR') {
-                                            if ($jenisDiajukan != "Baru")
+                                            if ($jenisDiajukan == "Belum Diajukan") {
                                                 if ($status[$s]->nama_status == 'Proses Pengajuan') { ?>
-                                                <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
-                                                <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}
-                                                    Baru</label><br />
-                                            <?php } ?>
+                                                    <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
+                                                    <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}
+                                                        Baru</label><br />
+                                            <?php }
+                                            } ?>
 
                                             <?php
-                                            if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
-                                                <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
-                                                <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
+                                            if ($jenisDiajukan == "Baru") {
+                                                if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
+                                                    <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
+                                                    <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
+                                                <?php }
+                                            }
+                                            if ($jenisDiajukan == "Perbaikan") {
+                                                if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
+                                                    <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
+                                                    <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
                                     <?php }
+                                            }
                                         }
                                     } ?>
                                     <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">

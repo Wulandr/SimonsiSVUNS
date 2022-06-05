@@ -656,41 +656,67 @@ use Illuminate\Support\Facades\Auth;
 <hr />
 <!-- R A B -->
 @include('perencanaan/validasi/detail_rab')
-<?php if ($disetujui != 1) { ?>
-    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-    <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrab" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="las la-plus"></i>
-    </a>
-    <div class="container collapse col-6" id="komenrab">
-        <div id="validasi" class="form-group ">
-            <textarea class="form-control" id="k_rab" name="k_rab" style="background:#c7c3c317" rows="1" placeholder="Komentar rab..."></textarea>
-        </div>
+<p>
+    <?php if (!empty($komentar['komentar_rab'])) { ?>
+        <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#lihatkomentar12" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Lihat Komentar
+        </a>
+    <?php } ?>
+
+    <?php if ($disetujui != 1) { ?>
+        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+        <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrab" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="las la-plus"></i>
+        </a>
+<div class="container collapse col-6" id="komenrab">
+    <div id="validasi" class="form-group ">
+        <textarea class="form-control" id="k_rab" name="k_rab" style="background:#c7c3c317" rows="1" placeholder="Komentar rab..."></textarea>
     </div>
-    @endif
+</div>
+@endif
 <?php } ?>
-<?php if (!empty($komentar['rab'])) { ?>
-    <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#lihatkomentar12" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Komentar <i class="fa fa-arrow-down"></i>
-        </a></p>
-    <div class="container collapse col-6" id="lihatkomentar12">
-        <div id="validasi" class="container ml-3">
-            <?php
-                                            if (!empty($komentar['rab'])) {
-                                                echo $note;
-                                            }
-            ?>
-            @foreach($komentar['komentar_rab'] as $rab)
-            <h6 style="color: #dc3545;">{{$rab}}</h6>
-            <hr class="mt-3">
-            @endforeach
-        </div>
+</p>
+
+
+
+<div class="collapse" id="lihatkomentar12">
+    <div id="validasi" class="container col-sm-12">
+        <?php
+                                        if (!empty($komentar['komentar_rab'])) {
+                                            echo $note;
+                                        }
+        ?>
+        @foreach($komentar['komentar_rab'] as $rab)
+        <h6 style="color: #dc3545;">{{$rab}}</h6>
+        <hr class="mt-3">
+        @endforeach
     </div>
-<?php } ?>
+</div>
 <br />
 <!-- V A L I D A S I -->
 <br />
+
+<?php
+                                        //menyembunyikan option, jika user sudah memverif
+                                        $userSudahKomentar;
+                                        foreach ($trx_status_tor as $trx3) {
+                                            if ($trx3->id_tor == $tor[$t]->id) {
+                                                if ($tor[$t]->jenis_ajuan == "Baru" && $trx3->create_by == auth()->user()->id) {
+                                                    $userSudahKomentar = 1;
+                                                } else {
+                                                    $userSudahKomentar = 0;
+                                                }
+                                                if ($tor[$t]->jenis_ajuan == "Perbaikan" && $trx3->create_by == auth()->user()->id) {
+                                                    $userSudahKomentar = 1;
+                                                } else {
+                                                    $userSudahKomentar = 0;
+                                                }
+                                            }
+                                        }
+?>
+
 @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-<?php if ($disetujui != 1) { ?>
+<?php if ($disetujui != 1 && $userSudahKomentar == 0) { ?>
     <div id="validasi" class="container center">
         <h4><b>
                 Validasi TOR
@@ -730,7 +756,7 @@ use Illuminate\Support\Facades\Auth;
                                                     for ($r3 = 0; $r3 < count($roles); $r3++) {
                                                         if (Auth()->user()->role == $roles[$r3]->id) { ?>
                         <?php if ($roles[$r3]->name == "BPU") {
-                                                                if ($status[$s]->nama_status == "Verifikasi" || $status[$s]->nama_status == "Revisi") { ?>
+                                                                if ($status[$s]->nama_status == "Verifikasi") { ?>
                                 <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                 <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                             <?php }
@@ -739,8 +765,8 @@ use Illuminate\Support\Facades\Auth;
                                 <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                 <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                             <?php }
-                                                            } elseif ($roles[$r3]->name == "WD 1" || $roles[$r3]->name == "WD 2" || $roles[$r3]->name == "WD 3") {
-                                                                if ($status[$s]->nama_status == "Sudah Direview") { ?>
+                                                            } elseif ($roles[$r3]->name == "WD 2" || $roles[$r3]->name == "WD 3") {
+                                                                if ($status[$s]->nama_status == "Review") { ?>
                                 <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                 <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                             <?php }

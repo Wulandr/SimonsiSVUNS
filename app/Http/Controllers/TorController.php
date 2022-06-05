@@ -316,7 +316,11 @@ class TorController extends Controller
 
         $pic = DB::table('tor')->select('nama_pic')->where('id', $id)->get();
         // pic tidak bisa mengakses update tor jika bukan tanggung jawabnya
-        if (($roleLogin2[0]->name == "PIC" && $userLogin != $pic[0]->nama_pic) || empty($request->akses)) {
+        if (($roleLogin2[0]->name != "PIC" && $roleLogin2[0]->name != "Prodi")
+            ||
+            ($roleLogin2[0]->name == "PIC" && $userLogin != $pic[0]->nama_pic)
+            || empty($request->akses)
+        ) {
             abort(403);
         }
 
@@ -327,7 +331,7 @@ class TorController extends Controller
 
         /* ABORT : tidak ada revisi,
          ABORT : ada revisi, tapi ada perbaikan */
-        if ((empty($perbaikan) && empty($revisi)) || (!empty($perbaikan) && !empty($revisi))) {
+        if (count($revisi) == count($perbaikan)) {
             abort(403);
         }
 

@@ -127,6 +127,18 @@ class ValidasiController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
+
+    public function pengajuanProdi(Request $request)
+    {
+        $request->validate([]);
+
+        $inserting = DB::table('trx_status_tor')->insert($request->except('_token'));
+        if ($inserting) {
+            return redirect()->back()->with("success", "Data berhasil ditambahkan");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
+    }
     public function validTor(Request $request)
     {
         $userLogin = Auth()->user()->id;

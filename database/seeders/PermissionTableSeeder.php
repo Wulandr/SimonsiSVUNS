@@ -290,8 +290,8 @@ class PermissionTableSeeder extends Seeder
         $userbpu = User::create([
             'id' => 6,
             'id_unit' => '1',
-            'name' => 'Budi',
-            'email' => 'budi356@gmail.com',
+            'name' => 'Nur Chayati',
+            'email' => 'nurchayati@gmail.com',
             'role' => 3, //bpu
             'is_aktif' => 1,
             'email_verified_at' => now(),

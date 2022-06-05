@@ -97,6 +97,7 @@ use Illuminate\Support\Facades\Auth;
                                                 <th>No.</th>
                                                 <th scope="col">Prodi</th>
                                                 <th scope="col">Judul Kegiatan</th>
+                                                <th scope="col">Jenis Ajuan</th>
                                                 <th scope="col">Tanggal Mulai</th>
                                                 <th scope="col">Nama PIC</th>
                                                 <th scope="col">Anggaran Ajuan</th>
@@ -178,6 +179,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <td>{{ $no + 1 }}</td><?php $no++; ?>
                                                                 <td>{{ $prodiTor }}</td>
                                                                 <td>{{ $join[$a]->nama_kegiatan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
+                                                                <td>{{ $join[$a]->jenis_ajuan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
                                                                 </td>
                                                                 <td><?php
                                                                     $date = date_create($join[$a]->tgl_mulai_pelaksanaan);

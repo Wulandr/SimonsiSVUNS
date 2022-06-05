@@ -36,19 +36,6 @@ class StatusKegAngSeeder extends Seeder
                 'kategori' => 'TOR'
             ],
 
-            //STATUS RAB
-            [
-                'nama_status' => 'Verifikasi',
-                'kategori' => 'RAB'
-            ],
-            [
-                'nama_status' => 'Revisi',
-                'kategori' => 'RAB'
-            ],
-            [
-                'nama_status' => 'Validasi', //WD 2
-                'kategori' => 'RAB'
-            ],
         ]);
     }
 }
