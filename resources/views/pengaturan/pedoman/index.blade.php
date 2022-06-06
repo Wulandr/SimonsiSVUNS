@@ -23,19 +23,26 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Pedoman
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah pedoman" data-original-title="Tambah pedoman" data-target="#tambahpedoman"><i class="fa fa-plus-circle"></i>
+                                            <button class="search-toggle iq-waves-effect bg-primary rounded"
+                                                data-toggle="modal" title="Tambah pedoman"
+                                                data-original-title="Tambah pedoman" data-target="#tambahpedoman"><i
+                                                    class="fa fa-plus-circle"></i>
                                             </button>
                                         </h4>
                                         <!-- Modal Tambah pedoman -->
                                         @include('pengaturan.pedoman.tambah_pedoman')
                                         <div class="iq-card-header-toolbar d-flex align-items-center">
                                             <div class="dropdown">
-                                                <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
+                                                <span class="dropdown-toggle text-primary" id="dropdownMenuButton5"
+                                                    data-toggle="dropdown">
                                                     <i class="ri-more-fill"></i>
                                                 </span>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                                    <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                <div class="dropdown-menu dropdown-menu-right"
+                                                    aria-labelledby="dropdownMenuButton5">
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="ri-printer-fill mr-2"></i>Print</a>
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="ri-file-download-fill mr-2"></i>Download</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -43,9 +50,9 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
                                     @endif
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
@@ -64,33 +71,38 @@ use Illuminate\Support\Facades\Auth;
                                             <tbody>
                                                 <?php $i = 1; ?>
                                                 @foreach ($pedoman as $pedomansbm)
-                                                @if ($pedomansbm->jenis == 'SBM')
-                                                <tr>
-                                                    <td>{{ $i }}</td>
-                                                    <td><?php $pedomansbm->jenis;
+                                                    <tr>
+                                                        <td>{{ $i }}</td>
+                                                        <td><?php $pedomansbm->jenis;
                                                         if ($pedomansbm->jenis == 'SBM') {
                                                             echo 'Standar Biaya Masukan' . ' (' . $pedomansbm->jenis . ')';
                                                         } else {
                                                             echo $pedomansbm->jenis;
                                                         }
                                                         ?></td>
-                                                    <td>{{ $pedomansbm->nama }}</td>
-                                                    <td><a href="{{ asset('/pedoman/' . $pedomansbm->file) }}">{{ $pedomansbm->file }}</a>
-                                                    </td>
-                                                    <td>{{ $pedomansbm->tahun }}</td>
-                                                    <td>
-                                                        <div class="flex align-items-center list-user-action">
-                                                            <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pedoman" data-original-title="Update Pedoman" href="" data-target="#update_pedoman<?= $pedomansbm->id ?>"><i class="ri-pencil-line"></i></a>
-                                                            <a href="{{ url('/pedomans/delete/' . $pedomansbm->id) }}" class="iq-bg-primary pedoman-confirm" data-toggle="tooltip" title="Delete">
-                                                                <i class="fa fa-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <!-- Modal Edit Pedoman -->
-                                                @include('pengaturan.pedoman.edit_pedoman')
-                                                <?php $i += 1; ?>
-                                                @endif
+                                                        <td>{{ $pedomansbm->nama }}</td>
+                                                        <td><a
+                                                                href="{{ asset('/pedoman/' . $pedomansbm->file) }}">{{ $pedomansbm->file }}</a>
+                                                        </td>
+                                                        <td>{{ $pedomansbm->tahun }}</td>
+                                                        <td>
+                                                            <div class="flex align-items-center list-user-action">
+                                                                <a class="iq-bg-primary" data-toggle="modal"
+                                                                    data-placement="top" title="Update Pedoman"
+                                                                    data-original-title="Update Pedoman" href=""
+                                                                    data-target="#update_pedoman<?= $pedomansbm->id ?>"><i
+                                                                        class="ri-pencil-line"></i></a>
+                                                                <a href="{{ url('/pedomans/delete/' . $pedomansbm->id) }}"
+                                                                    class="iq-bg-primary pedoman-confirm"
+                                                                    data-toggle="tooltip" title="Delete">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Modal Edit Pedoman -->
+                                                    @include('pengaturan.pedoman.edit_pedoman')
+                                                    <?php $i += 1; ?>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -136,7 +148,6 @@ use Illuminate\Support\Facades\Auth;
             });
         }, 2000);
     </script>
-
 
     @include('dashboards/users/layouts/footer')
 

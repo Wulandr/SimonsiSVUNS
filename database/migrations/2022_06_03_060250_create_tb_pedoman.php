@@ -16,7 +16,7 @@ class CreateTbPedoman extends Migration
         Schema::create('pedoman', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum("jenis", ["SBM", "SPJ", "LPJ"]);
+            $table->enum('jenis', ['SBM', 'SPJ Dasar Hukum', 'SPJ Panduan', 'SPJ Template', 'LPJ']);
             $table->string('file');
             $table->string('tahun');
             $table->string('path');
@@ -31,6 +31,6 @@ class CreateTbPedoman extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pedoman');
+        Schema::dropIfExists('pedoman');
     }
 }

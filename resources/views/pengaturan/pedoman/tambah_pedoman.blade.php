@@ -1,4 +1,5 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman" aria-hidden="true">
+<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('/pedomans/create') }}">
+                <form class="needs-validation" enctype="multipart/form-data" method="post"
+                    action="{{ url('/pedomans/create') }}">
                     @csrf
                     <div class="form-group">
                         <label>Jenis</label>
@@ -18,7 +20,7 @@
                                 Masukan</label>
                         </div>
                         <div id="spj">
-                            <input type="radio" name="jenis" id="jenis" value="SPJ">
+                            <input type="radio" name="jenis" id="jenis">
                             <label>SPJ</label>
                         </div>
                         <div id="lpj">
@@ -30,14 +32,15 @@
                         <label>Kategori File SPJ</label>
                         <select class="form-control">
                             <option selected="" disabled="">Pilih Kategori</option>
-                            <option>Dasar Hukum</option>
-                            <option>Panduan</option>
-                            <option>Template</option>
+                            <option name="jenis" id="jenis" value="SPJ Dasar Hukum">Dasar Hukum</option>
+                            <option name="jenis" id="jenis" value="SPJ Panduan">Panduan</option>
+                            <option name="jenis" id="jenis" value="SPJ Template">Template</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="validationCustom01">Nama File</label>
-                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01" required>
+                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01"
+                            required>
                     </div>
                     <div class="form-group">
                         <label>Tahun File</label>
@@ -45,20 +48,19 @@
                     </div>
                     <input type="file" class="form-control-file" name="file" id="file" required>
                     @error('file')
-                    <div class="alert text-white bg-success" role="alert">
-                        <div class="iq-alert-icon">
-                            <i class="ri-alert-line"></i>
-                        </div>
-                        <div class="alert alert-danger mt-1 mb-1">
-                            {{ $message }}
-                        </div>
+                        <div class="alert text-white bg-success" role="alert">
+                            <div class="iq-alert-icon">
+                                <i class="ri-alert-line"></i>
+                            </div>
+                            <div class="alert alert-danger mt-1 mb-1">
+                                {{ $message }}
+                            </div>
                         @enderror
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
                         </div>
                     </div>
 
-                    <input type="hidden" name="jenis" id="jenis" value="SBM">
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <div class="modal-footer">
@@ -73,6 +75,7 @@
 {{-- Dropdown on Click Radio Button --}}
 <script>
     const lpj = document.getElementById("lpj");
+    const spj = document.getElementById("spj");
     const sbm = document.getElementById("sbm");
     const list = document.getElementById("list");
     list.style.display = "none";

@@ -31,18 +31,18 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">Jenis</label>
                         <div class="col-sm-8">
-                            <div id="ada">
-                                <input type="radio">
+                            <div id="ada<?= $tor[$m]->id ?>">
+                                <input type="radio" name="sebel">
                                 <label>Pelunasan Pembayaran (Input Bukti TF)</label>
                             </div>
-                            <div id="none">
-                                <input type="radio">
+                            <div id="none{{ $tor[$m]->id }}">
+                                <input type="radio" name="sebel">
                                 <label>SPJ Selesai</label>
                             </div>
                         </div>
                     </div>
 
-                    <div id="list" class="form-group">
+                    <div id="cek<?= $tor[$m]->id ?>" class="form-group">
                         <label>Unggah Bukti Transfer
                             <br>
                             <small style="color: darkred">
@@ -63,18 +63,18 @@
 
 {{-- Dropdown on Click Radio Button --}}
 <script>
-    const ada = document.getElementById("ada");
-    const none = document.getElementById("none");
-    const cek = document.getElementById("cek");
-    cek.style.display = "none";
-    ada.addEventListener("click", (event) => {
-        if (cek.style.display = "none") {
-            cek.style.display = "block";
+    const ada{{ $tor[$m]->id }} = document.getElementById("ada{{ $tor[$m]->id }}");
+    const none{{ $tor[$m]->id }} = document.getElementById("none{{ $tor[$m]->id }}");
+    const cek{{ $tor[$m]->id }} = document.getElementById("cek{{ $tor[$m]->id }}");
+    cek{{ $tor[$m]->id }}.style.display = "none";
+    ada{{ $tor[$m]->id }}.addEventListener("click", (event) => {
+        if (cek{{ $tor[$m]->id }}.style.display = "none") {
+            cek{{ $tor[$m]->id }}.style.display = "block";
         } else {
-            cek.style.display = "none";
+            cek{{ $tor[$m]->id }}.style.display = "none";
         }
     })
-    none.addEventListener("click", (event) => {
-        cek.style.display = "none";
+    none{{ $tor[$m]->id }}.addEventListener("click", (event) => {
+        cek{{ $tor[$m]->id }}.style.display = "none";
     })
 </script>

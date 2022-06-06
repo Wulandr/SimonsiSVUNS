@@ -6,6 +6,7 @@ use App\Models\LPJ;
 use App\Models\Tor;
 use App\Models\Dokumen;
 use App\Models\MemoCair;
+use App\Models\Pedoman;
 use App\Models\TrxStatusKeu;
 use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
@@ -28,6 +29,7 @@ class LPJController extends Controller
         $lpj = LPJ::all();
         $status_keu =  DB::table('status_keu')->get();
         $trx_status_keu = TrxStatusKeu::all();
+        $pedoman = Pedoman::all();
         return view(
             'keuangan.lpj.index_lpj',
             compact(
@@ -43,7 +45,8 @@ class LPJController extends Controller
                 'dokumen',
                 'lpj',
                 'status_keu',
-                'trx_status_keu'
+                'trx_status_keu',
+                'pedoman'
             )
         );
     }

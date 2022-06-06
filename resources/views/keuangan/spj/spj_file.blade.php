@@ -61,20 +61,19 @@ transform: rotate(90deg);
                     <p>Klik untuk melihat!</p>
 
                     <ul id="myUL">
+                        <?php 
+                        foreach ($pedoman as $data){
+                        ?>
                         <li><span class="caret"><b>Dasar Hukum</b></span>
                             <ol class="nested">
-                                <li>
-                                    <a href="{{ '/dasarhukumspj1' }}" target="_blank" rel="noopener noreferrer">
-                                        Peraturan Rektor No. 38 Tahun
-                                        2021 tentang Pengadaan Barang Jasa
-                                        Universitas Sebelas
-                                        Maret</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'dasarhukumspj2' }}" target="_blank" rel="noopener noreferrer">
-                                        Peraturan Rektor Nomor 30 Tahun 2021 dan Lampiran Standar Biaya Masukan SBM
-                                        UNS TA 2022</a>
-                                </li>
+                                @if ($data->jenis == 'SPJ Dasar Hukum')
+                                    <li>
+                                        <a href="{{ asset('/pedoman/' . $data->file) }}" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <?= $data->nama ?>
+                                        </a>
+                                    </li>
+                                @endif
                             </ol>
                         </li>
                         <li><span class="caret"><b>Panduan SPJ</b></span>
@@ -127,6 +126,7 @@ transform: rotate(90deg);
                                 </li>
                             </ol>
                         </li>
+                        <?php } ?>
                     </ul>
 
                     <script>

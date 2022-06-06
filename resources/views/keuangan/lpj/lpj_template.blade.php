@@ -10,8 +10,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <embed src="{{ asset('file/Sistematika Laporan Kegiatan 2022.pdf') }}" type="application/pdf"
-                    width="100%" height="500px"></embed>
+                <?php 
+                foreach ($pedoman as $data){
+                    if ($data->jenis == "LPJ") { 
+                ?>
+                <embed src="{{ asset('/pedoman/' . $data->file) }}" type="application/pdf" width="100%"
+                    height="500px">
+                </embed>
+                <?php }} ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -114,7 +114,7 @@
                 <?php if (Auth()->user()->id_unit == 1) { ?>
 
                 <li
-                    class="{{ Request::is('spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'active' : '' }}">
+                    class="{{ Request::is('pedomans', 'spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'active' : '' }}">
                     <a href="#pengaturan" class="iq-waves-effect collapsed" data-toggle="collapse"
                         aria-expanded="{{ Request::is('tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'true' : 'false' }}">
                         <span class="ripple rippleEffect"></span>
@@ -123,7 +123,7 @@
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                     </a>
                     <ul id="pengaturan"
-                        class="iq-submenu {{ Request::is('spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'collapse show' : 'collapse' }}"
+                        class="iq-submenu {{ Request::is('pedomans', 'spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'collapse show' : 'collapse' }}"
                         data-parent="#iq-sidebar-toggle">
                         <li class="{{ Request::is('spj_kategori') ? 'active' : '' }}">
                             <a href="{{ url('/spj_kategori') }}"><i class="las la-stream" data-toggle="tooltip"

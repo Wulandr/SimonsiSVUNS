@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SPJ;
 use App\Models\Tor;
 use App\Models\Dokumen;
+use App\Models\Pedoman;
 use App\Models\MemoCair;
 use App\Models\DokumenSPJ;
 use App\Models\SPJKategori;
@@ -34,6 +35,7 @@ class SPJController extends Controller
           $trx_status_keu = TrxStatusKeu::all();
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
+          $pedoman = Pedoman::all();
           return view(
                'keuangan.spj.index_spj',
                compact(
@@ -52,7 +54,8 @@ class SPJController extends Controller
                     'status_keu',
                     'trx_status_keu',
                     'spj_kategori',
-                    'spj_subkategori'
+                    'spj_subkategori',
+                    'pedoman'
                )
           );
      }
