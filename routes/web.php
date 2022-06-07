@@ -35,6 +35,8 @@ use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
 use App\Http\Controllers\PedomanController;
+use GuzzleHttp\Middleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

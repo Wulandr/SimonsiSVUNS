@@ -1,5 +1,4 @@
-<div class="modal fade bd-example-modal-lg" id="input_tf_spj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="Upload Bukti Transfer Pelunasan Pembayaran SPJ" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="input_tf_spj<?= $tor[$m]->id ?>" tabindex="-1" role="dialog" aria-labelledby="Upload Bukti Transfer Pelunasan Pembayaran SPJ" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,8 +9,7 @@
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/spj/input_buktitransfer') }}" novalidate>
+                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('/spj/input_buktitransfer') }}" novalidate>
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">Nama
@@ -37,24 +35,23 @@
                             </div>
                             <div id="none{{ $tor[$m]->id }}">
                                 <input type="radio" name="sebel">
-                                <label>SPJ Selesai</label>
+
                             </div>
                         </div>
-                    </div>
 
-                    <div id="cek<?= $tor[$m]->id ?>" class="form-group">
-                        <label>Unggah Bukti Transfer
-                            <br>
-                            <small style="color: darkred">
-                                Upload bukti transfer berupa file Dokumen maupun Gambar.
-                            </small>
-                        </label>
-                        <input type="file" class="form-control-file" name="file" id="file">
-                    </div>
+                        <div id="cek<?= $tor[$m]->id ?>" class="form-group">
+                            <label>Unggah Bukti Transfer
+                                <br>
+                                <small style="color: darkred">
+                                    Upload bukti transfer berupa file Dokumen maupun Gambar.
+                                </small>
+                            </label>
+                            <input type="file" class="form-control-file" name="file" id="file">
+                        </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -63,18 +60,58 @@
 
 {{-- Dropdown on Click Radio Button --}}
 <script>
-    const ada{{ $tor[$m]->id }} = document.getElementById("ada{{ $tor[$m]->id }}");
-    const none{{ $tor[$m]->id }} = document.getElementById("none{{ $tor[$m]->id }}");
-    const cek{{ $tor[$m]->id }} = document.getElementById("cek{{ $tor[$m]->id }}");
-    cek{{ $tor[$m]->id }}.style.display = "none";
-    ada{{ $tor[$m]->id }}.addEventListener("click", (event) => {
-        if (cek{{ $tor[$m]->id }}.style.display = "none") {
-            cek{{ $tor[$m]->id }}.style.display = "block";
+    const ada {
+        {
+            $tor[$m] - > id
+        }
+    } = document.getElementById("ada{{ $tor[$m]->id }}");
+    const none {
+        {
+            $tor[$m] - > id
+        }
+    } = document.getElementById("none{{ $tor[$m]->id }}");
+    const cek {
+        {
+            $tor[$m] - > id
+        }
+    } = document.getElementById("cek{{ $tor[$m]->id }}");
+    cek {
+        {
+            $tor[$m] - > id
+        }
+    }.style.display = "none";
+    ada {
+        {
+            $tor[$m] - > id
+        }
+    }.addEventListener("click", (event) => {
+        if (cek {
+                {
+                    $tor[$m] - > id
+                }
+            }.style.display = "none") {
+            cek {
+                {
+                    $tor[$m] - > id
+                }
+            }.style.display = "block";
         } else {
-            cek{{ $tor[$m]->id }}.style.display = "none";
+            cek {
+                {
+                    $tor[$m] - > id
+                }
+            }.style.display = "none";
         }
     })
-    none{{ $tor[$m]->id }}.addEventListener("click", (event) => {
-        cek{{ $tor[$m]->id }}.style.display = "none";
+    none {
+        {
+            $tor[$m] - > id
+        }
+    }.addEventListener("click", (event) => {
+        cek {
+            {
+                $tor[$m] - > id
+            }
+        }.style.display = "none";
     })
 </script>

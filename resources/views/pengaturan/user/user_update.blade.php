@@ -30,11 +30,11 @@
                             <input name="email" id="email" value="{{old('email',$user->email)}}" type="text" class="form-control">
                           </div>
                           <div class="form-group">
-                            <label>Password</label>
-                            <input name="password" id="password" type="password" class="form-control">
+                            <!-- <label>Password</label> -->
+                            <input name="password" id="password" value="{{$user->password}}" type="hidden" class="form-control">
                           </div>
                           <div class="form-group">
-                            <label>Role{{$user->role}}</label>
+                            <label>Role</label>
                             <select name="role" id="role" class="form-control">
                               <!-- @if(old('role',$roleSelected))
                           <option value="{{old('role',$roleSelected->id)}}" selected>{{old('role',$roleSelected->name)}} </option>

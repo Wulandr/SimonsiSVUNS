@@ -92,7 +92,7 @@ class RoleController extends Controller
             // return redirect()->route('pengaturan.roles.index');
             // dd($role);
             if ($role) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect('role')->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }

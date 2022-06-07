@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Auth;
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-list">
                             <li class="nav-item nav-icon">
-                                <a href="#" class="search-toggle iq-waves-effect bg-primary rounded">
+                                <a href="#" class="search-toggle iq-waves-effect bg-info rounded">
                                     <i class="ri-notification-line"></i>
                                     <span class="bg-danger dots"></span>
                                 </a>

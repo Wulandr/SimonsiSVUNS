@@ -88,7 +88,7 @@ class UserController extends Controller
             $inserting->assignRole($assignrole);
             //allert
             if ($inserting) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect('/user')->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -171,13 +171,13 @@ class UserController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password =  Hash::make($request->password);
+            $user->password =  $request->password;
             $user->role = $request->role;
             $user->syncRoles($assignrole);
             $user->save();
             //allert
             if ($user) {
-                return redirect()->back()->with("success", "Data berhasil ditambahkan");
+                return redirect('/user')->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }

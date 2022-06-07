@@ -1,5 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman"
-    aria-hidden="true">
+<div class="modal fade" tabindex="-1" role="dialog" id="tambahpedoman" aria-labelledby="Upload Pedoman" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,22 +8,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/pedomans/create') }}">
+                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('/pedomans/create') }}">
                     @csrf
                     <div class="form-group">
                         <label>Jenis</label>
                         <div id="sbm">
-                            <input type="radio" name="jenis" id="jenis" value="SBM">
+                            <input type="radio" name="jenis" class="btn-check" id="jenis" value="SBM" autocomplete="off">
                             <label>Standar Biaya
                                 Masukan</label>
                         </div>
-                        <div id="spj">
-                            <input type="radio" name="jenis" id="jenis">
+                        <div id="spj"><input type="radio" name="jenis" class="btn-check" id="jenis" value="SPJ" autocomplete="off">
                             <label>SPJ</label>
                         </div>
                         <div id="lpj">
-                            <input type="radio" name="jenis" id="jenis" value="LPJ">
+                            <input type="radio" name="jenis" class="btn-check" id="jenis" value="LPJ" autocomplete="off">
                             <label>LPJ</label>
                         </div>
                     </div>
@@ -39,8 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="validationCustom01">Nama File</label>
-                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01"
-                            required>
+                        <input name="nama" id="nama" type="text" class="form-control" id="validationCustom01" required>
                     </div>
                     <div class="form-group">
                         <label>Tahun File</label>
@@ -48,13 +44,13 @@
                     </div>
                     <input type="file" class="form-control-file" name="file" id="file" required>
                     @error('file')
-                        <div class="alert text-white bg-success" role="alert">
-                            <div class="iq-alert-icon">
-                                <i class="ri-alert-line"></i>
-                            </div>
-                            <div class="alert alert-danger mt-1 mb-1">
-                                {{ $message }}
-                            </div>
+                    <div class="alert text-white bg-success" role="alert">
+                        <div class="iq-alert-icon">
+                            <i class="ri-alert-line"></i>
+                        </div>
+                        <div class="alert alert-danger mt-1 mb-1">
+                            {{ $message }}
+                        </div>
                         @enderror
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
