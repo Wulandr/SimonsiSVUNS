@@ -35,23 +35,24 @@
                             </div>
                             <div id="none{{ $tor[$m]->id }}">
                                 <input type="radio" name="sebel">
-
+                                <label>SPJ Selesai</label>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="cek<?= $tor[$m]->id ?>" class="form-group">
-                            <label>Unggah Bukti Transfer
-                                <br>
-                                <small style="color: darkred">
-                                    Upload bukti transfer berupa file Dokumen maupun Gambar.
-                                </small>
-                            </label>
-                            <input type="file" class="form-control-file" name="file" id="file">
-                        </div>
+                    <div id="cek<?= $tor[$m]->id ?>" class="form-group">
+                        <label>Unggah Bukti Transfer
+                            <br>
+                            <small style="color: darkred">
+                                Upload bukti transfer berupa file Dokumen maupun Gambar.
+                            </small>
+                        </label>
+                        <input type="file" class="form-control-file" name="file" id="file">
+                    </div>
 
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
                 </form>
             </div>
         </div>
