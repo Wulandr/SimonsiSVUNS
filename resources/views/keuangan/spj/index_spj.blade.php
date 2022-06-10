@@ -156,6 +156,9 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $upload ?>
+                                                <!-- MODAL - Bukti TF spj -->
+                                                @include('keuangan/spj/input_tf_spj')
+                                                @include('keuangan/spj/show_tf_spj')
                                                 <!-- MODAL - edit spj -->
                                                 @include('keuangan/spj/edit_spj')
                                                 <!-- MODAL - status spj -->
@@ -183,9 +186,7 @@
                                                 <?= $file ?>
                                             </td>
 
-                                            <!-- MODAL - Bukti TF spj -->
-                                            @include('keuangan/spj/input_tf_spj')
-                                            @include('keuangan/spj/show_tf_spj')
+
                                             <!-- MODAL - Input spj -->
                                             @include('keuangan/spj/input_spj')
                                             <?php

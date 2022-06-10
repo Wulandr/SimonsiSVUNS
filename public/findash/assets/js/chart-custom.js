@@ -10483,8 +10483,7 @@ if(jQuery('#home-perfomer-chart').length){
     if(jQuery('#iq-chart-box1').length){
     	var options = {
           series: [{
-            name: "Total Anggaran",
-            data: [10, 10, 35, 10]
+            name: "Total Anggaran"
         }],
        	  colors: ["#1e3d73"],
           chart: {
@@ -10526,7 +10525,6 @@ if(jQuery('#home-perfomer-chart').length){
     	var options = {
           series: [{
             name: "Sale Today",
-            data: [10, 10, 35, 10]
         }],
        	  colors: ["#fe517e"],
           chart: {
@@ -10568,7 +10566,6 @@ if(jQuery('#home-perfomer-chart').length){
     	var options = {
           series: [{
             name: "Total Classon",
-            data: [10, 10, 35, 10]
         }],
        	  colors: ["#99f6ca"],
           chart: {

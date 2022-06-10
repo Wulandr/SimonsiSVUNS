@@ -256,19 +256,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/spj_subkategori/update/{id}', [SPJSubKategoriController::class, 'processUpdate']);
     Route::get('/spj_subkategori/delete/{id}', [SPJSubKategoriController::class, 'delete']);
 
-    // SPJ SHOW PDF //
-    Route::get('/dasarhukumspj1', [SPJController::class, 'viewSPJfile_1']);
-    Route::get('/dasarhukumspj2', [SPJController::class, 'viewSPJfile_2']);
-    Route::get('/spj2022', [SPJController::class, 'viewSPJfile_3']);
-    Route::get('/panduankelengkapanspj2022', [SPJController::class, 'viewSPJfile_4']);
-    Route::get('/template1', [SPJController::class, 'viewSPJfile_5']);
-    Route::get('/template2a', [SPJController::class, 'viewSPJfile_6']);
-    Route::get('/template2b', [SPJController::class, 'viewSPJfile_7']);
-    Route::get('/template3', [SPJController::class, 'viewSPJfile_8']);
-    Route::get('/template4', [SPJController::class, 'viewSPJfile_9']);
-    Route::get('/template5', [SPJController::class, 'viewSPJfile_10']);
-    Route::get('/template6', [SPJController::class, 'viewSPJfile_11']);
-
     // LPJ
     Route::get('/lpj', [LPJController::class, 'index']);
     Route::post('/input_lpj', [LPJController::class, 'create']);

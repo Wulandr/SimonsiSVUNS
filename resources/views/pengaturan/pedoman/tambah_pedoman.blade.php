@@ -27,11 +27,11 @@
                     </div>
                     <div id="list" class="form-group">
                         <label>Kategori File SPJ</label>
-                        <select class="form-control">
+                        <select name="jenis" id="jenis" class="form-control">
                             <option selected="" disabled="">Pilih Kategori</option>
-                            <option name="jenis" id="jenis" value="SPJ Dasar Hukum">Dasar Hukum</option>
-                            <option name="jenis" id="jenis" value="SPJ Panduan">Panduan</option>
-                            <option name="jenis" id="jenis" value="SPJ Template">Template</option>
+                            <option value="SPJ Dasar Hukum">Dasar Hukum</option>
+                            <option value="SPJ Panduan">Panduan</option>
+                            <option value="SPJ Template">Template</option>
                         </select>
                     </div>
                     <div class="form-group">

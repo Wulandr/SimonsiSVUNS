@@ -17,10 +17,20 @@ use Illuminate\Support\Facades\Auth;
     <div id="content-page" class="content-page">
         <div class="container-fluid">
             <div class="row">
-                <?php $total_anggaran = 0; ?>
-                {{-- <?php $total_anggaran = array_sum($tor['jumlah_anggaran']); ?> --}}
-
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <?php
+                // Ambil data Jumlah Anggaran dari TOR
+                $total_anggaran = 0;
+                foreach ($tor as $data) {
+                    $total_anggaran += $data['jumlah_anggaran'];
+                }
+                
+                // Ambil data Jumlah Realisasi dari SPJ
+                $total_realisasi = 0;
+                foreach ($spj as $data) {
+                    $total_realisasi += $data['nilai_total'];
+                }
+                ?>
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
@@ -28,14 +38,14 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <p class="text-secondary">Total Anggaran</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4><b>{{ $total_anggaran }}</b></h4>
+                                <h4><b>{{ 'Rp ' . number_format($total_anggaran) }}</b></h4>
                                 <div id="iq-chart-box1"></div>
-                                <span class="text-primary"><b><i class="ri-arrow-up-fill"></i></b></span>
+                                <span class="text-primary"><b> 100.00 % <i class="ri-arrow-up-fill"></i></b></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
@@ -43,14 +53,14 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <p class="text-secondary">Total Realisasi</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4><b>45</b></h4>
+                                <h4><b>{{ 'Rp ' . number_format($total_realisasi) }}</b></h4>
                                 <div id="iq-chart-box2"></div>
                                 <span class="text-danger"><b> +0.36% <i class="ri-arrow-up-fill"></i></b></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
@@ -58,7 +68,7 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <p class="text-secondary">Total Sisa</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4><b>60</b></h4>
+                                <h4><b>{{ 'Rp ' . number_format($total_anggaran - $total_realisasi) }}</b></h4>
                                 <div id="iq-chart-box3"></div>
                                 <span class="text-warning"><b> +0.45% <i class="ri-arrow-up-fill"></i></b></span>
                             </div>
@@ -80,20 +90,23 @@ use Illuminate\Support\Facades\Auth;
                                             <th>No</th>
                                             <th>Nama Kegiatan</th>
                                             <th>Penanggungjawab</th>
-                                            <th width="10%">Anggaran</th>
-                                            <th width="10%">Realisasi</th>
-                                            <th width="10%">Sisa</th>
+                                            <th width="12%">Anggaran</th>
+                                            <th width="12%">Realisasi</th>
+                                            <th width="12%">Sisa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <?php
                                             $no = 0;
+                                            $realisai = 0;
                                             for ($m = 0; $m < count($tor); $m++) { 
-                                                $ada=0; //sudah diajukan apa belum 
-                                            $anggaran = $tor[$m]->jumlah_anggaran;
-                                            $realisasi = 0;
-                                            $sisa = $anggaran - $anggaran; ?>
+                                                $anggaran = $tor[$m]->jumlah_anggaran;
+                                                for ($s = 0; $s < count($spj); $s++) { 
+                                                    if ($spj[$s]->id_tor == $tor[$m]->id) {
+                                                        $realisasi = $spj[$s]->nilai_total;
+                                    
+                                            $sisa = $anggaran - $realisasi; ?>
 
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
                                             <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
@@ -102,7 +115,7 @@ use Illuminate\Support\Facades\Auth;
                                             <td>{{ 'Rp ' . number_format($realisasi) }}</td>
                                             <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php }}} ?>
                                     </tbody>
                                 </table>
                             </div>
