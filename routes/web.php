@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\IkuController;
 use App\Http\Controllers\LPJController;
 use App\Http\Controllers\MakController;
 use App\Http\Controllers\RabController;
+use App\Http\Controllers\RPDController;
 use App\Http\Controllers\SPJController;
 use App\Http\Controllers\TorController;
 use App\Http\Controllers\HomeController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\PedomanController;
 use App\Http\Controllers\AnggaranController;
 use App\Http\Controllers\MemoCairController;
 use App\Http\Controllers\ValidasiController;
@@ -34,8 +37,6 @@ use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
-use App\Http\Controllers\PedomanController;
-use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -226,6 +227,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // R O U T E    K E U A N G A N
 
+    //RPD
+    Route::get('/rpd', [RPDController::class, 'index']);
+    Route::get('/rpd/filtertahun', [RPDController::class, 'index']);
+
     // Memo Cair
     Route::get('/memo_cair', [MemoCairController::class, 'index']);
     Route::post('/store', [MemoCairController::class, 'store']);
@@ -235,7 +240,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/input_pk', [PersekotKerjaController::class, 'create']);
     Route::post('/persekot_kerja/validasi', [PersekotKerjaController::class, 'validasiPK']);
     Route::post('/persekot_kerja/input_buktitransfer', [PersekotKerjaController::class, 'input_transferPK']);
-
 
     // SPJ
     Route::get('/spj', [SPJController::class, 'index']);
@@ -255,19 +259,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/spj_subkategori/add', [SPJSubKategoriController::class, 'processAdd']);
     Route::post('/spj_subkategori/update/{id}', [SPJSubKategoriController::class, 'processUpdate']);
     Route::get('/spj_subkategori/delete/{id}', [SPJSubKategoriController::class, 'delete']);
-
-    // SPJ SHOW PDF //
-    Route::get('/dasarhukumspj1', [SPJController::class, 'viewSPJfile_1']);
-    Route::get('/dasarhukumspj2', [SPJController::class, 'viewSPJfile_2']);
-    Route::get('/spj2022', [SPJController::class, 'viewSPJfile_3']);
-    Route::get('/panduankelengkapanspj2022', [SPJController::class, 'viewSPJfile_4']);
-    Route::get('/template1', [SPJController::class, 'viewSPJfile_5']);
-    Route::get('/template2a', [SPJController::class, 'viewSPJfile_6']);
-    Route::get('/template2b', [SPJController::class, 'viewSPJfile_7']);
-    Route::get('/template3', [SPJController::class, 'viewSPJfile_8']);
-    Route::get('/template4', [SPJController::class, 'viewSPJfile_9']);
-    Route::get('/template5', [SPJController::class, 'viewSPJfile_10']);
-    Route::get('/template6', [SPJController::class, 'viewSPJfile_11']);
 
     // LPJ
     Route::get('/lpj', [LPJController::class, 'index']);

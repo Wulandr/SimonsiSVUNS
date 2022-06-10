@@ -2,7 +2,7 @@
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title">Ubah Pedoman SBM</h5>
+                 <h5 class="modal-title">Ubah Pedoman {{ $pedomansbm->jenis }}</h5>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                  </button>
@@ -41,7 +41,9 @@
                      </div>
                      <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                      <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                     <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                     <div class="modal-footer">
+                         <button class="btn btn-primary" type="submit">Update</button>
+                     </div>
                  </form>
              </div>
          </div>

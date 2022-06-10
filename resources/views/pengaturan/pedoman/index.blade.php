@@ -73,6 +73,7 @@ use Illuminate\Support\Facades\Auth;
                                                             echo $pedomansbm->jenis;
                                                         }
                                                         ?></td>
+
                                                     <td>{{ $pedomansbm->nama }}</td>
                                                     <td><a href="{{ asset('/pedoman/' . $pedomansbm->file) }}">{{ $pedomansbm->file }}</a>
                                                     </td>

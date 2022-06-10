@@ -42,8 +42,7 @@
                         /* IE 9 */
                         -webkit-transform: rotate(90deg);
                         /* Safari */
-                        '
-transform: rotate(90deg);
+                        transform: rotate(90deg);
                     }
 
                     .nested {
@@ -53,80 +52,56 @@ transform: rotate(90deg);
                     .active {
                         display: block;
                     }
-
                 </style>
-                </head>
 
                 <body>
                     <p>Klik untuk melihat!</p>
 
                     <ul id="myUL">
-                        <?php 
-                        foreach ($pedoman as $data){
-                        ?>
                         <li><span class="caret"><b>Dasar Hukum</b></span>
                             <ol class="nested">
-                                @if ($data->jenis == 'SPJ Dasar Hukum')
-                                    <li>
-                                        <a href="{{ asset('/pedoman/' . $data->file) }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <?= $data->nama ?>
-                                        </a>
-                                    </li>
-                                @endif
+                                @foreach ($pedoman as $data)
+                                    @if ($data->jenis == 'SPJ Dasar Hukum')
+                                        <li>
+                                            <a href="{{ asset('/pedoman/' . $data->file) }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <?= $data->nama ?>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ol>
                         </li>
                         <li><span class="caret"><b>Panduan SPJ</b></span>
                             <ol class="nested">
-                                <li>
-                                    <a href="{{ 'spj2022' }}" target="_blank" rel="noopener noreferrer">
-                                        SPJ 2022</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'panduankelengkapanspj2022' }}" target="_blank"
-                                        rel="noopener noreferrer">
-                                        Panduan Kelengkapan SPJ 2022</a>
-                                </li>
+                                @foreach ($pedoman as $data)
+                                    @if ($data->jenis == 'SPJ Panduan')
+                                        <li>
+                                            <a href="{{ asset('/pedoman/' . $data->file) }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <?= $data->nama ?>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ol>
                         </li>
                         <li><span class="caret"><b>Template SPJ</b></span>
                             <ol class="nested">
-                                <li>
-                                    <a href="{{ 'template1' }}" target="_blank" rel="noopener noreferrer">
-                                        Daftar Hadir dan Tanda Terima</a>
-                                </li>
-                                <li><span class="caret">Format Kwitansi</span>
-                                    <ul class="nested">
+                                @foreach ($pedoman as $data)
+                                    @if ($data->jenis == 'SPJ Template')
                                         <li>
-                                            <a href="{{ 'template2a' }}" target="_blank" rel="noopener noreferrer">
-                                                Kwitansi Belanja Barang dan Jasa kurang 10jt (Dengan nota, struk, bukti
-                                                pembelian)</a>
+                                            <a href="{{ asset('/pedoman/' . $data->file) }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <?= $data->nama ?>
+                                            </a>
                                         </li>
-                                        <li>
-                                            <a href="{{ 'template2b' }}" target="_blank" rel="noopener noreferrer">
-                                                Kwitansi Belanja Barang dan Jasa kurang 10jt</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ 'template3' }}" target="_blank" rel="noopener noreferrer">
-                                        Kwitansi Bantuan Transport</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'template4' }}" target="_blank" rel="noopener noreferrer">
-                                        Kwitansi Honor, bantuan transport, uang pembinaan 1 ORANG</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'template5' }}" target="_blank" rel="noopener noreferrer">
-                                        Kwitansi Honor Lebih 1 ORANG</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'template6' }}" target="_blank" rel="noopener noreferrer">
-                                        Kwitansi SPPD</a>
-                                </li>
+                                    @endif
+                                @endforeach
                             </ol>
                         </li>
-                        <?php } ?>
+
+
                     </ul>
 
                     <script>

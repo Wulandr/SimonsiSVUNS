@@ -106,7 +106,10 @@
                                                                 @if ($b->kategori == 'LPJ')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'LPJ Selesai')
+                                                                    @if ($b->nama_status == 'Revisi')
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-secondary" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-comment"></i></span><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'LPJ Selesai')
                                                                         <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
                                                                         ?>
                                                                     @endif
@@ -151,7 +154,6 @@
                                                 <!-- MODAL - Detail LPJ -->
                                                 @include('keuangan/lpj/detail_lpj')
                                             </td>
-
                                             <!-- MODAL - Input LPJ -->
                                             @include('keuangan/lpj/input_lpj')
                                             <?php

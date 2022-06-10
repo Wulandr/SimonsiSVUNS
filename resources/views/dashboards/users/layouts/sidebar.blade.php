@@ -137,6 +137,12 @@
                                 <div role="status" class="spinner-grow spinner-grow-sm text-info"></div>
                             </a>
                         </li>
+                        <li class="{{ Request::is('rpd') ? 'active' : '' }}">
+                            <a href="{{ url('/rpd') }}"><i class="las la-calculator" data-toggle="tooltip"
+                                    data-placement="right" title="RPD"></i>RPD
+                                <div role="status" class="spinner-grow spinner-grow-sm text-info"></div>
+                            </a>
+                        </li>
                         <li class="{{ Request::is('Pedoman') ? 'active' : '' }}">
                             <a href="{{ url('/pedomans') }}"><i class="las la-folder" data-toggle="tooltip"
                                     data-placement="right" title="Pedoman"></i>Pedoman
