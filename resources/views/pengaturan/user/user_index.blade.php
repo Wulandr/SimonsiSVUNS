@@ -22,9 +22,9 @@
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
-                                    <div class="card-body">
-                                        <div class="table-responsive table-invoice">
-                                            <table id="myusers" class="table table-striped">
+                                    <div class="table-responsive table-invoice">
+                                        <table id="myusers" class="table table-striped">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th>No.</th>
                                                     <th>Nama</th>
@@ -34,6 +34,8 @@
                                                     <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
                                                 <?php $num = 1; ?>
                                                 @foreach($user as $u)
                                                 <tr>
@@ -86,8 +88,8 @@
                                                 </tr>
                                                 <?php $num += 1; ?>
                                                 @endforeach
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

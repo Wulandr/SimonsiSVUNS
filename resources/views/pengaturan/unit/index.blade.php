@@ -22,8 +22,12 @@ use Illuminate\Support\Facades\Auth;
                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
-                                        <h4 class="card-title">UNIT <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah UNIT" data-original-title="Tambah UNIT" data-target="#tambahunit"><i class="fa fa-plus-circle"></i>
-                                            </button></h4>
+                                        <h4 class="card-title">UNIT
+                                            @can('unit_create')
+                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah UNIT" data-original-title="Tambah UNIT" data-target="#tambahunit"><i class="fa fa-plus-circle"></i>
+                                            </button>
+                                            @endcan
+                                        </h4>
                                         <!-- Modal Tambah UNIT -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="tambahunit">
                                             <div class="modal-dialog" role="document">

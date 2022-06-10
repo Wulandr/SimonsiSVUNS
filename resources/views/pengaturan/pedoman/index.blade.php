@@ -64,7 +64,7 @@ use Illuminate\Support\Facades\Auth;
                                             <tbody>
                                                 <?php $i = 1; ?>
                                                 @foreach ($pedoman as $pedomansbm)
-                                                <<<<<<< Updated upstream <tr>
+                                                <tr>
                                                     <td>{{ $i }}</td>
                                                     <td><?php $pedomansbm->jenis;
                                                         if ($pedomansbm->jenis == 'SBM') {
@@ -85,11 +85,11 @@ use Illuminate\Support\Facades\Auth;
                                                             </a>
                                                         </div>
                                                     </td>
-                                                    </tr>
-                                                    <!-- Modal Edit Pedoman -->
-                                                    @include('pengaturan.pedoman.edit_pedoman')
-                                                    <?php $i += 1; ?>
-                                                    @endforeach
+                                                </tr>
+                                                <!-- Modal Edit Pedoman -->
+                                                @include('pengaturan.pedoman.edit_pedoman')
+                                                <?php $i += 1; ?>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
