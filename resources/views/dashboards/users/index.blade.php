@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Auth;
                 
                 // Ambil data Jumlah Realisasi dari SPJ
                 $total_realisasi = 0;
-                foreach ($spj as $data) {
-                    $total_realisasi += $data['nilai_total'];
+                foreach ($spj as $nilai) {
+                    $total_realisasi += $nilai['nilai_total'];
                 }
                 ?>
                 <div class="col-sm-6 col-md-6 col-lg-4">

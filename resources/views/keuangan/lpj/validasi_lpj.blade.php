@@ -13,27 +13,27 @@
                     @csrf
                     @for ($s = 0; $s < count($status_keu); $s++)
                         @if ($status_keu[$s]->kategori == 'LPJ')
-                            @if ($status_keu[$s]->nama_status == 'Proses Pengajuan')
+                            @if ($status_keu[$s]->nama_status === 'Proses Pengajuan')
                                 <div onclick="pengajuan()"
                                     class="custom-control custom-radio custom-radio-color-checked">
                                     <input type="radio" name="id_status" id="id_status"
                                         value="{{ $status_keu[$s]->id }}">
                                     <label class=""> Proses Pengajuan </label>
                                 </div>
-                            @elseif ($status_keu[$s]->nama_status == 'Revisi')
+                            @elseif ($status_keu[$s]->nama_status === 'Revisi')
                                 <div class="custom-control custom-radio custom-radio-color-checked ">
                                     <input onclick="revisi()" type="radio" name="id_status" id="id_status"
                                         value="{{ $status_keu[$s]->id }}">
                                     <label class=""> Revisi </label>
                                 </div>
-                            @elseif ($status_keu[$s]->nama_status == 'Verifikasi')
+                            @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
                                 <div onclick="verifikasi()"
                                     class="custom-control custom-radio custom-radio-color-checked">
                                     <input type="radio" name="id_status" id="id_status"
                                         value="{{ $status_keu[$s]->id }}">
                                     <label class=""> Verifikasi </label>
                                 </div>
-                            @elseif ($status_keu[$s]->nama_status == 'LPJ Selesai')
+                            @elseif ($status_keu[$s]->nama_status === 'LPJ Selesai')
                                 <div onclick="lpjselesai()"
                                     class="custom-control custom-radio custom-radio-color-checked">
                                     <input type="radio" name="id_status" id="id_status" value="11">
@@ -42,7 +42,7 @@
                             @endif
                         @endif
                     @endfor
-                    <div id="revisilpj" class="form-group">
+                    <div id="revisilpj" style="display: none" class="form-group">
                         <label for="exampleFormControlTextarea1">Catatan Revisi SPJ :</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>

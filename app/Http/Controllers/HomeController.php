@@ -20,11 +20,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $role = DB::table('roles')->where('id', Auth()->user()->role)->first();

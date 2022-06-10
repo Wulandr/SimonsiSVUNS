@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\IkuController;
 use App\Http\Controllers\LPJController;
 use App\Http\Controllers\MakController;
 use App\Http\Controllers\RabController;
+use App\Http\Controllers\RPDController;
 use App\Http\Controllers\SPJController;
 use App\Http\Controllers\TorController;
 use App\Http\Controllers\HomeController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\PedomanController;
 use App\Http\Controllers\AnggaranController;
 use App\Http\Controllers\MemoCairController;
 use App\Http\Controllers\ValidasiController;
@@ -34,8 +37,6 @@ use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
-use App\Http\Controllers\PedomanController;
-use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -226,6 +227,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // R O U T E    K E U A N G A N
 
+    //RPD
+    Route::get('/rpd', [RPDController::class, 'index']);
+    Route::get('/rpd/filtertahun', [RPDController::class, 'index']);
+
     // Memo Cair
     Route::get('/memo_cair', [MemoCairController::class, 'index']);
     Route::post('/store', [MemoCairController::class, 'store']);
@@ -235,7 +240,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/input_pk', [PersekotKerjaController::class, 'create']);
     Route::post('/persekot_kerja/validasi', [PersekotKerjaController::class, 'validasiPK']);
     Route::post('/persekot_kerja/input_buktitransfer', [PersekotKerjaController::class, 'input_transferPK']);
-
 
     // SPJ
     Route::get('/spj', [SPJController::class, 'index']);
