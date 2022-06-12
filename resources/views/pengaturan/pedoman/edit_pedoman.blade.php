@@ -8,8 +8,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="form-horizontal" enctype="multipart/form-data" method="post"
-                     action="{{ url('/pedomans/update/' . $pedomansbm->id) }}">
+                 <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('/pedomans/update/' . $pedomansbm->id) }}">
                      @csrf
                      <div class="form-group">
                          <label>Jenis</label>
@@ -21,21 +20,17 @@
                      </div>
                      <div class="form-group">
                          <label>Nama File</label>
-                         <input name="nama" value="{{ old('nama', $pedomansbm->nama) }}" id="nama" type="text"
-                             class="form-control">
+                         <input name="nama" value="{{ old('nama', $pedomansbm->nama) }}" id="nama" type="text" class="form-control">
                      </div>
                      <div class="form-group">
                          <label>Tahun File</label>
-                         <input name="tahun" value="{{ old('tahun', $pedomansbm->tahun) }}" id="tahun" type="text"
-                             class="form-control">
+                         <input name="tahun" value="{{ old('tahun', $pedomansbm->tahun) }}" id="tahun" type="text" class="form-control">
                      </div>
                      <div class="form-group">
                          <label>File</label>
-                         <input type="file" class="form-control-file" name="file" id="file" value="{{ old('file') }}"
-                             required>
+                         <input type="file" class="form-control-file" name="file" id="file" value="{{ old('file') }}">
                          <small>File yang sudah diupload:
-                             <a class="text-primary" href="{{ asset('pedoman/' . $pedomansbm->file) }}"
-                                 target="_blank"><?= $pedomansbm->file ?></a>
+                             <a class="text-primary" href="{{ asset('pedoman/' . $pedomansbm->file) }}" target="_blank"><?= $pedomansbm->file ?></a>
                          </small>
 
                      </div>

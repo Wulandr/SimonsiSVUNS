@@ -53,7 +53,12 @@ use Illuminate\Support\Facades\Auth;
             <ul class="navbar-nav ml-auto navbar-list">
                 <li class="line-height">
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                        <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php if (empty(Auth::user()->image) || Auth::user()->image == 'NULL') { ?>
+                            <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php } ?>
+                        <?php if (!empty(Auth::user()->image)) { ?>
+                            <img src="{{ asset('imageprofil/'.Auth::user()->image) }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php } ?>
                         <div class="caption">
                             <?php if (!empty(Auth::user()->name)) { ?>
                                 <h6 class="mb-0 line-height" style="color:white"><?= Auth::user()->name ?></h6>
@@ -90,7 +95,7 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
                                     </div>
                                 </a>
-                                <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
+                                <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-profile-line"></i>

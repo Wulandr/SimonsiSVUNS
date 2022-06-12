@@ -64,7 +64,7 @@ use Illuminate\Support\Facades\Auth;
                                     <div class="iq-card shadow-none m-0">
                                         <div class="iq-card-body p-0 ">
                                             <div class="bg-primary p-3">
-                                                <h5 class="mb-0 text-white">Notifikasi Pengajuan Kegiatan<small class="badge  badge-light float-right pt-1">..</small></h5>
+                                                <h5 class="mb-0 text-white">Notifikasi Pengajuan Kegiatan<small class="badge  badge-light float-right pt-1"></small></h5>
                                             </div>
                                             <?php
                                             $idtor = 0;
@@ -123,7 +123,12 @@ use Illuminate\Support\Facades\Auth;
                                                                                             <a href="{{url('/detailtor/'.$tor2->id)}}" class="iq-sub-card">
                                                                                                 <div class="media align-items-center">
                                                                                                     <div class="media-body">
-                                                                                                        <h6>{{$s1." - ".$tor2->nama_kegiatan." "}}
+                                                                                                        <h6><?php foreach ($unit as $unitTor) {
+                                                                                                                if ($tor2->id_unit == $unitTor->id) { ?>
+                                                                                                                    <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
+                                                                                                            <?php }
+                                                                                                            } ?>
+                                                                                                            {{$tor2->nama_kegiatan." "}}
                                                                                                         </h6>
                                                                                                         <small class="badge badge-warning">{{$sts3->nama_status." ".$r->name}}</small>
                                                                                                         <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
@@ -159,7 +164,12 @@ use Illuminate\Support\Facades\Auth;
             <ul class="navbar-nav ml-auto navbar-list">
                 <li class="line-height">
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                        <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php if (empty(Auth::user()->image) || Auth::user()->image == 'NULL') { ?>
+                            <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php } ?>
+                        <?php if (!empty(Auth::user()->image)) { ?>
+                            <img src="{{ asset('imageprofil/'.Auth::user()->image) }}" class="img-fluid rounded mr-3" alt="user">
+                        <?php } ?>
                         <div class="caption">
                             <?php if (!empty(Auth::user()->name)) { ?>
                                 <h6 class="mb-0 line-height" style="color:white"><?= Auth::user()->name ?></h6>
@@ -196,7 +206,7 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
                                     </div>
                                 </a>
-                                <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
+                                <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-profile-line"></i>

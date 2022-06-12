@@ -73,6 +73,8 @@ Route::group(['prefix' => 'sv', 'middleware' =>  ['IsProdi', 'auth', 'PreventBac
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/profil', [ProfilController::class, 'profil']);
+
     Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show');
     Route::get('roles_create', [RoleController::class, 'create'])->name('roles.create');
@@ -90,7 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/delete/{user}', [UserController::class, 'delete'])->name('user.delete');
     Route::get('roles/detail/{user}', [UserController::class, 'show'])->name('user.detail');
 
-    Route::get('/profil', [ProfilController::class, 'profil']);
     Route::post('/profil/update/{id}', [ProfilController::class, 'editprofil'])->name('profil.update');
     Route::post('/profil/changepassword/{id}', [ProfilController::class, 'editpassword'])->name('profil.changepassword');
 

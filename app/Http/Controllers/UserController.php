@@ -167,12 +167,12 @@ class UserController extends Controller
         DB::beginTransaction();
         // dd($assignrole);
 
-
         try {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password =  $request->password;
             $user->role = $request->role;
+            // $user->image   = $nama_file;
             $user->syncRoles($assignrole);
             $user->save();
             //allert

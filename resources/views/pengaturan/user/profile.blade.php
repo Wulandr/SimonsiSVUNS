@@ -57,11 +57,12 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="form-group row align-items-center">
                                                 <div class="col-md-12">
                                                     <div class="profile-img-edit">
-                                                        <img class="profile-pic" src="images/user/11.png" alt="profile-pic">
-                                                        <div class="p-image">
-                                                            <i class="ri-pencil-line upload-button"></i>
-                                                            <input class="file-upload" type="file" accept="image/*" />
-                                                        </div>
+                                                        <?php if (!empty(Auth::user()->image)) { ?>
+                                                            <img class="profile-pic" src="{{asset('imageprofil/'.Auth::user()->image)}}" alt="profile-pic" width="110" height="130">
+                                                        <?php } ?>
+                                                        <?php if (empty(Auth::user()->image)  || Auth::user()->image == 'NULL') {  ?>
+                                                            <img class="profile-pic" src="{{asset('findash/assets/images/user/1.jpg')}}" alt="profile-pic" width="110" height="130">
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,20 +108,38 @@ use Illuminate\Support\Facades\Auth;
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form class="form-horizontal" method="post" action="{{ route('profil.update',['id'=>Auth::user()->id]) }}">
+                                            <form class="form-horizontal" method="post" action="{{ route('profil.update',['id'=>Auth::user()->id]) }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group row align-items-center">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-12 ml-3">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="images/user/11.png" alt="profile-pic">
-                                                            <div class="p-image">
-                                                                <i class="ri-pencil-line upload-button"></i>
-                                                                <input class="file-upload" type="file" accept="image/*" />
-                                                            </div>
+                                                            <?php if (!empty(Auth::user()->image)) { ?>
+                                                                <img class="profile-pic" src="{{asset('imageprofil/'.Auth::user()->image)}}" alt="profile-pic" width="110" height="130">
+                                                            <?php } ?>
+                                                            <?php if (empty(Auth::user()->image)  || Auth::user()->image == 'NULL') {  ?>
+                                                                <img class="profile-pic" src="{{asset('findash/assets/images/user/1.jpg')}}" alt="profile-pic" width="110" height="130">
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class=" row align-items-center">
+                                                <div class=" row align-items-center mb-5">
+                                                    <div class="form-group col-sm-6 ml-3">
+                                                        <label for="fname">Foto :</label>
+                                                        <input type="file" class="form-control-file" name="file" id="file" required>
+                                                        @error('file')
+                                                        <div class="alert text-white bg-success" role="alert">
+                                                            <div class="iq-alert-icon">
+                                                                <i class="ri-alert-line"></i>
+                                                            </div>
+                                                            <div class="alert alert-danger mt-1 mb-1">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                            <div class="invalid-feedback">
+                                                                Tolong tambahkan file sebelum submit!
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="fname">Nama:</label>
                                                         <input type="text" class="form-control" id="name" name="name" value="{{old('name',Auth::user()->name)}}">
@@ -131,16 +150,17 @@ use Illuminate\Support\Facades\Auth;
                                                     </div> -->
                                                     <div class="form-group col-sm-6">
                                                         <label for="fname">NIP/NIK/NIM:</label>
-                                                        <input type="text" class="form-control" id="nip" name="nip" value="{{old('nip',Auth::user()->nip)}}">{{Auth::user()->nip}}
+                                                        <input type="text" class="form-control" id="nip" name="nip" value="{{old('nip',Auth::user()->nip)}}">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="cname">Email:</label>
                                                         <input type="text" class="form-control" id="email" name="email" value="{{old('email',Auth::user()->email)}}">
                                                     </div>
                                                     <input type="hidden" id="id" value="{{Auth::user()->id}}">
+                                                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                                                    <button type="reset" class="btn iq-bg-danger">Cancel</button>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancel</button>
+                                                <br />
                                             </form>
                                         </div>
                                     </div>

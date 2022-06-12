@@ -49,22 +49,38 @@ class PedomanController extends Controller
         $filepedoman = Pedoman::where('id', $id)->first();
         File::delete('pedoman/' . $filepedoman->file);
 
-        $file           = $request->file('file');
-        //mengambil nama file
-        $nama_file      = $file->getClientOriginalName();
+        if (!empty($request->file)) {
+            $file           = $request->file('file');
+            //mengambil nama file
+            $nama_file      = $file->getClientOriginalName();
+            $file->move('pedoman', $file->getClientOriginalName());
+        }
+        if (empty($request->file)) {
+            $nama_file      = Pedoman::all()->where('id', $id)->get('file');
+        }
         $nama          = $request->nama;
         $jenis          = $request->jenis;
         $tahun          = $request->tahun;
         //memindahkan file ke folder tujuan
-        $file->move('pedoman', $file->getClientOriginalName());
 
-        $process = Pedoman::findOrFail($id)->update([
-            'nama'  => $nama,
-            'file'  => $nama_file,
-            'tahun'  => $tahun,
-            'path'  => $nama_file,
-            'jenis' => $jenis,
-        ]);
+        if (!empty($request->file)) {
+            $process = Pedoman::findOrFail($id)->update([
+                'nama'  => $nama,
+                'file'  => $nama_file,
+                'tahun'  => $tahun,
+                'path'  => $nama_file,
+                'jenis' => $jenis,
+            ]);
+        }
+        if (empty($request->file)) {
+            $process = Pedoman::findOrFail($id)->update([
+                'nama'  => $nama,
+                'tahun'  => $tahun,
+                'jenis' => $jenis,
+            ]);
+        }
+
+
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
         } else {

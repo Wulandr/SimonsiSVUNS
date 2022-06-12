@@ -36,12 +36,29 @@ class ProfilController extends Controller
     public function editprofil(Request $request)
     {
         $request->validate([]);
-        $process =  DB::table('users')->where('id', $request->id)->update($request->except('_token', 'password'));
+
+        $file           = $request->file('file');
+        //mengambil nama file
+        $nama_file      = $file->getClientOriginalName();
+        $file->move('imageprofil', $file->getClientOriginalName());
+
+        // $process =  DB::table('users')->where('id', $request->id)->update($request->except('_token', 'password'));
+        $process = User::where('id', Auth()->user()->id)->update([
+            'id_unit'  => Auth()->user()->id_unit,
+            'name'  => $request->name,
+            'email'  => $request->email,
+            'role'  => Auth()->user()->role,
+            'nip'  => $request->nip,
+            'image'  => $nama_file,
+        ]);
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
+            // return $nama_file;
         } else {
+            // return $request->all();
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
+        // return $nama_file;
     }
     public function editpassword(Request $request, User $user)
     {

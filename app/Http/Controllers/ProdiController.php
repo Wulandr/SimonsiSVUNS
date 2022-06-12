@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User as Usernya;
 use App\Models\Unit;
 use App\Models\Tor;
+use App\Models\SPJ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,9 +31,10 @@ class ProdiController extends Controller
         $user = Usernya::all()->where('id', Auth()->user()->id)->first()->syncRoles($assignrole);
         $unit = Unit::all();
         $tor = Tor::all();
+        $spj = SPJ::all();
         // dd($user->roles);
 
         $userrole = Usernya::join();
-        return view('dashboards.users.index', ['userrole' => $userrole, 'unit' => $unit, 'tor' => $tor]);
+        return view('dashboards.users.index', ['userrole' => $userrole, 'unit' => $unit, 'tor' => $tor, 'spj' => $spj]);
     }
 }
