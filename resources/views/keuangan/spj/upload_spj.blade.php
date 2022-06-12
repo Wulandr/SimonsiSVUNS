@@ -48,15 +48,17 @@
                                             aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
 
                                             <form class="needs-validation" enctype="multipart/form-data" method="post"
-                                                action="">
+                                                action="{{ url('/upload_spj/tambah_files') }}">
+                                                @csrf
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
                                                         <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
                                                     </h5>
-                                                    <table class="table">
-                                                        <?php $no = 1;
+                                                    <?php $no = 1;
                                                             for ($b = 0; $b < count($spj_subkategori); $b++) {
                                                                 if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
+                                                    <p>{!! $spj_subkategori[$a]->catatan !!}</p>
+                                                    <table class="table">
                                                         <tr class="form-group">
                                                             <td>{{ $no }}</td>
                                                             <td style="width: 65%" style="width: 65%">
@@ -65,8 +67,11 @@
                                                                 </label>
                                                             </td>
                                                             <td>
-                                                                <input type="file" class="form-control-file"
-                                                                    id="exampleFormControlFile1" required>
+                                                                <input type="file" class="form-control-file" name="file"
+                                                                    id="file" required>
+                                                                <input type="hidden" class="form-control-file"
+                                                                    name="id_subkategori" id="id_subkategori"
+                                                                    value="{{ $spj_subkategori[$b]->id }}">
                                                             </td>
                                                         </tr>
                                                         <?php $no += 1;
@@ -74,13 +79,13 @@
                                                             } ?>
                                                     </table>
                                                 </div>
-                                                <div class="float-right mb-3 mr-2">
-                                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                                </div>
-                                            </form>
                                         </div>
                                         <?php
                                         } ?>
+                                        <div class="float-right mb-3 mr-2">
+                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

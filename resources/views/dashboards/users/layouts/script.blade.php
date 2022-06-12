@@ -33,7 +33,7 @@
 </head>
 
 <body class="sidebar-main" style="background-image: url('findash/assets/images/wave.svg');background-repeat:no-repeat">
-    <div id="container-inside">
+    {{-- <div id="container-inside">
         <div class="cube"></div>
         <div class="cube"></div>
         <div class="cube"></div>
@@ -41,4 +41,4 @@
         <div class="cube"></div>
         <div class="cube"></div>
         <div class="cube"></div>
-    </div>
+    </div> --}}

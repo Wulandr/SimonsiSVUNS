@@ -165,7 +165,7 @@ class RoleController extends Controller
             //alert
 
             if ($role) {
-                return redirect('role')->with("success", "Data berhasil diupdate");
+                return redirect('roles')->with("success", "Data berhasil diupdate");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }

@@ -181,4 +181,30 @@ class SPJController extends Controller
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }
      }
+     public function addFile(Request $request)
+     {
+          $request->validate([]);
+
+          //mengambil data file yang diupload
+          $file           = $request->file('file');
+          //mengambil nama file
+          $nama_file      = $file->getClientOriginalName();
+          $id_subkategori = $request->id_subkategori;
+          //memindahkan file ke folder tujuan
+          $file->move('document_spj', $file->getClientOriginalName());
+
+          $uploadspj         = new DokumenSPJ;
+          $uploadspj->name   = $nama_file;
+          $uploadspj->path   = $nama_file;
+          $uploadspj->id_subkategori  = $id_subkategori;
+
+          //menyimpan data ke database
+          $uploadspj->save();
+
+          if ($uploadspj) {
+               return redirect()->back()->with("success", "Data berhasil ditambahkan");
+          } else {
+               return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+          }
+     }
 }

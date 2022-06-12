@@ -99,23 +99,34 @@ use Illuminate\Support\Facades\Auth;
                                         <tr>
                                             <?php
                                             $no = 0;
-                                            $realisai = 0;
+                                            $realisasi = 0;
                                             for ($m = 0; $m < count($tor); $m++) { 
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
-                                                for ($s = 0; $s < count($spj); $s++) { 
-                                                    if ($spj[$s]->id_tor == $tor[$m]->id) {
-                                                        $realisasi = $spj[$s]->nilai_total;
-                                    
-                                            $sisa = $anggaran - $realisasi; ?>
-
+                                                
+                                                // for ($s = 0; $s < count($spj); $s++) {
+                                                //     if ($spj[$s]->id_tor == $tor[$z]->id) {
+                                                // $realisasi = $spj[$s]->nilai_total; 
+                                            ?>
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
                                             <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}</td>
+
+                                            <?php
+                                            foreach ($spj as $nominal) {
+                                                if ($tor[$m]->id == $nominal->id_tor) {
+                                                    $realisasi = $nominal->nilai_total;
+                                                    
+                                                } else {
+                                                    $realisasi;
+                                                }
+                                            $sisa = $anggaran - $realisasi; 
+                                            ?>
+
                                             <td>{{ 'Rp ' . number_format($realisasi) }}</td>
                                             <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                         </tr>
-                                        <?php }}} ?>
+                                        <?php }} ?>
                                     </tbody>
                                 </table>
                             </div>

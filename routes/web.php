@@ -231,6 +231,7 @@ Route::group(['middleware' => 'auth'], function () {
     //RPD
     Route::get('/rpd', [RPDController::class, 'index']);
     Route::get('/rpd/filtertahun', [RPDController::class, 'index']);
+    // Route::get('/getkelompokMak/{id}', [AnggaranController::class, 'getKelompokMak']);
 
     // Memo Cair
     Route::get('/memo_cair', [MemoCairController::class, 'index']);
@@ -246,6 +247,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/spj', [SPJController::class, 'index']);
     Route::post('/input_spj', [SPJController::class, 'create']);
     Route::get('/upload_spj', [SPJController::class, 'uploadSpj']);
+    Route::post('/upload_spj/tambah_files', [SPJController::class, 'addFile']);
     Route::post('/spj/validasi', [SPJController::class, 'validasiSpj']);
     Route::post('/spj/input_buktitransfer', [SPJController::class, 'input_transferSpj']);
 

@@ -28,6 +28,7 @@ class SPJSubKategoriController extends Controller
         $inserting = SPJSubKategori::create([
             'id_kategori' => $request->id_kategori,
             'nama_subkategori' => $request->nama_subkategori,
+            'catatan' => $request->catatan,
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at,
         ]);

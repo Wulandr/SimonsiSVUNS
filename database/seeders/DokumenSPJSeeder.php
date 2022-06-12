@@ -16,11 +16,10 @@ class DokumenSPJSeeder extends Seeder
     {
         DB::table('dokumen_spj')->insert([
             [
-                'id'=>1,
-                'id_tor'=>1,
-                'jenis'=>'SPJ',
-                'name'=>'aa.png',
-                'path'=>'aa.png'
+                'id' => 1,
+                'id_subkategori' => 1,
+                'name' => 'Profile.pdf',
+                'path' => 'Profile.pdf'
             ]
         ]);
     }

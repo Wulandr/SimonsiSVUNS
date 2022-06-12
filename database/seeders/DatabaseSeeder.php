@@ -2,7 +2,14 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\LPJSeeder;
+use Database\Seeders\RPDSeeder;
+use Database\Seeders\SPJSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PedomanSeeder;
+use Database\Seeders\DokumenSPJSeeder;
+use Database\Seeders\SPJKategoriSeeder;
+use Database\Seeders\SPJSubKategoriSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,6 +49,14 @@ class DatabaseSeeder extends Seeder
             Status_KeuSeeder::class,
             PersekotKerjaSeeder::class,
             TrxStatusKeuSeeder::class,
+            LPJSeeder::class,
+            SPJSeeder::class,
+            PedomanSeeder::class,
+            RPDSeeder::class,
+            SPJKategoriSeeder::class,
+            SPJSubKategoriSeeder::class,
+            DokumenSPJSeeder::class,
+
 
         ]);
         $this->command->info('| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |');
