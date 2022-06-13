@@ -112,21 +112,22 @@ use Illuminate\Support\Facades\Auth;
                                             <td>{{ $tor[$m]->nama_pic }}</td>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}</td>
 
-                                            <?php
-                                            foreach ($spj as $nominal) {
-                                                if ($tor[$m]->id == $nominal->id_tor) {
-                                                    $realisasi = $nominal->nilai_total;
-                                                    
-                                                } else {
-                                                    $realisasi;
-                                                }
-                                            $sisa = $anggaran - $realisasi; 
-                                            ?>
 
-                                            <td>{{ 'Rp ' . number_format($realisasi) }}</td>
-                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
+                                            @foreach ($spj as $nominal)
+                                                @if ($tor[$m]->id == $nominal->id_tor)
+                                                    <?php $realisasi = $nominal->nilai_total; ?>
+                                                    <td>{{ 'Rp ' . number_format($realisasi) }}</td>
+                                                    <?php $sisa = $anggaran - $realisasi; ?>
+                                                    <td>{{ 'Rp ' . number_format($sisa) }}</td>
+                                                @else
+                                                    <td>{{ 'Rp ' . number_format($realisasi = 0) }}</td>
+                                                    <?php $sisa = 0; ?>
+                                                    <td>{{ 'Rp ' . number_format($sisa) }}</td>
+                                                @endif
+
                                         </tr>
-                                        <?php }} ?>
+                                        @endforeach
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

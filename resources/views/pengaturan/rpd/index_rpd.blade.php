@@ -75,20 +75,32 @@
                                             <thead class="thead-light text-center">
                                                 <tr>
                                                     <th>No.</th>
+                                                    <th scope="col">Prodi</th>
                                                     <th scope="col">Tahun</th>
-                                                    <th scope="col">Pagu</th>
-                                                    <th scope="col">RPD Triwulan 1</th>
-                                                    <th scope="col">RPD Triwulan 2</th>
-                                                    <th scope="col">RPD Triwulan 3</th>
-                                                    <th scope="col">RPD Triwulan 4</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col" style="width: 12%">Pagu</th>
+                                                    <th scope="col" style="width: 12%">RPD Triwulan 1</th>
+                                                    <th scope="col" style="width: 12%">RPD Triwulan 2</th>
+                                                    <th scope="col" style="width: 12%">RPD Triwulan 3</th>
+                                                    <th scope="col" style="width: 12%">RPD Triwulan 4</th>
+                                                    <th scope="col" style="width: 8%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center">
                                                 <?php $num = 1; ?>
-                                                <?php for ($a = 0; $a < count($pagu); $a++) { ?>
+                                                <?php 
+                                                for ($a = 0; $a < count($pagu); $a++) { 
+                                                    for ($z = 0; $z < count($rpd); $z++) {
+                                                        if ($rpd[$z]->id_pagu == $pagu[$a]->id)
+                                                ?>
                                                 <tr>
                                                     <td><a href="#">{{ $num }}</a></td>
+                                                    <td class="text-left">
+                                                        <?php for ($b = 0; $b < count($unit2); $b++) {
+                                                            if ($unit2[$b]->id == $pagu[$a]->id_unit) {
+                                                                echo $unit2[$b]->nama_unit;
+                                                            }
+                                                        } ?>
+                                                    </td>
                                                     <td>
                                                         <?php for ($c = 0; $c < count($tabeltahun); $c++) {
                                                             if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun) {
@@ -96,15 +108,15 @@
                                                             }
                                                         } ?>
                                                     </td>
-                                                    <td>{{ 'Rp. ' . number_format($pagu[$a]->pagu, 2, ',', '.') }}
+                                                    <td>{{ 'Rp ' . number_format($pagu[$a]->pagu) }}
                                                     </td>
-                                                    <td>{{ 'Rp. ' . number_format($pagu[$a]->pagu, 2, ',', '.') }}
+                                                    <td>{{ 'Rp ' . number_format($rpd[$z]->tw_1) }}
                                                     </td>
-                                                    <td>{{ 'Rp. ' . number_format($pagu[$a]->pagu, 2, ',', '.') }}
+                                                    <td>{{ 'Rp ' . number_format($rpd[$z]->tw_2) }}
                                                     </td>
-                                                    <td>{{ 'Rp. ' . number_format($pagu[$a]->pagu, 2, ',', '.') }}
+                                                    <td>{{ 'Rp ' . number_format($rpd[$z]->tw_3) }}
                                                     </td>
-                                                    <td>{{ 'Rp. ' . number_format($pagu[$a]->pagu, 2, ',', '.') }}
+                                                    <td>{{ 'Rp ' . number_format($rpd[$z]->tw_4) }}
                                                     </td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
@@ -180,7 +192,7 @@
                                                     </div>
                                                 </div>
                                                 <?php $num += 1; ?>
-                                                <?php } ?>
+                                                <?php }} ?>
                                             </tbody>
                                         </table>
                                     </div>

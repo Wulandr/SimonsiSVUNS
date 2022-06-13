@@ -21,8 +21,8 @@
                                     <label class=""> Proses Pengajuan </label>
                                 </div>
                             @elseif ($status_keu[$s]->nama_status === 'Revisi')
-                                <div class="custom-control custom-radio custom-radio-color-checked ">
-                                    <input onclick="revisi()" type="radio" name="id_status" id="id_status"
+                                <div onclick="revisi()" class="custom-control custom-radio custom-radio-color-checked ">
+                                    <input type="radio" name="id_status" id="id_status"
                                         value="{{ $status_keu[$s]->id }}">
                                     <label class=""> Revisi </label>
                                 </div>

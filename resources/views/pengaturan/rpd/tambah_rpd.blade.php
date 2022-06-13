@@ -13,12 +13,6 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0">Prodi</label>
                         <div class="col-sm-7">
-                            {{-- <select name="id_unit" id="id_unit" class="form-control">
-                                @foreach ($unit2 as $unit)
-                                    <option value="{{ $unit->id }}">
-                                        {{ $unit->nama_unit }}</option>
-                                @endforeach
-                            </select> --}}
                             <select class="js-example-basic-single1" name="id_unit" id="id_unit"
                                 style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                 <?php for ($e = 0; $e < count($unit); $e++) { ?>
@@ -43,10 +37,12 @@
                         <label class="control-label col-sm-5 align-self-center mb-0">Nominal PAGU</label>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @foreach ($pagu as $nominal)
-                                    <option value="{{ $nominal->id }}">
-                                        {{ $nominal->pagu }}</option>
-                                @endforeach
+                                <select name="pagu" id="pagu" class="form-control">
+                                    @foreach ($pagu as $nominal)
+                                        <option value="{{ $nominal->id }}">
+                                            {{ $nominal->pagu }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
