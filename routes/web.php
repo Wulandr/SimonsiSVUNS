@@ -228,11 +228,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // R O U T E    K E U A N G A N
 
-    //RPD
-    Route::get('/rpd', [RPDController::class, 'index']);
-    Route::get('/rpd/filtertahun', [RPDController::class, 'index']);
-    // Route::get('/getkelompokMak/{id}', [AnggaranController::class, 'getKelompokMak']);
-
     // Memo Cair
     Route::get('/memo_cair', [MemoCairController::class, 'index']);
     Route::post('/store', [MemoCairController::class, 'store']);
