@@ -202,7 +202,9 @@ class SPJController extends Controller
           $uploadspj->save();
 
           if ($uploadspj) {
-               return redirect()->back()->with("success", "Data berhasil ditambahkan");
+               return redirect()->view(
+                    'keuangan.spj.upload_spj'
+               )->with("success", "Data berhasil ditambahkan");
           } else {
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }

@@ -11,7 +11,9 @@ class SpjSubkategori extends Migration
         Schema::create('spj_subkategori', function (Blueprint $table) {
             $table->id();
             $table->string('nama_subkategori');
-            $table->longText('catatan');
+            $table->longText(
+                'catatan'
+            )->nullable();
             $table->timestamps();
         });
     }
