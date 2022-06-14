@@ -119,9 +119,9 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $tidakada_status ?>
-                                                <!-- MODAL - Validasi LPJ -->
+                                                <!-- MODAL - Validasi LPJ {{ $tor[$m]->id }} -->
                                                 @include('keuangan/lpj/validasi_lpj')
-                                                <!-- MODAL - Status LPJ -->
+                                                <!-- MODAL - Status LPJ {{ $tor[$m]->id }} -->
                                                 @include('keuangan/lpj/status_lpj')
                                             </td>
                                             <td class="text-center">
@@ -193,3 +193,21 @@
 @include('keuangan/lpj/lpj_template')
 
 </html>
+
+<script type="text/javascript">
+    function pengajuan(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
+    }
+
+    function revisi(id) {
+        document.getElementById('revisilpj' + id).style.display = 'block';
+    }
+
+    function verifikasi(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
+    }
+
+    function lpjselesai(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
+    }
+</script>
