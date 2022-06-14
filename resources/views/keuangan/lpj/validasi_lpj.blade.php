@@ -14,35 +14,35 @@
                     @for ($s = 0; $s < count($status_keu); $s++)
                         @if ($status_keu[$s]->kategori == 'LPJ')
                             @if ($status_keu[$s]->nama_status === 'Proses Pengajuan')
-                                <div onclick="pengajuan()"
+                                <div onclick="pengajuan({{ $tor[$m]->id }})"
                                     class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status"
+                                    <input type="radio" name="id_status" id="pengajuan{{ $tor[$m]->id }}"
                                         value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Proses Pengajuan </label>
+                                    <label for="pengajuan{{ $tor[$m]->id }}" class=""> Proses Pengajuan </label>
                                 </div>
                             @elseif ($status_keu[$s]->nama_status === 'Revisi')
-                                <div onclick="revisi()" class="custom-control custom-radio custom-radio-color-checked ">
-                                    <input type="radio" name="id_status" id="id_status"
+                                <div onclick="revisi({{ $tor[$m]->id }})" class="custom-control custom-radio custom-radio-color-checked ">
+                                    <input type="radio" name="id_status" id="revisi{{ $tor[$m]->id }}"
                                         value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Revisi </label>
+                                    <label for="revisi{{ $tor[$m]->id }}" class=""> Revisi </label>
                                 </div>
                             @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
-                                <div onclick="verifikasi()"
+                                <div onclick="verifikasi({{ $tor[$m]->id }})"
                                     class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status"
+                                    <input type="radio" name="id_status" id="verifikasi{{ $tor[$m]->id }}"
                                         value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Verifikasi </label>
+                                    <label for="verifikasi{{ $tor[$m]->id }}" class=""> Verifikasi </label>
                                 </div>
                             @elseif ($status_keu[$s]->nama_status === 'LPJ Selesai')
-                                <div onclick="lpjselesai()"
+                                <div onclick="lpjselesai({{ $tor[$m]->id }})"
                                     class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status" value="11">
-                                    <label class=""> LPJ Selesai </label>
+                                    <input type="radio" name="id_status" id="selesai{{ $tor[$m]->id }}" value="11">
+                                    <label for="selesai{{ $tor[$m]->id }}" class=""> LPJ Selesai </label>
                                 </div>
                             @endif
                         @endif
                     @endfor
-                    <div id="revisilpj" style="display: none" class="form-group">
+                    <div id="revisilpj{{ $tor[$m]->id }}" style="display: none" class="form-group">
                         <label for="exampleFormControlTextarea1">Catatan Revisi SPJ :</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
@@ -61,19 +61,19 @@
 </div>
 
 <script type="text/javascript">
-    function pengajuan() {
-        document.getElementById('revisilpj').style.display = 'none';
+    function pengajuan(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
     }
 
-    function revisi() {
-        document.getElementById('revisilpj').style.display = 'block';
+    function revisi(id) {
+        document.getElementById('revisilpj' + id).style.display = 'block';
     }
 
-    function verifikasi() {
-        document.getElementById('revisilpj').style.display = 'none';
+    function verifikasi(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
     }
 
-    function lpjselesai() {
-        document.getElementById('revisilpj').style.display = 'none';
+    function lpjselesai(id) {
+        document.getElementById('revisilpj' + id).style.display = 'none';
     }
 </script>
