@@ -148,7 +148,6 @@ class SPJController extends Controller
 
      public function input_transferSPJ(Request $request)
      {
-          $request->validate([]);
 
           //mengambil data file yang diupload
           $file           = $request->file('file');

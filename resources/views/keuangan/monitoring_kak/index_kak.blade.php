@@ -140,26 +140,28 @@
 
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
                                             <td>{{ $namaprodi }}</td>
-                                            <td>
-                                                <?php
+                                            <?php
                                                 $tahun = substr($tor[$m]->tgl_mulai_pelaksanaan, 0, 4);
                                                 for ($j = 0; $j < count($pagu); $j++) {
-                                                    for ($c = 0; $c < count($tabeltahun); $c++) {
-                                                        if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun) {
-                                                            if ($tabeltahun[$c]->tahun == $tahun) {
-                                                                echo 'Rp. ' . number_format($pagu[$j]->pagu);
-                                                            }
+                                            ?>
+                                            <td>
+                                            <?php
+                                                for ($c = 0; $c < count($tabeltahun); $c++) {
+                                                    if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
+                                                        if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
+                                                            echo 'Rp. ' . number_format($pagu[$j]->pagu);
                                                         }
                                                     }
                                                 }
-                                                ?>
+                                            ?>
                                             </td>
                                             <td></td>
+                                            <?php } ?>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}
                                             </td>
                                             <td>{{ 'Rp ' . number_format($memocair_nominal) }}</td>
                                             <td>{{ number_format($memocair_valid, 2) . ' %' }}</td>
-
+                                            
                                             <?php
                                                                                                         }
                                                                                                     }
@@ -174,8 +176,7 @@
                                                                 }
                                                             }
                                                         }
-                                                        ?>
-
+                                            ?>
                                         </tr>
                                         <?php
                                                     }

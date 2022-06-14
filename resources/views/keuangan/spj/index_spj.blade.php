@@ -225,3 +225,31 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+// Memunculkan Button Update Status sesuai Status yang dimiliki
+    function pengajuan(id) {
+        document.getElementById('revisispj' + id).style.display = 'none';
+    }
+
+    function revisi(id) {
+        document.getElementById('revisispj' + id).style.display = 'block';
+    }
+
+    function verifikasi(id) {
+        document.getElementById('revisispj' + id).style.display = 'none';
+    }
+
+    function spjselesai(id) {
+        document.getElementById('revisispj' + id).style.display = 'none';
+    }
+
+// Memunculkan input tambah file tf untuk pelunasan spj
+function belumselesai(id) {
+        document.getElementById('input_tf' + id).style.display = 'block';
+    }
+
+    function selesai(id) {
+        document.getElementById('input_tf' + id).style.display = 'none';
+    }
+</script>

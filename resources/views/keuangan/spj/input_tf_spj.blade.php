@@ -31,18 +31,18 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">Jenis</label>
                         <div class="col-sm-8">
-                            <div onclick="belumselesai()">
-                                <input type="radio" name="sebel">
-                                <label>Pelunasan Pembayaran (Input Bukti TF)</label>
+                            <div onclick="belumselesai({{ $tor[$m]->id }})">
+                                <input type="radio" name="sebel" id="unfinish{{ $tor[$m]->id }}">
+                                <label for="unfinish{{ $tor[$m]->id }}">Pelunasan Pembayaran (Input Bukti TF)</label>
                             </div>
-                            <div onclick="selesai()">
-                                <input type="radio" name="sebel">
-                                <label>SPJ Selesai</label>
+                            <div onclick="selesai({{ $tor[$m]->id }})">
+                                <input type="radio" name="sebel" id="finish{{ $tor[$m]->id }}">
+                                <label for="finish{{ $tor[$m]->id }}">SPJ Selesai</label>
                             </div>
                         </div>
                     </div>
 
-                    <div onclick="input_tf()" style="display: none" class="form-group">
+                    <div id="input_tf{{ $tor[$m]->id }}" style="display: none" class="form-group">
                         <label>Unggah Bukti Transfer
                             <br>
                             <small style="color: darkred">

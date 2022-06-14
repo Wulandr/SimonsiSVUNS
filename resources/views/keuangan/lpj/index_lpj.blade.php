@@ -119,9 +119,9 @@
                                                     @endif
                                                 @endforeach
                                                 <?= $tidakada_status ?>
-                                                <!-- MODAL - Validasi LPJ {{ $tor[$m]->id }} -->
+                                                <!-- MODAL - Validasi LPJ -->
                                                 @include('keuangan/lpj/validasi_lpj')
-                                                <!-- MODAL - Status LPJ {{ $tor[$m]->id }} -->
+                                                <!-- MODAL - Status LPJ -->
                                                 @include('keuangan/lpj/status_lpj')
                                             </td>
                                             <td class="text-center">
