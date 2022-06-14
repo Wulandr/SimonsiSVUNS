@@ -1,9 +1,9 @@
 <div class="modal fade bd-example-modal-lg" id="edit_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="Upload Memo Cair" aria-hidden="true">
+    aria-labelledby="Edit Persekot Kerja" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="edit_pk">Formulir Permohonan Persekot Kerja</h5>
+                <h5 class="modal-title" id="edit_pk">Edit Formulir Permohonan Persekot Kerja</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -101,9 +101,8 @@
                     <?php
                         }
                     } ?>
-
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

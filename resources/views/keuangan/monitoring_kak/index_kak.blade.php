@@ -15,10 +15,10 @@
                 <div class="col-sm-12">
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title align-items-center">
-                                <h4 class="card-title">REKAPITULASI AJUAN KAK-RAB PROGRAM STUDI</h4>
+                            <div class="iq-header-title col-sm-9 align-items-center">
+                                <h4 class="card-title">REKAPITULASI AJUAN KAK-RAB</h4>
                             </div>
-                            <div class="iq-header-toolbar col-sm-3 mt-3 d-flex justify-content-end">
+                            <div class="iq-header-toolbar col-sm-2 mt-3 d-flex justify-content-end">
                                 <div class="form-group row mb-0">
                                     <span class="table-add mb-0">
                                         <div class="form-group row">
@@ -52,7 +52,7 @@
                                 <div class="dropdown">
                                     <span class="dropdown-toggle text-primary" id="dropdownMenuButton5"
                                         data-toggle="dropdown">
-                                        <i class="ri-more-fill"></i>
+                                        <i class="ri-more-2-fill"></i>
                                     </span>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         aria-labelledby="dropdownMenuButton5">
@@ -140,28 +140,26 @@
 
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
                                             <td>{{ $namaprodi }}</td>
-                                            <?php
+                                            <td>
+                                                <?php
                                                 $tahun = substr($tor[$m]->tgl_mulai_pelaksanaan, 0, 4);
                                                 for ($j = 0; $j < count($pagu); $j++) {
-                                            ?>
-                                            <td>
-                                            <?php
-                                                for ($c = 0; $c < count($tabeltahun); $c++) {
-                                                    if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
-                                                        if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
-                                                            echo 'Rp. ' . number_format($pagu[$j]->pagu);
+                                                    for ($c = 0; $c < count($tabeltahun); $c++) {
+                                                        if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
+                                                            if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
+                                                                echo 'Rp. ' . number_format($pagu[$j]->pagu);
+                                                            }
                                                         }
                                                     }
                                                 }
-                                            ?>
+                                                ?>
                                             </td>
                                             <td></td>
-                                            <?php } ?>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}
                                             </td>
                                             <td>{{ 'Rp ' . number_format($memocair_nominal) }}</td>
                                             <td>{{ number_format($memocair_valid, 2) . ' %' }}</td>
-                                            
+
                                             <?php
                                                                                                         }
                                                                                                     }

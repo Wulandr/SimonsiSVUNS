@@ -1,5 +1,5 @@
 <div class="modal fade" id="detail_memocair<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="Upload Memo Cair" aria-hidden="true">
+    aria-labelledby="Detail Memo Cair" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header justify-content-center">

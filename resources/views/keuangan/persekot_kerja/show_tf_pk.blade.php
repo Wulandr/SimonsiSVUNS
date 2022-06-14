@@ -1,9 +1,10 @@
 <div class="modal fade bd-example-modal-lg" id="show_tf_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="Upload Bukti Transfer Persekot Kerja" aria-hidden="true">
+    aria-labelledby="Bukti Transfer Persekot Kerja" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="show_tf_pk">Formulir Upload Bukti Transfer Permohonan Persekot Kerja</h5>
+                <h5 class="modal-title" id="show_tf_pk">Detail & Bukti Transfer Formulir Permohonan Persekot Kerja
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

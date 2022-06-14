@@ -1,6 +1,6 @@
 <div class="modal fade bd-example-modal-lg" id="edit_memocair<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="Upload Memo Cair" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    aria-labelledby="Edit Memo Cair" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h5 class="modal-title" id="edit_memocair">EDIT MEMO CAIR</h5>
@@ -61,7 +61,7 @@
                     
                     }?>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
