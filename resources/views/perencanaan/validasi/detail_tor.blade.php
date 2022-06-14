@@ -404,7 +404,8 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                     </div>
 
-                    <h6><b>10. Jadwal Pelaksanaan : </b><br />
+                    <h6><b>10. Jadwal Pelaksanaan : </b>
+                        {{ date_format(date_create($tor[$t]->tgl_mulai_pelaksanaan), 'd-m-Y')." hingga " . date_format(date_create($tor[$t]->tgl_akhir_pelaksanaan), 'd-m-Y')}}
                         <br />
                         <?php
                                         if (!empty($komponen_jadwal)) {
@@ -626,10 +627,12 @@ use Illuminate\Support\Facades\Auth;
                                 @endforeach
                             </div>
                         </div>
+                        <div class="container ml-1">
+                            <h6 id="validasi"><b>15. Total Ajuan : </b><br />{{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}</h6><br />
+                        </div>
 
-                        <h6 id="validasi"><b>15. Total Ajuan : </b><br />{{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}</h6><br />
 
-                        <br />
+
                         <hr />
                         <!-- R A B -->
                         @include('perencanaan/validasi/detail_rab')

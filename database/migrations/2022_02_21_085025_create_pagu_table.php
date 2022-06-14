@@ -18,6 +18,10 @@ class CreatePaguTable extends Migration
             $table->unsignedBigInteger('id_unit');
             $table->unsignedBigInteger('id_tahun');
             $table->integer('pagu');
+            $table->integer('tw1')->nullable();
+            $table->integer('tw2')->nullable();
+            $table->integer('tw3')->nullable();
+            $table->integer('tw4')->nullable();
             $table->timestamps();
 
             $table->foreign('id_unit')->references('id')->on('unit')->onDelete('cascade')->onUpdate('cascade');

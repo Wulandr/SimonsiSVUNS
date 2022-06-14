@@ -32,7 +32,7 @@ if (Auth()->user()->id_unit == 1) {
                                             </h4>
                                             <!-- Modal Tambah TOR -->
                                             <div class="modal fade" tabindex="-1" role="dialog" id="tambahpagu">
-                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title">Tambah PAGU</h5>
@@ -46,6 +46,22 @@ if (Auth()->user()->id_unit == 1) {
                                                                 <div class="form-group">
                                                                     <label>Nominal PAGU</label>
                                                                     <input name="pagu" id="pagu" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Triwulan 1</label>
+                                                                    <input name="tw1" id="tw1" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Triwulan 2</label>
+                                                                    <input name="tw2" id="tw2" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Triwulan 3</label>
+                                                                    <input name="tw3" id="tw3" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Triwulan 4</label>
+                                                                    <input name="tw4" id="tw4" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Prodi</label>
@@ -154,7 +170,7 @@ if (Auth()->user()->id_unit == 1) {
                                                         </tr>
                                                         <!-- Modal Ubah Pagu -->
                                                         <div class="modal fade" tabindex="-1" role="dialog" id="update_pagu<?= $pagu[$a]->id ?>">
-                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title">Update PAGU</h5>
@@ -168,6 +184,22 @@ if (Auth()->user()->id_unit == 1) {
                                                                             <div class="form-group">
                                                                                 <label>Nominal PAGU</label>
                                                                                 <input name="pagu" id="pagu" type="text" value="{{old('pagu',$pagu[$a]->pagu)}}" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Triwulan 1</label>
+                                                                                <input name="tw1" id="tw1" type="text" value="{{old('tw1',$pagu[$a]->tw1)}}" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Triwulan 2</label>
+                                                                                <input name="tw2" id="tw2" type="text" value="{{old('tw2',$pagu[$a]->tw2)}}" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Triwulan 3</label>
+                                                                                <input name="tw3" id="tw3" type="text" value="{{old('tw3',$pagu[$a]->tw3)}}" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Triwulan 4</label>
+                                                                                <input name="tw4" id="tw4" type="text" value="{{old('tw4',$pagu[$a]->tw4)}}" class="form-control">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label>Prodi</label>
