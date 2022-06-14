@@ -52,7 +52,7 @@ class MonitoringUsulanController extends Controller
     public function filter_tw(Request $request)
     {
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if ($roleUser == 2) {
             abort(403);
         }
         $filtertw = $request->filterTw;

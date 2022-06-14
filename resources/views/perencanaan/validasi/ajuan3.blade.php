@@ -65,7 +65,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </select>
                                                     </div>
                                                     <?php if ($filterprodi != 0) { ?>
-                                                        <input type="hidden" name="prodi" id="prodi" value="{{ $prodi }}">
+                                                        <input type="hidden" name="prodi" id="prodi" value="{{ $filterprodi }}">
                                                     <?php } ?>
                                                     <?php if ($filterprodi == 0) { ?>
                                                         <div class="col-xs-4 mr-3">

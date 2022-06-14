@@ -224,7 +224,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/searchBelanja', [BelanjaMakController::class, 'searchBelanja']);
 
     Route::get('/monitoringUsulan', [MonitoringUsulanController::class, 'index'])->name('monitoringUsulan');
-
+    Route::get('/monitoringUsulan/filterTw', [MonitoringUsulanController::class, 'filter_tw']);
 
     // R O U T E    K E U A N G A N
 
