@@ -19,31 +19,31 @@
                                     @if ($status_keu[$s]->kategori == 'LPJ')
                                         @if ($status_keu[$s]->nama_status === 'Proses Pengajuan')
                                         <?php $tombol = '
-                                            <div onclick="revisi({{ $tor[$m]->id }})" class="custom-control custom-radio custom-radio-color-checked ">
-                                                <input type="radio" name="id_status" id="revisi{{ $tor[$m]->id }}"
-                                                    value="{{ $status_keu[$s]->id }}">
-                                                <label for="revisi{{ $tor[$m]->id }}" class=""> Revisi</label>
+                                            <div onclick="revisi('. $tor[$m]->id .')" class="custom-control custom-radio custom-radio-color-checked ">
+                                                <input type="radio" name="id_status" id="revisi'. $tor[$m]->id .'"
+                                                    value="'. $status_keu[$s]->id .'">
+                                                <label for="revisi'. $tor[$m]->id .'" class=""> Revisi</label>
                                             </div>
-                                            <div onclick="verifikasi({{ $tor[$m]->id }})"
+                                            <div onclick="verifikasi('. $tor[$m]->id .')"
                                                 class="custom-control custom-radio custom-radio-color-checked">
-                                                <input type="radio" name="id_status" id="verifikasi{{ $tor[$m]->id }}"
-                                                    value="{{ $status_keu[$s]->id }}">
-                                                <label for="verifikasi{{ $tor[$m]->id }}" class=""> Verifikasi</label>
+                                                <input type="radio" name="id_status" id="verifikasi'. $tor[$m]->id .'"
+                                                    value="'. $status_keu[$s]->id .'">
+                                                <label for="verifikasi'. $tor[$m]->id .'" class=""> Verifikasi</label>
                                             </div>';?>
                                         @elseif ($status_keu[$s]->nama_status === 'Revisi')
                                         <?php $tombol = '
-                                            <div onclick="pengajuan({{ $tor[$m]->id }})"
+                                            <div onclick="pengajuan('. $tor[$m]->id .')"
                                                 class="custom-control custom-radio custom-radio-color-checked">
-                                                <input type="radio" name="id_status" id="pengajuan{{ $tor[$m]->id }}"
-                                                    value="{{ $status_keu[$s]->id }}">
-                                                <label for="pengajuan{{ $tor[$m]->id }}" class=""> Proses Pengajuan</label>
+                                                <input type="radio" name="id_status" id="pengajuan'. $tor[$m]->id .'"
+                                                    value="'. $status_keu[$s]->id .'">
+                                                <label for="pengajuan'. $tor[$m]->id .'" class=""> Proses Pengajuan</label>
                                             </div>'; ?>
                                         @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
                                         <?php $tombol = '
-                                            <div onclick="lpjselesai({{ $tor[$m]->id }})"
+                                            <div onclick="lpjselesai('. $tor[$m]->id .')"
                                                 class="custom-control custom-radio custom-radio-color-checked">
-                                                <input type="radio" name="id_status" id="selesai{{ $tor[$m]->id }}" value="11">
-                                                <label for="selesai{{ $tor[$m]->id }}" class=""> LPJ Selesai</label>
+                                                <input type="radio" name="id_status" id="selesai'. $tor[$m]->id .'" value="11">
+                                                <label for="selesai'. $tor[$m]->id .'" class=""> LPJ Selesai</label>
                                             </div>'; ?>
                                         @elseif ($status_keu[$s]->nama_status === 'LPJ Selesai')
                                         <?php $tombol = ''; ?>
