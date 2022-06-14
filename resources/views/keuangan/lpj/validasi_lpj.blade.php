@@ -11,38 +11,55 @@
             <div class="modal-body text-left">
                 <form method="post" action="/lpj/validasi">
                     @csrf
-                    @for ($s = 0; $s < count($status_keu); $s++)
-                        @if ($status_keu[$s]->kategori == 'LPJ')
-                            @if ($status_keu[$s]->nama_status === 'Proses Pengajuan')
-                                <div onclick="pengajuan()"
-                                    class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status"
-                                        value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Proses Pengajuan </label>
-                                </div>
-                            @elseif ($status_keu[$s]->nama_status === 'Revisi')
-                                <div onclick="revisi()" class="custom-control custom-radio custom-radio-color-checked ">
-                                    <input type="radio" name="id_status" id="id_status"
-                                        value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Revisi </label>
-                                </div>
-                            @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
-                                <div onclick="verifikasi()"
-                                    class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status"
-                                        value="{{ $status_keu[$s]->id }}">
-                                    <label class=""> Verifikasi </label>
-                                </div>
-                            @elseif ($status_keu[$s]->nama_status === 'LPJ Selesai')
-                                <div onclick="lpjselesai()"
-                                    class="custom-control custom-radio custom-radio-color-checked">
-                                    <input type="radio" name="id_status" id="id_status" value="11">
-                                    <label class=""> LPJ Selesai </label>
-                                </div>
-                            @endif
+                    {{ $tombol = ''; }}
+                    @foreach ($trx_status_keu as $a)
+                        @if ($a->id_tor == $tor[$m]->id)
+                            @for ($s = 0; $s < count($status_keu); $s++)
+                                @if ($a->id_status == $status_keu[$s]->id)
+                                    @if ($status_keu[$s]->kategori == 'LPJ')
+                                        @if ($status_keu[$s]->nama_status === 'Proses Pengajuan')
+                                        <?php $tombol = '
+                                            <div onclick="revisi({{ $tor[$m]->id }})" class="custom-control custom-radio custom-radio-color-checked ">
+                                                <input type="radio" name="id_status" id="revisi{{ $tor[$m]->id }}"
+                                                    value="{{ $status_keu[$s]->id }}">
+                                                <label for="revisi{{ $tor[$m]->id }}" class=""> Revisi</label>
+                                            </div>
+                                            <div onclick="verifikasi({{ $tor[$m]->id }})"
+                                                class="custom-control custom-radio custom-radio-color-checked">
+                                                <input type="radio" name="id_status" id="verifikasi{{ $tor[$m]->id }}"
+                                                    value="{{ $status_keu[$s]->id }}">
+                                                <label for="verifikasi{{ $tor[$m]->id }}" class=""> Verifikasi</label>
+                                            </div>';?>
+                                        @elseif ($status_keu[$s]->nama_status === 'Revisi')
+                                        <?php $tombol = '
+                                            <div onclick="pengajuan({{ $tor[$m]->id }})"
+                                                class="custom-control custom-radio custom-radio-color-checked">
+                                                <input type="radio" name="id_status" id="pengajuan{{ $tor[$m]->id }}"
+                                                    value="{{ $status_keu[$s]->id }}">
+                                                <label for="pengajuan{{ $tor[$m]->id }}" class=""> Proses Pengajuan</label>
+                                            </div>'; ?>
+                                        @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
+                                        <?php $tombol = '
+                                            <div onclick="lpjselesai({{ $tor[$m]->id }})"
+                                                class="custom-control custom-radio custom-radio-color-checked">
+                                                <input type="radio" name="id_status" id="selesai{{ $tor[$m]->id }}" value="11">
+                                                <label for="selesai{{ $tor[$m]->id }}" class=""> LPJ Selesai</label>
+                                            </div>'; ?>
+                                        @elseif ($status_keu[$s]->nama_status === 'LPJ Selesai')
+                                        <?php $tombol = ''; ?>
+                                            {{-- <div onclick="lpjselesai({{ $tor[$m]->id }})"
+                                                class="custom-control custom-radio custom-radio-color-checked">
+                                                <input type="radio" name="id_status" id="selesai{{ $tor[$m]->id }}" value="11">
+                                                <label for="selesai{{ $tor[$m]->id }}" class=""> LPJ Selesai</label>
+                                            </div> --}}
+                                        @endif
+                                    @endif
+                                @endif
+                            @endfor
                         @endif
-                    @endfor
-                    <div id="revisilpj" style="display: none" class="form-group">
+                    @endforeach
+                    <?= $tombol ?>
+                    <div id="revisilpj{{ $tor[$m]->id }}" style="display: none" class="form-group">
                         <label for="exampleFormControlTextarea1">Catatan Revisi SPJ :</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
@@ -59,21 +76,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    function pengajuan() {
-        document.getElementById('revisilpj').style.display = 'none';
-    }
-
-    function revisi() {
-        document.getElementById('revisilpj').style.display = 'block';
-    }
-
-    function verifikasi() {
-        document.getElementById('revisilpj').style.display = 'none';
-    }
-
-    function lpjselesai() {
-        document.getElementById('revisilpj').style.display = 'none';
-    }
-</script>
