@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="row align-items-start">
                                         @foreach($authorities as $manageName => $permissions)
-                                        <div class="col ml-3">
+                                        <div class="col lg-4">
                                             <div class="card h-120">
                                                 <div class="card-body">
                                                     <h5 class="card-title"> {{$manageName}}</h5>

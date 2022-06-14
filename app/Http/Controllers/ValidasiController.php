@@ -79,7 +79,7 @@ class ValidasiController extends Controller
             ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
             ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->get();
         $filtertahun = 0;
-        $filterprodi = 0;
+        $filterprodi = $prodi;
         $filtertw = 0;
         $unit = Unit::all();
         $unit2 = Unit::all();

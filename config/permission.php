@@ -48,6 +48,27 @@ return [
             'tahun_detail',
             'tahun_delete'
         ],
+        'manage_spjkategori' => [
+            'spjkategori_show',
+            'spjkategori_create',
+            'spjkategori_update',
+            'spjkategori_detail',
+            'spjkategori_delete'
+        ],
+        'manage_spjsubkategori' => [
+            'spjsubkategori_show',
+            'spjsubkategori_create',
+            'spjsubkategori_update',
+            'spjsubkategori_detail',
+            'spjsubkategori_delete'
+        ],
+        'manage_pedoman' => [
+            'pedoman_show',
+            'pedoman_create',
+            'pedoman_update',
+            'pedoman_detail',
+            'pedoman_delete'
+        ],
         'manage_triwulan' => [
             'triwulan_show',
             'triwulan_create',

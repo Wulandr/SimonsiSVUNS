@@ -23,8 +23,10 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Pedoman
+                                            @can('pedoman_create')
                                             <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah pedoman" data-original-title="Tambah pedoman" data-target="#tambahpedoman"><i class="fa fa-plus-circle"></i>
                                             </button>
+                                            @endcan
                                         </h4>
                                         <!-- Modal Tambah pedoman -->
                                         @include('pengaturan.pedoman.tambah_pedoman')
@@ -80,10 +82,14 @@ use Illuminate\Support\Facades\Auth;
                                                     <td>{{ $pedomansbm->tahun }}</td>
                                                     <td>
                                                         <div class="flex align-items-center list-user-action">
+                                                            @can('pedoman_update')
                                                             <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pedoman" data-original-title="Update Pedoman" href="" data-target="#update_pedoman<?= $pedomansbm->id ?>"><i class="ri-pencil-line"></i></a>
+                                                            @endcan
+                                                            @can('pedoman_delete')
                                                             <a href="{{ url('/pedomans/delete/' . $pedomansbm->id) }}" class="iq-bg-primary pedoman-confirm" data-toggle="tooltip" title="Delete">
                                                                 <i class="fa fa-trash"></i>
                                                             </a>
+                                                            @endcan
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -2,94 +2,86 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="status{{ $tor[$t]->id }}">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <!-- <h5 class="modal-title"><b>Pengjauan</b> </h5> -->
+            <div class="modal-header" style="background-color: #ffc107;color:white">
+                <h5 class="modal-title" style="color:white"><b>Status Pengajuan TOR</b> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="iq-card-body">
 
-                <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title">Status Pengajuan TOR</h4>
-                        </div>
-                    </div>
-                    <div class="iq-card-body">
+                    <ul class="iq-timeline">
+                        <?php
+                        $indexwarna = 0;
+                        // $warnaLingkar = [
+                        //     'timeline-dots',
+                        //     'timeline-dots border-success',
+                        //     'timeline-dots border-secondary',
+                        //     'timeline-dots border-info',
+                        // ];
+                        $wstatus;
+                        $warnaLingkar;
 
-                        <ul class="iq-timeline">
-                            <?php
-                            $indexwarna = 0;
-                            // $warnaLingkar = [
-                            //     'timeline-dots',
-                            //     'timeline-dots border-success',
-                            //     'timeline-dots border-secondary',
-                            //     'timeline-dots border-info',
-                            // ];
-                            $wstatus;
-                            $warnaLingkar;
+                        $ada = 0;
+                        if (!empty($trx_status_tor)) {
+                            for ($q = 0; $q < count($trx_status_tor); $q++) {
+                                if ($trx_status_tor[$q]->id_tor == $tor[$t]->id) {
+                                    $ada =   $trx_status_tor[$q]->id_status ?>
+                                    <li>
+                                        <?php for ($st = 0; $st < count($status); $st++) {
+                                            if ($status[$st]->id == $trx_status_tor[$q]->id_status) {
+                                                $wstatus = $status[$st]->nama_status;
+                                                if ($wstatus == 'Proses Pengajuan') {
+                                                    $warnaLingkar = 'timeline-dots';
+                                                } elseif ($wstatus == 'Verifikasi') {
+                                                    $warnaLingkar = 'timeline-dots border-warning';
+                                                } elseif ($wstatus == 'Review') {
+                                                    $warnaLingkar = 'timeline-dots  border-info';
+                                                } elseif ($wstatus == 'Revisi') {
+                                                    $warnaLingkar = 'timeline-dots  border-danger';
+                                                } elseif ($wstatus == 'Validasi') {
+                                                    $warnaLingkar = 'timeline-dots  border-success';
+                                                } elseif ($wstatus == 'Pengajuan Perbaikan') {
+                                                    $warnaLingkar = 'timeline-dots';
+                                                }
+                                        ?>
 
-                            $ada = 0;
-                            if (!empty($trx_status_tor)) {
-                                for ($q = 0; $q < count($trx_status_tor); $q++) {
-                                    if ($trx_status_tor[$q]->id_tor == $tor[$t]->id) {
-                                        $ada =   $trx_status_tor[$q]->id_status ?>
-                                        <li>
-                                            <?php for ($st = 0; $st < count($status); $st++) {
-                                                if ($status[$st]->id == $trx_status_tor[$q]->id_status) {
-                                                    $wstatus = $status[$st]->nama_status;
-                                                    if ($wstatus == 'Proses Pengajuan') {
-                                                        $warnaLingkar = 'timeline-dots';
-                                                    } elseif ($wstatus == 'Verifikasi') {
-                                                        $warnaLingkar = 'timeline-dots border-warning';
-                                                    } elseif ($wstatus == 'Review') {
-                                                        $warnaLingkar = 'timeline-dots  border-info';
-                                                    } elseif ($wstatus == 'Revisi') {
-                                                        $warnaLingkar = 'timeline-dots  border-danger';
-                                                    } elseif ($wstatus == 'Validasi') {
-                                                        $warnaLingkar = 'timeline-dots  border-success';
-                                                    } elseif ($wstatus == 'Pengajuan Perbaikan') {
-                                                        $warnaLingkar = 'timeline-dots';
-                                                    }
-                                            ?>
-
-                                                    <div class="{{ $warnaLingkar }}"><i class="ri-check-fill" style="color:black"></i></div>
+                                                <div class="{{ $warnaLingkar }}"><i class="ri-check-fill" style="color:black"></i></div>
 
 
-                                                    <h6 class="float-left mb-1">
-                                                <?php
+                                                <h6 class="float-left mb-1">
+                                            <?php
 
-                                                    echo '<b>' . '' . '</b>' . $status[$st]->nama_status;
+                                                echo '<b>' . '' . '</b>' . $status[$st]->nama_status;
 
-                                                    for ($u = 0; $u < count($user); $u++) {
-                                                        if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
-                                                            for ($rl = 0; $rl < count($role); $rl++) {
-                                                                if ($role[$rl]->id == $user[$u]->role) {
-                                                                    echo '<br/>' . ' - create by : ' . $user[$u]->name . ' - ' . $role[$rl]->name;
-                                                                    $pengvalidasi = $role[$rl]->id;
-                                                                }
+                                                for ($u = 0; $u < count($user); $u++) {
+                                                    if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
+                                                        for ($rl = 0; $rl < count($role); $rl++) {
+                                                            if ($role[$rl]->id == $user[$u]->role) {
+                                                                echo '<br/>' . ' - create by : ' . $user[$u]->name . ' - ' . $role[$rl]->name;
+                                                                $pengvalidasi = $role[$rl]->id;
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
-                                                ?>
-                                                    </h6>
-                                                    <small class="float-right mt-1">{{ $trx_status_tor[$q]->created_at }}</small>
-                                                    <div class="d-inline-block w-100">
-                                                    </div>
-                                        </li>
-                            <?php }
-                                }
-                            } ?>
+                                        }
+                                            ?>
+                                                </h6>
+                                                <small class="float-right mt-1">{{ $trx_status_tor[$q]->created_at }}</small>
+                                                <div class="d-inline-block w-100">
+                                                </div>
+                                    </li>
+                        <?php }
+                            }
+                        } ?>
 
-                        </ul>
+                    </ul>
 
-                    </div>
                 </div>
 
-                <div class="iq-card">
+                <!-- <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
                             <h4 class="card-title">Status Pertanggungjawaban TOR</h4>
@@ -155,7 +147,7 @@
 
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
 
             </div>

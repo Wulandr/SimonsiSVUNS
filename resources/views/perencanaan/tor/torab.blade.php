@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
 
               </div>
               <br />
-              <div class="row">
+              <div class="row ml-3">
                 <div class="col-sm-6 col-md-6 col-lg-3">
                   <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-body iq-box-relative">
@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Auth;
                             <select class="form-control filter sm-8" name="tahun" id="input">
                               <option value="0">All</option>
                               <?php for ($t2 = 0; $t2 < count($tabeltahun); $t2++) { ?>
-                                <option value="{{$tabeltahun[$t2]->id}}" {{$filterpagu==$tabeltahun[$t2]->id ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
+                                <option value="{{$tabeltahun[$t2]->id}}" {{$filtertahun==$tabeltahun[$t2]->id ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
                               <?php } ?>
                             </select>
                           </div>

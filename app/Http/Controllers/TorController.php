@@ -475,6 +475,8 @@ class TorController extends Controller
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
+        $pedoman = Pedoman::all();
+
         return view(
             "perencanaan.tor.torab",
             [
@@ -483,7 +485,7 @@ class TorController extends Controller
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'status' => $status, 'user' => $user, 'role' => $role,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal,
-                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor
+                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'pedoman' => $pedoman
             ]
 
         );
@@ -524,6 +526,7 @@ class TorController extends Controller
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
+        $pedoman = Pedoman::all();
 
         if ($request->tahun == 0) {
             $pagu = DB::table('pagu')->get();
@@ -540,7 +543,7 @@ class TorController extends Controller
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'user' => $user, 'status' => $status,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
-                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role,
+                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role, 'pedoman' => $pedoman
             ]
         );
     }

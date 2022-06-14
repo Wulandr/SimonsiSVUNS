@@ -18,7 +18,7 @@
                         <div class="iq-card">
                             <div class="iq-card-header d-flex justify-content-between">
                                 <div class="iq-header-title">
-                                    <h4 class="card-title">TAMBAH ROLE</h4>
+                                    <h4 class="card-title">UPDATE ROLE</h4>
                                 </div>
                             </div>
                             <div class="iq-card-body">
@@ -39,10 +39,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="row align-items-start">
+                                    <div class="row">
                                         @foreach($authorities as $manageName => $permissions)
-                                        <div class="col ml-3">
-                                            <div class="card h-120">
+                                        <div class="col lg-4">
+                                            <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title"> {{$manageName}}</h5>
                                                     <p class="card-text">
@@ -65,11 +65,13 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                    <div class="card-footer text-right">
+                                    <div class="text-right">
                                         <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                         <!-- <a href="" class="btn btn-icon icon-left btn-primary"><i class="fa fa-sync-alt"></i> Save</a> -->
                                     </div>
+                                    <br />
                                 </form>
+
                             </div>
                         </div>
                     </div>

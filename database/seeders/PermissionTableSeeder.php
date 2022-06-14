@@ -280,6 +280,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Agus Dwi Priyanto, S.S.,M.CALL',
             'email' => 'agusdwi@gmail.com',
             'role' => 8, //wd1
+            'image' => 'anth.jfif',
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -398,6 +399,7 @@ class PermissionTableSeeder extends Seeder
             'email' => 'oktavia@gmail.com',
             'role' => 2, //prodi
             'is_aktif' => 1,
+            'image' => 'irish.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
             'remember_token' => Str::random(10),

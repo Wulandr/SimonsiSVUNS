@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ProfilController extends Controller
 {
@@ -36,7 +37,8 @@ class ProfilController extends Controller
     public function editprofil(Request $request)
     {
         $request->validate([]);
-
+        $fileprofil = DB::table('users')->select('image')->where('id', auth()->user()->id)->get();
+        File::delete('imageprofil/' . $fileprofil[0]->image);
         $file           = $request->file('file');
         //mengambil nama file
         $nama_file      = $file->getClientOriginalName();
@@ -58,7 +60,7 @@ class ProfilController extends Controller
             // return $request->all();
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
-        // return $nama_file;
+        // return $fileprofil[0]->image;
     }
     public function editpassword(Request $request, User $user)
     {

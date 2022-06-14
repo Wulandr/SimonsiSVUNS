@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div id="table" class="table-editable">
                                     <span class="table-add float-right mb-3 mr-2">
                                         <div class="form-group row">
-                                            <form action="{{ url('/validasi_filter') }}" method="GET">
+                                            <form action="{{ url('/validasi/filter') }}" method="GET">
                                                 <div class="row mr-3">
                                                     <div class="col mr-1">
                                                         <!-- <select class="form-control filter sm-8" name="tahun" id="tahun">
@@ -67,19 +67,17 @@ use Illuminate\Support\Facades\Auth;
                                                     <?php if ($filterprodi != 0) { ?>
                                                         <input type="hidden" name="prodi" id="prodi" value="{{ $filterprodi }}">
                                                     <?php } ?>
-                                                    <?php if ($filterprodi == 0) { ?>
-                                                        <div class="col-xs-4 mr-3">
-                                                            <select class="form-control filter sm-8" name="prodi" id="prodi">
-                                                                <option value="0">All</option>
-                                                                <?php
-                                                                for ($pr = 0; $pr < count($unit); $pr++) { ?>
-                                                                    <option value="{{ $unit[$pr]->id }}" {{ $filterprodi == $unit[$pr]->id ? 'selected' : '' }}>
-                                                                        {{ $unit[$pr]->nama_unit }}
-                                                                    </option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    <?php } ?>
+                                                    <div class="col-xs-4 mr-3">
+                                                        <select class="form-control filter sm-8" name="prodi" id="prodi">
+                                                            <option value="0">All</option>
+                                                            <?php
+                                                            for ($pr = 0; $pr < count($unit); $pr++) { ?>
+                                                                <option value="{{ $unit[$pr]->id }}" {{ $filterprodi == $unit[$pr]->id ? 'selected' : '' }}>
+                                                                    {{ $unit[$pr]->nama_unit }}
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
                                                     <input type="submit" class="btn btn-primary btn-sm" value="Filter">
                                                 </div>
                                             </form>
@@ -95,6 +93,7 @@ use Illuminate\Support\Facades\Auth;
                                         <thead class="bg-primary" style="color: white;">
                                             <tr>
                                                 <th>No.</th>
+                                                <th scope="col">Triwulan</th>
                                                 <th scope="col">Prodi</th>
                                                 <th scope="col">Judul Kegiatan</th>
                                                 <th scope="col">Jenis Ajuan</th>
@@ -177,6 +176,11 @@ use Illuminate\Support\Facades\Auth;
                                                             <!-- jk sebelumnya sudah ditulis, jangan ditulis lagi -->
                                                             <tr style="<?= $warnaRow ?>">
                                                                 <td>{{ $no + 1 }}</td><?php $no++; ?>
+                                                                <?php foreach ($triwulan as $wulan) {
+                                                                    if ($wulan->id == $join[$a]->id_tw) { ?>
+                                                                        <td>{{ $wulan->triwulan }}</td>
+                                                                <?php }
+                                                                } ?>
                                                                 <td>{{ $prodiTor }}</td>
                                                                 <td>{{ $join[$a]->nama_kegiatan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
                                                                 <td>{{ $join[$a]->jenis_ajuan }}<?php $x = $trx_status_tor[$stk2]->id_tor; ?>
