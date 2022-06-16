@@ -71,7 +71,7 @@ class TrxStatusTorSeeder extends Seeder
                 'updated_at' => '2022-04-01 07:00:00',
             ],
             [
-                'id_status' => '3',
+                'id_status' => '6',
                 'id_tor' => '9',
                 'create_by' => '4',
                 'k_judul' => '-',
@@ -82,7 +82,7 @@ class TrxStatusTorSeeder extends Seeder
                 'updated_at' => '2022-04-01 07:00:00',
             ],
             [
-                'id_status' => '3',
+                'id_status' => '6',
                 'id_tor' => '9',
                 'create_by' => '3',
                 'k_judul' => '-',
@@ -101,17 +101,6 @@ class TrxStatusTorSeeder extends Seeder
                 'k_mekanisme' => 'alamat mitra?',
                 'k_jadwal' => '-',
                 'created_at' => '2022-04-01 17:15:21',
-                'updated_at' => '2022-04-01 00:00:00',
-            ],
-            [
-                'id_status' => '1',
-                'id_tor' => '9',
-                'create_by' => '1',
-                'k_judul' => '-',
-                'k_tujuan' => '-',
-                'k_mekanisme' => '-',
-                'k_jadwal' => '-',
-                'created_at' => '2022-04-01 19:18:08',
                 'updated_at' => '2022-04-01 00:00:00',
             ],
             [

@@ -118,7 +118,7 @@
                             </a>
                         </li> -->
                         @can('pedoman_show')
-                        <li class="{{ Request::is('Pedoman') ? 'active' : '' }}">
+                        <li class="{{ Request::is('pedomans') ? 'active' : '' }}">
                             <a href="{{ url('/pedomans') }}"><i class="las la-folder" data-toggle="tooltip" data-placement="right" title="Pedoman"></i>Pedoman
                                 <div role="status" class="spinner-grow spinner-grow-sm text-warning">
                                 </div>

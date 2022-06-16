@@ -15,6 +15,7 @@ class CreateAnggaranTable extends Migration
     {
         Schema::create('anggaran', function (Blueprint $table) {
             $table->id();
+            $table->string("catatan")->nullable();
             $table->integer("kebutuhan_vol")->nullable();
             $table->string("kebutuhan_sat")->default('-')->nullable();
             $table->integer("frek")->nullable();

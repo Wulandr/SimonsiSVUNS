@@ -110,7 +110,7 @@ for ($r = 0; $r < count($rab); $r++) {
                         ?>
                                                 <tr>
                                                     <td>{{$detail_mak[$j]->detail}}
-
+                                                        <h6>{{$anggaran[$i]->catatan}}</h6>
                                                         <!-- MODAL UPDATE DI ANGGARAN -->
                                                         @include('perencanaan/modal2/update_anggaran')
                                                     </td>

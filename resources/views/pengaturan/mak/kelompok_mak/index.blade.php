@@ -145,7 +145,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('kelompokmak_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update IK" data-original-title="Update IK" href="" data-target="#update_kel<?= $kelompok_mak[$k2]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_kel<?= $kelompok_mak[$k2]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('kelompokmak_delete')
                                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/kelompok_mak/delete/'.$kelompok_mak[$k2]->id)}}"><i class="ri-delete-bin-line"></i></a>
@@ -158,7 +158,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Update IK</h5>
+                                                                    <h5 class="modal-title">Update MAK</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>

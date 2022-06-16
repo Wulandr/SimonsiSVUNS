@@ -91,7 +91,7 @@ class ProfilController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->back()->with("success", "Password successfully changed!");
+        return redirect()->back()->with("successPass", "Password successfully changed!");
     }
     /**
      * Show the form for creating a new resource.

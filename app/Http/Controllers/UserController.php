@@ -170,7 +170,11 @@ class UserController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password =  $request->password;
+            if (empty($request->password)) {
+            }
+            if (!empty($request->password)) {
+                $user->password = Hash::make($request->password);
+            }
             $user->role = $request->role;
             // $user->image   = $nama_file;
             $user->syncRoles($assignrole);

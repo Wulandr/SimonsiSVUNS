@@ -32,8 +32,8 @@
                         <input name="email" id="email" value="{{old('email',$user->email)}}" type="text" class="form-control">
                       </div>
                       <div class="form-group">
-                        <!-- <label>Password</label> -->
-                        <input name="password" id="password" value="{{$user->password}}" type="hidden" class="form-control">
+                        <label>Password</label>
+                        <input name="password" id="password" value="{{old('password')}}" type="password" class="form-control">
                       </div>
                       <div class="form-group">
                         <label>Role</label>

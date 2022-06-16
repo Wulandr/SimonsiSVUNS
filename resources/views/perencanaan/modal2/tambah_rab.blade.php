@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container ml-1">
+                <div class="container ">
                     <form class="form-horizontal" method="post" action="{{ url('/rab/create/') }}">
                         @csrf
                         <div class="form-group">

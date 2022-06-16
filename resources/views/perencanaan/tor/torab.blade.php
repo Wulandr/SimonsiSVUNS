@@ -46,9 +46,11 @@ use Illuminate\Support\Facades\Auth;
                           <div class="col mr-1">
                             <select class="form-control filter sm-8" name="tahun" id="input">
                               <option value="0">All</option>
-                              <?php for ($t2 = 0; $t2 < count($tabeltahun); $t2++) { ?>
-                                <option value="{{$tabeltahun[$t2]->id}}" {{$filtertahun==$tabeltahun[$t2]->id ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
-                              <?php } ?>
+                              <?php for ($t2 = 0; $t2 < count($tabeltahun); $t2++) {
+                                if ($tabeltahun[$t2]->is_aktif == 1) {                                              ?>
+                                  <option value="{{$tabeltahun[$t2]->id}}" {{$filtertahun==$tabeltahun[$t2]->id ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
+                              <?php }
+                              } ?>
                             </select>
                           </div>
                           <input type="submit" class="btn btn-primary btn-sm" value="OK">
@@ -118,9 +120,11 @@ use Illuminate\Support\Facades\Auth;
                           <div class="col mr-1">
                             <select class="form-control filter sm-8" name="tahun" id="input">
                               <option value="0">All</option>
-                              <?php for ($thn = 0; $thn < count($tabeltahun); $thn++) { ?>
-                                <option value="{{$tabeltahun[$thn]->tahun}}" {{$filtertahun==$tabeltahun[$thn]->tahun ? 'selected':''}}>{{$tabeltahun[$thn]->tahun}}</option>
-                              <?php } ?>
+                              <?php for ($thn = 0; $thn < count($tabeltahun); $thn++) {
+                                if ($tabeltahun[$thn]->is_aktif == 1) {   ?>
+                                  <option value="{{$tabeltahun[$thn]->tahun}}" {{$filtertahun==$tabeltahun[$thn]->tahun ? 'selected':''}}>{{$tabeltahun[$thn]->tahun}}</option>
+                              <?php }
+                              } ?>
                             </select>
                           </div>
                           <?php if (Auth()->user()->role != 2) { ?>

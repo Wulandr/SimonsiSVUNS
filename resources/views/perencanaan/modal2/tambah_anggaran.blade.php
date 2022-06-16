@@ -47,6 +47,11 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Catatan</label>
+                        <small style="color: darkgreen">(Boleh dikosongi)</small>
+                        <textarea class="ckeditor form-control" name="catatan" id="catatan" rows="3"></textarea>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">

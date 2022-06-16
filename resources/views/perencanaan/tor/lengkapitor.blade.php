@@ -197,7 +197,7 @@ use Illuminate\Support\Facades\Auth;
                                         ?>
                                         <h5 style="text-align: center;" id="judul">
                                             KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
-                                            PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS (ID CHECK : <?= $tor[$t]->id ?>)</b>
+                                            PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
                                         </h5>
                                         <br />
 
