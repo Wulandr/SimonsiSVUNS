@@ -118,6 +118,30 @@ class KomponenJadwalSeeder extends Seeder
                 'bulan_awal' => '3',
                 'bulan_akhir' => '7'
             ],
+            [
+                'id_tor' => '10',
+                'komponen' => 'Membagi kompetensi besar mahasiswa yaitu programmer, administrasi jaringan, dan pengembang web',
+                'bulan_awal' => '4',
+                'bulan_akhir' => '5'
+            ],
+            [
+                'id_tor' => '10',
+                'komponen' => 'Melakukan pendataan mahasiswa dengan memilih kompetensi yang sudah ditentukan',
+                'bulan_awal' => '4',
+                'bulan_akhir' => '5'
+            ],
+            [
+                'id_tor' => '10',
+                'komponen' => 'Mendaftarkan mahasiswa kepada Lemabga Sertifiaksi Kompetensi sesuai dengan kompetensi yang dipilih',
+                'bulan_awal' => '4',
+                'bulan_akhir' => '5'
+            ],
+            [
+                'id_tor' => '10',
+                'komponen' => 'mahasiswa melakukan ujian kompetensi sesuai dengan kompetensi yang dipilih',
+                'bulan_awal' => '6',
+                'bulan_akhir' => '6'
+            ],
         ]);
     }
 }

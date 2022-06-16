@@ -177,6 +177,8 @@ use Illuminate\Support\Facades\Auth;
 
 
                                                     <br />
+                                                    <input type="hidden" name="create_by" id="create_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
+                                                    <input type="hidden" name="update_by" id="update_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <div class="form-group mt-3">
                                                         <label>Jenis Ajuan</label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">

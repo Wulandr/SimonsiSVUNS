@@ -406,6 +406,60 @@ class PermissionTableSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
+
+        $user7 = User::create([
+            'id' => 15,
+            'id_unit' => '8',
+            'name' => 'Coba PIC 1',
+            'email' => 'pic@gmail.com',
+            'role' => 9,
+            'image' => 'NULL',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        $user8 = User::create([
+            'id' => 16,
+            'id_unit' => '1',
+            'name' => 'Coba Staf WD',
+            'email' => 'stafwd1@gmail.com',
+            'role' => 8,
+            'image' => 'NULL',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        $user9 = User::create([
+            'id' => 17,
+            'id_unit' => '2',
+            'name' => 'Agus Purbayu, S.Si., M.Kom.',
+            'email' => 'pakbayu@gmail.com',
+            'role' => 9,
+            'image' => 'pakbayu.jpg',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        $user10 = User::create([
+            'id' => 18,
+            'id_unit' => '2',
+            'name' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
+            'email' => 'paksahirul@gmail.com',
+            'role' => 9,
+            'image' => 'NULL',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
         $role = $admin;
 
         $useradmin->assignRole([$admin]);
@@ -422,5 +476,9 @@ class PermissionTableSeeder extends Seeder
         $userprodi4->assignRole([$prodi]);
         $userprodi5->assignRole([$prodi]);
         $userprodi6->assignRole([$prodi]);
+        $user7->assignRole([$pic]);
+        $user8->assignRole([$wd1]);
+        $user9->assignRole([$pic]);
+        $user10->assignRole([$pic]);
     }
 }

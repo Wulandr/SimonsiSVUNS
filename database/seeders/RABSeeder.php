@@ -55,6 +55,14 @@ class RABSeeder extends Seeder
                 'created_at' => '2022-03-11 22:08:46',
                 'updated_at' => '2022-03-11 22:08:46',
             ],
+            [
+                'id' => 8,
+                'id_tor' => 10,
+                'masukan' => 'Dana, SDM, metode kerja, sistem, sarana, dan prasarana, data, dan informasi, modul,laporan, dll',
+                'keluaran' => 'Sertifikat Kompetensi Mahasiswa',
+                'created_at' => '2022-06-15 00:00:00',
+                'updated_at' => '2022-06-15 00:00:00',
+            ],
         ]);
     }
 }

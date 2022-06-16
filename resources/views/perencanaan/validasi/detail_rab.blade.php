@@ -72,7 +72,9 @@ for ($r = 0; $r < count($rab); $r++) {
                                                 // echo $anggaran[$i]->id_rab;
                         ?>
                                                 <tr>
-                                                    <td>{{$detail_mak[$j]->detail}}</td>
+                                                    <td>{{$detail_mak[$j]->detail}}
+                                                        <h6><?= $anggaran[$i]->catatan ?></h6>
+                                                    </td>
                                                     <td>{{$anggaran[$i]->kebutuhan_vol}}</td>
                                                     <td>{{$anggaran[$i]->kebutuhan_sat}}</td>
                                                     <td>{{$anggaran[$i]->frek}}</td>

@@ -401,6 +401,42 @@ class TORSeeder extends Seeder
                 'update_by' => 4,
             ],
 
+            [
+                'id' => '10',
+                'id_unit' => '6',
+                'id_tw' => '2',
+                'id_subK' => '9',
+                'nama_kegiatan' => 'Pengiriman Mahasiswa Untuk Melakukan Sertifikasi Kompetensi',
+                'jenis_ajuan' => 'baru',
+                'latar_belakang' => '<p>Sertifikasi di bidang TI bagi dunia pendidikan sangat berguna dalam memperlancar kegiatan belajar mengajar, khususnya bagi mahasiswa untuk mengetahui kemampuannya di bidang TI serta sebagai bekal dalam menghadapi dunia kerja selepas meneyelesaikan pendidikannya di perguruan tinggi. Mahasisswa vokasi diharapkan ketika lulus perkuliahan diharapkan langsung dapat bekerja. Pengajuan kemampuan seseorang dapat bekerja dapat melalui dua jalur. Jalur pertama adalah jalur akademis yaitu berupa ijazah setelah mahasiswa menyelesaikan perkuliahannya. Jalur kedua adalah melalui pengujian kompetensi. Pengujian kompetensi dapat diberikan oleh provider produk tertentu atau oleh badan yang didirikan oleh pemerintah yaitu BNSP (Badan Nasional Sertifikasi Profesi) sesuai dengan PP No.23 tahun 2004. Dengan pemberian sertifikasi kompetensi maka mahasiswa memiliki 2 pengakuan atas kompetensi sekaligus sehingga diharapkan dapat langsung diakui oleh perusahaan untuk diterima menjadi karyawan. Dengan tingkat terserapnya mahasiswa di dunia kerja setelah lulus sesuai dengan IKU 1 yaitu serapan lulusan dalam bekerja kurang dari 6 bulan dan juga berwirausaha. Sertifikasi kompetensi utamanya bidang TI ditujukan untuk menunjukkan jika lulusan merupakan lulusan yang berkompeten di bidang TI, dan adanya sertifikat akan memudahkan perusahaan memilah alumni D3TI berkompeten disuatu bidang yang dibutuhkan.</p>',
+                'rasionalisasi' => '<p>Dengan mahasisswa diikutkan dalam ujian kompetensi yang diadakan oleh BNSP sebgai badan yang dibentuk ooleh pemerintah untuk dapat memberikan Sertifikat kompetensi maka telah melaksankan IKK K03-05. Penyelenggaraan uji sertifikasi kompetensi mahasiswa.</p>',
+                'tujuan' => '<p>1. Pengukuran kompetensi spesifik mahasiswa</p>
+
+                <p>2. Mendapatkan bukti kompetensi mahasiswa berupa sertifikat kompetensi</p>',
+                'mekanisme' => '<p>1.Membagi kompetensi besar mahasiswa yaitu programmer, administrasi jaringan dan pengembang web</p>
+
+                <p>2. Melakukan pendataan mahasiswa dengan memilih kompetensi yang sudah ditentukan</p>
+                
+                <p>3. Mendaftarkan mahasiswa kepada Lembaga Sertifikasi Kompetensi sesuai dengan kompetensi yang dipilih</p>
+               <p>4. Mahasiswa melakukan ujian kompetensi sesuai dengan kompetensi yang dipilih</p>
+                <p>Bidang sertifikasi kompetensi yang akan dilaksanakan bagi angkatan 2019 adalah :</p>
+                <p>- (Pemrogam) LSP UNS</p> <p>- (Junior Network Administrator) LSP UNS</p>
+               <p>- (Pengembang Web) LSP INFORMATIKA</p>',
+                'keberlanjutan' => '<p>Kegiatan ini merupakan titik awal dari peningkatan kualitas tenaga pendidik di Program Studi Diploma Tiga (D3) Teknik Infromatika Sekolah Vokasi UNS. Kegiatan berikutnya setelah ini dilakukan monitoring dan evaluasi kegiatan tingkat kelulusan ujian kompetensi mahasiswa yang dapat diasosiakan dengan tingkat keberhasilan proses pembelajaran dalam perkuliahan.</p>',
+                'realisasi_IKU' => '80',
+                'target_IKU' => '100',
+                'realisasi_IK' => '6',
+                'target_IK' => '7',
+                'nama_pic' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
+                'email_pic' => 'paksahirul@gmail.com',
+                'kontak_pic' => '081278902345',
+                'tgl_mulai_pelaksanaan' => '2022-06-23',
+                'tgl_akhir_pelaksanaan' => '2022-06-30',
+                'jumlah_anggaran' => '18750000',
+                'create_by' => '18',
+                'update_by' => '18',
+            ],
+
         ]);
     }
 }
