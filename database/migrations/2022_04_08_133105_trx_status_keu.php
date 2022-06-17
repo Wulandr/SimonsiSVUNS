@@ -15,6 +15,9 @@ class TrxStatusKeu extends Migration
     {
         Schema::create('trx_status_keu', function (Blueprint $table) {
             $table->id();
+            $table->longText(
+                'catatan'
+            )->nullable();
             $table->timestamps();
         });
     }

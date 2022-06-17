@@ -1,9 +1,9 @@
 <div class="modal fade" id="validasi_lpj{{ $tor[$m]->id }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center">Update Status LPJ</h5>
+                <h5  class="modal-title text-center">Update Status LPJ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,8 +56,8 @@
                     @endforeach
                     <?= $tombol ?>
                     <div id="revisilpj{{ $tor[$m]->id }}" style="display: none" class="form-group">
-                        <label for="exampleFormControlTextarea1">Catatan Revisi LPJ :</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        <label for="catatan">Catatan Revisi LPJ :</label>
+                        <textarea class="ckeditor form-control" name="catatan" id="catatan" rows="5"></textarea>
                     </div>
                     <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
                     <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>">
@@ -72,3 +72,9 @@
         </div>
     </div>
 </div>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.ckeditor').ckeditor();
+    });
+</script>

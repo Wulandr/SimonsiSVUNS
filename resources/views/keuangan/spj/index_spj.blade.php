@@ -31,7 +31,8 @@
                                 <table class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead class="bg-info">
                                         <tr>
-                                            <th rowspan="2" style="vertical-align : middle;text-align:center;">No</th>
+                                            <th rowspan="2" style="vertical-align : middle;text-align:center;">No
+                                            </th>
                                             <th rowspan="2" style="vertical-align : middle;text-align:center;">
                                                 Nama Unit/Prodi/Ormawa</th>
                                             <th rowspan="2" style="vertical-align : middle;text-align:center;">
@@ -114,7 +115,10 @@
                                                                 @if ($b->kategori == 'SPJ')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_spj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'Verifikasi')
+                                                                    @if ($b->nama_status == 'Revisi')
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-secondary" data-toggle="modal" data-target="#revisi_spj' . $tor[$m]->id . '"><i class="las la-comment"></i></span><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_spj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Verifikasi')
                                                                         <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
@@ -131,6 +135,8 @@
                                                 @include('keuangan/spj/validasi_spj')
                                                 <!-- MODAL - Status spj -->
                                                 @include('keuangan/spj/status_spj')
+                                                <!-- MODAL - Revisi spj -->
+                                                @include('keuangan/spj/showrevisi_spj')
                                             </td>
                                             <td class="text-center">
                                                 <?php
@@ -227,7 +233,7 @@
 </html>
 
 <script type="text/javascript">
-// Memunculkan Button Update Status sesuai Status yang dimiliki
+    // Memunculkan Button Update Status sesuai Status yang dimiliki
     function pengajuan(id) {
         document.getElementById('revisispj' + id).style.display = 'none';
     }
@@ -244,8 +250,8 @@
         document.getElementById('revisispj' + id).style.display = 'none';
     }
 
-// Memunculkan input tambah file tf untuk pelunasan spj
-function belumselesai(id) {
+    // Memunculkan input tambah file tf untuk pelunasan spj
+    function belumselesai(id) {
         document.getElementById('input_tf' + id).style.display = 'block';
     }
 

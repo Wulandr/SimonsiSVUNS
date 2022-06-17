@@ -148,16 +148,22 @@ class SPJController extends Controller
 
      public function input_transferSPJ(Request $request)
      {
-
-          //mengambil data file yang diupload
-          $file           = $request->file('file');
-          //mengambil nama file
-          $nama_file      = $file->getClientOriginalName();
-          $jenis          = $request->jenis;
-          $id_tor          = $request->id_tor;
-          //memindahkan file ke folder tujuan
-          $file->move('documents', $file->getClientOriginalName());
-
+          if (!empty($request->file)) {
+               //mengambil data file yang diupload
+               $file           = $request->file('file');
+               //mengambil nama file
+               $nama_file      = $file->getClientOriginalName();
+               $jenis          = $request->jenis;
+               $id_tor          = $request->id_tor;
+               //memindahkan file ke folder tujuan
+               $file->move('documents', $file->getClientOriginalName());
+          }
+          if (empty($request->file)) {
+               $file      = "null";
+               $nama_file      = "null";
+               $jenis          = $request->jenis;
+               $id_tor          = $request->id_tor;
+          }
           $input_tf         = new Dokumen;
           $input_tf->name   = $nama_file;
           $input_tf->path   = $nama_file;
@@ -174,6 +180,7 @@ class SPJController extends Controller
                'created_at' => $request->created_at,
                'updated_at' => $request->updated_at,
           ]);
+          // return $request->all();
           if ($input_tf2) {
                return redirect()->back()->with("success", "Data berhasil ditambahkan");
           } else {

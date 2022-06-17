@@ -102,10 +102,6 @@ use Illuminate\Support\Facades\Auth;
                                             $realisasi = 0;
                                             for ($m = 0; $m < count($tor); $m++) { 
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
-                                                
-                                                // for ($s = 0; $s < count($spj); $s++) {
-                                                //     if ($spj[$s]->id_tor == $tor[$z]->id) {
-                                                // $realisasi = $spj[$s]->nilai_total; 
                                             ?>
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
                                             <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
@@ -124,9 +120,8 @@ use Illuminate\Support\Facades\Auth;
                                                     <?php $sisa = 0; ?>
                                                     <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                                 @endif
-
+                                            @endforeach
                                         </tr>
-                                        @endforeach
                                         <?php } ?>
                                     </tbody>
                                 </table>
