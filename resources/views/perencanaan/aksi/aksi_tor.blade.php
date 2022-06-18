@@ -48,8 +48,8 @@ for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
                 // if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 2") {
                 //     $validasi += 1;
                 // }
-                if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 1") {
-                    $final = "Validasi WD 1";
+                if ($status[$st1]->nama_status == "Validasi" && $name['pembuat'][$i] == "WD 3") {
+                    $final = "Validasi WD 3";
                 }
                 if ($status[$st1]->nama_status == "Pengajuan Perbaikan") {
                     $pengajuanPerbaikan += 1;
@@ -170,7 +170,7 @@ foreach ($role as $roles) {
 <?php } ?>
 @endcan
 
-<?php if ($final == "Validasi WD 1") { ?>
+<?php if ($final == "Validasi WD 3") { ?>
     <badge class="badge badge-info rounded" data-toggle="modal"> SELESAI
     </badge>
 <?php }

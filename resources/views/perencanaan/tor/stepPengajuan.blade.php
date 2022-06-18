@@ -67,14 +67,14 @@ use Illuminate\Support\Facades\Auth;
                                                     <input type="hidden" name="create_by" id="create_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <input type="hidden" name="update_by" id="update_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <div class="form-group">
-                                                        <label>Jenis Ajuan</label><br />
+                                                        <label><b>Jenis Ajuan</b></label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">
                                                             <input type="radio" id="customRadio6" name="jenis_ajuan" id="jenis_ajuan" value="Baru" class="custom-control-input">
                                                             <label class="custom-control-label" for="customRadio6"> Baru </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Prodi</label>
+                                                        <label><b>Prodi</b></label>
                                                         <?php
                                                         $UnitUser = "";
                                                         if (!empty($unit)) {
@@ -106,7 +106,7 @@ use Illuminate\Support\Facades\Auth;
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Kode Sub Kegiatan</label>
+                                                        <label><b>Kode Sub Kegiatan</b></label>
                                                         <select name="id_subK" id="id_subK" class="form-control @error('id_subK') is-invalid @enderror">
                                                             <?php for ($s = 0; $s < count($subkeg); $s++) { ?>
                                                                 <option value="<?= $subkeg[$s]->id ?>"><?= $subkeg[$s]->subK . " - " . substr($subkeg[$s]->deskripsi, 0, 100) ?></option>
@@ -115,14 +115,12 @@ use Illuminate\Support\Facades\Auth;
                                                         @error('id_subK')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="card iq-mb-3 shadow">
-                                                            <!-- <p style="color: red;">contoh</p> -->
-                                                            <!-- <img width="500" src="../assets/contoh/contohiku.png" class="card-img-top"> -->
-                                                            <div class="card-body">
+                                                    </div><br />
+                                                    <div class="row" style="border: 1cm;">
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
                                                                 <b>
-                                                                    <h6 class="card-title">Indikator Kinerja Utama (IKU)</h6>
+                                                                    <h6 class="card-title"><b>Indikator Kinerja Utama (IKU)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
                                                                     <label>Realisasi IKU</label>
@@ -140,14 +138,10 @@ use Illuminate\Support\Facades\Auth;
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="card iq-mb-3 shadow">
-                                                            <!-- <p style="color: red;">contoh</p> -->
-                                                            <!-- <img width="700" src="../assets/contoh/contohik.png" class="card-img-top"> -->
-                                                            <div class="card-body">
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
                                                                 <b>
-                                                                    <h6 class="card-title">Indikator Kinerja Kegiatan (IK)</h6>
+                                                                    <h6 class="card-title"><b>Indikator Kinerja Kegiatan (IK)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
                                                                     <label>Realisasi IK</label>
@@ -165,11 +159,10 @@ use Illuminate\Support\Facades\Auth;
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
-
+                                                    </div><br />
                                                     <div class="form-group">
-                                                        <label>Nama Kegiatan</label>
-                                                        <input name="nama_kegiatan" id="nama_kegiatan" type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror">
+                                                        <label><b>Nama Kegiatan</b></label>
+                                                        <input name="nama_kegiatan" id="nama_kegiatan" type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror" style="border: 1px solid #aaaaaa7d;">
                                                     </div>
                                                     @error('nama_kegiatan')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -184,35 +177,35 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Latar Belakang</label>
+                                                    <label><b>Latar Belakang</b></label>
                                                     <textarea class="ckeditor form-control @error('latar_belakang') is-invalid @enderror" id="latar_belakang" name="latar_belakang"></textarea>
                                                 </div>
                                                 @error('latar_belakang')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Rasionalisasi</label>
+                                                    <label><b>Rasionalisasi</b></label>
                                                     <textarea class="ckeditor form-control @error('rasionalisasi') is-invalid @enderror" id="rasionalisasi" name="rasionalisasi" rows="2"></textarea>
                                                 </div>
                                                 @error('rasionalisasi')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Tujuan</label>
+                                                    <label><b>Tujuan</b></label>
                                                     <textarea class="ckeditor form-control @error('tujuan') is-invalid @enderror" id="tujuan" name="tujuan" rows="2"></textarea>
                                                 </div>
                                                 @error('tujuan')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>mekanisme</label>
+                                                    <label><b>Mekanisme</b></label>
                                                     <textarea class="ckeditor form-control @error('mekanisme') is-invalid @enderror" id="mekanisme" name="mekanisme" rows="2"></textarea>
                                                 </div>
                                                 @error('mekanisme')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>keberlanjutan</label>
+                                                    <label><b>Keberlanjutan</b></label>
                                                     <textarea class="ckeditor form-control @error('keberlanjutan') is-invalid @enderror" id="keberlanjutan" name="keberlanjutan" rows="2"></textarea>
                                                 </div>
                                                 @error('keberlanjutan')
@@ -229,7 +222,7 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Nama PIC Kegiatan</label><br />
+                                                    <label><b>Nama PIC Kegiatan</b></label><br />
                                                     <select name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                         <?php
                                                         for ($pi2 = 0; $pi2 < count($roles); $pi2++) {
@@ -273,14 +266,14 @@ use Illuminate\Support\Facades\Auth;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email SSO PIC Kegiatan</label>
+                                                    <label><b>Email SSO PIC Kegiatan</b></label>
                                                     <input name="email_pic" id="email_pic" type="text" class="form-control @error('email_pic') is-invalid @enderror" value="">
                                                 </div>
                                                 @error('email_pic')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Kontak PIC Kegiatan</label>
+                                                    <label><b>Kontak PIC Kegiatan</b></label>
                                                     <input name="kontak_pic" id="kontak_pic" type="text" class="form-control @error('kontak_pic') is-invalid @enderror" value="">
                                                 </div>
                                                 @error('kontak_pic')
@@ -297,14 +290,14 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Tanggal Mulai Pelaksanaan</label>
+                                                    <label><b>Tanggal Mulai Pelaksanaan</b></label>
                                                     <input name="tgl_mulai_pelaksanaan" id="tgl_mulai_pelaksanaan" value="" type="date" class="form-control @error('tgl_mulai_pelaksanaan') is-invalid @enderror">
                                                 </div>
                                                 @error('tgl_mulai_pelaksanaan')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Tanggal Selesai Pelaksanaan</label>
+                                                    <label><b>Tanggal Selesai Pelaksanaan</b></label>
                                                     <input name="tgl_akhir_pelaksanaan" id="tgl_akhir_pelaksanaan" value="" type="date" class="form-control @error('tgl_akhir_pelaksanaan') is-invalid @enderror">
                                                 </div>
                                                 @error('tgl_akhir_pelaksanaan')
@@ -314,12 +307,9 @@ use Illuminate\Support\Facades\Auth;
                                                     <label>Jumlah Anggaran</label> -->
                                                 <input name="jumlah_anggaran" id="jumlah_anggaran" value="0" type="hidden" class="form-control @error('jumlah_anggaran') is-invalid @enderror">
                                                 <!-- </div> -->
-                                                @error('jumlah_anggaran')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
 
                                                 <div class="form-group">
-                                                    <label>Rencana Penarikan Dana</label>
+                                                    <label><b>Rencana Penarikan Dana</b></label>
                                                     <!-- substr($tw[$t2]->triwulan, 0, 4) -->
                                                     <select name="id_tw" id="id_tw" class="form-control @error('id_tw') is-invalid @enderror">
                                                         <?php for ($t2 = 0; $t2 < count($tw); $t2++) {
@@ -350,23 +340,6 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
         <!-- Wrapper END -->
-        <!-- Footer -->
-        <footer class="iq-footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 text-right">
-                        Copyright 2020 <a href="#">FinDash</a> All Rights Reserved.
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer END -->
         <script>
             $(document).ready(function() {
                 $('#id_unit').select2();
@@ -383,40 +356,8 @@ use Illuminate\Support\Facades\Auth;
             });
         </script>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-        <script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-        <script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-        <!-- Appear JavaScript -->
-        <script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-        <!-- Countdown JavaScript -->
-        <script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-        <!-- Counterup JavaScript -->
-        <script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-        <script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-        <!-- Wow JavaScript -->
-        <script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-        <!-- Apexcharts JavaScript -->
-        <script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-        <!-- Slick JavaScript -->
-        <script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-        <!-- Select2 JavaScript -->
-        <script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-        <!-- Owl Carousel JavaScript -->
-        <script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-        <!-- Magnific Popup JavaScript -->
-        <script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-        <!-- Smooth Scrollbar JavaScript -->
-        <script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-        <!-- lottie JavaScript -->
-        <script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-        <!-- Style Customizer -->
-        <script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-        <!-- Chart Custom JavaScript -->
-        <script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-        <!-- Custom JavaScript -->
-        <script src="{{ asset('findash/assets/js/custom.js')}}"></script>
+        @include('dashboards/users/layouts/footer')
+
         <script type="text/javascript">
             var i = 0;
             $("#dynamic-ar").click(function() {

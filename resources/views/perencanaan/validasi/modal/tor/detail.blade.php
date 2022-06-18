@@ -10,7 +10,6 @@
             <div class="modal-body">
                 <div class="iq-card-body">
                     <ul class="iq-timeline">
-
                         <?php
                         $indexwarna = 0;
                         $warnaLingkar = [
@@ -59,11 +58,12 @@
                                             </div>
                                         </div>
                                     </li>
+
+
                                     <br />
                         <?php }
                             }
                         } ?>
-
                     </ul>
                 </div>
             </div>

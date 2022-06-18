@@ -192,7 +192,12 @@ use Illuminate\Support\Facades\Auth;
                                                                 <td>{{ 'Rp. ' . number_format($join[$a]->jumlah_anggaran, 2, ',', ',') }}
                                                                 </td>
                                                                 <td>
-                                                                    <div class="badge badge-pill badge-warning">
+                                                                    <?php
+                                                                    $badge = 'badge-warning';
+                                                                    if ($statuskeg == "Validasi" && $pengvalidasi == "WD 3") {
+                                                                        $badge = 'badge-success';
+                                                                    } ?>
+                                                                    <div class="badge badge-pill {{$badge}}">
                                                                         {{ $statuskeg . ' ' . $pengvalidasi }}
                                                                     </div>
                                                                     <button class="badge badge-info" data-toggle="modal" data-placement="top" data-target="#detail_tor{{ $x }}">

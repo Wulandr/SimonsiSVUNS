@@ -64,8 +64,22 @@ class TorController extends Controller
     }
     public function pengajuan2()
     {
+        $filterpagu = 0;
+        $filtertahun = date('Y');
         if (auth()->user()->id_unit != 1) {
-            $tor = Tor::where('id_unit', auth()->user()->id_unit)->simplePaginate(3);
+            // $tor = Tor::where('id_unit', auth()->user()->id_unit)->simplePaginate(3);
+            $torcount = Tor::where('tgl_mulai_pelaksanaan', 'LIKE',  $filtertahun . '%')
+                ->where('id_unit', auth()->user()->id_unit)
+                ->get();
+            if ($torcount->count() % 2 == 0) {
+                $h = 2;
+            }
+            if ($torcount->count() % 2 != 0) {
+                $h = 3;
+            }
+            $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE',  $filtertahun . '%')
+                ->where('id_unit', auth()->user()->id_unit)
+                ->orderBy('id')->cursorPaginate($h);
             // ->where('tgl_pelaksanaan', 'LIKE', date('Y') . '%')
             // ->simplepaginate(3);
         }
@@ -74,8 +88,7 @@ class TorController extends Controller
                 // $tor = Tor::where('tgl_pelaksanaan', 'LIKE', date('Y') . '%')
                 ->simplePaginate(3);
         }
-        $filterpagu = 0;
-        $filtertahun = 0;
+
         // $filtertahun = date('Y');
         $filterprodi = 0;
         $rab = DB::table('rab')->get();
@@ -371,7 +384,7 @@ class TorController extends Controller
         $request->validate([]);
         $process = Tor::findOrFail($id)->update($request->except('_token'));
         if ($process) {
-            return redirect('/torab')->with("success", "Data berhasil diperbarui");
+            return redirect('/lengkapitor/' . $id)->with("success", "Data berhasil diperbarui");
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }

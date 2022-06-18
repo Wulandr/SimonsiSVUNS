@@ -268,19 +268,19 @@ class AnggaranSeeder extends Seeder
                 'harga_satuan' => '150000',
                 'anggaran' => '300000',
             ],
-            [
-                'id_rab' => '8',
-                'id_detail_mak' => '1',
-                'id_tahap_anggaran' => '342',
-                'catatan' => '<p>Bantuan Kontribusi peserta (pemrogam) LSP UNS</p>',
-                'kebutuhan_vol' => '25',
-                'kebutuhan_sat' => 'org',
-                'frek' => '1',
-                'perhitungan_vol' => '25',
-                'perhitungan_sat' => 'org',
-                'harga_satuan' => '750000',
-                'anggaran' => '18750000',
-            ],
+            // [
+            //     'id_rab' => '8',
+            //     'id_detail_mak' => '1',
+            //     'id_tahap_anggaran' => '342',
+            //     'catatan' => '<p>Bantuan Kontribusi peserta (pemrogam) LSP UNS</p>',
+            //     'kebutuhan_vol' => '25',
+            //     'kebutuhan_sat' => 'org',
+            //     'frek' => '1',
+            //     'perhitungan_vol' => '25',
+            //     'perhitungan_sat' => 'org',
+            //     'harga_satuan' => '750000',
+            //     'anggaran' => '18750000',
+            // ],
         ]);
     }
 }

@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Update Anggaran {{$anggaran[$i]->id}}</h5>
+        <h5 class="modal-title">Update Anggaran</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -101,7 +101,7 @@
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Catatan</label>
             <small style="color: darkgreen">(Boleh dikosongi)</small>
-            <textarea class="ckeditor form-control" name="catatan" id="catatan" value="{{old('catatan',$anggaran[$i]->catatan)}}" rows="3"></textarea>
+            <textarea class="ckeditor form-control" name="catatan" id="catatan" value="{{old('catatan',$anggaran[$i]->catatan)}}" rows="3">{{$anggaran[$i]->catatan}}</textarea>
           </div>
           <div class="row">
             <div class="col">
@@ -144,8 +144,9 @@
             <input name="anggaran" id="anggaran" value="{{old('anggaran',$anggaran[$i]->anggaran)}}" type="text" class="form-control">
           </div><?php $i = 1 ?>
           <input name="id_tahap_anggaran" type="hidden" value="<?= $i ?>">
-          <input name="created_at" type="hidden" value="<?php date('Y:m:d') ?>">
-          <input name="updated_at" type="hidden" value="<?php date('Y:m:d') ?>">
+          <input name="created_at" id="created_at" type="hidden" value="<?= $anggaran[$i]->created_at ?>">
+          <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
+
           <button class="btn btn-primary mr-1" type="submit">Submit</button>
 
         </form>
