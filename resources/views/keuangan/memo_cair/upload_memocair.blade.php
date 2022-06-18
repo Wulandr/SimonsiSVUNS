@@ -10,9 +10,10 @@
             </div>
             <div class="modal-body">
                 {{-- <p></p> --}}
-                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('store') }}"
-                    novalidate>
+                <form class="needs-validation" enctype="multipart/form-data" method="post"
+                    action="{{ url('store') }}" novalidate>
                     {{ csrf_field() }}
+                    {{-- <input type="hidden" name="create_by" class="form-control" value="<?= Auth()->user()->id ?>"> --}}
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
                         <input type="text" name="nomor" class="form-control" id="validationCustom01" required>

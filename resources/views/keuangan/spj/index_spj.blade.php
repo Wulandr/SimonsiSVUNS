@@ -189,6 +189,13 @@
                                                         @endforeach
                                                     @endif
                                                 @endforeach
+                                                @foreach ($dok_spj as $dok)
+                                                    @if ($dok->id_tor == $tor[$m]->id)
+                                                        <?php
+                                                        $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-edit"></i></i></button></a><a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-warning rounded-pill" title="Edit File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                        ?>
+                                                    @endif
+                                                @endforeach
                                                 <?= $file ?>
                                             </td>
 

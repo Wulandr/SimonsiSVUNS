@@ -52,7 +52,6 @@ class DatabaseSeeder extends Seeder
             LPJSeeder::class,
             SPJSeeder::class,
             PedomanSeeder::class,
-            RPDSeeder::class,
             SPJKategoriSeeder::class,
             SPJSubKategoriSeeder::class,
             DokumenSPJSeeder::class,

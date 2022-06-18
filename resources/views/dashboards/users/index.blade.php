@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Auth;
                 foreach ($spj as $nilai) {
                     $total_realisasi += $nilai['nilai_total'];
                 }
+                
+                // Ambil data Sisa
+                $total_sisa = $total_anggaran - $total_realisasi;
                 ?>
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -40,7 +43,7 @@ use Illuminate\Support\Facades\Auth;
                             <div class="d-flex align-items-center justify-content-between">
                                 <h4><b>{{ 'Rp ' . number_format($total_anggaran) }}</b></h4>
                                 <div id="iq-chart-box1"></div>
-                                <span class="text-primary"><b> 100.00 % <i class="ri-arrow-up-fill"></i></b></span>
+                                <span class="text-primary"><b>100.00 %</b></span>
                             </div>
                         </div>
                     </div>
@@ -55,7 +58,10 @@ use Illuminate\Support\Facades\Auth;
                             <div class="d-flex align-items-center justify-content-between">
                                 <h4><b>{{ 'Rp ' . number_format($total_realisasi) }}</b></h4>
                                 <div id="iq-chart-box2"></div>
-                                <span class="text-danger"><b> +0.36% <i class="ri-arrow-up-fill"></i></b></span>
+                                <span class="text-danger">
+                                    <b>{{ number_format(($total_realisasi / $total_anggaran) * 100, 2, '.', '') }}%
+                                    </b>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -68,9 +74,10 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <p class="text-secondary">Total Sisa</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4><b>{{ 'Rp ' . number_format($total_anggaran - $total_realisasi) }}</b></h4>
+                                <h4><b>{{ 'Rp ' . number_format($total_sisa) }}</b></h4>
                                 <div id="iq-chart-box3"></div>
-                                <span class="text-warning"><b> +0.45% <i class="ri-arrow-up-fill"></i></b></span>
+                                <span
+                                    class="text-warning"><b>{{ number_format(($total_sisa / $total_anggaran) * 100, 2, '.', '') }}%</b></span>
                             </div>
                         </div>
                     </div>
@@ -99,30 +106,27 @@ use Illuminate\Support\Facades\Auth;
                                         <tr>
                                             <?php
                                             $no = 0;
-                                            $realisasi = 0;
                                             for ($m = 0; $m < count($tor); $m++) { 
+                                                $realisasi = 0;
+                                                $sisa = 0;
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
                                             ?>
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
                                             <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}</td>
-
-
                                             @foreach ($spj as $nominal)
                                                 @if ($tor[$m]->id == $nominal->id_tor)
                                                     <?php $realisasi = $nominal->nilai_total; ?>
-                                                    <td>{{ 'Rp ' . number_format($realisasi) }}</td>
                                                     <?php $sisa = $anggaran - $realisasi; ?>
-                                                    <td>{{ 'Rp ' . number_format($sisa) }}</td>
-                                                @else
-                                                    <td>{{ 'Rp ' . number_format($realisasi = 0) }}</td>
-                                                    <?php $sisa = 0; ?>
-                                                    <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                                 @endif
                                             @endforeach
+                                            <td>{{ 'Rp ' . number_format($realisasi) }}</td>
+                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php
+                                        } 
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

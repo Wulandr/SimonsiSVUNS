@@ -17,6 +17,7 @@ class DokumenSPJSeeder extends Seeder
         DB::table('dokumen_spj')->insert([
             [
                 'id' => 1,
+                'id_tor' => 3,
                 'id_subkategori' => 1,
                 'name' => 'Profile.pdf',
                 'path' => 'Profile.pdf'
