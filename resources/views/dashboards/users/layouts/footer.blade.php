@@ -3,10 +3,10 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <ul class="list-inline mb-0">
-                <li class="list-inline-item"><a style="color: #cdd3d6" href="https://iqonic.design/product/admin-templates/findash-lite-free-html-finance-sales-dashboard/">
+                <li class="list-inline-item"><a style="color: #3f768d9d" href="https://iqonic.design/product/admin-templates/findash-lite-free-html-finance-sales-dashboard/">
                         &copy; FinDash</a>
                 </li>
-                <li class="list-inline-item"><a href="#">All Rights Reserved.</a></li>
+                <li class="list-inline-item"><a style="color: #3f768d9d" href="#">All Rights Reserved.</a></li>
             </ul>
         </div>
     </div>

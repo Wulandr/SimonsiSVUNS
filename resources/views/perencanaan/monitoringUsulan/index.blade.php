@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Monitoring Usulan</h4>
                                     </div>
-                                    <div class="iq-card-header-toolbar d-flex align-items-center">
+                                    <!-- <div class="iq-card-header-toolbar d-flex align-items-center">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
                                                 <i class="ri-more-fill"></i>
@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Auth;
                                                 <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <div class="iq-card-body">

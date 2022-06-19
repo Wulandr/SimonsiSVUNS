@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
         @include('dashboards/users/layouts/sidebar')
 
         <?php
-        $disetujui = 0; //apakah wd 1 sudah validasi? 
+        $disetujui = 0; //apakah 3 sudah validasi? 
         ?>
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
