@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tor;
 use App\Models\MemoCair;
+use App\Models\SPJ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,15 +26,28 @@ class MonitoringKakController extends Controller
         $status_keu = DB::table('status_keu')->get();
         $filtertw = 0;
         $data = MemoCair::all();
+        $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
         return view(
             'keuangan.monitoring_kak.index_kak',
-            [
-                'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
-                'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
-                'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
-                'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun
-            ]
+            compact(
+                'tor',
+                'trx_status_tor',
+                'status',
+                'prodi',
+                'users',
+                'roles',
+                'dokMemo',
+                'trx_status_keu',
+                'status_keu',
+                'tw',
+                'filtertw',
+                'tahun',
+                'pagu',
+                'data',
+                'tabeltahun',
+                'spj'
+            )
         );
     }
 
@@ -57,6 +71,7 @@ class MonitoringKakController extends Controller
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
         $data = MemoCair::all();
+        $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
         return view(
             "perencanaan.monitoring_kak.index_kak",
@@ -64,7 +79,7 @@ class MonitoringKakController extends Controller
                 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
                 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
-                'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun
+                'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun, 'spj' => $spj
             ]
         );
     }

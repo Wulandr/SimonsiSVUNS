@@ -25,11 +25,13 @@
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Catatan</label>
                         <small style="color: darkgreen">(Boleh dikosongi)</small>
-                        <textarea class="ckeditor form-control" name="catatan" id="catatan" rows="3"></textarea>
+                        <textarea class="ckeditor form-control" name="catatan" id="catatan" rows="2"></textarea>
                     </div>
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
                 </form>
             </div>
         </div>

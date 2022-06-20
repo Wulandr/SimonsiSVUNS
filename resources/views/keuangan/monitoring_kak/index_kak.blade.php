@@ -56,7 +56,8 @@
                                     </span>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         aria-labelledby="dropdownMenuButton5">
-                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                class="ri-printer-fill mr-2"></i>Print</a>
                                         <a class="dropdown-item" href="#"><i
                                                 class="ri-file-download-fill mr-2"></i>Download</a>
                                     </div>
@@ -76,8 +77,8 @@
                                             <th style="">Pagu</th>
                                             <th style="">RPD</th>
                                             <th style="">KAK - Disetujui</th>
-                                            <th style="">Memo Cair Valid</th>
-                                            <th style="">% Memo Cair Valid</th>
+                                            <th style="">Sisa Anggaran Pagu</th>
+                                            <th style="">% Dana Digunakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,9 +130,13 @@
                                                                                                     // Mengambil data dari tabel Memo Cair
                                                                                                     for ($a = 0; $a < count($data); $a++) {
                                                                                                         if ($data[$a]->id_tor == $tor[$m]->id) {
+                                                                                                    // Mengambil data dari tabel Memo Cair
+                                                                                                    for ($r = 0; $r < count($spj); $r++) {
+                                                                                                        if ($spj[$r]->id_tor == $tor[$m]->id) {
                                                                                                             // Mengambil data dari tabel Pagu
-                                                                                                            
+                                                                                                           
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
+                                                $realisasi = $spj[$r]->nominal;
                                                 $memocair_nominal = $data[$a]->nominal;
                                                 $memocair_valid = ($memocair_nominal/$anggaran)*100;
 
@@ -147,20 +152,26 @@
                                                     for ($c = 0; $c < count($tabeltahun); $c++) {
                                                         if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
                                                             if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
-                                                                echo 'Rp. ' . number_format($pagu[$j]->pagu);
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                                echo 'Rp. ' . number_format($pagu[$j]->pagu); 
                                                 ?>
                                             </td>
                                             <td></td>
-                                            <td>{{ 'Rp ' . number_format($anggaran) }}
+                                            <td>{{ 'Rp ' . number_format($realisasi) }}
                                             </td>
-                                            <td>{{ 'Rp ' . number_format($memocair_nominal) }}</td>
+                                            <?php
+                                            $pagu = $pagu[$j]->pagu;
+                                            $sisa = $pagu - $realisasi;
+                                            ?>
+                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
                                             <td>{{ number_format($memocair_valid, 2) . ' %' }}</td>
 
                                             <?php
+                                                            }
+                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                                                                                         }
                                                                                                     }
                                                                                                 }

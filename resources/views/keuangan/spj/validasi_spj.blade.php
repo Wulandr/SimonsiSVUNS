@@ -31,14 +31,14 @@
                                                     value="5">
                                                 <label for="verifikasi'. $tor[$m]->id .'" class=""> Verifikasi</label>
                                             </div>';?>
-                                        @elseif ($status_keu[$s]->nama_status === 'Revisi')
+                                        {{-- @elseif ($status_keu[$s]->nama_status === 'Revisi')
                                         <?php $tombol = '
                                             <div onclick="pengajuan('. $tor[$m]->id .')"
                                                 class="custom-control custom-radio custom-radio-color-checked">
                                                 <input type="radio" name="id_status" id="pengajuan'. $tor[$m]->id .'"
                                                     value="4">
                                                 <label for="pengajuan'. $tor[$m]->id .'" class=""> Proses Pengajuan</label>
-                                            </div>'; ?>
+                                            </div>'; ?> --}}
                                         @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
                                         <?php $tombol = '
                                             <div onclick="spjselesai('. $tor[$m]->id .')"

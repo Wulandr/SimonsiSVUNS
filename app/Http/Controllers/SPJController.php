@@ -10,6 +10,7 @@ use App\Models\MemoCair;
 use App\Models\DokumenSPJ;
 use App\Models\SPJKategori;
 use App\Models\TrxStatusKeu;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
 use App\Models\SPJSubKategori;
@@ -78,6 +79,14 @@ class SPJController extends Controller
           $trx_status_keu = TrxStatusKeu::all();
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
+
+          $tor_one = Tor::where('id', '=', $request['idtor'])->first();
+          $id_unit = $tor_one->id_unit;
+          $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
+          $memocair = MemoCair::where('id_tor', '=', $request['idtor'])->first()->nomor;
+          $penanggung = $tor_one->nama_pic;
+          $kontak = $tor_one->kontak_pic;
+
           return view(
                'keuangan.spj.upload_spj',
                compact(
@@ -96,36 +105,18 @@ class SPJController extends Controller
                     'status_keu',
                     'trx_status_keu',
                     'spj_kategori',
-                    'spj_subkategori'
+                    'spj_subkategori',
+                    'namaprodi',
+                    'memocair',
+                    'penanggung',
+                    'kontak'
                )
           );
-
-          $uploadspj = new SPJ();
-          $uploadspj->id_tor = $request->id_tor;
-          $uploadspj->nilai_total = $request->nilai_total;
-          $uploadspj->nilai_kembali = $request->nilai_kembali;
-          $uploadspj->save();
-
-          //Menyimpan ke TRX Status
-          $upload2 = TrxStatusKeu::create([
-               'id_status' => 4,
-               'id_tor' => $request->id_tor,
-               'create_by' => $request->create_by,
-               'created_at' => $request->created_at,
-               'updated_at' => $request->updated_at,
-          ]);
-          if ($upload2) {
-               return redirect()->back()->with(
-                    "success",
-                    "Data berhasil ditambahkan"
-               );
-          } else {
-               return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-          }
      }
 
      public function create(Request $request)
      {
+          // Menyimpan Form Input SPJ ke Database
           $uploadspj = new SPJ();
           $uploadspj->id_tor = $request->id_tor;
           $uploadspj->nilai_total = $request->nilai_total;
@@ -140,11 +131,28 @@ class SPJController extends Controller
                'created_at' => $request->created_at,
                'updated_at' => $request->updated_at,
           ]);
-          if ($upload2) {
-               return redirect()->back()->with(
-                    "success",
-                    "Data berhasil ditambahkan"
-               );
+
+          $upload2->save();
+          //mengambil data file yang diupload
+          $file           = $request->file('file');
+          //mengambil nama file
+          $nama_file      = $file->getClientOriginalName();
+          $id_subkategori = $request->id_subkategori;
+          $id_tor = $request->id_tor;
+          //memindahkan file ke folder tujuan
+          $file->move('document_spj', $file->getClientOriginalName());
+
+          $addfile_spj         = new DokumenSPJ;
+          $addfile_spj->name   = $nama_file;
+          $addfile_spj->path   = $nama_file;
+          $addfile_spj->id_subkategori  = $id_subkategori;
+          $addfile_spj->id_tor  = $id_tor;
+
+          //menyimpan data ke database
+          $addfile_spj->save();
+
+          if ($addfile_spj) {
+               return redirect()->back()->with("success", "Data berhasil ditambahkan");
           } else {
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }
@@ -210,32 +218,32 @@ class SPJController extends Controller
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }
      }
-     public function addFile(Request $request)
-     {
-          $request->validate([]);
+     // public function addFile(Request $request)
+     // {
+     //      $request->validate([]);
 
-          //mengambil data file yang diupload
-          $file           = $request->file('file');
-          //mengambil nama file
-          $nama_file      = $file->getClientOriginalName();
-          $id_subkategori = $request->id_subkategori;
-          //memindahkan file ke folder tujuan
-          $file->move('document_spj', $file->getClientOriginalName());
+     //      //mengambil data file yang diupload
+     //      $file           = $request->file('file');
+     //      //mengambil nama file
+     //      $nama_file      = $file->getClientOriginalName();
+     //      $id_subkategori = $request->id_subkategori;
+     //      //memindahkan file ke folder tujuan
+     //      $file->move('document_spj', $file->getClientOriginalName());
 
-          $uploadspj         = new DokumenSPJ;
-          $uploadspj->name   = $nama_file;
-          $uploadspj->path   = $nama_file;
-          $uploadspj->id_subkategori  = $id_subkategori;
+     //      $uploadspj         = new DokumenSPJ;
+     //      $uploadspj->name   = $nama_file;
+     //      $uploadspj->path   = $nama_file;
+     //      $uploadspj->id_subkategori  = $id_subkategori;
 
-          //menyimpan data ke database
-          $uploadspj->save();
+     //      //menyimpan data ke database
+     //      $uploadspj->save();
 
-          if ($uploadspj) {
-               return redirect()->view(
-                    'keuangan.spj.upload_spj'
-               )->with("success", "Data berhasil ditambahkan");
-          } else {
-               return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-          }
-     }
+     //      if ($uploadspj) {
+     //           return redirect()->view(
+     //                'keuangan.spj.upload_spj'
+     //           )->with("success", "Data berhasil ditambahkan");
+     //      } else {
+     //           return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+     //      }
+     // }
 }
