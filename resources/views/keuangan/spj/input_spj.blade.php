@@ -78,10 +78,10 @@
                             Required!
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Upload</button>
             </div>
-            </form>
         </div>
     </div>

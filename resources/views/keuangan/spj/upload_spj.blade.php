@@ -14,6 +14,152 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-center">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Input Formulir Surat Pertanggungjawaban (SPJ)</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <?php
+                            $namaprodi = '';
+                            $namapj = '';
+                            $namakeg = '';
+                            for ($m = 0; $m < count($tor); $m++) {
+                                $ada = 0; //sudah diajukan apa belum
+                                $cektor = 0; //mengecek hanya ada 1 tor 
+                                // S T A T U S
+                                $torVallidasi = "";
+                                $statusTor = [
+                                    [
+                                        'tor' => '',
+                                        'status' => '',
+                                        'sudahUpload' => 0
+                                    ]
+                                ];
+
+                                // Mengambil data Nama Kegiatan yang SUDAH DIVALIDASI WD 1 dari tabel TOR
+                                for ($tr = 0; $tr < count($trx_status_tor); $tr++) {
+                                    if ($trx_status_tor[$tr]->id_tor == $tor[$m]->id) {
+                                        for ($s = 0; $s < count($status); $s++) {
+                                            if ($trx_status_tor[$tr]->id_status == $status[$s]->id) {
+                                                $ada += 1;
+                                                for ($u = 0; $u < count($users); $u++) {
+                                                    if ($trx_status_tor[$tr]->create_by == $users[$u]->id) {
+                                                        for ($r = 0; $r < count($roles); $r++) {
+                                                            if ($users[$u]->role == $roles[$r]->id) {
+                                                                $statusTor[0]['status'] = $status[$s]->nama_status . " - " . $roles[$r]->name;
+                                                                for ($d = 0; $d < count($dokumen); $d++) {
+                                                                    if ($dokumen[$d]->id_tor  == $tor[$m]->id) {
+                                                                        $statusTor[$ada]['tor'] = "TOR" . $tor[$m]->id;
+                                                                        $statusTor[0]['sudahUpload'] = 1;
+                                                                    }
+                                                                }
+                                                                if ($statusTor[0]['sudahUpload'] == 1 && $cektor != $tor[$m]->id) {
+                                                                                    
+                                                                // Mengambil data Nama Unit (Prodi) dari tabel TOR
+                                                                    for ($v = 0; $v < count($prodi); $v++) {
+                                                                        if ($prodi[$v]->id == $tor[$m]->id_unit) {
+                                                                            $namaprodi = $prodi[$v]->nama_unit;
+                            ?>
+
+                            <form class="needs-validation" enctype="multipart/form-data" method="post"
+                                action="{{ url('/input_spj') }}" novalidate>
+                                {{ csrf_field() }}
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                        for="validationCustom01">
+                                        Nama Unit/Prodi/Ormawa</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" value="{{ $namaprodi }}" disabled>
+                                    </div>
+                                </div>
+                                <?php
+                                for ($a = 0; $a < count($memo_cair); $a++) {
+                                    if ($memo_cair[$a]->id_tor == $tor[$m]->id) {
+                                ?>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0">ID Ajuan Memo
+                                        Cair</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" value="{{ $memo_cair[$a]->nomor }}"
+                                            disabled>
+                                    </div>
+                                </div>
+                                <?php
+                                }
+                                } ?>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                        for="validationCustom01">Nama
+                                        Penanggungjawab Kegiatan</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            value="{{ $tor[$m]->nama_pic }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                        for="validationCustom01">Nomor HP
+                                        Penanggungjawab Kegiatan</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            value="{{ $tor[$m]->kontak_pic }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                        for="validationCustom01">Nilai
+                                        Total SPJ</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="nilai_total" class="form-control"
+                                            id="validationCustom01" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required!
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id_tor" class="form-control" value="<?= $tor[$m]->id ?>">
+                                <input type="hidden" name="jenis" value="SPJ" class="custom-file-input" required>
+                                <input type="hidden" name="id_status" class="form-control" value="4">
+                                <input type="hidden" name="create_by" class="form-control"
+                                    value="<?= Auth()->user()->id ?>">
+                                <?php date_default_timezone_set('Asia/Jakarta'); ?>
+                                <input name="created_at" id="created_at" type="hidden"
+                                    value="<?= date('Y-m-d H:i:s') ?>">
+                                <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                        for="validationCustom01">Nilai
+                                        Pengembalian
+                                        <small style="color: darkred"><b>(Jika Ada)</b></small></label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="nilai_kembali" class="form-control"
+                                            id="validationCustom01" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Required!
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                            <?php
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                $cektor = $tor[$m]->id;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }}
+
+                                                ?>
+                        </div>
+                    </div>
+                    <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-center table-primary">
                             <div class="iq-header-title">
                                 <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban (SPJ)</h4>
@@ -28,8 +174,8 @@
                                         <?php
                                         for ($a = 0; $a < count($spj_kategori); $a++) {
                                         ?>
-                                        <a class="nav-link" id="tab-{{ $spj_kategori[$a]->id }}"
-                                            data-toggle="pill" href="#content-{{ $spj_kategori[$a]->id }}" role="tab"
+                                        <a class="nav-link" id="tab-{{ $spj_kategori[$a]->id }}" data-toggle="pill"
+                                            href="#content-{{ $spj_kategori[$a]->id }}" role="tab"
                                             aria-controls="{{ $spj_kategori[$a]->id }}"
                                             aria-selected="true">{{ $spj_kategori[$a]->nama_kategori }}
                                         </a>
@@ -47,8 +193,8 @@
                                             id="content-{{ $spj_kategori[$a]->id }}"
                                             aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
 
-                                            <form class="needs-validation" enctype="multipart/form-data" method="post"
-                                                action="{{ url('/upload_spj/tambah_files') }}">
+                                            <form class="needs-validation" enctype="multipart/form-data"
+                                                method="post" action="{{ url('/upload_spj/tambah_files') }}">
                                                 @csrf
                                                 <div class="col-12">
                                                     <h5 class="mb-2" style="color: #1E3D73">
@@ -67,8 +213,8 @@
                                                                 </label>
                                                             </td>
                                                             <td>
-                                                                <input type="file" class="form-control-file" name="file"
-                                                                    id="file" required>
+                                                                <input type="file" class="form-control-file"
+                                                                    name="file" id="file" required>
                                                                 <input type="hidden" class="form-control-file"
                                                                     name="id_subkategori" id="id_subkategori"
                                                                     value="{{ $spj_subkategori[$b]->id }}">
@@ -127,12 +273,13 @@
                                             href="#v-pills-profile2" role="tab" aria-controls="v-pills-profile2"
                                             aria-selected="false">Honor Magang Mahasiswa/Asisten Praktikum</a>
                                         <a class="nav-link" id="v-pills-messages2-tab" data-toggle="pill"
-                                            href="#v-pills-messages2" role="tab" aria-controls="v-pills-messages2"
-                                            aria-selected="false">Bantuan Transport/Transport Lokal (Karesidenan
+                                            href="#v-pills-messages2" role="tab"
+                                            aria-controls="v-pills-messages2" aria-selected="false">Bantuan
+                                            Transport/Transport Lokal (Karesidenan
                                             Surakarta)</a>
                                         <a class="nav-link" id="v-pills-settings2-tab" data-toggle="pill"
-                                            href="#v-pills-settings2" role="tab" aria-controls="v-pills-settings2"
-                                            aria-selected="false">SPPD</a>
+                                            href="#v-pills-settings2" role="tab"
+                                            aria-controls="v-pills-settings2" aria-selected="false">SPPD</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-9">

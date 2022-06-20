@@ -60,7 +60,7 @@ class SPJController extends Controller
           );
      }
 
-     public function uploadSpj()
+     public function uploadSpj(Request $request)
      {
           $tor = Tor::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
@@ -99,6 +99,29 @@ class SPJController extends Controller
                     'spj_subkategori'
                )
           );
+
+          $uploadspj = new SPJ();
+          $uploadspj->id_tor = $request->id_tor;
+          $uploadspj->nilai_total = $request->nilai_total;
+          $uploadspj->nilai_kembali = $request->nilai_kembali;
+          $uploadspj->save();
+
+          //Menyimpan ke TRX Status
+          $upload2 = TrxStatusKeu::create([
+               'id_status' => 4,
+               'id_tor' => $request->id_tor,
+               'create_by' => $request->create_by,
+               'created_at' => $request->created_at,
+               'updated_at' => $request->updated_at,
+          ]);
+          if ($upload2) {
+               return redirect()->back()->with(
+                    "success",
+                    "Data berhasil ditambahkan"
+               );
+          } else {
+               return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+          }
      }
 
      public function create(Request $request)

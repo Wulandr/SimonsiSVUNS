@@ -181,7 +181,7 @@
                                                                 @if ($b->kategori == 'SPJ')
                                                                     @if ($b->nama_status == 'Verifikasi')
                                                                         <?php
-                                                                        $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                                        $file = '<a href="' . url('/upload_spj/') . '?idtor=' . $tor[$m]->id . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                                         ?>
                                                                     @endif
                                                                 @endif
