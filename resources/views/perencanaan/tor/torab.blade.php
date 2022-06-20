@@ -128,7 +128,7 @@ use Illuminate\Support\Facades\Auth;
                             </select>
                           </div>
                           <?php if (Auth()->user()->role != 2) { ?>
-                            <div class="col mr-1">
+                            <!-- <div class="col mr-1">
                               <select class="form-control filter sm-8" name="prodi" id="prodi">
                                 <option value="0">All</option>
                                 <?php
@@ -136,7 +136,7 @@ use Illuminate\Support\Facades\Auth;
                                   <option value="{{$unit[$pr]->id}}" {{$filterprodi==$unit[$pr]->id ? 'selected':''}}>{{$unit[$pr]->nama_unit}}</option>
                                 <?php } ?>
                               </select>
-                            </div>
+                            </div> -->
                           <?php } ?>
                           <input type="submit" class="btn btn-sm bg-primary" value="Filter">
                         </div>
@@ -221,7 +221,7 @@ use Illuminate\Support\Facades\Auth;
                             <!-- NAMA KEGIATAN JADI 1 BARIS  -->
                             <!-- AKSI -->
                             <!-- for status -->
-                            <td style="background-color: #efefef;color:black" align="left" colspan="3">RAB : {{$rab[$r]->id." - ".$rab[$r]->masukan}}
+                            <td style="background-color: #efefef;color:black" align="left" colspan="3">RAB : {{$rab[$r]->masukan}}
                               <!-- AKSI KEGIATAN -->
                               @include('perencanaan/aksi/aksi_rab')
                             </td>
@@ -318,8 +318,8 @@ use Illuminate\Support\Facades\Auth;
                                 }
                               }
                               ?>
-                              <!-- TAMBAH ANGGARAN DI RAB -->
-                              <a href="#" class="badge iq-bg-primary">{{" [".$tw."] "}}Total di RAB = <?= " Rp. " .  number_format($totanggaran1, 2, ',', '.'); ?></a>
+                              <!-- TAMBAH ANGGARAN DI RAB  {{" [".$tw."] "}}-->
+                              <a href="#" class="badge iq-bg-primary">Total di RAB = <?= " Rp. " .  number_format($totanggaran1, 2, ',', '.'); ?></a>
 
                               <?php if ($pengajuan == 0) { ?>
                                 @can('anggaran_create')

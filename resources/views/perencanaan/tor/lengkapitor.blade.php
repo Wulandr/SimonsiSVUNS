@@ -181,6 +181,9 @@ use Illuminate\Support\Facades\Auth;
                                         $pengajuan = 0;
                                         $detail = "Lengkapi Data";
                                         $name;
+                                        $dalamRevisi = 0; // apakah sekarang dalam proses revisi? jika iya, maka dpt ditampilkan aksi jadwal dan rab
+                                        $countRevisi = 0; //megnhitung brp kali revisi
+                                        $countPerbaikan = 0; //megnhitung brp kali perbaikan
                                         for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
                                             if ($trx_status_tor[$trx1]->id_tor == $tor[$t]->id) {
                                                 for ($st1 = 0; $st1 < count($status); $st1++) {
@@ -189,6 +192,96 @@ use Illuminate\Support\Facades\Auth;
                                                         if ($status[$st1]->nama_status == "Proses Pengajuan") {
                                                             $pengajuan = 1;
                                                             $detail = "Detail";
+                                                        }
+                                                        if ($status[$st1]->nama_status == "Revisi") {
+                                                            $countRevisi += 1;
+                                                        }
+                                                        if ($status[$st1]->nama_status == "Pengajuan Perbaikan") {
+                                                            $countPerbaikan += 1;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        //jika jumlah revisi tidak sama dengan perbaikan, maka aktifkan button aksi
+                                        if ($countRevisi != $countPerbaikan) {
+                                            $dalamRevisi = 1;
+                                        }
+                                        $alertRevisi = ""; //menampilkan peringatan untuk merevisi jadwal dan rab
+
+
+                                        if ($dalamRevisi == 1) {
+                                            foreach ($trx_status_tor as $revisian) {
+                                                if ($revisian->id_tor == $tor[$t]->id) {
+
+                                                    //cek di tabel J A D W A L apakah update_at > created_at di trx tor revisi
+                                                    $kjadwalSudahRevisi = "Belum"; //apakah kjadwal sudah direvisi
+                                                    foreach ($komponen_jadwal as $kjadwal) {
+                                                        if ($kjadwal->id_tor == $tor[$t]->id && ($kjadwal->updated_at > $revisian->created_at || $kjadwal->created_at > $revisian->created_at)) {
+                                                            $kjadwalSudahRevisi = "Sudah";
+                                                            // echo $kjadwal->updated_at . " and " . $revisian->created_at . "<br />";
+                                                        }
+                                                        if ($kjadwal->id_tor == $tor[$t]->id && ($kjadwal->updated_at < $revisian->created_at || $kjadwal->created_at < $revisian->created_at)) {
+                                                            if ($kjadwalSudahRevisi != "Sudah") {
+                                                                $kjadwalSudahRevisi = "Belum"; //berarti belum direvisi
+                                                            }
+                                                            // echo "JADWAL : " . $kjadwal->updated_at . " and " . " TRX :" . $revisian->created_at . "<br />";
+                                                        }
+                                                    }
+
+                                                    //cek di tabel ANGGARAN RAB apakah update_at > created_at di trx tor revisi
+                                                    $angSudahRevisi = "Belum"; //apakah ang sudah direvisi
+                                                    foreach ($rab as $rabrev) {
+                                                        if ($rabrev->id_tor == $tor[$t]->id) {
+                                                            foreach ($anggaran as $ang) {
+                                                                if ($ang->id_rab == $rabrev->id) {
+                                                                    if ($ang->updated_at > $revisian->created_at || $ang->created_at > $revisian->created_at) {
+                                                                        $angSudahRevisi = "Sudah";
+                                                                        // echo $ang->updated_at . " and " . $revisian->created_at . "<br />";
+                                                                    }
+                                                                    if ($ang->updated_at < $revisian->created_at || $ang->created_at < $revisian->created_at) {
+                                                                        if ($angSudahRevisi != "Sudah") {
+                                                                            $angSudahRevisi = "Belum"; //berarti belum direvisi
+                                                                        }
+                                                                        // echo "JADWAL : " . $ang->updated_at . " and " . " TRX :" . $revisian->created_at . "<br />";
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    /*
+                                                     ---  ALERT BELUM REVISI JADWAL DAN ANGGARAN RAB  ---
+                                                     */
+                                                    foreach ($status as $statusrevisian) {
+                                                        if ($revisian->id_status == $statusrevisian->id && $statusrevisian->nama_status == "Revisi") {
+                                                            // echo $statusrevisian->nama_status . "<br />";
+                                                            // echo $revisian->k_jadwal;
+                                                            // echo $revisian->k_rab;
+
+                                                            if (!empty($revisian->k_jadwal && $kjadwalSudahRevisi == "Belum")) { ?>
+                                                                <div class="alert text-white bg-danger" role="alert">
+                                                                    <div class="iq-alert-icon">
+                                                                        <i class="ri-information-line"></i>
+                                                                    </div>
+                                                                    <div class="iq-alert-text">Anda belum merevisi <b>KOMPONEN JADWAL KEGIATAN</b> ! </div>
+                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <i class="ri-close-line"></i>
+                                                                    </button>
+                                                                </div>
+                                                            <?php }
+                                                            if (!empty($revisian->k_rab && $angSudahRevisi == "Belum")) { ?>
+                                                                <div class="alert text-white bg-danger" role="alert">
+                                                                    <div class="iq-alert-icon">
+                                                                        <i class="ri-information-line"></i>
+                                                                    </div>
+                                                                    <div class="iq-alert-text">Anda belum merevisi <b>ANGGARAN PADA RAB</b> ! </div>
+                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <i class="ri-close-line"></i>
+                                                                    </button>
+                                                                </div>
+                                        <?php }
                                                         }
                                                     }
                                                 }
@@ -317,20 +410,22 @@ use Illuminate\Support\Facades\Auth;
                                             }
                                             ?>
                                             <!-- TAMBAH JADWAL -->
-                                            <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
-                                                <?php if ($pengajuan == 0) { ?>
-                                                    <button id="validasi" class="search-toggle iq-waves-effect badge badge-info rounded" data-toggle="modal" title="Tambah Jadwal" data-original-title="Tambah Jadwal" data-target="#tambah_jadwal<?= $tor[$t]->id ?>"><i class="fa fa-plus-circle"></i><br />
-                                                    </button>
-                                                <?php } ?>
-                                            <?php } ?>
-                                            <br />
+
                                             <?php
                                             if (!empty($komponen_jadwal)) {
                                             ?>
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col" rowspan="2" class="align-middle">Komponen Input {{$RoleLogin}}</th>
+                                                            <th scope="col" rowspan="2" class="align-middle">Komponen Input
+                                                                <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
+                                                                    <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
+                                                                        <a id="validasi" class="iq-bg-primary rounded rounded mt-3 mb-1" style="padding: 0.5%;margin: top 12px;" data-toggle="modal" title="Tambah Jadwal" data-original-title="Tambah Jadwal" data-target="#tambah_jadwal<?= $tor[$t]->id ?>" href="">
+                                                                            <i class="ri-user-add-line"></i> Tambah Jadwal<br />
+                                                                        </a>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                            </th>
                                                             <th scope="col" colspan="12" style="text-align: center;">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
                                                             <th id="validasi"></th>
                                                         </tr>
@@ -368,7 +463,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     <?php } ?>
                                                                     <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
                                                                         <td id="validasi">
-                                                                            <?php if ($pengajuan == 0) { ?>
+                                                                            <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
                                                                                 <div class="flex align-items-center list-user-action">
                                                                                     <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Edit Jadwal" data-original-title="Edit Jadwal" data-target="#edit_jadwal<?= $komponen_jadwal[$j]->id ?>" href=""><i class="ri-pencil-line"></i></a>
                                                                                     <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.$komponen_jadwal[$j]->id)}}" data-toggle="tooltip" title="Delete">
@@ -432,7 +527,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                                             <?php } ?>
                                                                                                         </select>
                                                                                                     </div>
-
+                                                                                                    <input name="created_at" id="created_at" type="hidden" value="<?= $komponen_jadwal[$j]->created_at ?>">
+                                                                                                    <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
                                                                                                 </div>
                                                                                                 <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                                                                             </form>
@@ -610,8 +706,8 @@ use Illuminate\Support\Facades\Auth;
                                                                 </select>
                                                             </div>
                                                             <div class="form-group ">
-                                                                <label>Komponen</label>
-                                                                <textarea class="form-control shadow" id="komponen" name="komponen" rows="2" placeholder="komponen..."></textarea>
+                                                                <label>Komponen Jadwal</label>
+                                                                <textarea class="form-control" id="komponen" name="komponen" rows="2" placeholder="komponen..."></textarea>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
@@ -644,6 +740,9 @@ use Illuminate\Support\Facades\Auth;
                                                                 </div>
 
                                                             </div>
+                                                            <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                                            <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                                            <br />
                                                             <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                                         </form>
                                                     </div>
@@ -795,23 +894,6 @@ use Illuminate\Support\Facades\Auth;
     </div>
     </div>
     <!-- Wrapper END -->
-    <!-- Footer -->
-    <footer class="iq-footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 text-right">
-                    Copyright 2020 <a href="#">FinDash</a> All Rights Reserved.
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer END -->
     <script>
         function remove() {
             var n = document.getElementById("validasi");

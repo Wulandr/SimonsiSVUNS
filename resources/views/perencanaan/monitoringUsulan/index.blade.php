@@ -78,7 +78,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                             if ($users[$u5]->role == $roles[$r5]->id) {
                                                                                                 if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
                                                                                                     if ($users[$u5]->role == $roles[$r5]->id) {
-                                                                                                        if ($status[$s2]->nama_status == 'Validasi' && $roles[$r5]->name == 'WD 1') {
+                                                                                                        if ($status[$s2]->nama_status == 'Validasi' && $roles[$r5]->name == 'WD 3') {
                                                                                                             $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran;
                                                                                                             $disetujui['tor'][$i3] = $tor[$m2]->id;
                                                                                                             'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
@@ -244,33 +244,33 @@ use Illuminate\Support\Facades\Auth;
                                                     }
 
                                                     // APAKAH SUDAH ADA MEMO CAIR ?
-                                                    for ($dm = 0; $dm < count($dokMemo); $dm++) {
-                                                        if ($dokMemo[$dm]->id_tor == $tor[$m]->id && $dokMemo[$dm]->jenis == "Memo Cair") {
-                                                            $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
-                                                        }
-                                                    }
+                                                    // for ($dm = 0; $dm < count($dokMemo); $dm++) {
+                                                    //     if ($dokMemo[$dm]->id_tor == $tor[$m]->id && $dokMemo[$dm]->jenis == "Memo Cair") {
+                                                    //         $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
+                                                    //     }
+                                                    // }
 
-                                                    // STATUS LPJ DAN SPJ ?
-                                                    for ($tr2 = 0; $tr2 < count($trx_status_keu); $tr2++) {
-                                                        if ($trx_status_keu[$tr2]->id_tor == $tor[$m]->id) {
-                                                            for ($s2 = 0; $s2 < count($status_keu); $s2++) {
-                                                                if ($trx_status_keu[$tr2]->id_status == $status_keu[$s2]->id) {
-                                                                    if ($status_keu[$s2]->kategori == 'LPJ') {
-                                                                        $statusTor[0]['statusLPJ'] = $status_keu[$s2]->nama_status . " LPJ";
-                                                                    }
-                                                                    if ($status_keu[$s2]->kategori == 'SPJ') {
-                                                                        $statusTor[0]['statusSPJ'] = $status_keu[$s2]->nama_status . " SPJ";
-                                                                    }
-                                                                    // if ($status_keu[$s2]->kategori == 'Memo Cair') {
-                                                                    //     $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
-                                                                    // }
-                                                                    if ($status_keu[$s2]->kategori == 'Persekot Kerja') {
-                                                                        $statusTor[0]['persekotKerja'] = $status_keu[$s2]->nama_status . " Persekot Kerja";
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    // // STATUS LPJ DAN SPJ ?
+                                                    // for ($tr2 = 0; $tr2 < count($trx_status_keu); $tr2++) {
+                                                    //     if ($trx_status_keu[$tr2]->id_tor == $tor[$m]->id) {
+                                                    //         for ($s2 = 0; $s2 < count($status_keu); $s2++) {
+                                                    //             if ($trx_status_keu[$tr2]->id_status == $status_keu[$s2]->id) {
+                                                    //                 if ($status_keu[$s2]->kategori == 'LPJ') {
+                                                    //                     $statusTor[0]['statusLPJ'] = $status_keu[$s2]->nama_status . " LPJ";
+                                                    //                 }
+                                                    //                 if ($status_keu[$s2]->kategori == 'SPJ') {
+                                                    //                     $statusTor[0]['statusSPJ'] = $status_keu[$s2]->nama_status . " SPJ";
+                                                    //                 }
+                                                    //                 // if ($status_keu[$s2]->kategori == 'Memo Cair') {
+                                                    //                 //     $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
+                                                    //                 // }
+                                                    //                 if ($status_keu[$s2]->kategori == 'Persekot Kerja') {
+                                                    //                     $statusTor[0]['persekotKerja'] = $status_keu[$s2]->nama_status . " Persekot Kerja";
+                                                    //                 }
+                                                    //             }
+                                                    //         }
+                                                    //     }
+                                                    // }
 
                                                 ?>
                                                     <?php if ($ada == 1) { ?>
@@ -291,7 +291,7 @@ use Illuminate\Support\Facades\Auth;
                                                             </td>
                                                             <td>
                                                                 <?php if (empty($statusTor[0]['statusMemo'])) { ?>
-                                                                    <div class="badge badge-pill {{ $statusTor[0]['status'] == "Validasi - WD 1" ?  'badge-success'  : 'badge-secondary' }}">{{ $statusTor[0]['status'] }}</div>
+                                                                    <div class="badge badge-pill {{ $statusTor[0]['status'] == 'Validasi - WD 3' ?  'badge-success' : 'badge-secondary' }}">{{ $statusTor[0]['status'] }}</div>
                                                                 <?php } elseif (!empty($statusTor[0]['statusMemo']) && empty($statusTor[0]['persekotKerja'])) { ?>
                                                                     <div class="badge badge-pill badge-warning">{{ $statusTor[0]['statusMemo'] }}</div>
 
@@ -307,15 +307,96 @@ use Illuminate\Support\Facades\Auth;
                                                                 <?php } elseif (!empty($statusTor[0]['statusSPJ']) && !empty($statusTor[0]['statusLPJ'])) { ?>
                                                                     <div class="badge badge-pill badge-primary">{{ $statusTor[0]['statusSPJ'] ." & ".$statusTor[0]['statusLPJ']}}</div>
                                                                 <?php } ?>
-                                                            </td>
-                                                            <td><a href="{{ url('/detailtor/' . $tor[$m]->id) }}">Detail</a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
+                                                                <button class="badge badge-info" data-toggle="modal" data-placement="top" data-target="#detail_tor{{$tor[$m]->id}}">
+                                                                    <i class="fa fa-tasks"></i>
+                                                                </button>
+                                                                <!-- -------------------------------------------------------------------------M O D A L S T A T U S------------------------------------------------------------------------------------
+                                                                -----------------------------------------------------------------------------------MODAL STATUS------------------------------------------------------------------------------------
+                                                                ---------------------------------------------------------------------------M O D A L S T A T U S------------------------------------------------------------------------------------  -->
+                                                                <div class="modal fade" tabindex="-1" role="dialog" id="detail_tor{{$tor[$m]->id}}">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header" style="background-color: #ffc107;color:white">
+                                                                                <h5 class="modal-title" style="color:white"><b>Status Pengajuan TOR</b> </h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="iq-card-body">
+                                                                                    <ul class="iq-timeline">
+                                                                                        <?php
+                                                                                        $indexwarna = 0;
+                                                                                        $warnaLingkar = [
+                                                                                            'timeline-dots',
+                                                                                            'timeline-dots border-success',
+                                                                                            'timeline-dots border-secondary',
+                                                                                            'timeline-dots border-info',
+                                                                                        ];
+                                                                                        $ada = 0;
+                                                                                        if (!empty($trx_status_tor)) {
+                                                                                            foreach ($trx_status_tor as $q3) {
+                                                                                                if ($q3->id_tor == $tor[$m]->id) {
+                                                                                        ?>
+                                                                                                    <li>
+                                                                                                        <div class="{{$warnaLingkar[$indexwarna]}}"><i class="ri-check-fill" style="color:black"></i></div>
+                                                                                                        <?php
+                                                                                                        $indexwarna += 1;
+                                                                                                        if ($indexwarna > 3) {
+                                                                                                            $indexwarna = 0;
+                                                                                                        }
+                                                                                                        ?>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col">
+                                                                                                                <h6 style="text-align:left;">
+                                                                                                                    <?php
+                                                                                                                    foreach ($status as $st3) {
+                                                                                                                        if ($st3->id == $q3->id_status) {
+                                                                                                                            echo  $st3->nama_status;
+                                                                                                                            foreach ($users as $u) {
+                                                                                                                                if ($u->id == $q3->create_by) {
+                                                                                                                                    foreach ($roles as $rl) {
+                                                                                                                                        if ($rl->id == $u->role) {
+                                                                                                                                            echo "<br/>" . " - create by : " . $u->name . " - " . $rl->name;
+                                                                                                                                            $pengvalidasi = $rl->id;
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    ?>
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                            <div class="col">
+                                                                                                                <small style="font-size: smaller;color:grey" class="float-right mt-1">{{$q3->created_at}}</small>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </li>
+
+
+                                                                                                    <br />
+                                                                                        <?php }
+                                                                                            }
+                                                                                        } ?>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                     </div>
+
+                                    <!-- */ --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+                                    </td>
+                                    <td><a href="{{ url('/detailtor/' . $tor[$m]->id) }}">Detail</a>
+                                    </td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } ?>
+                            </tbody>
+                            </table>
                                 </div>
                             </div>
                         </div>
@@ -323,6 +404,7 @@ use Illuminate\Support\Facades\Auth;
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
@@ -333,11 +415,25 @@ use Illuminate\Support\Facades\Auth;
             });
         });
     </script>
+
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $.noConflict();
-            $('#monitoring').DataTable();
+            $('#monitoring').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
         });
     </script>
     @include('dashboards/users/layouts/footer')

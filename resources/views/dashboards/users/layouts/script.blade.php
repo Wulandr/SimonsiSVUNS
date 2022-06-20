@@ -30,6 +30,12 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <style>
+        .form-control {
+            border: 1px solid #aaaaaa7d
+        }
+    </style>
 </head>
 
 <body class="sidebar-main" style="background-image: url('findash/assets/images/wave.svg');background-repeat:no-repeat">

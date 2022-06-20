@@ -93,8 +93,8 @@
                         <input name="anggaran" id="anggaran" type="text" class="form-control">
                     </div><?php $i = 1 ?>
                     <input name="id_tahap_anggaran" type="hidden" value="<?= $i ?>">
-                    <input name="created_at" type="hidden" value="<?php date('Y:m:d') ?>">
-                    <input name="updated_at" type="hidden" value="<?php date('Y:m:d') ?>">
+                    <input name="created_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
+                    <input name="updated_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
                     <button class="btn btn-primary mr-1" type="submit">Submit</button>
 
                 </form>

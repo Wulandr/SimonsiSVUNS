@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Auth;
                                     <i class="ri-notification-line"></i>
                                     <span class="bg-danger dots"></span>
                                 </a>
-                                <div class="iq-sub-dropdown">
+                                <div class="iq-sub-dropdown scrollable">
                                     <div class="iq-card shadow-none m-0">
                                         <div class="iq-card-body p-0 ">
                                             <div class="bg-primary p-3">
@@ -108,6 +108,7 @@ use Illuminate\Support\Facades\Auth;
 
                                                         <?php
                                                         $namastat = "";
+                                                        $hitungNotif = 1;
                                                         foreach ($trx_status_tor as $tstor3) {
                                                             if ($trxStatusTor[$i2 - 1] == $tstor3->id) {
                                                                 foreach ($user as $u) {
@@ -117,30 +118,59 @@ use Illuminate\Support\Facades\Auth;
                                                                                 foreach ($status as $sts3) {
                                                                                     if ($tstor3->id_status == $sts3->id) {
                                                                                         $namastat = $sts3->nama_status . " " . $r->name;
-                                                                                        if ($namastat != "Validasi WD 1") {
+                                                                                        if ($namastat != "Validasi WD 3") {
                                                                                             $count += 1;
+                                                                                            if ($hitungNotif < 4) {
                                                         ?>
-                                                                                            <a href="{{url('/detailtor/'.$tor2->id)}}" class="iq-sub-card">
-                                                                                                <div class="media align-items-center">
-                                                                                                    <div class="media-body">
-                                                                                                        <h6><?php foreach ($unit as $unitTor) {
-                                                                                                                if ($tor2->id_unit == $unitTor->id) { ?>
-                                                                                                                    <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
-                                                                                                            <?php }
-                                                                                                            } ?>
-                                                                                                            {{$tor2->nama_kegiatan." "}}
-                                                                                                        </h6>
-                                                                                                        <small class="badge badge-warning">{{$sts3->nama_status." ".$r->name}}</small>
-                                                                                                        <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
-                                                                                                        <p class="mb-0">
-                                                                                                        </p>
+                                                                                                <a href="{{url('/detailtor/'.$tor2->id)}}" class="iq-sub-card">
+                                                                                                    <div class="media align-items-center">
+                                                                                                        <div class="media-body">
+                                                                                                            <h6><?php foreach ($unit as $unitTor) {
+                                                                                                                    if ($tor2->id_unit == $unitTor->id) { ?>
+                                                                                                                        <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
+                                                                                                                <?php }
+                                                                                                                } ?>
+                                                                                                                {{$tor2->nama_kegiatan." "}}
+                                                                                                            </h6>
+                                                                                                            <small class="badge badge-warning">{{$sts3->nama_status." ".$r->name}}</small>
+                                                                                                            <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
+                                                                                                            <p class="mb-0">
+                                                                                                            </p>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                            </a>
+                                                                                                </a>
+                                                                                                <!-- <a href="" class="iq-sub-card">
+                                                                                                    <div class="media align-items-center">
+                                                                                                        <div class="media-body">
+                                                                                                            <h6>bbb
+                                                                                                            </h6>
+                                                                                                            <small class="badge badge-warning"></small>
+                                                                                                            <small class="float-right font-size-12"></small>
+                                                                                                            <p class="mb-0">
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <?php $hitungNotif += 1; ?>
+                                                                                                </a>
+                                                                                                <a href="" class="iq-sub-card">
+                                                                                                    <div class="media align-items-center">
+                                                                                                        <div class="media-body">
+                                                                                                            <h6>bbbb
+                                                                                                            </h6>
+                                                                                                            <small class="badge badge-warning"></small>
+                                                                                                            <small class="float-right font-size-12"></small>
+                                                                                                            <p class="mb-0">
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <?php $hitungNotif += 1; ?>
+                                                                                                </a> -->
                                                         <?php
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 }
+                                                                                $hitungNotif += 1;
                                                                             }
                                                                         }
                                                                     }
@@ -152,6 +182,23 @@ use Illuminate\Support\Facades\Auth;
                                                     }
                                                 }
                                             }
+                                            ?>
+                                            <?php
+                                            // echo $hitungNotif;
+                                            if ($hitungNotif > 3) { ?>
+                                                <a href="" class="iq-sub-card">
+                                                    <div class="media align-items-center">
+                                                        <div class="media-body">
+                                                            <h6>More
+                                                            </h6>
+                                                            <small class="badge badge-warning"></small>
+                                                            <small class="float-right font-size-12"></small>
+                                                            <p class="mb-0">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            <?php }
                                             ?>
                                         </div>
                                     </div>

@@ -165,7 +165,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     if ($users[$us2]->id == $trx_status_tor[$trx]->create_by) {
                                                                         if ($users[$us2]->role == $roles[$ro2]->id) {
                                                                             // echo $status[$is]->nama_status . " - " . $roles[$ro2]->name . "<br />";
-                                                                            if ($status[$is]->nama_status == "Validasi" && $roles[$ro2]->name == "WD 1") {
+                                                                            if ($status[$is]->nama_status == "Validasi" && $roles[$ro2]->name == "WD 3") {
                                                                                 $disetujui = 1;
                                                                             }
                                                                         }
@@ -721,12 +721,24 @@ use Illuminate\Support\Facades\Auth;
                                                     foreach ($status as $statusTor) {
                                                         if ($statusTor->id == $trx_status_tor[$stk2]->id_status) {
                                                             $currentStatus = $statusTor->nama_status;
+                                                            foreach ($users as $userrole) {
+                                                                foreach ($roles as $statusrole) {
+                                                                    if ($trx_status_tor[$stk2]->create_by == $userrole->id) {
+                                                                        if ($userrole->role == $statusrole->id) {
+                                                                            $currentStatusRole =  $statusrole->name;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 } else {
                                                 }
                                             }
                                 ?>
+                                <h4><b>
+                                        Verifikasi & Validasi TOR
+                                    </b></h4>
                                 <?php for ($s = 1; $s < count($status); $s++) {
                                                 if ($status[$s]->kategori == "TOR" && $status[$s]->nama_status != "Pengajuan Perbaikan") {
                                                     for ($r3 = 0; $r3 < count($roles); $r3++) {
@@ -736,9 +748,6 @@ use Illuminate\Support\Facades\Auth;
                                                 <?php if ($roles[$r3]->name == "BPU") {
                                                                 if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi") {
                                                                     $buttonSubmit = 1; ?>
-                                                        <h4><b>
-                                                                Verifikasi TOR
-                                                            </b></h4>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                                                     <?php }
@@ -752,23 +761,24 @@ use Illuminate\Support\Facades\Auth;
                                                     <?php }
                                                             } elseif ($roles[$r3]->name == "WD 1") { ?>
                                                     <?php
-                                                                if ($currentStatus == "Review" && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
+                                                                if ($currentStatus == "Verifikasi" && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
                                                                     if ($status[$s]->nama_status == "Revisi") {
                                                     ?>
-                                                            <h4><b>
-                                                                    Vallidasi TOR
-                                                                </b></h4>
                                                         <?php } ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                                                     <?php }
-                                                            } elseif ($roles[$r3]->name == "WD 2" || $roles[$r3]->name == "WD 3") {
-                                                                if ($currentStatus == "Verifikasi" && $status[$s]->nama_status == "Review") {
+                                                            } elseif ($roles[$r3]->name == "WD 2") {
+                                                                // echo "xx - " . $currentStatus . "-" . $currentStatusRole;
+                                                                if ($currentStatus == "Validasi" && $currentStatusRole == "WD 1" &&  ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;  ?>
-                                                        <h4><b>
-                                                                Review TOR
-                                                            </b></h4>
+                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php }
+                                                            } elseif ($roles[$r3]->name == "WD 3") {
+                                                                if ($currentStatus == "Validasi" && $currentStatusRole == "WD 2"   && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
+                                                                    $buttonSubmit = 1;  ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                                                     <?php }
@@ -984,8 +994,10 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                     </div>
                     <hr>
-                    <button type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint" onclick="remove()">REMOVE</button>
-                    <button type="button" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button>
+                    <div class="container ml-1">
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint" onclick="remove()">REMOVE</button>
+                        <button type="button" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1002,23 +1014,6 @@ use Illuminate\Support\Facades\Auth;
 </div>
 </div>
 <!-- Wrapper END -->
-<!-- Footer -->
-<footer class="iq-footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-6 text-right">
-                Copyright 2020 <a href="#">FinDash</a> All Rights Reserved.
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Footer END -->
 <script>
     function remove() {
         var n = document.getElementById("validasi");

@@ -16,12 +16,15 @@
                         <i>Lengkapi Data TOR & RAB Sebelum Diajukan</i>
                         <h6>
                             <label for="exampleFormControlSelect1"></label><br />
+
                             <?php
                             $jenisDiajukan = ""; // apakah sudah diajukan prodi
                             if (!empty($trx_status_tor)) {
                                 foreach ($trx_status_tor as $trxstatus) {
+
                                     if ($trxstatus->id_tor == $tor[$t]->id) {
-                                        foreach ($status as $sts) {
+                            ?>
+                                        <?php foreach ($status as $sts) {
                                             if ($sts->id == $trxstatus->id_status) {
                                                 if ($sts->nama_status == "Proses Pengajuan") {
                                                     $jenisDiajukan = "Baru";
@@ -52,13 +55,13 @@
                                     if ($jenisDiajukan == "Baru") {
                                         if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
                                             <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
-                                            <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
+                                            <label class="" for="danger-outlined"><b>{{ $status[$s]->nama_status }}</b></label><br />
                                         <?php }
                                     }
                                     if ($jenisDiajukan == "Perbaikan") {
                                         if ($status[$s]->nama_status == 'Pengajuan Perbaikan') { ?>
                                             <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{ $status[$s]->id }}" autocomplete=" off">
-                                            <label class="" for="danger-outlined">{{ $status[$s]->nama_status }}</label><br />
+                                            <label class="" for="danger-outlined"><b>{{ $status[$s]->nama_status }}</b></label><br />
                             <?php }
                                     }
                                 }

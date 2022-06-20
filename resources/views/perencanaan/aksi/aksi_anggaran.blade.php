@@ -1,5 +1,5 @@
 <!-- <h1>{{$pengajuan}}</h1> -->
-<?php if ($pengajuan == 0) { ?>
+<?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
     @can('anggaran_update')
     <button style="border:none;" class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Update Anggaran" data-original-title="Update Anggaran" href="" data-target="#update_anggaran<?= $anggaran[$i]->id ?>">
         <i class="ri-pencil-line"> </i>
