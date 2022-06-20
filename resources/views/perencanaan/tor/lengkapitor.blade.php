@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Auth;
                                 $ik = "";
                                 $indikator_k = "n";
                                 $sub_k = "";
-                                $disetujui = 0; //apakah wd 1 sudah validasi?
+                                $disetujui = 0; //apakah wd 3 sudah validasi?
                                 ?>
 
                                 <?php
@@ -160,7 +160,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 if ($users[$us2]->id == $trx_status_tor[$trx]->create_by) {
                                                                     if ($users[$us2]->role == $roles[$ro2]->id) {
                                                                         // echo $status[$is]->nama_status . " - " . $roles[$ro2]->name . "<br />";
-                                                                        if ($status[$is]->nama_status == "Validasi" && $roles[$ro2]->name == "WD 1") {
+                                                                        if ($status[$is]->nama_status == "Validasi" && $roles[$ro2]->name == "WD 3") {
                                                                             $disetujui = 1;
                                                                         }
                                                                     }

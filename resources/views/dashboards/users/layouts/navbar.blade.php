@@ -49,7 +49,6 @@ use Illuminate\Support\Facades\Auth;
                     </li>
                 </ul>
             </div>
-
             <ul class="navbar-nav ml-auto navbar-list">
                 <li class="line-height">
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">

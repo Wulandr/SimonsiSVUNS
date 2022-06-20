@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                                 </a>
                                 <div class="iq-sub-dropdown scrollable">
                                     <div class="iq-card shadow-none m-0">
-                                        <div class="iq-card-body p-0 ">
+                                        <div class="iq-card-body p-0 scroll-card">
                                             <div class="bg-primary p-3">
                                                 <h5 class="mb-0 text-white">Notifikasi Pengajuan Kegiatan<small class="badge  badge-light float-right pt-1"></small></h5>
                                             </div>
@@ -139,32 +139,6 @@ use Illuminate\Support\Facades\Auth;
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </a>
-                                                                                                <!-- <a href="" class="iq-sub-card">
-                                                                                                    <div class="media align-items-center">
-                                                                                                        <div class="media-body">
-                                                                                                            <h6>bbb
-                                                                                                            </h6>
-                                                                                                            <small class="badge badge-warning"></small>
-                                                                                                            <small class="float-right font-size-12"></small>
-                                                                                                            <p class="mb-0">
-                                                                                                            </p>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <?php $hitungNotif += 1; ?>
-                                                                                                </a>
-                                                                                                <a href="" class="iq-sub-card">
-                                                                                                    <div class="media align-items-center">
-                                                                                                        <div class="media-body">
-                                                                                                            <h6>bbbb
-                                                                                                            </h6>
-                                                                                                            <small class="badge badge-warning"></small>
-                                                                                                            <small class="float-right font-size-12"></small>
-                                                                                                            <p class="mb-0">
-                                                                                                            </p>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <?php $hitungNotif += 1; ?>
-                                                                                                </a> -->
                                                         <?php
                                                                                             }
                                                                                         }
@@ -186,18 +160,6 @@ use Illuminate\Support\Facades\Auth;
                                             <?php
                                             // echo $hitungNotif;
                                             if ($hitungNotif > 3) { ?>
-                                                <a href="" class="iq-sub-card">
-                                                    <div class="media align-items-center">
-                                                        <div class="media-body">
-                                                            <h6>More
-                                                            </h6>
-                                                            <small class="badge badge-warning"></small>
-                                                            <small class="float-right font-size-12"></small>
-                                                            <p class="mb-0">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
                                             <?php }
                                             ?>
                                         </div>

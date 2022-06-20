@@ -30,7 +30,17 @@ use Illuminate\Support\Facades\Auth;
                   <!-- MODAL TAMBAH RAB  -->
                   @include('perencanaan/modal2/tambah_tor')
                 </div>
-
+                <div class="iq-card-header-toolbar d-flex align-items-center">
+                  <div class="dropdown">
+                    <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
+                      <i class="ri-more-fill"></i>
+                    </span>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
+                      <a class="dropdown-item" href="" onclick="printDiv()"><i class="ri-printer-fill mr-2" onclick="printDiv()"></i>Print</a>
+                      <!-- <button class="dropdown-item" id="generatePDF"><i class="ri-file-download-fill mr-2" id="generatePDF"></i>Download</button> -->
+                    </div>
+                  </div>
+                </div>
               </div>
               <br />
               <div class="row ml-3">
@@ -429,6 +439,7 @@ use Illuminate\Support\Facades\Auth;
                   {{ $tor->links() }}
                 </div>
               </div>
+              <div id="editor"></div>
             </div>
           </div>
 
@@ -446,6 +457,8 @@ use Illuminate\Support\Facades\Auth;
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
   <script>
     $('.tor-confirm').on('click', function(event) {
       event.preventDefault();
@@ -462,7 +475,7 @@ use Illuminate\Support\Facades\Auth;
       });
     });
   </script>
-  <script>
+  <script type="text/javascript">
     $('.rab-confirm').on('click', function(event) {
       event.preventDefault();
       const url = $(this).attr('href');
@@ -476,6 +489,31 @@ use Illuminate\Support\Facades\Auth;
           window.location.href = url;
         }
       });
+    });
+
+    //print page
+    function printDiv() {
+      var printContents = document.getElementById("content-page").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+    };
+
+
+    // javascript change html to pdf
+
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+      '#editor': function(element, renderer) {
+        return true;
+      }
+    };
+    $('#generatePDF').click(function() {
+      doc.fromHTML($('#torab').html(), 15, 15, {
+        'width': 700,
+        'elementHandlers': specialElementHandlers
+      });
+      doc.save('page.pdf');
     });
   </script>
 

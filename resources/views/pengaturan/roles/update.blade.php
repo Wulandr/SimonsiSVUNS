@@ -25,17 +25,15 @@
                                 <form method="POST" action="{{route('roles.update',['role'=>$role])}}">
                                     @csrf
                                     @method('PUT')
-                                    <div class="row align-items-start">
-                                        <div class="row ml-5">
-                                            <div class="form-group">
-                                                <label for="name">Nama Aktor</label>
-                                                <input type="text" id="name" name="name" value="{{old('name',$role->name)}}" class="form-control @error('name') is-invalid @enderror" />
-                                                @error('name')
-                                                <span>
-                                                    <strong>{{$message}}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
+                                    <div class="row ml-3">
+                                        <div class="form-group">
+                                            <h5> <label for="name"><b>Nama Aktor</b></label></h5>
+                                            <input type="text" id="name" name="name" value="{{old('name',$role->name)}}" class="form-control @error('name') is-invalid @enderror" />
+                                            @error('name')
+                                            <span>
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
 

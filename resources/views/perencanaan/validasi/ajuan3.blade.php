@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Auth;
                                         <br />
                                     </h4>
                                 </div>
+
                             </div>
                             <div class="iq-card-body">
                                 <div id="table" class="table-editable">
@@ -168,7 +169,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <!-- W A R N A  R O W  -->
                                                             <?php
                                                             $warnaRow = '';
-                                                            if ($statuskeg . ' ' . $pengvalidasi == 'Validasi WD 1') {
+                                                            if ($statuskeg . ' ' . $pengvalidasi == 'Validasi WD 3') {
                                                                 $warnaRow = 'background-color:#D3D3D3';
                                                             }
                                                             ?>

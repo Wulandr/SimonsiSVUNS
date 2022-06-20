@@ -79,7 +79,7 @@
             <?php if ($ada2 > 0) { ?>
                 <div class="badge badge-pill badge-warning">{{$statuskeg." - ".$pengvalidasi}}</div>
                 <?php
-                if ($statuskeg == "Divalidasi" &&  $pengvalidasi == "WD 1") {
+                if ($statuskeg == "Divalidasi" &&  $pengvalidasi == "WD 3") {
                     $sireva = "yes"; ?>
                     <!-- <div class="badge badge-pill">Silahkan Input ke Sireva</div> -->
                 <?php } else { ?>
