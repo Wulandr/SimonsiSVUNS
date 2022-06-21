@@ -91,7 +91,8 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                         <div class="iq-card-body">
                             <div id="table" class="table-editable">
-                                <table class="table table-bordered table-responsive-md table-hover text-center">
+                                <table id="datatable"
+                                    class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead>
                                         <tr class="table-info">
                                             <th>No</th>
@@ -136,9 +137,14 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#datatable').DataTable();
+        });
+    </script>
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')
 
-</body>
-
-</html>
+    </html>

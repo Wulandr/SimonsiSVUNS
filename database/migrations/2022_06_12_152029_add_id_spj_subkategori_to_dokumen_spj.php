@@ -17,7 +17,7 @@ class AddIdSpjSubkategoriToDokumenSpj extends Migration
             $table->unsignedBigInteger('id_tor')->after('id');
             $table->foreign('id_tor')->references('id')->on('tor');
             $table->unsignedBigInteger('id_subkategori')->after('id');
-            $table->foreign('id_subkategori')->references('id')->on('dokumen_spj')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_subkategori')->references('id')->on('spj_subkategori')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

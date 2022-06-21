@@ -21,8 +21,8 @@ class SPJSubKategoriSeeder extends Seeder
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'Penawaran Program dari Rekanan (Semacam Iklan)',
-                'catatan' => '
-                <p>Untuk nominal 10jt &ndash; 50jt&nbsp;<em><strong>(Silahkan menghubungi bagian BMN guna membantu terkait penyelesaian SPJ)</strong></em></p>
+                'catatan' =>
+                '<p>Untuk nominal 10jt &ndash; 50jt&nbsp;<em><strong>(Silahkan menghubungi bagian BMN guna membantu terkait penyelesaian SPJ)</strong></em></p>
                 <ul>
 	                <li>Surat Pesanan dari Prodi (nomor dari SV)</li>
 	                <li>Surat Kesanggupan Rekanan</li>
@@ -92,7 +92,7 @@ class SPJSubKategoriSeeder extends Seeder
             ],
             [
                 'id_kategori' => 3,
-                'nama_subkategori' => '	SPBy',
+                'nama_subkategori' => 'SPBy',
                 'catatan' => NULL
             ],
             [
@@ -102,7 +102,7 @@ class SPJSubKategoriSeeder extends Seeder
             ],
             [
                 'id_kategori' => 3,
-                'nama_subkategori' => '	LPJ Kegiatan (Apabila Daring + Video Recordnya bentuk CD)',
+                'nama_subkategori' => 'LPJ Kegiatan (Apabila Daring + Video Recordnya bentuk CD)',
                 'catatan' => NULL
             ],
 
@@ -110,8 +110,8 @@ class SPJSubKategoriSeeder extends Seeder
             [
                 'id_kategori' => 4,
                 'nama_subkategori' => 'Kuitansi)',
-                'catatan' => '
-                <p>Untuk nominal 10jt &ndash; 50jt&nbsp;<em><strong>(Silahkan menghubungi bagian BMN guna membantu terkait penyelesaian SPJ)</strong></em></p>
+                'catatan' =>
+                '<p>Untuk nominal 10jt &ndash; 50jt&nbsp;<em><strong>(Silahkan menghubungi bagian BMN guna membantu terkait penyelesaian SPJ)</strong></em></p>
                 <ul>
 	                <li>Surat Pesanan dari Prodi (nomor dari SV)</li>
 	                <li>Surat Kesanggupan Rekanan</li>

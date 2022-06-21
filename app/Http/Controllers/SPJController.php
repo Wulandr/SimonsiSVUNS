@@ -133,14 +133,23 @@ class SPJController extends Controller
           ]);
 
           $upload2->save();
-          //mengambil data file yang diupload
-          $file           = $request->file('file');
-          //mengambil nama file
-          $nama_file      = $file->getClientOriginalName();
-          $id_subkategori = $request->id_subkategori;
-          $id_tor = $request->id_tor;
-          //memindahkan file ke folder tujuan
-          $file->move('document_spj', $file->getClientOriginalName());
+
+          if (!empty($request->file)) {
+               //mengambil data file yang diupload
+               $file           = $request->file('file');
+               //mengambil nama file
+               $nama_file      = $file->getClientOriginalName();
+               $id_subkategori = $request->id_subkategori;
+               $id_tor          = $request->id_tor;
+               //memindahkan file ke folder tujuan
+               $file->move('documents', $file->getClientOriginalName());
+          }
+          if (empty($request->file)) {
+               $file      = "null";
+               $nama_file      = "null";
+               $id_subkategori = $request->id_subkategori;
+               $id_tor          = $request->id_tor;
+          }
 
           $addfile_spj         = new DokumenSPJ;
           $addfile_spj->name   = $nama_file;
@@ -152,7 +161,7 @@ class SPJController extends Controller
           $addfile_spj->save();
 
           if ($addfile_spj) {
-               return redirect()->back()->with("success", "Data berhasil ditambahkan");
+               return redirect()->action([SPJController::class, 'index'])->with("success", "Data berhasil ditambahkan");
           } else {
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }

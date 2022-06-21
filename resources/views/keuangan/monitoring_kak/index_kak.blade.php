@@ -127,20 +127,8 @@
                                                                                             for ($x = 0; $x < count($tw); $x++) {
                                                                                                 if ($tw[$x]->id == $tor[$m]->id_tw) {
                                                                                                     $namatw = $tw[$x]->triwulan;
-                                                                                                    // Mengambil data dari tabel Memo Cair
-                                                                                                    for ($a = 0; $a < count($data); $a++) {
-                                                                                                        if ($data[$a]->id_tor == $tor[$m]->id) {
-                                                                                                    // Mengambil data dari tabel Memo Cair
-                                                                                                    for ($r = 0; $r < count($spj); $r++) {
-                                                                                                        if ($spj[$r]->id_tor == $tor[$m]->id) {
-                                                                                                            // Mengambil data dari tabel Pagu
-                                                                                                           
+                                                                                                    
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
-                                                $realisasi = $spj[$r]->nominal;
-                                                $memocair_nominal = $data[$a]->nominal;
-                                                $memocair_valid = ($memocair_nominal/$anggaran)*100;
-
-                                                
                                             ?>
 
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
@@ -150,30 +138,32 @@
                                                 $tahun = substr($tor[$m]->tgl_mulai_pelaksanaan, 0, 4);
                                                 for ($j = 0; $j < count($pagu); $j++) {
                                                     for ($c = 0; $c < count($tabeltahun); $c++) {
-                                                        if ($tabeltahun[$c]->id == $pagu[$a]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
+                                                        if ($tabeltahun[$c]->id == $pagu[$j]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
                                                             if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
-                                                                echo 'Rp. ' . number_format($pagu[$j]->pagu); 
-                                                ?>
-                                            </td>
-                                            <td></td>
-                                            <td>{{ 'Rp ' . number_format($realisasi) }}
-                                            </td>
-                                            <?php
-                                            $pagu = $pagu[$j]->pagu;
-                                            $sisa = $pagu - $realisasi;
-                                            ?>
-                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
-                                            <td>{{ number_format($memocair_valid, 2) . ' %' }}</td>
-
-                                            <?php
+                                                                $pagu_kegiatan = $pagu[$j]->pagu;
+                                                                echo 'Rp. ' . number_format($pagu_kegiatan);
                                                             }
-                                            }
                                                         }
                                                     }
                                                 }
-                                            }
-                                                                                                        }
-                                                                                                    }
+                                                
+                                                ?>
+                                            </td>
+                                            <td></td>
+                                            @foreach ($spj as $nominal)
+                                                @if ($tor[$m]->id == $nominal->id_tor)
+                                                    <?php
+                                                    $realisasi = $nominal->nilai_total;
+                                                    $sisa = $anggaran - $realisasi;
+                                                    $persen = ($realisasi / $pagu_kegiatan) * 100;
+                                                    ?>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ 'Rp ' . number_format($realisasi) }}</td>
+                                            <td>{{ 'Rp ' . number_format($sisa) }}</td>
+                                            <td>{{ number_format($persen, 2) . ' %' }}</td>
+
+                                            <?php
                                                                                                 }
                                                                                             }
                                                                                         }

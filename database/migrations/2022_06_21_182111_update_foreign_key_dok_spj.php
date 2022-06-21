@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDokumenSpjTable extends Migration
+class UpdateForeignKeyDokSpj extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,7 @@ class CreateDokumenSpjTable extends Migration
      */
     public function up()
     {
-        Schema::create('dokumen_spj', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('path')->nullable();
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -28,6 +23,6 @@ class CreateDokumenSpjTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dokumen_spj');
+        //
     }
 }
