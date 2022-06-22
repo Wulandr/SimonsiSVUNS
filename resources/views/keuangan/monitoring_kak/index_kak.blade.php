@@ -129,6 +129,10 @@
                                                                                                     $namatw = $tw[$x]->triwulan;
                                                                                                     
                                                 $anggaran = $tor[$m]->jumlah_anggaran;
+                                                $pagu_kegiatan = 0;
+                                                $realisasi = 0;
+                                                $sisa = 0;
+                                                $persen = 0;
                                             ?>
 
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>

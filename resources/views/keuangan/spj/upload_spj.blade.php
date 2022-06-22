@@ -31,10 +31,6 @@
                                         <input type="text" class="form-control" value="{{ $namaprodi }}" disabled>
                                     </div>
                                 </div>
-                                <?php
-                                for ($a = 0; $a < count($memo_cair); $a++) {
-                                    if ($memo_cair[$a]->id_tor == $_GET['idtor']) {
-                                ?>
                                 <div class="form-group row">
                                     <label class="control-label col-sm-5 align-self-center mb-0">ID Ajuan Memo
                                         Cair</label>
@@ -42,9 +38,6 @@
                                         <input type="text" class="form-control" value="{{ $memocair }}" disabled>
                                     </div>
                                 </div>
-                                <?php
-                                }
-                                } ?>
                                 <div class="form-group row">
                                     <label class="control-label col-sm-5 align-self-center mb-0"
                                         for="validationCustom01">Nama
@@ -134,17 +127,13 @@
                                         <div class="tab-pane fade show" role="tabpanel"
                                             id="content-{{ $spj_kategori[$a]->id }}"
                                             aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
-
-                                            {{-- <form class="needs-validation" enctype="multipart/form-data"
-                                                method="post" action="{{ url('/input_spj') }}">
-                                                @csrf --}}
                                             <div class="col-12">
                                                 <h5 class="mb-2" style="color: #1E3D73">
                                                     <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
                                                 </h5>
                                                 <?php $no = 1;
-                                                            for ($b = 0; $b < count($spj_subkategori); $b++) {
-                                                                if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
+                                                    for ($b = 0; $b < count($spj_subkategori); $b++) {
+                                                        if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
                                                 <p>{!! $spj_subkategori[$b]->catatan !!}</p>
                                                 <table class="table">
                                                     <tr class="form-group">

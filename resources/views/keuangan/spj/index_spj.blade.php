@@ -141,7 +141,7 @@
 
                                             <td class="text-center">
                                                 <?php
-                                                $file = '<a href="' . url('/upload_spj/') . '?idtor=' . $tor[$m]->id . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                 ?>
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
@@ -149,11 +149,11 @@
                                                             @if ($a->id_status == $b->id)
                                                                 @if ($b->kategori == 'SPJ')
                                                                     <?php
-                                                                    $file = '<a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-edit"></i></i></button></a><a href="' . url('/upload_spj') . '"><button class="btn btn-sm bg-warning rounded-pill" title="Edit File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                                    $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><a href="' . url('/edit_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-warning rounded-pill" title="Edit File SPJ"><i class="las la-edit"></i></i></button></a>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Revisi')
                                                                         <?php
-                                                                        $file = '<a href="' . url('/upload_spj/') . '?idtor=' . $tor[$m]->id . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                                        $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Verifikasi')
                                                                         <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_spj' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
@@ -175,10 +175,6 @@
                                             <!-- MODAL - Bukti TF spj -->
                                             @include('keuangan/spj/input_tf_spj')
                                             @include('keuangan/spj/show_tf_spj')
-                                            <!-- MODAL - edit spj -->
-                                            @include('keuangan/spj/edit_spj')
-                                            {{-- <!-- MODAL - status spj -->
-                                            @include('keuangan/spj/status_spj') --}}
                                             <?php
                                                                                         }
                                                                                     }

@@ -80,10 +80,10 @@ class SPJController extends Controller
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
 
-          $tor_one = Tor::where('id', '=', $request['idtor'])->first();
+          $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
           $id_unit = $tor_one->id_unit;
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
-          $memocair = MemoCair::where('id_tor', '=', $request['idtor'])->first()->nomor;
+          $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
 
@@ -109,7 +109,123 @@ class SPJController extends Controller
                     'namaprodi',
                     'memocair',
                     'penanggung',
-                    'kontak'
+                    'kontak',
+               )
+          );
+     }
+
+     public function editSpj(Request $request)
+     {
+          $tor = Tor::all();
+          $trx_status_tor = DB::table('trx_status_tor')->get();
+          $status = DB::table('status')->get();
+          $prodi = DB::table('unit')->get();
+          $users = DB::table('users')->get();
+          $roles = DB::table('roles')->get();
+          $triwulan = DB::table('triwulan')->get();
+          $dokumen = DB::table('dokumen')->get();
+          $memo_cair = MemoCair::all();
+          $persekot_kerja = PersekotKerja::all();
+          $spj = SPJ::all();
+          $dok_spj = DokumenSPJ::all();
+          $status_keu =  DB::table('status_keu')->get();
+          $trx_status_keu = TrxStatusKeu::all();
+          $spj_kategori = SPJKategori::all();
+          $spj_subkategori = SPJSubKategori::all();
+
+          $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
+          $id_unit = $tor_one->id_unit;
+          $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
+          $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
+          $spj_value = SPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
+          $penanggung = $tor_one->nama_pic;
+          $kontak = $tor_one->kontak_pic;
+          $nilai_total = $spj_value->nilai_total;
+          $nilai_kembali = $spj_value->nilai_kembali;
+
+          return view(
+               'keuangan.spj.edit_spj',
+               compact(
+                    'memo_cair',
+                    'persekot_kerja',
+                    'tor',
+                    'trx_status_tor',
+                    'status',
+                    'prodi',
+                    'users',
+                    'roles',
+                    'triwulan',
+                    'dokumen',
+                    'spj',
+                    'dok_spj',
+                    'status_keu',
+                    'trx_status_keu',
+                    'spj_kategori',
+                    'spj_subkategori',
+                    'namaprodi',
+                    'memocair',
+                    'penanggung',
+                    'kontak',
+                    'nilai_total',
+                    'nilai_kembali'
+               )
+          );
+     }
+
+     public function detailSpj(Request $request)
+     {
+          $tor = Tor::all();
+          $trx_status_tor = DB::table('trx_status_tor')->get();
+          $status = DB::table('status')->get();
+          $prodi = DB::table('unit')->get();
+          $users = DB::table('users')->get();
+          $roles = DB::table('roles')->get();
+          $triwulan = DB::table('triwulan')->get();
+          $dokumen = DB::table('dokumen')->get();
+          $memo_cair = MemoCair::all();
+          $persekot_kerja = PersekotKerja::all();
+          $spj = SPJ::all();
+          $dok_spj = DokumenSPJ::all();
+          $status_keu =  DB::table('status_keu')->get();
+          $trx_status_keu = TrxStatusKeu::all();
+          $spj_kategori = SPJKategori::all();
+          $spj_subkategori = SPJSubKategori::all();
+
+          $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
+          $id_unit = $tor_one->id_unit;
+          $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
+          $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
+          $spj_value = SPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
+          $penanggung = $tor_one->nama_pic;
+          $kontak = $tor_one->kontak_pic;
+          $nilai_total = $spj_value->nilai_total;
+          $nilai_kembali = $spj_value->nilai_kembali;
+
+          return view(
+               'keuangan.spj.detail_spj',
+               compact(
+                    'memo_cair',
+                    'persekot_kerja',
+                    'tor',
+                    'trx_status_tor',
+                    'status',
+                    'prodi',
+                    'users',
+                    'roles',
+                    'triwulan',
+                    'dokumen',
+                    'spj',
+                    'dok_spj',
+                    'status_keu',
+                    'trx_status_keu',
+                    'spj_kategori',
+                    'spj_subkategori',
+                    'namaprodi',
+                    'memocair',
+                    'penanggung',
+                    'kontak',
+                    'nilai_total',
+                    'nilai_kembali'
                )
           );
      }
@@ -227,32 +343,4 @@ class SPJController extends Controller
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }
      }
-     // public function addFile(Request $request)
-     // {
-     //      $request->validate([]);
-
-     //      //mengambil data file yang diupload
-     //      $file           = $request->file('file');
-     //      //mengambil nama file
-     //      $nama_file      = $file->getClientOriginalName();
-     //      $id_subkategori = $request->id_subkategori;
-     //      //memindahkan file ke folder tujuan
-     //      $file->move('document_spj', $file->getClientOriginalName());
-
-     //      $uploadspj         = new DokumenSPJ;
-     //      $uploadspj->name   = $nama_file;
-     //      $uploadspj->path   = $nama_file;
-     //      $uploadspj->id_subkategori  = $id_subkategori;
-
-     //      //menyimpan data ke database
-     //      $uploadspj->save();
-
-     //      if ($uploadspj) {
-     //           return redirect()->view(
-     //                'keuangan.spj.upload_spj'
-     //           )->with("success", "Data berhasil ditambahkan");
-     //      } else {
-     //           return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-     //      }
-     // }
 }
