@@ -31,7 +31,7 @@ use App\Http\Controllers\MemoCairController;
 use App\Http\Controllers\ValidasiController;
 use App\Http\Controllers\DetailMakController;
 use Illuminate\Routing\Route as RoutingRoute;
-use App\Http\Controllers\Auth\LoginController;
+// use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BelanjaMakController;
 use App\Http\Controllers\KelompokMakController;
 use App\Http\Controllers\SPJKategoriController;
