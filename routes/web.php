@@ -276,4 +276,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     // MONITORING KAK
     Route::get('/monitoring_kak', [MonitoringKakController::class, 'index']);
+    Route::get('/monitoring_kak/filterTw', [MonitoringKakController::class, 'filter_tw']);
 });

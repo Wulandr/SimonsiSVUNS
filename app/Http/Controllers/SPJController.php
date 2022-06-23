@@ -138,6 +138,7 @@ class SPJController extends Controller
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
           $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
           $spj_value = SPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
+          // $dokspj = DokumenSPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
           $nilai_total = $spj_value->nilai_total;
@@ -167,7 +168,7 @@ class SPJController extends Controller
                     'penanggung',
                     'kontak',
                     'nilai_total',
-                    'nilai_kembali'
+                    'nilai_kembali',
                )
           );
      }

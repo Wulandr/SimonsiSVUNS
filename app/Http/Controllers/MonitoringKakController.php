@@ -74,7 +74,7 @@ class MonitoringKakController extends Controller
         $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
         return view(
-            "perencanaan.monitoring_kak.index_kak",
+            "keuangan.monitoring_kak.index_kak",
             [
                 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
