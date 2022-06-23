@@ -76,4 +76,9 @@ class LoginController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function chooseRole()
+    {
+        return route('pilih_role');
+    }
 }

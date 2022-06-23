@@ -23,6 +23,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PedomanController;
 use App\Http\Controllers\AnggaranController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\MemoCairController;
 use App\Http\Controllers\ValidasiController;
 use App\Http\Controllers\DetailMakController;
 use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BelanjaMakController;
 use App\Http\Controllers\KelompokMakController;
 use App\Http\Controllers\SPJKategoriController;
@@ -49,6 +51,14 @@ use App\Http\Controllers\MonitoringUsulanController;
 |
 */
 
+// GOOGLE AUTENTIKASI
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+
+// CHOOSE ROLE
+Route::get('choose_role', [LoginController::class, 'chooseRole'])->name('pilih_role');
+
+// LANDING PAGE
 Route::get('/', function () {
     return view('landing');
 });

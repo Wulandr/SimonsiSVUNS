@@ -55,6 +55,8 @@ class UserController extends Controller
                 "role" => "required",
                 "email" => "required|email|unique:users,email",
                 "password" => "required|min:6|confirmed"
+                // google_id
+                // username
             ],
         );
         // if ($validator->fails()) {
