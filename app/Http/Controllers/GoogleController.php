@@ -19,23 +19,25 @@ class GoogleController extends Controller
     {
         try {
             // mengambil id google
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
 
             // inisialisasi user
-            $finduser = User::where('google_id', $user->getId())->first();
+            // $finduser = User::where('google_id', $user->getId())->first();
             $findemail = User::where('email', $user->email)->first();
             // 
             // jika user sudah pernah login maka langsung redirect ke halaman selanjutnya
             // dd($user->email);
             // dd($user->email);
             $cekAdaEmail = DB::table('users')->where('email', $user->email)->first();
-            dd(!empty($cekAdaEmail));
-            if ($finduser) {
-                Auth::login($finduser);
+            // dd(!empty($cekAdaEmail));
+            // echo 'haloas';
+            if ($findemail) {
+                Auth::login($findemail);
                 if (!empty($cekAdaEmail) == 'true') {
-                    return redirect('/tidak_aktif'); //hanya contoh
+                    return redirect('/home'); //hanya contoh
                 }
-                dd($user);
+                echo 'halo';
+                // dd($user);
 
                 // return redirect()->intended('tidak_aktif');
                 // return redirect()->route(
@@ -45,6 +47,8 @@ class GoogleController extends Controller
                 //     'tidak_aktif',
                 // );
                 // dd($user);
+            } else {
+                echo 'salah';
             }
             // jika belum maka akan menyimpan data user ke database kembali (login kembali)
             // else {
@@ -65,7 +69,7 @@ class GoogleController extends Controller
             //     // );
             // }
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd($th);
         }
     }
 }
