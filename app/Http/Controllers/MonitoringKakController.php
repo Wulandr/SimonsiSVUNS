@@ -49,7 +49,7 @@ class MonitoringKakController extends Controller
                 'data',
                 'tabeltahun',
                 'spj',
-                'tabelrole'
+                'tabelRole'
             )
 
         );

@@ -120,6 +120,7 @@ class SPJController extends Controller
      public function editSpj(Request $request)
      {
           $tor = Tor::all();
+          $tabelRole =  Role::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
           $prodi = DB::table('unit')->get();
@@ -172,6 +173,7 @@ class SPJController extends Controller
                     'kontak',
                     'nilai_total',
                     'nilai_kembali',
+                    'tabelRole',
                )
           );
      }

@@ -19,7 +19,7 @@
                                 <h4 class="card-title">Input Formulir Surat Pertanggungjawaban (SPJ)</h4>
                             </div>
                         </div>
-                        <div class="iq-card-body">
+                        <div class="iq-card-body mx-5">
                             <form class="needs-validation" enctype="multipart/form-data" method="post"
                                 action="{{ url('/input_spj') }}" novalidate>
                                 {{ csrf_field() }}

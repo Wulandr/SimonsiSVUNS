@@ -22,7 +22,7 @@
                                 <div class="form-group row mb-0">
                                     <span class="table-add mb-0">
                                         <div class="form-group row">
-                                            <form action="{{ url('/monitoringUsulan/filterTw') }}" method="GET">
+                                            <form action="{{ url('/monitoring_kak/filterTw') }}" method="GET">
                                                 <div class="row mr-3">
                                                     <div class="col mr-1">
                                                         <select class="form-control filter sm-8" name="filterTw"
@@ -71,7 +71,16 @@
                                         <tr>
                                             <th rowspan="2" style="vertical-align: middle; width: 3%">No</th>
                                             <th rowspan="2" style="vertical-align: middle">Program Studi</th>
-                                            <th colspan="5" style="width: ">TW 1 (Per 29 Maret 2022)</th>
+                                            <?php
+                                            foreach ($tw as $twname) {
+                                                if ($twname->id == $filtertw) {
+                                                }
+                                            }
+                                            
+                                            ?>
+                                            <th colspan="5">
+                                                {{ 'Triwulan ' . substr($twname->triwulan, 14, 1) }}
+                                                (Per 29 Maret 2022)</th>
                                         </tr>
                                         <tr>
                                             <th style="">Pagu</th>
@@ -82,8 +91,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <?php
+                                        <?php
                                             $nomor = 0;
                                             $namaprodi = '';
                                             $namatw = '';
@@ -133,8 +141,25 @@
                                                 $realisasi = 0;
                                                 $sisa = 0;
                                                 $persen = 0;
+                                                
+                                            $rpd = 0;
+                                            
+                                            // Ngambil data RPD sesuai filter TW yang dipilih
+                                            foreach ($tw as $twname) {
+                                                if ($twname->id == $filtertw) {
+                                                    // echo $twname->triwulan . '<br />';
+                                                    foreach ($pagu as $p) {
+                                                        if ($p->id_unit == $tor[$m]->id_unit) {
+                                                            // echo substr($twname->triwulan, 14, 1); //tw berapa
+                                                            $nomerTw = substr($twname->triwulan, 14, 1);
+                                                            $namaTw = 'tw' . $nomerTw;
+                                                            $rpd = $p->$namaTw;
+                                                        }
+                                                    }
+                                                }
+                                            }
                                             ?>
-
+                                        <tr>
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
                                             <td>{{ $namaprodi }}</td>
                                             <td>
@@ -153,12 +178,17 @@
                                                 
                                                 ?>
                                             </td>
-                                            <td></td>
+                                            <td>{{ 'Rp ' . number_format($rpd) }}</td>
+
+                                            {{-- Ngambil Jumlah Realisasi dari nilai_total SPJ --}}
                                             @foreach ($spj as $nominal)
                                                 @if ($tor[$m]->id == $nominal->id_tor)
                                                     <?php
                                                     $realisasi = $nominal->nilai_total;
+                                                    
+                                                    // nilai sisa = pagu - realisasi
                                                     $sisa = $anggaran - $realisasi;
+                                                    // nilai persentase
                                                     $persen = ($realisasi / $pagu_kegiatan) * 100;
                                                     ?>
                                                 @endif

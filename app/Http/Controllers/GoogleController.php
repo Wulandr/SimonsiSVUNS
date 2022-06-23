@@ -20,54 +20,19 @@ class GoogleController extends Controller
         try {
             // mengambil id google
             $user = Socialite::driver('google')->stateless()->user();
-
-            // inisialisasi user
-            // $finduser = User::where('google_id', $user->getId())->first();
             $findemail = User::where('email', $user->email)->first();
             // 
-            // jika user sudah pernah login maka langsung redirect ke halaman selanjutnya
-            // dd($user->email);
-            // dd($user->email);
+            // jika email user sama dengan di database maka langsung redirect ke halaman selanjutnya
             $cekAdaEmail = DB::table('users')->where('email', $user->email)->first();
-            // dd(!empty($cekAdaEmail));
-            // echo 'haloas';
+
             if ($findemail) {
                 Auth::login($findemail);
                 if (!empty($cekAdaEmail) == 'true') {
                     return redirect('/home'); //hanya contoh
                 }
-                echo 'halo';
-                // dd($user);
-
-                // return redirect()->intended('tidak_aktif');
-                // return redirect()->route(
-                //     'admin.dashboard',
-                // );
-                // return view(
-                //     'tidak_aktif',
-                // );
-                // dd($user);
             } else {
-                echo 'salah';
+                return redirect('/tidak_aktif');;
             }
-            // jika belum maka akan menyimpan data user ke database kembali (login kembali)
-            // else {
-            //     // dd($user->id);
-            //     $newUser = User::create([
-            //         'name' => $user->getName(),
-            //         // 'username' => $user->getEmail(),
-            //         'email' => $user->getEmail(),
-            //         'google_id' => $user->getId(),
-            //         'password' => bcrypt('12345678')
-            //     ]);
-            //     Auth::login($finduser);
-            //     return redirect('/tidak_aktif');
-
-            //     // return redirect()->intended('home');
-            //     // return redirect()->route(
-            //     //     'admin.dashboard',
-            //     // );
-            // }
         } catch (\Throwable $th) {
             dd($th);
         }
