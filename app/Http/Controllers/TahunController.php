@@ -10,6 +10,7 @@ use App\Models\Triwulan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class TahunController extends Controller
 {
@@ -21,10 +22,11 @@ class TahunController extends Controller
     {
         $filtertahun = 0;
         $tahun = DB::table('tahun')->get();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.tahun.index",
             [
-                'tahun' => $tahun,  'filtertahun' => $filtertahun,
+                'tahun' => $tahun,  'filtertahun' => $filtertahun, 'tabelRole' => $tabelRole
             ]
         );
     }

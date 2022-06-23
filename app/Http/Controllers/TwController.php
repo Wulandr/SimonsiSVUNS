@@ -10,6 +10,7 @@ use App\Models\Triwulan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class TwController extends Controller
 {
@@ -25,11 +26,13 @@ class TwController extends Controller
         $unit2 = Unit::all();
         $tabeltahun = DB::table('tahun')->get();
         $triwulan = DB::table('triwulan')->get();
+        $tabelRole =  Role::all();
+
         return view(
             "pengaturan.triwulan.index",
             [
                 'pagu' => $pagu, 'tabeltahun' => $tabeltahun, 'filtertahun' => $filtertahun,
-                'unit' => $unit, 'unit2' => $unit2, 'triwulan' => $triwulan
+                'unit' => $unit, 'unit2' => $unit2, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
             ]
         );
     }
@@ -97,6 +100,7 @@ class TwController extends Controller
         $unit = Unit::all();
         $unit2 = Unit::all();
         $tabeltahun = DB::table('tahun')->get();
+        $tabelRole =  Role::all();
 
         if ($request->tahun == 0) {
             $triwulan = DB::table('triwulan')->get();
@@ -109,7 +113,7 @@ class TwController extends Controller
             "pengaturan.triwulan.index",
             [
                 'pagu' => $pagu, 'tabeltahun' => $tabeltahun, 'filtertahun' => $filtertahun,
-                'unit' => $unit, 'unit2' => $unit2, 'triwulan' => $triwulan
+                'unit' => $unit, 'unit2' => $unit2, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
             ]
         );
     }

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
 use App\Models\SPJSubKategori;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class SPJController extends Controller
 {
@@ -37,6 +38,7 @@ class SPJController extends Controller
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
           $pedoman = Pedoman::all();
+          $tabelRole =  Role::all(); //utk menampilkan topbar pilihan multi role
           return view(
                'keuangan.spj.index_spj',
                compact(
@@ -56,7 +58,8 @@ class SPJController extends Controller
                     'trx_status_keu',
                     'spj_kategori',
                     'spj_subkategori',
-                    'pedoman'
+                    'pedoman',
+                    'tabelRole'
                )
           );
      }
@@ -79,14 +82,13 @@ class SPJController extends Controller
           $trx_status_keu = TrxStatusKeu::all();
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
-
           $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
           $id_unit = $tor_one->id_unit;
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
           $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
-
+          $tabelRole =  Role::all();
           return view(
                'keuangan.spj.upload_spj',
                compact(
@@ -110,6 +112,7 @@ class SPJController extends Controller
                     'memocair',
                     'penanggung',
                     'kontak',
+                    'tabelRole'
                )
           );
      }

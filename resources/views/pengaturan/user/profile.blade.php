@@ -147,9 +147,9 @@ use Illuminate\Support\Facades\Auth;
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="cname">Role :
-                                                        <?php for ($r = 0; $r < count($role); $r++) {
-                                                            if ($role[$r]->id == Auth::user()->role) { ?>
-                                                                {{$role[$r]->name}}
+                                                        <?php foreach ($namaroles as $r2) {
+                                                            if ($r2->id == Auth::user()->role) { ?>
+                                                                {{$r2->name}}
                                                         <?php }
                                                         } ?>
                                                     </label>

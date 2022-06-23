@@ -28,9 +28,11 @@ class ProfilController extends Controller
     {
         $unit = Unit::all();
         $role = Role::all();
+        $namaroles = Role::all();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.user.profile",
-            ['unit' => $unit, 'role' => $role]
+            ['unit' => $unit, 'role' => $role, 'namaroles' => $namaroles, 'tabelRole' => $tabelRole]
         );
     }
 
@@ -157,5 +159,38 @@ class ProfilController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function ganti(Request $request)
+    {
+        // $input = $request->all();
+        // $this->validate($request, [
+        //     'email' => 'required|email',
+        //     'password' => 'required'
+        // ]);
+
+        // if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        DB::table('users')->where('id', auth()->user()->id)->update(
+            [
+                'role' => $request->pilihrole
+            ]
+        );
+        return redirect()->route(
+            'home',
+        );
+
+        //     if (auth()->user()->role == 1) {
+        //         return redirect()->route(
+        //             'admin.dashboard',
+        //         );
+        //     } elseif (auth()->user()->role != 1) { //selain admin
+        //         return redirect()->route(
+        //             'sv.dashboard',
+        //         );
+        //     }
+        // } else {
+        //     session()->flash('error', 'Alamat Email atau Password Anda salah!.');
+        //     return redirect()->route('login');
+        // }
+        // return $request->all();
     }
 }

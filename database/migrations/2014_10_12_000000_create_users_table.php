@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('multirole')->nullable();
             $table->string('nip')->nullable();
             $table->string('image')->nullable();
             $table->integer('is_aktif')->default(0);

@@ -24,31 +24,29 @@
                                 <p class="text-center text-dark">Enter your email address and password.</p>
 
                                 @if (session('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
                                 @endif
                                 @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
                                 @endif
                                 @if ($errors)
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger">{{ $error }}</div>
-                                    @endforeach
+                                @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger">{{ $error }}</div>
+                                @endforeach
                                 @endif
                                 <form method="POST" class="needs-validation" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="email">{{ __('E-Mail') }}</label>
-                                        <input id="email" type="email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
@@ -56,22 +54,23 @@
                                             <label for="password" class="control-label">{{ __('Password') }}</label>
                                             <div class="float-right">
                                                 @if (Route::has('password.request'))
-                                                    <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a> -->
                                                 @endif
                                             </div>
                                         </div>
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
-
+                                    <!-- <div class="form-group">
+                                        <label for="role">{{ __('Role') }}</label>
+                                        <input id="role" type="text" class="form-control" name="role" value="Prodi" autofocus>
+                                    </div> -->
                                     <!-- <div class="d-inline-block w-100">
                                         <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
                                             <input type="checkbox" class="custom-control-input" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -79,8 +78,7 @@
                                         </div>
                                     </div> -->
                                     <div class="sign-info text-center">
-                                        <button type="submit"
-                                            class="btn btn-primary d-block w-100 mb-2">{{ __('Login') }}</button>
+                                        <button type="submit" class="btn btn-primary d-block w-100 mb-2">{{ __('Login') }}</button>
                                     </div>
                                 </form>
                                 <div class="mb-3">

@@ -37,7 +37,7 @@
                       </div>
                       <div class="form-group">
                         <label>Role</label>
-                        <select name="role" id="role" class="form-control">
+                        <select class="js-example-basic-multiple2" name="role[]" id="role" multiple="multiple" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1">
                           <!-- @if(old('role',$roleSelected))
                         <option value="{{old('role',$roleSelected->id)}}" selected>{{old('role',$roleSelected->name)}} </option>
                         @endif -->
@@ -79,5 +79,12 @@
 
 </body>
 @include('dashboards/users/layouts/footer')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-multiple2').select2();
+  });
+</script>
 
 </html>

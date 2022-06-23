@@ -47,19 +47,19 @@ use Illuminate\Support\Facades\Auth;
                                                                 <input name="pagu" id="pagu" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Triwulan 1</label>
+                                                                <label>RPD Triwulan 1</label>
                                                                 <input name="tw1" id="tw1" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Triwulan 2</label>
+                                                                <label>RPD Triwulan 2</label>
                                                                 <input name="tw2" id="tw2" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Triwulan 3</label>
+                                                                <label>RPD Triwulan 3</label>
                                                                 <input name="tw3" id="tw3" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Triwulan 4</label>
+                                                                <label>RPD Triwulan 4</label>
                                                                 <input name="tw4" id="tw4" type="text" class="form-control">
                                                             </div>
                                                             <div class="form-group">
@@ -123,7 +123,7 @@ use Illuminate\Support\Facades\Auth;
                                             </form>
                                         </div>
                                     </span>
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="overflow-x:scroll;">
                                         <div class="form-group row float-right mb-3 mr-2">
                                         </div>
                                         <table id="mypagu" class="table mb-0">
@@ -133,6 +133,10 @@ use Illuminate\Support\Facades\Auth;
                                                     <th scope="col">Unit</th>
                                                     <th scope="col">Tahun</th>
                                                     <th scope="col">Pagu</th>
+                                                    <th scope="col">RPD TW 1</th>
+                                                    <th scope="col">RPD TW 2</th>
+                                                    <th scope="col">RPD TW 3</th>
+                                                    <th scope="col">RPD TW 4</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
@@ -156,6 +160,10 @@ use Illuminate\Support\Facades\Auth;
                                                             } ?>
                                                         </td>
                                                         <td>{{"Rp. " .  number_format($pagu[$a]->pagu, 2, ',', '.') }}</td>
+                                                        <td>{{"Rp. " .  number_format($pagu[$a]->tw1, 2, ',', '.') }}</td>
+                                                        <td>{{"Rp. " .  number_format($pagu[$a]->tw2, 2, ',', '.') }}</td>
+                                                        <td>{{"Rp. " .  number_format($pagu[$a]->tw3, 2, ',', '.') }}</td>
+                                                        <td>{{"Rp. " .  number_format($pagu[$a]->tw4, 2, ',', '.') }}</td>
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('pagu_update')

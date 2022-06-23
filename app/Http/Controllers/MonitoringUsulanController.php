@@ -10,6 +10,7 @@ use App\Models\Tor;
 use App\Models\Unit;
 use App\Models\Triwulan;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class MonitoringUsulanController extends Controller
 {
@@ -38,14 +39,14 @@ class MonitoringUsulanController extends Controller
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
         $filtertw = 0;
-
+        $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
         return view(
             "perencanaan.monitoringUsulan.index",
             [
                 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
                 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
-                'filtertw' => $filtertw, 'tahun' => $tahun
+                'filtertw' => $filtertw, 'tahun' => $tahun, 'tabelRole' => $tabelRole
             ]
         );
     }
@@ -72,6 +73,7 @@ class MonitoringUsulanController extends Controller
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
+        $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
 
         return view(
             "perencanaan.monitoringUsulan.index",
@@ -79,7 +81,7 @@ class MonitoringUsulanController extends Controller
                 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
                 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
-                'filtertw' => $filtertw, 'tahun' => $tahun
+                'filtertw' => $filtertw, 'tahun' => $tahun, 'tabelRole' => $tabelRole
             ]
         );
         // return $tor;

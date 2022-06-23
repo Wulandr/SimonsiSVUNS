@@ -9,6 +9,7 @@ use App\Models\Triwulan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class SubKController extends Controller
 {
@@ -27,11 +28,11 @@ class SubKController extends Controller
         $k = DB::table('indikator_k')->get();
         $subk = DB::table('indikator_subk')->get();
         $tabeltahun = DB::table('tahun')->get();
-
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.iku.subk.index",
             [
-                'iku' => $iku, 'ik' => $ik, 'k' => $k, 'subk' => $subk, 'tabeltahun' => $tabeltahun,
+                'iku' => $iku, 'ik' => $ik, 'k' => $k, 'subk' => $subk, 'tabeltahun' => $tabeltahun, 'tabelRole' => $tabelRole
             ]
         );
     }

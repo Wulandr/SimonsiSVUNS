@@ -7,6 +7,7 @@ use App\Models\Tor;
 use App\Models\Unit;
 use App\Models\User as Usernya;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -22,8 +23,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $role = DB::table('roles')->where('id', Auth()->user()->role)->first();
-        $assignrole = $role->name;
+        $rolenm = DB::table('roles')->where('id', Auth()->user()->role)->first();
+        $assignrole = $rolenm->name;
         $user = Usernya::all()->where('id', Auth()->user()->id)->first()->syncRoles($assignrole);
         $unit = Unit::all();
         $tor = Tor::all();
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $prodi = DB::table('unit')->get();
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
+        $tabelRole =  Role::all();
         $tw = DB::table('triwulan')->get();
         $tahun = DB::table('tahun')->get();
         $dokMemo = DB::table('dokumen')->get();
@@ -46,7 +48,7 @@ class HomeController extends Controller
                 'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor,
                 'status' => $status, 'unit' => $unit, 'users' => $users, 'roles' => $roles,
                 'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
-                'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj
+                'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj, 'tabelRole' => $tabelRole
             ]
         );
     }

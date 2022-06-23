@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pedoman;
 use Illuminate\Support\Facades\File;
+use Spatie\Permission\Models\Role;
 
 class PedomanController extends Controller
 {
@@ -13,9 +14,10 @@ class PedomanController extends Controller
     public function index()
     {
         $pedoman = Pedoman::all();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.pedoman.index",
-            compact('pedoman')
+            compact('pedoman', 'tabelRole')
         );
     }
     public function store(Request $request)

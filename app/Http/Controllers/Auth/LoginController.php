@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Unit;
 use App\Models\Tor;
-
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
 class LoginController extends Controller
@@ -61,6 +62,41 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            // DB::table('users')->where('id', auth()->user()->id)->update(
+            //     [
+            //         'role' => $request->role
+            //     ]
+            // );
+
+            if (auth()->user()->role == 1) {
+                return redirect()->route(
+                    'admin.dashboard',
+                );
+            } elseif (auth()->user()->role != 1) { //selain admin
+                return redirect()->route(
+                    'sv.dashboard',
+                );
+            }
+        } else {
+            session()->flash('error', 'Alamat Email atau Password Anda salah!.');
+            return redirect()->route('login');
+        }
+    }
+
+    public function gantiRole(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            DB::table('users')->where('id', auth()->user()->id)->update(
+                [
+                    'role' => $request->pilihrole
+                ]
+            );
 
             if (auth()->user()->role == 1) {
                 return redirect()->route(

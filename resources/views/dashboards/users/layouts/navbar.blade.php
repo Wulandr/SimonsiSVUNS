@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Contracts\Role;
+
 ?>
 <div class="iq-top-navbar">
     <div class="iq-navbar-custom">
@@ -83,6 +85,42 @@ use Illuminate\Support\Facades\Auth;
                                     <h5 class="mb-0 text-white line-height">Hello <?= Auth::user()->name ?></h5>
                                     <span class="text-white font-size-12">Available</span>
                                 </div>
+                                <!-- <div class="d-inline-block w-100 text-center p-3">
+                                    <a class="bg-primary iq-sign-btn" href="{{ url('/gantiRole') }}" role="button">{{ __('Prodi') }}
+                                        <i class="ri-login-box-line ml-2">
+                                        </i>
+                                    </a> -->
+                                <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
+                                    <div class="media align-items-center">
+                                        <div class="rounded iq-card-icon iq-bg-primary">
+                                            <i class="ri-file-user-line"></i>
+                                        </div>
+                                        <div class="media-body ml-3">
+                                            <h6 class="mb-0 ">Change Role</h6>
+                                            <p class="mb-0 font-size-12">
+                                                <?php
+                                                $myArray = (explode(',', Auth()->user()->multirole));
+                                                // print_r($myArray[0]);
+                                                ?>
+                                                <?php $var = 0;
+                                                foreach ($myArray as $tag) {
+                                                    foreach ($tabelRole as $r3) {
+                                                        if ($r3->id == $tag) { ?>
+                                            <form class="form-horizontal" method="post" action="{{ url('/pergantian') }}">
+                                                {{csrf_field()}}
+                                                <button class="btn btn-danger mr-1" type="submit">
+                                                    {{ $r3->name}}
+                                                    <input type="text" name="pilihrole" id="pilihrole" value="{{$r3->id}}" style="display:none;">
+                                                </button>
+                                            </form>
+                                <?php }
+                                                    }
+                                                } ?>
+                                </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- </div> -->
                                 <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">

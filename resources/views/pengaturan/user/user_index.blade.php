@@ -30,6 +30,7 @@
                                                     <th>Nama</th>
                                                     <th>Email</th>
                                                     <th>Role</th>
+                                                    <th>Multirole</th>
                                                     <th>Unit</th>
                                                     <th>Status</th>
                                                     <th>Aksi</th>
@@ -47,6 +48,19 @@
                                                             <td class="font-weight-600">{{$role[$i]->name}}</td>
                                                         <?php } ?>
                                                     <?php } ?>
+                                                    <td class="font-weight-600">
+                                                        <?php
+                                                        $myArray2 = (explode(',', $u->multirole));
+                                                        ?>
+                                                        <?php $var2 = 0;
+                                                        foreach ($myArray2 as $tag2) {
+                                                            foreach ($tabelRole as $r4) {
+                                                                if ($r4->id == $tag2) { ?>
+                                                                    {{ $r4->name ." , "}}
+                                                        <?php }
+                                                            }
+                                                        } ?>
+                                                    </td>
 
                                                     <td>
                                                         <?php for ($un = 0; $un < count($unit); $un++) {
