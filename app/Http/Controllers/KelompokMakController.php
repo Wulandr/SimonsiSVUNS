@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class KelompokMakController extends Controller
 {
@@ -18,10 +19,11 @@ class KelompokMakController extends Controller
     {
         $mak = DB::table('mak')->get();
         $kelompok_mak = DB::table('kelompok_mak')->get();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.mak.kelompok_mak.index",
             [
-                'mak' => $mak, 'kelompok_mak' => $kelompok_mak,
+                'mak' => $mak, 'kelompok_mak' => $kelompok_mak, 'tabelRole' => $tabelRole
             ]
         );
     }

@@ -9,6 +9,7 @@ use App\Models\Triwulan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class PaguController extends Controller
 {
@@ -23,9 +24,10 @@ class PaguController extends Controller
         $unit = Unit::all();
         $unit2 = Unit::all();
         $tabeltahun = DB::table('tahun')->get();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.pagu.index",
-            compact('pagu', 'tabeltahun', 'filtertahun', 'unit', 'unit2')
+            compact('pagu', 'tabeltahun', 'filtertahun', 'unit', 'unit2', 'tabelRole')
         );
     }
     public function processAdd(Request $request)
@@ -71,7 +73,7 @@ class PaguController extends Controller
         $unit = Unit::all();
         $unit2 = Unit::all();
         $tabeltahun = DB::table('tahun')->get();
-
+        $tabelRole =  Role::all();
         if ($request->tahun == 0) {
             $pagu = DB::table('pagu')->get();
             redirect('/pagu');
@@ -83,7 +85,7 @@ class PaguController extends Controller
             "pengaturan.pagu.index",
             [
                 'pagu' => $pagu, 'tabeltahun' => $tabeltahun, 'filtertahun' => $filtertahun,
-                'unit' => $unit, 'unit2' => $unit2
+                'unit' => $unit, 'unit2' => $unit2, 'tabelRole' => $tabelRole
             ]
         );
     }

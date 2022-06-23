@@ -7,6 +7,7 @@ use App\Models\MemoCair;
 use App\Models\SPJ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class MonitoringKakController extends Controller
 {
@@ -28,6 +29,7 @@ class MonitoringKakController extends Controller
         $data = MemoCair::all();
         $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
+        $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
         return view(
             'keuangan.monitoring_kak.index_kak',
             compact(
@@ -46,8 +48,10 @@ class MonitoringKakController extends Controller
                 'pagu',
                 'data',
                 'tabeltahun',
-                'spj'
+                'spj',
+                'tabelrole'
             )
+
         );
     }
 
@@ -73,13 +77,16 @@ class MonitoringKakController extends Controller
         $data = MemoCair::all();
         $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
+        $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
+
         return view(
             "perencanaan.monitoring_kak.index_kak",
             [
                 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'status' => $status,
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
                 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
-                'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun, 'spj' => $spj
+                'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun,
+                'tabelRole' => $tabelRole
             ]
         );
     }

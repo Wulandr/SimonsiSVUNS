@@ -34,10 +34,11 @@ class RoleController extends Controller
         $i  = Role::all()->where('id', Auth()->user()->role);
         $unit = Unit::all();
         $tor = Tor::all();
+        $tabelRole =  Role::all();
         // $namarole = $i[Auth()->user()->role - 1]->name;
         return view('pengaturan.roles.index', [
             'roles' => Role::all(), 'userrole' =>  Usernya::join(), 'namerole' => Usernya::namarole(),
-            'unit' => $unit, 'tor' => $tor
+            'unit' => $unit, 'tor' => $tor, 'tabelRole' => $tabelRole
         ]);
         // dd(Auth()->user()->roles->pluck('name'));
         // return response()->json($i[Auth()->user()->role - 1]->name);
@@ -52,8 +53,9 @@ class RoleController extends Controller
     public function create()
     {
         //
+        $tabelRole =  Role::all();
         return view('pengaturan.roles.create', [
-            'authorities' => config('permission.authorities'),
+            'authorities' => config('permission.authorities'), 'tabelRole' => $tabelRole
         ]);
     }
 
@@ -92,7 +94,7 @@ class RoleController extends Controller
             // return redirect()->route('pengaturan.roles.index');
             // dd($role);
             if ($role) {
-                return redirect('role')->with("success", "Data berhasil ditambahkan");
+                return redirect('roles')->with("success", "Data berhasil ditambahkan");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -112,11 +114,12 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        $tabelRole =  Role::all();
         return view('pengaturan.roles.detail', [
             'role' => $role,
             'authorities' => config('permission.authorities'),
-            'rolePermissions' => $role->permissions->pluck('name')->toArray()
+            'rolePermissions' => $role->permissions->pluck('name')->toArray(),
+            'tabelRole' => $tabelRole
         ]);
     }
 
@@ -128,10 +131,12 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $tabelRole =  Role::all();
         return view('pengaturan.roles.update', [
             'role' => $role,
             'authorities' => config('permission.authorities'),
-            'permissionChecked' => $role->permissions()->pluck('name')->toArray()
+            'permissionChecked' => $role->permissions()->pluck('name')->toArray(),
+            'tabelRole' => $tabelRole
         ]);
     }
 

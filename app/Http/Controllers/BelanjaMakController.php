@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BelanjaMak;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class BelanjaMakController extends Controller
 {
@@ -18,6 +19,7 @@ class BelanjaMakController extends Controller
     public function index()
     {
         $mak = DB::table('mak')->get();
+        $tabelRole =  Role::all();
         $kelompok_mak = DB::table('kelompok_mak')->get();
         $belanja_mak = DB::table('belanja_mak')->get();
         // $join = BelanjaMak::joinKelompokMak();
@@ -29,7 +31,8 @@ class BelanjaMakController extends Controller
         return view(
             "pengaturan.mak.belanja_mak.index",
             [
-                'mak' => $mak, 'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'joinKelompok' => $joinKelompok
+                'mak' => $mak, 'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'joinKelompok' => $joinKelompok,
+                'tabelRole' => $tabelRole
             ]
         );
         // return ($joinKelompok);

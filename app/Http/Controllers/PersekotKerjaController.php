@@ -10,6 +10,7 @@ use App\Models\TrxStatusKeu;
 use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class PersekotKerjaController extends Controller
 {
@@ -32,6 +33,7 @@ class PersekotKerjaController extends Controller
         $persekot_kerja = PersekotKerja::all();
         $status_keu =  DB::table('status_keu')->get();
         $trx_status_keu = TrxStatusKeu::all();
+        $tabelRole =  Role::all();
         return view(
             'keuangan.persekot_kerja.index_persekotkerja',
             compact(
@@ -46,7 +48,8 @@ class PersekotKerjaController extends Controller
                 'triwulan',
                 'dokumen',
                 'status_keu',
-                'trx_status_keu'
+                'trx_status_keu',
+                'tabelRole'
             )
         );
     }

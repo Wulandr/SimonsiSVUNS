@@ -39,6 +39,7 @@ use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,8 @@ Route::group(['prefix' => 'sv', 'middleware' =>  ['IsProdi', 'auth', 'PreventBac
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/pergantian', [ProfilController::class, 'ganti']);
 
     Route::get('/profil', [ProfilController::class, 'profil']);
 

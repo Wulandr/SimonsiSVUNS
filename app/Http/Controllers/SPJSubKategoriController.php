@@ -6,6 +6,7 @@ use App\Models\SPJKategori;
 use Illuminate\Http\Request;
 use App\Models\SPJSubKategori;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class SPJSubKategoriController extends Controller
 {
@@ -13,11 +14,13 @@ class SPJSubKategoriController extends Controller
     {
         $spj_kategori = SPJKategori::all();
         $spj_subkategori = SPJSubKategori::all();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.spj_subkategori.index_spjsubkategori",
             [
                 'spj_kategori' => $spj_kategori,
                 'spj_subkategori' => $spj_subkategori,
+                'tabelRole' => $tabelRole
             ]
         );
     }

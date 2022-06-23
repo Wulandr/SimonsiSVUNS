@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\SubKegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class ValidasiController extends Controller
 {
@@ -40,12 +41,14 @@ class ValidasiController extends Controller
         $role = DB::table('roles')->get();
         $triwulan = DB::table('triwulan')->get();
         $notifikasiTor = Tor::notifikasi();
+        $tabelRole =  Role::all();
+
         return view(
             "perencanaan.validasi.index",
             [
                 'unit' => $unit, 'rab' => $rab, 'tabelanggaran' => $tabelanggaran, 'trx_status_tor' => $trx_status_tor,
                 'status' => $status, 'tor' => $tor, 'triwulan' => $triwulan, 'notifikasiTor' => $notifikasiTor,
-                'role' => $role, 'user' => $user
+                'role' => $role, 'user' => $user, 'tabelRole' => $tabelRole
             ]
         );
         // return $notifikasi;
@@ -99,12 +102,14 @@ class ValidasiController extends Controller
         $prodipilih = $prodi;
         $tabeltahun = DB::table('tahun')->get();
         $triwulan = DB::table('triwulan')->get();
+        $tabelRole =  Role::all();
         return view(
             "perencanaan.validasi.ajuan3",
             [
                 'tabeltor' => $tabeltor, 'join' => $join, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'tw2' => $tw2, 'userrole' => $userrole, 'rab' => $rab, 'anggaran' => $anggaran, 'detail_mak' => $detail_mak,
                 'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status, 'filtertahun' => $filtertahun, 'triwulan' => $triwulan,
-                'prodi' => $prodipilih, 'tabeltahun' => $tabeltahun, 'user' => $user, 'role' => $role, 'ajuanTW' => $ajuanTW, 'filtertw' => $filtertw, 'filterprodi' => $filterprodi
+                'prodi' => $prodipilih, 'tabeltahun' => $tabeltahun, 'user' => $user, 'role' => $role, 'ajuanTW' => $ajuanTW, 'filtertw' => $filtertw, 'filterprodi' => $filterprodi,
+                'tabelRole' => $tabelRole
             ]
         );
         // return $join;
@@ -313,12 +318,13 @@ class ValidasiController extends Controller
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $triwulan = DB::table('triwulan')->get();
+        $tabelRole =  Role::all();
         return view(
             "perencanaan.validasi.ajuan3",
             [
                 'tabeltor' => $tabeltor, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'tw2' => $tw2, 'userrole' => $userrole, 'rab' => $rab, 'anggaran' => $anggaran, 'detail_mak' => $detail_mak,
                 'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status,  'filterprodi' => $filterprodi, 'filtertahun' => $filtertahun,
-                'tabeltahun' => $tabeltahun, 'join' => $join, 'user' => $user, 'role' => $role, 'filtertw' => $filtertw, 'triwulan' => $triwulan
+                'tabeltahun' => $tabeltahun, 'join' => $join, 'user' => $user, 'role' => $role, 'filtertw' => $filtertw, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
             ]
         );
     }

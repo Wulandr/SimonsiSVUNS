@@ -295,11 +295,7 @@ use Illuminate\Support\Facades\Auth;
                                             <?php buttonPlus("#komen6") ?>
                                             @endif
                                     </p>
-                                    <div class="container collapse col-6" id="komen6">
-                                        <div id="validasi" class="form-group">
-                                            <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_latar_belakang" name="k_latar_belakang" placeholder="Komentar latarbelakang Kegiatan..."></textarea>
-                                        </div>
-                                    </div>
+
                                     <?php areaKomentar("komen6", "k_latar_belakang", "latarbelakang Kegiatan"); ?>
                                 <?php } ?>
                                 <div class="collapse" id="lihatkomen6">
@@ -326,11 +322,11 @@ use Illuminate\Support\Facades\Auth;
                                         <?php buttonPlus("#komen7") ?>
                                         @endif
                                 </p>
-                                <div class="container collapse col-6" id="komen7">
+                                <!-- <div class="container collapse col-6" id="komen7">
                                     <div id="validasi" class="form-group">
                                         <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_rasionalisasi" name="k_rasionalisasi" placeholder="Komentar rasionalisasi Kegiatan..."></textarea>
                                     </div>
-                                </div>
+                                </div> -->
                                 <?php areaKomentar("komen7", "k_rasionalisasi", "rasionalisasi Kegiatan"); ?>
                             <?php } ?>
                             <div class="collapse" id="lihatkomen7">
@@ -383,11 +379,11 @@ use Illuminate\Support\Facades\Auth;
                                 <?php buttonPlus("#komen9") ?>
                                 @endif
                         </p>
-                        <div class="container collapse col-6" id="komen9">
+                        <!-- <div class="container collapse col-6" id="komen9">
                             <div id="validasi" class="form-group">
                                 <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_mekanisme" name="k_mekanisme" placeholder="Komentar mekanisme Kegiatan..."></textarea>
                             </div>
-                        </div>
+                        </div> -->
                         <?php areaKomentar("komen9", "k_mekanisme", "mekanisme Kegiatan"); ?>
                     <?php } ?>
                     <div class="collapse" id="lihatkomen9">
@@ -550,11 +546,6 @@ use Illuminate\Support\Facades\Auth;
                     <?php buttonPlus("#komen12") ?>
                     @endif
             </p>
-            <div class="container collapse col-6" id="komen12">
-                <div id="validasi" class="form-group">
-                    <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_ik" name="k_ik" placeholder="Komentar ik Kegiatan..."></textarea>
-                </div>
-            </div>
             <?php areaKomentar("komen12", "k_ik", "ik Kegiatan"); ?>
         <?php } ?>
         <div class="collapse" id="lihatkomen12">
@@ -581,11 +572,6 @@ use Illuminate\Support\Facades\Auth;
                 <?php buttonPlus("#komen13") ?>
                 @endif
         </p>
-        <div class="container collapse col-6" id="komen13">
-            <div id="validasi" class="form-group">
-                <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_keberlanjutan" name="k_keberlanjutan" placeholder="Komentar keberlanjutan Kegiatan..."></textarea>
-            </div>
-        </div>
         <?php areaKomentar("komen13", "k_keberlanjutan", "keberlanjutan Kegiatan"); ?>
     <?php } ?>
     <div class="collapse" id="lihatkomen13">

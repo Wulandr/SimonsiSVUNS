@@ -25,7 +25,9 @@ class AdminController extends Controller
         $spj = SPJ::all();
         // dd($user->roles);
 
+        $tabelRole =  Role::all();
+
         $userrole = Usernya::join();
-        return view('dashboards.users.index', ['userrole' => $userrole, 'unit' => $unit, 'tor' => $tor, 'spj' => $spj]);
+        return view('dashboards.users.index', ['userrole' => $userrole, 'unit' => $unit, 'tor' => $tor, 'spj' => $spj, 'tabelRole' => $tabelRole]);
     }
 }

@@ -29,9 +29,10 @@ class UserController extends Controller
         $unit = Unit::all();
         $role = Role::all();
         $userrole = User::join();
+        $tabelRole =  Role::all();
         return view("pengaturan.user.user_index")->with([
             'user' => $user, 'userrole' => $userrole, 'role' => $role,
-            'unit' => $unit
+            'unit' => $unit, 'tabelRole' => $tabelRole
         ]);
         // return Auth::user()->getroleNames();
         // return Auth::user()->getAllPermissions();
@@ -43,7 +44,9 @@ class UserController extends Controller
         $role = Role::all();
         $userrole = User::join();
         $unit = Unit::all();
-        return view("pengaturan.user.user_create")->with(['tor' => $tor, 'userrole' => $userrole, 'role' => $role, 'unit' => $unit]);
+        $tabelRole =  Role::all();
+
+        return view("pengaturan.user.user_create")->with(['tor' => $tor, 'userrole' => $userrole, 'role' => $role, 'unit' => $unit, 'tabelRole' => $tabelRole]);
     }
 
     public function processAdd(Request $request)
@@ -66,27 +69,29 @@ class UserController extends Controller
         //         ->withInput($request->all)
         //         ->withErrors($validator);
         // }
-        $role = DB::table('roles')->where('id', $request->role)->first();
+        $role = DB::table('roles')->where('id', $request->role[0])->first();
         $assignrole = $role->name;
         // return ($role->name);
         // return $request->all();
+        $input = $request->all();
+        $rol = $input['role'];
         DB::beginTransaction();
         try {
-            $inserting = User::create(
-                [
-                    'id_unit' => $request->id_unit,
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'role' => $request->role,
-                    'nip' => 0,
-                    'is_aktif' => 0,
-                    'email_verified_at' => now(),
-                    'password' => Hash::make($request->password),
-                    'remember_token' => Str::random(10),
-                    'created_at' => $request->created_at,
-                    'updated_at' => $request->updated_at
-                ]
-            );
+            $inserting = new User;
+            $inserting->id_unit     = $request->id_unit;
+            $inserting->name = $request->name;
+            $inserting->email = $request->email;
+            $inserting->role = $request->role[0];
+            $inserting->multirole = implode(',', $rol);
+            // $inserting->nip = $request->nip;
+            $inserting->email_verified_at = now();
+            $inserting->password = Hash::make($request->password);
+            $inserting->remember_token = Str::random(10);
+            $inserting->created_at = $request->created_at;
+            $inserting->updated_at = $request->updated_at;
+
+            $inserting->save();
+
             $inserting->assignRole($assignrole);
             //allert
             if ($inserting) {
@@ -104,6 +109,7 @@ class UserController extends Controller
         } finally {
             DB::commit();
         }
+        // dd(implode(',', $rol));
     }
 
     public function show(User $user)
@@ -128,7 +134,8 @@ class UserController extends Controller
             $role = Role::all();
             $unit = Unit::all();
             $userrole = User::join();
-            return view("pengaturan.user.user_update")->with(['user' => $user, 'unit' => $unit, 'userrole' => $userrole, 'role' => $role, 'roleSelected' => $user->roles->first()]);
+            $tabelRole =  Role::all();
+            return view("pengaturan.user.user_update")->with(['tabelRole' => $tabelRole, 'user' => $user, 'unit' => $unit, 'userrole' => $userrole, 'role' => $role, 'roleSelected' => $user->roles->first()]);
             // return $user->getAllPermissions();
             // return ($user->role);
         } catch (\Exception $e) {
@@ -156,7 +163,7 @@ class UserController extends Controller
             $this->attributes()
         );
         if ($validator->fails()) {
-            $request['role'] = Role::select('id', 'name')->find($request->role);
+            $request['role'][0] = Role::select('id', 'name')->find($request->role);
             return redirect()
                 ->back()
                 ->withInput($request->all())
@@ -164,7 +171,7 @@ class UserController extends Controller
         }
         // dd($request->all());
 
-        $role = DB::table('roles')->where('id', $request->role)->first();
+        $role = DB::table('roles')->where('id', $request->role[0])->first();
         $assignrole = $role->name;
         DB::beginTransaction();
         // dd($assignrole);
@@ -172,12 +179,18 @@ class UserController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
+
+            $input = $request->all();
+            $hobby = $input['role'];
+            // $input['hobby'] = implode(',', $hobby);
+
+            $user->multirole = implode(',', $hobby);
             if (empty($request->password)) {
             }
             if (!empty($request->password)) {
                 $user->password = Hash::make($request->password);
             }
-            $user->role = $request->role;
+            $user->role = $request->role[0];
             // $user->image   = $nama_file;
             $user->syncRoles($assignrole);
             $user->save();
@@ -189,7 +202,7 @@ class UserController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            $request['role'] = Role::select('id', 'name')->find($request->role);
+            $request['role'][0] = Role::select('id', 'name')->find($request->role[0]);
             return redirect()
                 ->back()
                 ->withInput($request->all())

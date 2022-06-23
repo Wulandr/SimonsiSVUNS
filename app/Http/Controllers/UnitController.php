@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UnitController extends Controller
 {
@@ -14,10 +15,11 @@ class UnitController extends Controller
     public function index()
     {
         $unit = DB::table('unit')->get();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.unit.index",
             [
-                'unit' => $unit,
+                'unit' => $unit, 'tabelRole' => $tabelRole
             ]
         );
     }

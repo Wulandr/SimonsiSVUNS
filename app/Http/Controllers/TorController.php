@@ -14,6 +14,7 @@ use App\Models\TrxStatusTor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use TrxStatusKeu;
+use Spatie\Permission\Models\Role;
 
 class TorController extends Controller
 {
@@ -50,6 +51,7 @@ class TorController extends Controller
         $roles = DB::table('roles')->get();
         $roles2 = DB::table('roles')->get();
         $PIC = User::pic(auth()->user()->id_unit);
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.stepPengajuan",
@@ -57,7 +59,7 @@ class TorController extends Controller
                 'tor' => $tor, 'unit' => $unit, 'tw' => $tw, 'userrole' => $userrole,
                 'filtertahun' => $filtertahun, 'data' => $data,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
-                'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'PIC' => $PIC
+                'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'PIC' => $PIC, 'tabelRole' => $tabelRole
             ]
         );
         // return $PIC;
@@ -117,6 +119,7 @@ class TorController extends Controller
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $pedoman = Pedoman::all();
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.torab",
@@ -127,7 +130,8 @@ class TorController extends Controller
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'user' => $user, 'status' => $status,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
                 'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role,
-                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu, 'indikator_k' => $indikator_k, 'pedoman' => $pedoman
+                'status_keu' => $status_keu, 'trx_status_keu' => $trx_status_keu, 'indikator_k' => $indikator_k, 'pedoman' => $pedoman,
+                'tabelRole' => $tabelRole
             ]
         );
         // return $totalpertw;
@@ -165,6 +169,7 @@ class TorController extends Controller
         $indikator_iku = DB::table('indikator_iku')->get();
         $users = DB::table('users')->get();
         $anggaran = DB::table('anggaran')->get();
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.lengkapitor",
@@ -192,6 +197,7 @@ class TorController extends Controller
                 'kelompok_mak',
                 'belanja_mak',
                 'detail_mak',
+                'tabelRole'
             )
         );
     }
@@ -200,7 +206,8 @@ class TorController extends Controller
     {
         $unit = Unit::all();
         $tw = Triwulan::all();
-        return view("perencanaan.tor_create", ['unit' => $unit, 'tw' => $tw]);
+        $tabelRole =  Role::all();
+        return view("perencanaan.tor_create", ['unit' => $unit, 'tw' => $tw, 'tabelRole' => $tabelRole]);
     }
 
     public function processAdd(Request $request)
@@ -297,6 +304,7 @@ class TorController extends Controller
         $roles = DB::table('roles')->get();
         $roles2 = DB::table('roles')->get();
         $status = DB::table('status')->get();
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.update",
@@ -305,7 +313,7 @@ class TorController extends Controller
                 'tahun' => $tahun,  'filtertahun' => $filtertahun, 'data' => $data, 'id' => $id,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'trx_status_tor' => $trx_status_tor,
-                'status' => $status
+                'status' => $status, 'tabelRole' => $tabelRole
             ]
         );
     }
@@ -365,6 +373,7 @@ class TorController extends Controller
         $roles = DB::table('roles')->get();
         $roles2 = DB::table('roles')->get();
         $status = DB::table('status')->get();
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.revisi",
@@ -373,7 +382,7 @@ class TorController extends Controller
                 'tahun' => $tahun,  'filtertahun' => $filtertahun, 'data' => $data, 'id' => $id,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'users' => $users, 'roles' => $roles, 'roles2' => $roles2, 'trx_status_tor' => $trx_status_tor,
-                'status' => $status
+                'status' => $status, 'tabelRole' => $tabelRole
             ]
         );
         // return ($perbaikan);
@@ -489,6 +498,7 @@ class TorController extends Controller
         $indikator_iku = DB::table('indikator_iku')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $pedoman = Pedoman::all();
+        $tabelRole =  Role::all();
 
         return view(
             "perencanaan.tor.torab",
@@ -498,7 +508,7 @@ class TorController extends Controller
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'status' => $status, 'user' => $user, 'role' => $role,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal,
-                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'pedoman' => $pedoman
+                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'pedoman' => $pedoman, 'tabelRole' => $tabelRole
             ]
 
         );
@@ -540,6 +550,7 @@ class TorController extends Controller
         $indikator_iku = DB::table('indikator_iku')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $pedoman = Pedoman::all();
+        $tabelRole =  Role::all();
 
         if ($request->tahun == 0) {
             $pagu = DB::table('pagu')->get();
@@ -556,7 +567,8 @@ class TorController extends Controller
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'user' => $user, 'status' => $status,
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
-                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role, 'pedoman' => $pedoman
+                'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'role' => $role, 'pedoman' => $pedoman,
+                'tabelRole' => $tabelRole
             ]
         );
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SPJKategori;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,13 @@ class SPJKategoriController extends Controller
     public function index()
     {
         $spj_kategori = SPJKategori::all();
+        $role = Role::all();
+        $tabelRole =  Role::all();
         return view(
             "pengaturan.spj_kategori.index_spjkategori",
             [
                 'spj_kategori' => $spj_kategori,
+                'role' => $role, 'tabelRole' => $tabelRole
             ]
         );
     }

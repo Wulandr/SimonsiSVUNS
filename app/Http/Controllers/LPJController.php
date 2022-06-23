@@ -11,6 +11,7 @@ use App\Models\TrxStatusKeu;
 use Illuminate\Http\Request;
 use App\Models\PersekotKerja;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class LPJController extends Controller
 {
@@ -30,6 +31,7 @@ class LPJController extends Controller
         $status_keu =  DB::table('status_keu')->get();
         $trx_status_keu = TrxStatusKeu::all();
         $pedoman = Pedoman::all();
+        $tabelRole =  Role::all();
         return view(
             'keuangan.lpj.index_lpj',
             compact(
@@ -46,7 +48,8 @@ class LPJController extends Controller
                 'lpj',
                 'status_keu',
                 'trx_status_keu',
-                'pedoman'
+                'pedoman',
+                'tabelRole'
             )
         );
     }

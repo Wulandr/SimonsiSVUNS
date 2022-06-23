@@ -7,6 +7,7 @@ use App\Models\Dokumen;
 use App\Models\MemoCair;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class MemoCairController extends Controller
 {
@@ -21,7 +22,19 @@ class MemoCairController extends Controller
         $triwulan = DB::table('triwulan')->get();
         $dokumen = DB::table('dokumen')->get();
         $data = MemoCair::all();
-        return view('keuangan.memo_cair.index_memocair', compact('data', 'tor', 'trx_status_tor', 'status', 'prodi', 'users', 'roles', 'triwulan', 'dokumen'));
+        $tabelRole =  Role::all();
+        return view('keuangan.memo_cair.index_memocair', compact(
+            'data',
+            'tor',
+            'trx_status_tor',
+            'status',
+            'prodi',
+            'users',
+            'roles',
+            'triwulan',
+            'dokumen',
+            'tabelRole'
+        ));
     }
 
     public function store(Request $request)
