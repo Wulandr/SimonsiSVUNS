@@ -113,8 +113,8 @@ class LoginController extends Controller
         }
     }
 
-    public function chooseRole()
-    {
-        return route('pilih_role');
-    }
+    // public function chooseRole()
+    // {
+    //     return route('pilih_role');
+    // }
 }
