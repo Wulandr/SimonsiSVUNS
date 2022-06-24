@@ -63,6 +63,7 @@ class KController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('indikator_k')->where('id', $id)->delete();
             if ($process) {

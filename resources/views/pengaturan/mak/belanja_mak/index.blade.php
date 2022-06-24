@@ -144,7 +144,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Belanja" data-original-title="Update Belanja" href="" data-target="#update_bel<?= $join->idBelanja ?>"><i class="ri-pencil-line"></i></a>
                                                                     @endcan
                                                                     @can('belanjamak_delete')
-                                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/belanja_mak/delete/'.$join->idBelanja)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/belanja_mak/delete/'.base64_encode($join->idBelanja))}}"><i class="ri-delete-bin-line"></i></a>
                                                                     @endcan
                                                                 </div>
                                                             </td>

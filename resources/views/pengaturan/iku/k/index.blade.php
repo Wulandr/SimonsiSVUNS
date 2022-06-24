@@ -157,8 +157,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                 $kodeIKU = $ixIKU->IKU; ?>
                                                                         <?php }
                                                                         } ?> <?php }
-                                                                            }
-                                                                                    ?>
+                                                                        }
+                                                                                ?>
                                                                 <td>{{$kodeIKU}}</td>
                                                                 <td>{{$kodeIK}}</td>
                                                                 <td>{{$indikatorK->K}}</td>
@@ -169,7 +169,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update K" href="" data-target="#update_k<?= $indikatorK->id ?>"><i class="ri-pencil-line"></i></a>
                                                                         @endcan
                                                                         @can('ik_delete')
-                                                                        <a class="k-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/k/delete/'.$indikatorK->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                        <a class="k-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/k/delete/'.base64_encode($indikatorK->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                         @endcan
                                                                     </div>
                                                                 </td>

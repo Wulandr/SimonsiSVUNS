@@ -207,7 +207,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     @include('perencanaan/validasi/modal/tor/detail')
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('/detailtor/' . $join[$a]->tor_id) }}"><button class="badge badge-warning rounded">Detail
+                                                                    <a href="{{ url('/detailtor/' . base64_encode($join[$a]->tor_id)) }}"><button class="badge badge-warning rounded">Detail
                                                                         </button></a>
                                                                 </td>
                                                             </tr>

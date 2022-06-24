@@ -55,6 +55,7 @@ class ValidasiController extends Controller
     }
     public function ajuan($prodi)
     {
+        $prodi = base64_decode($prodi);
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
@@ -165,6 +166,7 @@ class ValidasiController extends Controller
 
     public function detail($id) //DETAIL TOR
     {
+        $id = base64_decode($id);
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
@@ -172,7 +174,6 @@ class ValidasiController extends Controller
             abort(403);
         }
 
-        $id = $id;
         $tor = Tor::all();
         $unit = Unit::all();
         $unit2 = Unit::all();
@@ -194,7 +195,7 @@ class ValidasiController extends Controller
         $anggaran = DB::table('anggaran')->get();
         $subkeg = DB::table('indikator_subK')->get();
         $rab_ang = Anggaran::Rab_Ang();
-
+        $tabelRole =  Role::all();
         return view(
             "perencanaan.validasi.detail_tor",
             [
@@ -203,6 +204,7 @@ class ValidasiController extends Controller
                 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'users' => $users,
                 'indikator_iku' => $indikator_iku, 'id' => $id, 'trx_status_tor' => $trx_status_tor, 'roles' => $roles,
                 'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang, 'detail_mak' => $detail_mak,
+                'tabelRole' => $tabelRole
             ]
         );
         // return $tor;

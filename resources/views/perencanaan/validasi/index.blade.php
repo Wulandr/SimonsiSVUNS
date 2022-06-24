@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <p class="text-secondary"></p>
                                 <div style="margin-top: 5%;margin-right:10%" class="d-flex align-items-center justify-content-between">
-                                    <a href="/validasi/ajuan/0">
+                                    <a href="/validasi/ajuan/{{base64_encode(0)}}">
                                         <h4 class="text-primary"><b>All</b></h4>
                                     </a>
                                 </div>
@@ -61,7 +61,7 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
                                         <p class="text-secondary"></p>
                                         <div style="margin-top: 5%;margin-right:10%" class="d-flex align-items-center justify-content-between">
-                                            <a href="/validasi/ajuan/{{$unit[$un]->id}}">
+                                            <a href="/validasi/ajuan/{{base64_encode($unit[$un]->id)}}">
                                                 <h4 class="text-{{$warna}}"><b>{{$unit[$un]->nama_unit}}</b></h4>
                                             </a>
                                         </div>

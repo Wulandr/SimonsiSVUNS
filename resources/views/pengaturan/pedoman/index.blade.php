@@ -86,7 +86,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pedoman" data-original-title="Update Pedoman" href="" data-target="#update_pedoman<?= $pedomansbm->id ?>"><i class="ri-pencil-line"></i></a>
                                                             @endcan
                                                             @can('pedoman_delete')
-                                                            <a href="{{ url('/pedomans/delete/' . $pedomansbm->id) }}" class="iq-bg-primary pedoman-confirm" data-toggle="tooltip" title="Delete">
+                                                            <a href="{{ url('/pedomans/delete/' . base64_encode($pedomansbm->id)) }}" class="iq-bg-primary ped-confirm" data-toggle="tooltip" title="Delete">
                                                                 <i class="fa fa-trash"></i>
                                                             </a>
                                                             @endcan

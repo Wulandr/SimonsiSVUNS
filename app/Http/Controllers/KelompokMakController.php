@@ -53,6 +53,7 @@ class KelompokMakController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('kelompok_mak')->where('id', $id)->delete();
             if ($process) {

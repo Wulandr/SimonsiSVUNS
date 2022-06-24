@@ -87,21 +87,21 @@ foreach ($role as $roles) {
 
 <!-- -------------------------------------------------- B U T T O N ------------------------------------------ -->
 
-<a href="{{url('/lengkapitor/'.  $tor[$t]->id)}}">
+<a href="{{url('/lengkapitor/'.  base64_encode($tor[$t]->id))}}">
     <button class="badge badge-warning rounded">{{ $detail}}</button>
 </a>
 
 <!-- Jika belum diajukan oleh prodi atau pic, dan nama pic sama dengan user login, maka tampilkan aksi -->
 <?php if ($pengajuan == 0 && ($tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin")) { ?>
     @can('tor_update')
-    <a href="{{url('/tor/update/'.$tor[$t]->id)}}" data-toggle="tooltip" title="Update">
+    <a href="{{url('/tor/update/'.base64_encode($tor[$t]->id))}}" data-toggle="tooltip" title="Update">
         <button class="badge badge-primary rounded">
             <i class="fa fa-edit"></i>
         </button>
     </a>
     @endcan
     @can('tor_delete')
-    <a href="{{url('/tor/delete/'.$tor[$t]->id)}}" class="button tor-confirm" data-toggle="tooltip" title="Delete">
+    <a href="{{url('/tor/delete/'.base64_encode($tor[$t]->id))}}" class="button tor-confirm" data-toggle="tooltip" title="Delete">
         <button class="badge badge-primary rounded">
             <i class="fa fa-trash"></i>
         </button>
@@ -147,7 +147,7 @@ foreach ($role as $roles) {
 <!-- ------------------------------------------------ ---------------- ---------------- -->
 
 <?php if ($perbaikan < $revisi) { ?>
-    <form class="form-horizontal" method="get" action="{{ url('/tor/revisi/'.  $tor[$t]->id) }}">
+    <form class="form-horizontal" method="get" action="{{ url('/tor/revisi/'.  base64_encode($tor[$t]->id)) }}">
         @csrf
         <input type="hidden" name="akses" value="1">
         <button class="badge badge-danger rounded" type="submit">

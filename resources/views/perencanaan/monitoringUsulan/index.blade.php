@@ -390,7 +390,8 @@ use Illuminate\Support\Facades\Auth;
                                     <!-- */ --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
                                     </td>
-                                    <td><a href="{{ url('/detailtor/' . $tor[$m]->id) }}">Detail</a>
+                                    <?php $idtor = base64_encode($tor[$m]->id) ?>
+                                    <td><a href="{{ url('/detailtor/' . $idtor) }}">Detail</a>
                                     </td>
                                     </tr>
                                 <?php } ?>

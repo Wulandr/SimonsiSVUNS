@@ -118,7 +118,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_mak<?= $mak[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('mak_delete')
-                                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/mak/delete/'.$mak[$k1]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/mak/delete/'.base64_encode($mak[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

@@ -30,8 +30,6 @@ class User extends Authenticatable
         'id_unit',
         'name',
         'email',
-        'google_id',
-        // 'username',
         'role',
         'is_aktif',
         'email_verified_at',

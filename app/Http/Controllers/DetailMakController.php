@@ -66,6 +66,8 @@ class DetailMakController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
+
         try {
             $process =  DB::table('detail_mak')->where('id', $id)->delete();
             if ($process) {
@@ -84,6 +86,8 @@ class DetailMakController extends Controller
         $belanja_mak = DB::table('belanja_mak')->get();
         $mak = DB::table('mak')->get();
         $kelompok_mak = DB::table('kelompok_mak')->get();
+        $tabelRole =  Role::all();
+
         if (is_null($cariDetail) && is_null($cariBelanja)) {
             $detail_mak = DB::table('detail_mak')->simplePaginate(15);
             $joinDetail = DB::table('detail_mak')
@@ -129,7 +133,7 @@ class DetailMakController extends Controller
             "pengaturan.mak.detail_mak.index",
             [
                 'mak' => $mak, 'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'joinDetail' => $joinDetail,
-                'detail_mak' => $detail_mak
+                'detail_mak' => $detail_mak,  'tabelRole' => $tabelRole
             ]
         );
         // return $joinDetail;

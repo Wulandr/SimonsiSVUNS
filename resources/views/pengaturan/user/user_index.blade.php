@@ -91,10 +91,10 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="flex align-items-center list-user-action">
-                                                                <a href="{{route('user.detail',['user'=>$u])}}" class="iq-bg-primary"><i class="fa fa-list"></i></a>
+                                                                <a href="{{route('user.detail',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary"><i class="fa fa-list"></i></a>
                                                                 <?php if ($u->role != 1) { ?>
-                                                                    <a href="{{route('user.update',['user'=>$u])}}" class="iq-bg-primary" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>
-                                                                    <a href="{{route('user.delete',['user'=>$u])}}" class="iq-bg-primary" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a>
+                                                                    <a href="{{route('user.update',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>
+                                                                    <a href="{{route('user.delete',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a>
                                                                 <?php } ?>
                                                             </div>
                                                         </div>

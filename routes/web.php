@@ -73,7 +73,6 @@ Route::get('/logout', function () {
 Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
     Auth::routes();
 });
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['IsAdmin', 'auth', 'PreventBackHistory']], function () {
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -83,6 +82,7 @@ Route::group(['prefix' => 'sv', 'middleware' =>  ['IsProdi', 'auth', 'PreventBac
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::post('/pergantian', [ProfilController::class, 'ganti']);
 

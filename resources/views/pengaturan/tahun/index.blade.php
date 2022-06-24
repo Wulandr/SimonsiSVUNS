@@ -115,7 +115,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Tahun" data-original-title="Update Tahun" href="" data-target="#update_thn<?= $thn->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('tahun_delete')
-                                                                <a href="{{url('/tahun/delete/'.$thn->id)}}" class="iq-bg-primary tahun-confirm" data-toggle="tooltip" title="Delete">
+                                                                <a href="{{url('/tahun/delete/'.base64_encode($thn->id))}}" class="iq-bg-primary tahun-confirm" data-toggle="tooltip" title="Delete">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
                                                                 <!-- <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/tahun/delete/'.$thn->id)}}" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a> -->

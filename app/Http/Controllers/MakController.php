@@ -56,6 +56,7 @@ class MakController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('mak')->where('id', $id)->delete();
             if ($process) {

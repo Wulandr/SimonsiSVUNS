@@ -91,6 +91,8 @@ class PedomanController extends Controller
     }
     public function delete($id)
     {
+        $id = base64_decode($id);
+
         try {
             // hapus file
             $filepedoman = Pedoman::where('id', $id)->first();

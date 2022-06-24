@@ -56,6 +56,7 @@ class RabController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process = Rab::findOrFail($id)->delete();
             if ($process) {
@@ -67,39 +68,39 @@ class RabController extends Controller
             abort(404);
         }
     }
-    public function detail($id)
-    {
-        $userLogin = Auth()->user()->id;
-        $unitUser = Auth()->user()->id_unit; //prodi mana?
+    // public function detail($id)
+    // {
+    //     $userLogin = Auth()->user()->id;
+    //     $unitUser = Auth()->user()->id_unit; //prodi mana?
 
-        $idtor = DB::table('rab')->select('id_tor')->where('id', $id)->get(); // id tor di rab?
-        $unitTor = DB::table('tor')->select('id_unit')->where('id', $idtor[0]->id_tor)->get();
-        if ($unitUser !=  $unitTor[0]->id_unit && $unitUser !=  1) { //$unitUser 1 adalah sekolah vokasi
-            abort(403);
-        }
-        $id = $id;
-        $rab = DB::table('rab')->get();
-        $tor = Tor::all();
-        $anggaran = DB::table('anggaran')->get();
-        $status = DB::table('status')->get();
-        $unit = Unit::all();
-        $unit2 = Unit::all();
-        $userrole = User::join();
-        $user = User::all();
-        $detail_mak = DB::table('detail_mak')->get();
-        $subkeg = DB::table('indikator_subK')->get();
-        $rab_ang = Anggaran::Rab_Ang();
-        $mak = DB::table('mak')->get();
-        $trx_status_tor = DB::table('trx_status_tor')->get();
-        return view(
-            "perencanaan.rab.lengkapirab",
-            [
-                'id' => $id, 'tor' => $tor, 'unit' => $unit, 'unit2' => $unit2,  'userrole' => $userrole,  'detail_mak' => $detail_mak,
-                'rab' => $rab, 'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang,
-                'user' => $user,  'status' => $status, 'mak' => $mak, 'trx_status_tor' => $trx_status_tor
-            ]
-        );
-        // return $totalpertw;
-        // return  $unitTor;
-    }
+    //     $idtor = DB::table('rab')->select('id_tor')->where('id', $id)->get(); // id tor di rab?
+    //     $unitTor = DB::table('tor')->select('id_unit')->where('id', $idtor[0]->id_tor)->get();
+    //     if ($unitUser !=  $unitTor[0]->id_unit && $unitUser !=  1) { //$unitUser 1 adalah sekolah vokasi
+    //         abort(403);
+    //     }
+    //     $id = $id;
+    //     $rab = DB::table('rab')->get();
+    //     $tor = Tor::all();
+    //     $anggaran = DB::table('anggaran')->get();
+    //     $status = DB::table('status')->get();
+    //     $unit = Unit::all();
+    //     $unit2 = Unit::all();
+    //     $userrole = User::join();
+    //     $user = User::all();
+    //     $detail_mak = DB::table('detail_mak')->get();
+    //     $subkeg = DB::table('indikator_subK')->get();
+    //     $rab_ang = Anggaran::Rab_Ang();
+    //     $mak = DB::table('mak')->get();
+    //     $trx_status_tor = DB::table('trx_status_tor')->get();
+    //     return view(
+    //         "perencanaan.rab.lengkapirab",
+    //         [
+    //             'id' => $id, 'tor' => $tor, 'unit' => $unit, 'unit2' => $unit2,  'userrole' => $userrole,  'detail_mak' => $detail_mak,
+    //             'rab' => $rab, 'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang,
+    //             'user' => $user,  'status' => $status, 'mak' => $mak, 'trx_status_tor' => $trx_status_tor
+    //         ]
+    //     );
+    //     // return $totalpertw;
+    //     // return  $unitTor;
+    // }
 }
