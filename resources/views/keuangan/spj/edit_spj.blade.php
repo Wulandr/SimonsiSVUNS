@@ -157,20 +157,26 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    @for ($b = 0; $b < count($dok_spj); $b++)
-                                                                        @if ($dok_spj[$b]->id_tor == $_GET['idtor'])
-                                                                            <td
-                                                                                style="border: none; padding-top: 0; padding-bottom: 0">
-                                                                                <small style="color: darkorange">File
-                                                                                    yang
-                                                                                    sudah diupload:
-                                                                                    <a class="text-primary"
-                                                                                        href="{{ asset('document_spj/' . $dok_spj[$b]->name) }}"
-                                                                                        target="_blank">{{ $dok_spj[$b]->name }}</a>
-                                                                                </small>
-                                                                            </td>
-                                                                        @endif
-                                                                    @endfor
+                                                                    @foreach ($tor as $t)
+                                                                        @foreach ($spj_subkategori as $spj_sub)
+                                                                            @foreach ($dok_spj as $d)
+                                                                                @if ($t->id === $d->id_tor && $spj_sub->id === $spj_subkategori[$b]->id)
+                                                                                    {{ $d->name }}
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                    <td
+                                                                        style="border: none; padding-top: 0; padding-bottom: 0">
+                                                                        <small style="color: darkorange">File
+                                                                            yang
+                                                                            sudah diupload:
+                                                                            <a class="text-primary"
+                                                                                href="{{ asset('document_spj/') }}"
+                                                                                target="_blank"></a>
+                                                                        </small>
+                                                                    </td>
+
                                                                 </tr>
                                                                 <?php $no += 1;
                                                                 }

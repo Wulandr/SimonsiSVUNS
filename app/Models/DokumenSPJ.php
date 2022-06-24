@@ -11,4 +11,14 @@ class DokumenSPJ extends Model
     public $keyType = 'string';
     protected $table = 'dokumen_spj';
     protected $guarded = [];
+
+    public function tor()
+    {
+        return $this->belongsTo(Tor::class);
+    }
+
+    public function spj_subkategori()
+    {
+        return $this->belongsTo(SPJSubKategori::class);
+    }
 }

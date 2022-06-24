@@ -86,7 +86,7 @@ class MonitoringKakController extends Controller
                 'prodi' => $prodi, 'users' => $users, 'roles' => $roles, 'dokMemo' => $dokMemo,
                 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu, 'tw' => $tw,
                 'filtertw' => $filtertw, 'tahun' => $tahun, 'pagu' => $pagu, 'data' => $data, 'tabeltahun' => $tabeltahun,
-                'tabelRole' => $tabelRole
+                'tabelRole' => $tabelRole, 'spj' => $spj
             ]
         );
     }

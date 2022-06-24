@@ -15,17 +15,17 @@
                 <div class="col-sm-12">
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title col-sm-9 align-items-center">
+                            <div class="iq-header-title col-sm-8 align-items-center">
                                 <h4 class="card-title">REKAPITULASI AJUAN KAK-RAB</h4>
                             </div>
-                            <div class="iq-header-toolbar col-sm-2 mt-3 d-flex justify-content-end">
+                            <div class="iq-header-toolbar col-sm-3 mt-3 d-flex justify-content-end">
                                 <div class="form-group row mb-0">
                                     <span class="table-add mb-0">
                                         <div class="form-group row">
                                             <form action="{{ url('/monitoring_kak/filterTw') }}" method="GET">
                                                 <div class="row mr-3">
                                                     <div class="col mr-1">
-                                                        <select class="form-control filter sm-8" name="filterTw"
+                                                        <select class="form-control filter" name="filterTw"
                                                             id="filterTw">
                                                             <option value="0">All</option>
                                                             <?php for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
@@ -67,20 +67,43 @@
                         <div class="iq-card-body">
                             <div id="table" class="table-editable">
                                 <table class="table table-bordered table-responsive-md table-hover text-center">
-                                    <thead class="bg-primary">
+                                    <thead class="table-info">
                                         <tr>
                                             <th rowspan="2" style="vertical-align: middle; width: 3%">No</th>
                                             <th rowspan="2" style="vertical-align: middle">Program Studi</th>
                                             <?php
+                                            $nomorTw = 0;
+                                            $tanggalTw = '';
+                                            $tahunTw = '';
+                                            $tw1 = 'Per 31 Maret ';
+                                            $tw2 = 'Per 30 Juni ';
+                                            $tw3 = 'Per 30 September ';
+                                            $tw4 = 'Per 31 Desember ';
                                             foreach ($tw as $twname) {
                                                 if ($twname->id == $filtertw) {
+                                                    // ngambil nomor TW dari Filter yang dipilih
+                                                    $nomorTw = substr($twname->triwulan, 14, 1);
+                                            
+                                                    // ngambil Tahun TW dari Filter yang dipilih
+                                                    $tahunTw = substr($twname->triwulan, 0, 4);
+                                            
+                                                    // permisalan untuk menyesuaikan tanggal sesuai dengan nomor TW
+                                                    if ($nomorTw == 1) {
+                                                        $tanggalTw = $tw1;
+                                                    } elseif ($nomorTw == 2) {
+                                                        $tanggalTw = $tw2;
+                                                    } elseif ($nomorTw == 3) {
+                                                        $tanggalTw = $tw3;
+                                                    } elseif ($nomorTw == 4) {
+                                                        $tanggalTw = $tw4;
+                                                    }
                                                 }
                                             }
-                                            
                                             ?>
+
                                             <th colspan="5">
-                                                {{ 'Triwulan ' . substr($twname->triwulan, 14, 1) }}
-                                                (Per 29 Maret 2022)</th>
+                                                {{ 'Triwulan ' . $nomorTw . ' (' . $tanggalTw . $tahunTw . ')' }}
+                                            </th>
                                         </tr>
                                         <tr>
                                             <th style="">Pagu</th>
@@ -126,7 +149,7 @@
                                                                                     }
                                                                                 }
                                                                                 if ($statusTor[0]['status'] == "Validasi - WD 1") {
-
+                                                                                    
                                                                                     // Mengambil data Nama Unit (Prodi) dari tabel TOR
                                                                                     for ($v = 0; $v < count($prodi); $v++) {
                                                                                         if ($prodi[$v]->id == $tor[$m]->id_unit) {
@@ -141,8 +164,7 @@
                                                 $realisasi = 0;
                                                 $sisa = 0;
                                                 $persen = 0;
-                                                
-                                            $rpd = 0;
+                                                $rpd = 0;
                                             
                                             // Ngambil data RPD sesuai filter TW yang dipilih
                                             foreach ($tw as $twname) {
@@ -152,6 +174,7 @@
                                                         if ($p->id_unit == $tor[$m]->id_unit) {
                                                             // echo substr($twname->triwulan, 14, 1); //tw berapa
                                                             $nomerTw = substr($twname->triwulan, 14, 1);
+                                                            // echo $twname->triwulan;
                                                             $namaTw = 'tw' . $nomerTw;
                                                             $rpd = $p->$namaTw;
                                                         }
@@ -162,22 +185,20 @@
                                         <tr>
                                             <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
                                             <td>{{ $namaprodi }}</td>
-                                            <td>
-                                                <?php
-                                                $tahun = substr($tor[$m]->tgl_mulai_pelaksanaan, 0, 4);
-                                                for ($j = 0; $j < count($pagu); $j++) {
-                                                    for ($c = 0; $c < count($tabeltahun); $c++) {
-                                                        if ($tabeltahun[$c]->id == $pagu[$j]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
-                                                            if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
-                                                                $pagu_kegiatan = $pagu[$j]->pagu;
-                                                                echo 'Rp. ' . number_format($pagu_kegiatan);
-                                                            }
+                                            <?php
+                                            $tahun = substr($tor[$m]->tgl_mulai_pelaksanaan, 0, 4);
+                                            for ($j = 0; $j < count($pagu); $j++) {
+                                                for ($c = 0; $c < count($tabeltahun); $c++) {
+                                                    if ($tabeltahun[$c]->id == $pagu[$j]->id_tahun && $tabeltahun[$c]->tahun == $tahun) {
+                                                        if ($pagu[$j]->id_unit == $tor[$m]->id_unit) {
+                                                            $pagu_kegiatan = $pagu[$j]->pagu;
                                                         }
                                                     }
                                                 }
-                                                
-                                                ?>
-                                            </td>
+                                            }
+                                            
+                                            ?>
+                                            <td>{{ 'Rp ' . number_format($pagu_kegiatan) }}</td>
                                             <td>{{ 'Rp ' . number_format($rpd) }}</td>
 
                                             {{-- Ngambil Jumlah Realisasi dari nilai_total SPJ --}}

@@ -136,13 +136,13 @@ class SPJController extends Controller
           $trx_status_keu = TrxStatusKeu::all();
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
-
-          $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
+          $id_tor = base64_decode($request['idtor']);
+          $tor_one = Tor::where('id', '=', $id_tor)->first();
           $id_unit = $tor_one->id_unit;
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
-          $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
-          $spj_value = SPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
-          // $dokspj = DokumenSPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
+          $memocair = MemoCair::where('id_tor', '=', $id_tor)->first()->nomor;
+          $spj_value = SPJ::where('id_tor', '=', $id_tor)->first();
+          $dokspj = DokumenSPJ::where('id_tor', '=', $id_tor)->first();
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
           $nilai_total = $spj_value->nilai_total;
@@ -181,6 +181,7 @@ class SPJController extends Controller
      public function detailSpj(Request $request)
      {
           $tor = Tor::all();
+          $tabelRole =  Role::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
           $prodi = DB::table('unit')->get();
@@ -196,12 +197,12 @@ class SPJController extends Controller
           $trx_status_keu = TrxStatusKeu::all();
           $spj_kategori = SPJKategori::all();
           $spj_subkategori = SPJSubKategori::all();
-
-          $tor_one = Tor::where('id', '=', base64_decode($request['idtor']))->first();
+          $id_tor = base64_decode($request['idtor']);
+          $tor_one = Tor::where('id', '=', $id_tor)->first();
           $id_unit = $tor_one->id_unit;
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
-          $memocair = MemoCair::where('id_tor', '=', base64_decode($request['idtor']))->first()->nomor;
-          $spj_value = SPJ::where('id_tor', '=', base64_decode($request['idtor']))->first();
+          $memocair = MemoCair::where('id_tor', '=', $id_tor)->first()->nomor;
+          $spj_value = SPJ::where('id_tor', '=', $id_tor)->first();
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
           $nilai_total = $spj_value->nilai_total;
@@ -231,7 +232,8 @@ class SPJController extends Controller
                     'penanggung',
                     'kontak',
                     'nilai_total',
-                    'nilai_kembali'
+                    'nilai_kembali',
+                    'tabelRole'
                )
           );
      }
