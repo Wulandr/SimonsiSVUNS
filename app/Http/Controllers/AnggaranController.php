@@ -86,6 +86,7 @@ class AnggaranController extends Controller
 
     public function delete(Request $request, $id)
     {
+        $id = base64_decode($id);
         try {
             $process = Anggaran::findOrFail($id)->delete();
             $totaldiTor = [$request->totalAnggaranTor -  $request->anggaranDiHapus]; //menyimpan data ke table tor
@@ -103,58 +104,6 @@ class AnggaranController extends Controller
     public function search(Request $request)
     {
     }
-    // public function inputLpj(Request $request)
-    // {
-    //     $id_mak = $request->id_mak;
-    //     $id_keg = $request->id_keg;
-    //     $id_tahap_anggaran = $request->id_tahap_anggaran;
-    //     $anggaran = $request->anggaran;
-    //     $created_at = $request->created_at;
-    //     $updated_at = $request->updated_at;
-
-    //     for ($i = 0; $i < 3; $i++) {
-    //         $input['id_mak'] = $id_mak[$i];
-    //         $input['id_keg'] = $id_keg[$i];
-    //         $input['id_tahap_anggaran'] = $id_tahap_anggaran[$i];
-    //         $input['anggaran'] = $anggaran[$i];
-    //         $input['created_at'] = $created_at[$i];
-    //         $input['updated_at'] = $updated_at[$i];
-    //         Anggaran::create($input);
-    //     }
-    //     return redirect()->back()->with("success", "Data berhasil ditambahkan");
-
-
-    //     // $data = [
-    //     //     ['user_id' => 'Coder 1', 'subject_id' => 4096],
-    //     //     ['user_id' => 'Coder 2', 'subject_id' => 2048],
-    //     //     //...
-    //     // ];
-    //     // $data = [];
-    //     // for ($i = 0; $i < 2; $i++) {
-    //     //     $data[$i] = [
-    //     //         [
-    //     //             'id_mak' => $request->id_mak[$i],
-    //     //             'id_keg' => $request->id_keg[$i],
-    //     //             'id_tahap_anggaran' => $request->id_tahap_anggaran[$i],
-    //     //             'anggaran' => $request->anggaran[$i],
-    //     //             'created_at' => $request->created_at[$i],
-    //     //             'updated_at' => $request->updated_at[$i],
-    //     //         ]
-    //     //     ];
-    //     // for ($i = 0; $i < 3; $i++) {
-    //     //     $ang = new Anggaran();
-    //     //     $ang->id_mak = $request->id_mak[$i];
-    //     //     $ang->id_keg = $request->id_keg[$i];
-    //     //     $ang->id_tahap_anggaran = $request->id_tahap_anggaran[$i];
-    //     //     $ang->anggaran = $request->anggaran[$i];
-    //     //     $ang->created_at = $request->created_at[$i];
-    //     //     $ang->updated_at = $request->updated_at[$i];
-    //     //     $ang->save();
-    //     // }
-    //     // }
-    //     // Anggaran::insert($data); // Eloquent approach
-    //     // DB::table('table')->insert($data); // Query Builder approach
-    // }
     public function getKelompokMak($id)
     {
         $namakelompok = DB::table('kelompok_mak')->where('id_mak', $id)->get();

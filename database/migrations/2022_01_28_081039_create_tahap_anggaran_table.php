@@ -13,11 +13,11 @@ class CreateTahapAnggaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('tahap_anggaran', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_tahap');
-            $table->timestamps();
-        });
+        // Schema::create('tahap_anggaran', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('nama_tahap');
+        //     $table->timestamps();
+        // });
     }
 
     /**

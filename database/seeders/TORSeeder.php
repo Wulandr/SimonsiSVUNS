@@ -44,6 +44,8 @@ class TORSeeder extends Seeder
                 'jumlah_anggaran' => '8000000',
                 'create_by' => 1,
                 'update_by' => 1,
+                'created_at' => '2022-01-15 22:24:06',
+                'updated_at' => '2022-01-15 22:24:06',
             ],
             [
                 'id' => '2',
@@ -75,6 +77,8 @@ class TORSeeder extends Seeder
                 'jumlah_anggaran' => '14700000',
                 'create_by' => 1,
                 'update_by' => 1,
+                'created_at' => '2022-04-25 22:24:06',
+                'updated_at' => '2022-04-25 22:24:06',
             ],
             [
                 'id' => '3',
@@ -114,6 +118,8 @@ class TORSeeder extends Seeder
                 'jumlah_anggaran' => ' 22780000',
                 'create_by' => 1,
                 'update_by' => 1,
+                'created_at' => '2022-04-25 22:24:06',
+                'updated_at' => '2022-04-25 22:24:06',
             ],
             [
                 'id' => '8',
@@ -145,6 +151,8 @@ class TORSeeder extends Seeder
                 'jumlah_anggaran' => '4261000',
                 'create_by' => 1,
                 'update_by' => 1,
+                'created_at' => '2022-03-25 22:24:06',
+                'updated_at' => '2022-03-25 22:24:06',
             ],
             [
                 'id' => '9',
@@ -399,6 +407,8 @@ class TORSeeder extends Seeder
                 'jumlah_anggaran' => '3900000',
                 'create_by' => 4,
                 'update_by' => 4,
+                'created_at' => '2022-03-25 22:24:06',
+                'updated_at' => '2022-03-25 22:24:06',
             ],
 
             [
@@ -433,10 +443,180 @@ class TORSeeder extends Seeder
                 'tgl_mulai_pelaksanaan' => '2022-06-23',
                 'tgl_akhir_pelaksanaan' => '2022-06-30',
                 'jumlah_anggaran' => '18750000',
-                'create_by' => '18',
+                'create_by' => 18,
                 'update_by' => '18',
+                'created_at' => '2022-06-18 22:24:06',
+                'updated_at' => '2022-06-18 22:24:06',
             ],
-
+            [
+                'id' => '12',
+                'id_unit' => '2',
+                'id_tw' => '6',
+                'id_subK' => '1',
+                'nama_kegiatan' => 'Coba Kegiatan 2',
+                'jenis_ajuan' => 'baru',
+                'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
+                <caption>tabel x</caption>
+                <tbody>
+                    <tr>
+                        <td>no</td>
+                        <td>nama</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>&nbsp;</p>',
+                'rasionalisasi' => '<p><img alt="Murottal Trio Qori Muzammil Hasballah, Taqy Malik, Ibrohim Elhaq Al Waqiah  - Data Islami" src="https://3.bp.blogspot.com/-e5Rgg96pqis/WhJOM7TLDsI/AAAAAAAAAto/hj5Ds_H9lO84VSUzv2VtTu7GyrUkmCn1ACLcBGAs/s1600/trio%2Bqori.jpg" /></p>',
+                'tujuan' => '<p>x</p>',
+                'mekanisme' => '<p>x</p>',
+                'keberlanjutan' => '<p>x</p>',
+                'realisasi_IKU' => '80',
+                'target_IKU' => '100',
+                'realisasi_IK' => '89',
+                'target_IK' => '100',
+                'nama_pic' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
+                'email_pic' => 'paksahirul@gmail.com',
+                'kontak_pic' => '081278902345',
+                'tgl_mulai_pelaksanaan' => '2021-06-19',
+                'tgl_akhir_pelaksanaan' => '2021-06-20',
+                'jumlah_anggaran' => '0',
+                'create_by' => 18,
+                'update_by' => 18,
+                'created_at' => '2022-06-01 22:24:06',
+                'updated_at' => '2022-06-01 22:24:06',
+            ],
+            [
+                'id' => '13',
+                'id_unit' => '2',
+                'id_tw' => '5',
+                'id_subK' => '1',
+                'nama_kegiatan' => 'Coba Kegiatan 4',
+                'jenis_ajuan' => 'baru',
+                'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
+                <caption>tabel x</caption>
+                <tbody>
+                    <tr>
+                        <td>no</td>
+                        <td>nama</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>&nbsp;</p>',
+                'rasionalisasi' => '<p><img alt="Murottal Trio Qori Muzammil Hasballah, Taqy Malik, Ibrohim Elhaq Al Waqiah  - Data Islami" src="https://3.bp.blogspot.com/-e5Rgg96pqis/WhJOM7TLDsI/AAAAAAAAAto/hj5Ds_H9lO84VSUzv2VtTu7GyrUkmCn1ACLcBGAs/s1600/trio%2Bqori.jpg" /></p>',
+                'tujuan' => '<p>x</p>',
+                'mekanisme' => '<p>x</p>',
+                'keberlanjutan' => '<p>x</p>',
+                'realisasi_IKU' => '100',
+                'target_IKU' => '100',
+                'realisasi_IK' => '100',
+                'target_IK' => '100',
+                'nama_pic' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
+                'email_pic' => 'paksahirul@gmail.com',
+                'kontak_pic' => '081278902345',
+                'tgl_mulai_pelaksanaan' => '2022-06-19',
+                'tgl_akhir_pelaksanaan' => '2022-06-19',
+                'jumlah_anggaran' => '0',
+                'create_by' => 18,
+                'update_by' => 18,
+                'created_at' => '2022-03-18 09:18:35',
+                'updated_at' => '2022-03-18 09:18:35',
+            ],
+            [
+                'id' => '14',
+                'id_unit' => '2',
+                'id_tw' => '5',
+                'id_subK' => '1',
+                'nama_kegiatan' => 'Coba Kegiatan 5',
+                'jenis_ajuan' => 'baru',
+                'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
+                <caption>tabel x</caption>
+                <tbody>
+                    <tr>
+                        <td>no</td>
+                        <td>nama</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>&nbsp;</p>',
+                'rasionalisasi' => '<p><img alt="Murottal Trio Qori Muzammil Hasballah, Taqy Malik, Ibrohim Elhaq Al Waqiah  - Data Islami" src="https://3.bp.blogspot.com/-e5Rgg96pqis/WhJOM7TLDsI/AAAAAAAAAto/hj5Ds_H9lO84VSUzv2VtTu7GyrUkmCn1ACLcBGAs/s1600/trio%2Bqori.jpg" /></p>',
+                'tujuan' => '<p>x</p>',
+                'mekanisme' => '<p>x</p>',
+                'keberlanjutan' => '<p>x</p>',
+                'realisasi_IKU' => '100',
+                'target_IKU' => '100',
+                'realisasi_IK' => '100',
+                'target_IK' => '100',
+                'nama_pic' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
+                'email_pic' => 'paksahirul@gmail.com',
+                'kontak_pic' => '081278902345',
+                'tgl_mulai_pelaksanaan' => '2022-06-19',
+                'tgl_akhir_pelaksanaan' => '2022-06-19',
+                'jumlah_anggaran' => '0',
+                'create_by' => 18,
+                'update_by' => 18,
+                'created_at' => '2022-03-18 09:18:35',
+                'updated_at' => '2022-03-18 09:18:35',
+            ],
+            [
+                'id' => '15',
+                'id_unit' => '2',
+                'id_tw' => '6',
+                'id_subK' => '143',
+                'nama_kegiatan' => 'Membangung Sistem Penjaminan Mutu',
+                'jenis_ajuan' => 'baru',
+                'latar_belakang' => '<p>Sumber daya manusia yang kompeten akan semakin banyak dibutuhkan oleh dunia usaha dan dunia industri pada masa kini hingga mendatang. Untuk memenuhi kebutuhan tersebut, Direktorat Jenderal Pendidikan Vokasi Kemendikbud terus berupaya melakukan berbagai macam terobosan baru melalui berbagai program dan kebijakan.</p>',
+                'rasionalisasi' => '<p>Sebagai upaya untuk mewujudkan pengembangan Program studi melalui proses upgrade D3 menjadi Sarjana Terapan (D4) maka dilakukan beberapa tahapan.</p>',
+                'tujuan' => '<ol>
+                <li>Mengetahui kebutuhan/ serapan industri atas lulusan sarjanan terapan yang akan dihasilkan&nbsp;</li>
+                <li>persiapan penyusunan dan perumusan kurikulum D4</li>
+                <li>Persiapan penyusunan draft borang upgrade D4</li>
+            </ol>',
+                'mekanisme' => '<ol>
+                <li>Diskusi dengan lembaga terkait</li>
+                <li>Penyusunan dokumen borang upgrade dari D3 ke D4</li>
+            </ol>',
+                'keberlanjutan' => '<p>Kegiatan ini merupakan bagian dari proses penyusunan borang upgrade D4 oleh D3 Teknik Informatika.</p>',
+                'realisasi_IKU' => '80',
+                'target_IKU' => '100',
+                'realisasi_IK' => '0',
+                'target_IK' => '1',
+                'nama_pic' => 'Nanang Maulana Yoeseph, S.Si., M.Cs.',
+                'email_pic' => 'paknanang@gmail.com',
+                'kontak_pic' => '081278902345',
+                'tgl_mulai_pelaksanaan' => '2022-06-29',
+                'tgl_akhir_pelaksanaan' => '2022-06-29',
+                'jumlah_anggaran' => '2200000',
+                'create_by' => 23,
+                'update_by' => 23,
+                'created_at' => '2022-06-21 16:13:00',
+                'updated_at' => '2022-06-21 16:13:00',
+            ],
         ]);
     }
 }

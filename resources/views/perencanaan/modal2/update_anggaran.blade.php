@@ -143,7 +143,6 @@
             <label>Nominal</label>
             <input name="anggaran" id="anggaran" value="{{old('anggaran',$anggaran[$i]->anggaran)}}" type="text" class="form-control">
           </div><?php $i = 1 ?>
-          <input name="id_tahap_anggaran" type="hidden" value="<?= $i ?>">
           <input name="created_at" id="created_at" type="hidden" value="<?= $anggaran[$i]->created_at ?>">
           <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
 

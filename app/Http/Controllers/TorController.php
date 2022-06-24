@@ -612,6 +612,8 @@ class TorController extends Controller
     }
     public function deleteJadwal($id)
     {
+        $id = base64_decode($id);
+
         try {
             $process = DB::table('komponen_jadwal')->where('id', $id)->delete();
             if ($process) {

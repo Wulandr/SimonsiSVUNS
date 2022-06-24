@@ -63,6 +63,30 @@ class RABSeeder extends Seeder
                 'created_at' => '2022-06-15 00:00:00',
                 'updated_at' => '2022-06-15 00:00:00',
             ],
+            [
+                'id' => 9,
+                'id_tor' => 12,
+                'masukan' => 'x',
+                'keluaran' => 'x',
+                'created_at' => '2022-06-18 00:00:00',
+                'updated_at' => '2022-06-18 00:00:00',
+            ],
+            [
+                'id' => 11,
+                'id_tor' => 15,
+                'masukan' => 'K28-04 Persiapan pembukaan program studi baru: studi kelayakan',
+                'keluaran' => 'Draft borang upgrade D3 ke D4',
+                'created_at' => '2022-06-21 00:00:00',
+                'updated_at' => '2022-06-21 00:00:00',
+            ],
+            [
+                'id' => 13,
+                'id_tor' => 14,
+                'masukan' => 'x',
+                'keluaran' => 'x',
+                'created_at' => '2022-06-24 00:00:00',
+                'updated_at' => '2022-06-24 00:00:00',
+            ],
         ]);
     }
 }

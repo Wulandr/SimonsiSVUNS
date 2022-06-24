@@ -23,6 +23,7 @@ return [
             'tor_delete',
             'tor_ajuan',
             'tor_verifikasi',
+            'tor_revisi',
             'tor_validasi'
         ],
         'manage_rab' => [

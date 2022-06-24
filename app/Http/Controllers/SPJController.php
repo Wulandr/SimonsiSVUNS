@@ -180,6 +180,7 @@ class SPJController extends Controller
 
      public function detailSpj(Request $request)
      {
+          $tabelRole =  Role::all();
           $tor = Tor::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
@@ -231,7 +232,8 @@ class SPJController extends Controller
                     'penanggung',
                     'kontak',
                     'nilai_total',
-                    'nilai_kembali'
+                    'nilai_kembali',
+                    'tabelRole'
                )
           );
      }

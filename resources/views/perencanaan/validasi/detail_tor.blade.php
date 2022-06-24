@@ -673,7 +673,7 @@ use Illuminate\Support\Facades\Auth;
                                         }
                         ?>
 
-                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_revisi') || Gate::check('tor_validasi'))
                         <?php if ($disetujui != 1 && $userSudahKomentar == 0) { ?>
                             <div id="validasi" class="container center">
                                 <?php
@@ -688,21 +688,6 @@ use Illuminate\Support\Facades\Auth;
                                                 if ($trx_status_tor[$stk2]->id_tor == $tor[$t]->id) {
                                                     $ada2 += 1;
                                                     $trx_status_tor[$stk2]->id_status;
-                                                    // if ($trx_status_tor[$stk2]->id_status == 1) {
-                                                    //     $statuskeg = "Pengajuan Prodi";
-                                                    //     $badge = "badge-warning";
-                                                    // } elseif ($trx_status_tor[$stk2]->id_status == 2) {
-                                                    //     $statuskeg = "Diverifikasi";
-                                                    //     $badge = "badge-success";
-                                                    // } elseif ($trx_status_tor[$stk2]->id_status == 3) {
-                                                    //     $statuskeg = "Revisi";
-                                                    //     $badge = "badge-danger";
-                                                    // } elseif ($trx_status_tor[$stk2]->id_status == 4) {
-                                                    //     $statuskeg = "Divalidasi";
-                                                    //     $badge = "badge-info";
-                                                    // } else {
-                                                    //     $statuskeg = "n";
-                                                    // }
 
                                                     foreach ($status as $statusTor) {
                                                         if ($statusTor->id == $trx_status_tor[$stk2]->id_status) {
@@ -1015,41 +1000,7 @@ use Illuminate\Support\Facades\Auth;
         window.print();
     };
 </script>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="{{ asset('findash/assets/js/jquery.min.js')}}"></script>
-<script src="{{ asset('findash/assets/js/popper.min.js')}}"></script>
-<script src="{{ asset('findash/assets/js/bootstrap.min.js')}}"></script>
-<!-- Appear JavaScript -->
-<script src="{{ asset('findash/assets/js/jquery.appear.js')}}"></script>
-<!-- Countdown JavaScript -->
-<script src="{{ asset('findash/assets/js/countdown.min.js')}}"></script>
-<!-- Counterup JavaScript -->
-<script src="{{ asset('findash/assets/js/waypoints.min.js')}}"></script>
-<script src="{{ asset('findash/assets/js/jquery.counterup.min.js')}}"></script>
-<!-- Wow JavaScript -->
-<script src="{{ asset('findash/assets/js/wow.min.js')}}"></script>
-<!-- Apexcharts JavaScript -->
-<script src="{{ asset('findash/assets/js/apexcharts.js')}}"></script>
-<!-- Slick JavaScript -->
-<script src="{{ asset('findash/assets/js/slick.min.js')}}"></script>
-<!-- Select2 JavaScript -->
-<script src="{{ asset('findash/assets/js/select2.min.js')}}"></script>
-<!-- Owl Carousel JavaScript -->
-<script src="{{ asset('findash/assets/js/owl.carousel.min.js')}}"></script>
-<!-- Magnific Popup JavaScript -->
-<script src="{{ asset('findash/assets/js/jquery.magnific-popup.min.js')}}"></script>
-<!-- Smooth Scrollbar JavaScript -->
-<script src="{{ asset('findash/assets/js/smooth-scrollbar.js')}}"></script>
-<!-- lottie JavaScript -->
-<script src="{{ asset('findash/assets/js/lottie.js')}}"></script>
-<!-- Style Customizer -->
-<script src="{{ asset('findash/assets/js/style-customizer.js')}}"></script>
-<!-- Chart Custom JavaScript -->
-<script src="{{ asset('findash/assets/js/chart-custom.js')}}"></script>
-<!-- Custom JavaScript -->
-<script src="{{ asset('findash/assets/js/custom.js')}}"></script>
+@include('dashboards/users/layouts/footer')
 </body>
 
 </html>

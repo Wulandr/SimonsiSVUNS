@@ -14,7 +14,7 @@ class AddIdDetailMakToAnggaranTable extends Migration
     public function up()
     {
         Schema::table('anggaran', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_detail_mak')->after('id_tahap_anggaran');
+            $table->unsignedBigInteger('id_detail_mak')->after('id_rab');
             $table->foreign('id_detail_mak')->references('id')->on('detail_mak')->onDelete('cascade')->onUpdate('cascade');
         });
     }

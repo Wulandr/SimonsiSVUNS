@@ -466,7 +466,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
                                                                                 <div class="flex align-items-center list-user-action">
                                                                                     <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Edit Jadwal" data-original-title="Edit Jadwal" data-target="#edit_jadwal<?= $komponen_jadwal[$j]->id ?>" href=""><i class="ri-pencil-line"></i></a>
-                                                                                    <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.$komponen_jadwal[$j]->id)}}" data-toggle="tooltip" title="Delete">
+                                                                                    <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.base64_encode($komponen_jadwal[$j]->id))}}" data-toggle="tooltip" title="Delete">
                                                                                         <i class="ri-delete-bin-line"></i>
                                                                                     </a>
                                                                                 </div>

@@ -6,7 +6,7 @@
     </button>
     @endcan
     @can('anggaran_delete')
-    <form class="form-horizontal" method="get" action="{{ url('/anggaran/delete/'.$anggaran[$i]->id) }}">
+    <form class="form-horizontal" method="get" action="{{ url('/anggaran/delete/'.base64_encode($anggaran[$i]->id)) }}">
         @csrf
         <input type="hidden" name="totalAnggaranTor" value="{{$tor[$t]->jumlah_anggaran}}">
         <input type="hidden" name="anggaranDiHapus" value="{{$anggaran[$i]->anggaran}}">

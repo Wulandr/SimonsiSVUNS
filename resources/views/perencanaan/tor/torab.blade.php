@@ -292,19 +292,17 @@ use Illuminate\Support\Facades\Auth;
                               for ($i = 0; $i < count($anggaran); $i++) {
                                 if ($anggaran[$i]->anggaran != 0) {
                                   if ($anggaran[$i]->id_rab == $rab[$r]->id) {
-                                    if ($anggaran[$i]->id_tahap_anggaran == 1) {
-                                      $totanggaran1 += $anggaran[$i]->anggaran;
-                                      for ($j = 0; $j < count($detail_mak); $j++) {
-                                        if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
+                                    $totanggaran1 += $anggaran[$i]->anggaran;
+                                    for ($j = 0; $j < count($detail_mak); $j++) {
+                                      if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
                               ?>
-                                          <h6 align="left" style="font-size: smaller;">
-                                            {{$detail_mak[$j]->detail . " - " .$anggaran[$i]->anggaran}}
-                                            <!-- include('perencanaan/aksi/aksi_anggaran') -->
-                                            <!-- MODAL UPDATE DI ANGGARAN -->
-                                            </span>
-                                          </h6>
+                                        <h6 align="left" style="font-size: smaller;">
+                                          {{$detail_mak[$j]->detail . " - " .$anggaran[$i]->anggaran}}
+                                          <!-- include('perencanaan/aksi/aksi_anggaran') -->
+                                          <!-- MODAL UPDATE DI ANGGARAN -->
+                                          </span>
+                                        </h6>
                               <?php
-                                        }
                                       }
                                     }
                                   }

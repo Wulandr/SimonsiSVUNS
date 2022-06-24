@@ -44,28 +44,26 @@
                 for ($i = 0; $i < count($anggaran); $i++) {
                     if ($anggaran[$i]->anggaran != 0) {
                         if ($anggaran[$i]->id_rab == $rab[$b]->id) {
-                            if ($anggaran[$i]->id_tahap_anggaran == 1) {
-                                $totanggaran1 += $anggaran[$i]->anggaran;
-                                for ($j = 0; $j < count($belanja_mak); $j++) {
-                                    if ($anggaran[$i]->id_belanja_mak == $belanja_mak[$j]->id) {
+                            $totanggaran1 += $anggaran[$i]->anggaran;
+                            for ($j = 0; $j < count($belanja_mak); $j++) {
+                                if ($anggaran[$i]->id_belanja_mak == $belanja_mak[$j]->id) {
                 ?>
-                                        <h6 align="left" style="font-size: smaller;">
-                                            <span><?= $nomer_anggaran . ". " . " <b>" . $belanja_mak[$j]->belanja . " - " . "</b>" .
-                                                        "Rp. " .  number_format($anggaran[$i]->anggaran, 2, ',', '.') ?>
-                                                <?php $nomer_anggaran += 1; ?>
+                                    <h6 align="left" style="font-size: smaller;">
+                                        <span><?= $nomer_anggaran . ". " . " <b>" . $belanja_mak[$j]->belanja . " - " . "</b>" .
+                                                    "Rp. " .  number_format($anggaran[$i]->anggaran, 2, ',', '.') ?>
+                                            <?php $nomer_anggaran += 1; ?>
 
 
-                                                <!-- <button class="badge badge-info rounded" data-toggle="modal" title="Detail Anggaran" data-original-title="Detail Anggaran" data-target="#detailang{{$anggaran[$i]->id}}">
+                                            <!-- <button class="badge badge-info rounded" data-toggle="modal" title="Detail Anggaran" data-original-title="Detail Anggaran" data-target="#detailang{{$anggaran[$i]->id}}">
                                                     <i class="fa fa-tasks"></i>
                                                 </button> -->
-                                                <!-- include('validasi/modal/anggaran/detail') -->
+                                            <!-- include('validasi/modal/anggaran/detail') -->
 
-                                                <br />
-                                                <!-- MODAL UPDATE DI ANGGARAN -->
-                                            </span>
-                                        </h6>
+                                            <br />
+                                            <!-- MODAL UPDATE DI ANGGARAN -->
+                                        </span>
+                                    </h6>
                 <?php
-                                    }
                                 }
                             }
                         }
