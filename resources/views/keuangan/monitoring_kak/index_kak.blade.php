@@ -32,7 +32,7 @@
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
                                                                                 if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
-                                                            <option value="{{ $tw[$tw1]->id }}"
+                                                            <option value="{{ base64_encode($tw[$tw1]->id) }}"
                                                                 {{ $filtertw == $tw[$tw1]->id ? 'selected' : '' }}>
                                                                 {{ $tw[$tw1]->triwulan }}</option>
                                                             <?php }

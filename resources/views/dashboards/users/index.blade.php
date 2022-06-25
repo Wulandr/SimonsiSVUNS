@@ -84,7 +84,7 @@ use Illuminate\Support\Facades\Auth;
                 </div>
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center">
+                        <div class="iq-card-header d-flex justify-content-center table-primary">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI AJUAN PER TW</h4>
                             </div>
@@ -94,7 +94,7 @@ use Illuminate\Support\Facades\Auth;
                                 <table id="datatable"
                                     class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead>
-                                        <tr class="table-info">
+                                        <tr class="bg-primary">
                                             <th>No</th>
                                             <th>Nama Kegiatan</th>
                                             <th>Penanggungjawab</th>

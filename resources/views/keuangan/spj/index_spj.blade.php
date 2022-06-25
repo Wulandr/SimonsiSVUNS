@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center">
+                        <div class="iq-card-header d-flex justify-content-center table-danger">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI SURAT PERTANGGUNGJAWABAN (SPJ)</h4>
                             </div>
@@ -29,7 +29,7 @@
                                     </button>
                                 </span>
                                 <table class="table table-bordered table-responsive-md table-hover text-center">
-                                    <thead class="bg-info">
+                                    <thead class="bg-danger">
                                         <tr>
                                             <th rowspan="2" style="vertical-align : middle;text-align:center;">No
                                             </th>

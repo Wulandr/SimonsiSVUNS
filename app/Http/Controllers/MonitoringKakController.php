@@ -57,7 +57,7 @@ class MonitoringKakController extends Controller
 
     public function filter_tw(Request $request)
     {
-        $filtertw = $request->filterTw;
+        $filtertw = base64_decode($request->filterTw);
         if ($filtertw == 0) {
             return redirect('/monitoring_kak');
         } elseif ($filtertw != 0) {

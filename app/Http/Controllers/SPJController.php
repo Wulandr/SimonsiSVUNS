@@ -142,11 +142,14 @@ class SPJController extends Controller
           $namaprodi = Unit::where('id', '=', $id_unit)->first()->nama_unit;
           $memocair = MemoCair::where('id_tor', '=', $id_tor)->first()->nomor;
           $spj_value = SPJ::where('id_tor', '=', $id_tor)->first();
-          $dokspj = DokumenSPJ::where('id_tor', '=', $id_tor)->first();
           $penanggung = $tor_one->nama_pic;
           $kontak = $tor_one->kontak_pic;
           $nilai_total = $spj_value->nilai_total;
           $nilai_kembali = $spj_value->nilai_kembali;
+
+
+          // dd($request['id_subkategori']);
+          // $file_spj = $dokspj->name;
 
           return view(
                'keuangan.spj.edit_spj',
@@ -174,6 +177,8 @@ class SPJController extends Controller
                     'nilai_total',
                     'nilai_kembali',
                     'tabelRole',
+                    'id_tor'
+                    // 'file_spj'
                )
           );
      }
@@ -233,7 +238,8 @@ class SPJController extends Controller
                     'kontak',
                     'nilai_total',
                     'nilai_kembali',
-                    'tabelRole'
+                    'tabelRole',
+                    'id_tor'
                )
           );
      }

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center">
+                        <div class="iq-card-header d-flex justify-content-center table-info">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI PERSEKOT KERJA</h4>
                             </div>

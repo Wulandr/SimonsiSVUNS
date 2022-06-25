@@ -12,13 +12,13 @@ class DokumenSPJ extends Model
     protected $table = 'dokumen_spj';
     protected $guarded = [];
 
-    public function tor()
-    {
-        return $this->belongsTo(Tor::class);
-    }
+    // public function tor()
+    // {
+    //     return $this->belongsTo(Tor::class);
+    // }
 
-    public function spj_subkategori()
-    {
-        return $this->belongsTo(SPJSubKategori::class);
-    }
+    // public function spj_subkategori()
+    // {
+    //     return $this->belongsTo(SPJSubKategori::class);
+    // }
 }

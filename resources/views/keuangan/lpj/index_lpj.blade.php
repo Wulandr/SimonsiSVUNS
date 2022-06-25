@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center">
+                        <div class="iq-card-header d-flex justify-content-center bg-secondary">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI LAPORAN PERTANGGUNGJAWABAN (LPJ)</h4>
                             </div>

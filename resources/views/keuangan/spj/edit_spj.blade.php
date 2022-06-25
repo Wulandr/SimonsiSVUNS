@@ -1,3 +1,6 @@
+<?php
+use App\Models\DokumenSPJ;
+?>
 @include('dashboards/users/layouts/script')
 
 <body>
@@ -153,27 +156,25 @@
                                                                             value="{{ $spj_subkategori[$b]->id }}">
                                                                         <input type="hidden" name="id_tor"
                                                                             class="form-control"
-                                                                            value="<?= $_GET['idtor'] ?>">
+                                                                            value="{{ $_GET['idtor'] }}">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    @foreach ($tor as $t)
-                                                                        @foreach ($spj_subkategori as $spj_sub)
-                                                                            @foreach ($dok_spj as $d)
-                                                                                @if ($t->id === $d->id_tor && $spj_sub->id === $spj_subkategori[$b]->id)
-                                                                                    {{ $d->name }}
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endforeach
-                                                                    @endforeach
+                                                                    <?php
+                                                                    $dokspj = '';
+                                                                    $bambang = DokumenSPJ::where([['id_tor', '=', $id_tor], ['id_subkategori', '=', $spj_subkategori[$b]->id]])->get();
+                                                                    foreach ($bambang as $isi) {
+                                                                        $dokspj = $isi['name'];
+                                                                    }
+                                                                    ?>
                                                                     <td
                                                                         style="border: none; padding-top: 0; padding-bottom: 0">
                                                                         <small style="color: darkorange">File
                                                                             yang
                                                                             sudah diupload:
                                                                             <a class="text-primary"
-                                                                                href="{{ asset('document_spj/') }}"
-                                                                                target="_blank"></a>
+                                                                                href="{{ asset('document_spj/' . $dokspj) }}"
+                                                                                target="_blank">{{ $dokspj }}</a>
                                                                         </small>
                                                                     </td>
 
