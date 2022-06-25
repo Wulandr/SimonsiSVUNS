@@ -64,6 +64,7 @@ class IkController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('indikator_ik')->where('id', $id)->delete();
             if ($process) {

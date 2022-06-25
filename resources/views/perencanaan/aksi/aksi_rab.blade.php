@@ -31,7 +31,7 @@ foreach ($role as $roles) {
         </button>
         @endcan
         @can('rab_delete')
-        <a href="{{url('/rab/delete/'.$rab[$r]->id)}}" class="button rab-confirm" title="Delete" id="rab-delete-confirm2">
+        <a href="{{url('/rab/delete/'.base64_encode($rab[$r]->id))}}" class="button rab-confirm" title="Delete" id="rab-delete-confirm2">
             <button class="badge badge-info rounded">
                 <i class="fa fa-trash"></i>
             </button>

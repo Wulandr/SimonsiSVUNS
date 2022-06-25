@@ -327,38 +327,36 @@ use Illuminate\Support\Facades\Auth;
                               for ($i = 0; $i < count($anggaran); $i++) {
                                 if ($anggaran[$i]->anggaran != 0) {
                                   if ($anggaran[$i]->id_keg == $kegiatan[$b]->id) {
-                                    if ($anggaran[$i]->id_tahap_anggaran == 1) {
-                                      $totanggaran1 += $anggaran[$i]->anggaran;
-                                      for ($j = 0; $j < count($mak); $j++) {
-                                        if ($anggaran[$i]->id_mak == $mak[$j]->id) {
+                                    $totanggaran1 += $anggaran[$i]->anggaran;
+                                    for ($j = 0; $j < count($mak); $j++) {
+                                      if ($anggaran[$i]->id_mak == $mak[$j]->id) {
                               ?>
-                                          <h6 align="left" style="font-size: smaller;">
-                                            <span><?= $nomer_anggaran . ". " . " <b>" . $mak[$j]->jenis_belanja . " - " . "</b>" .
-                                                    "Rp. " .  number_format($anggaran[$i]->anggaran, 2, ',', '.') ?>
-                                              <?php $nomer_anggaran += 1; ?>
+                                        <h6 align="left" style="font-size: smaller;">
+                                          <span><?= $nomer_anggaran . ". " . " <b>" . $mak[$j]->jenis_belanja . " - " . "</b>" .
+                                                  "Rp. " .  number_format($anggaran[$i]->anggaran, 2, ',', '.') ?>
+                                            <?php $nomer_anggaran += 1; ?>
 
-                                              <!-- AKSI ANGGARAN -->
-                                              <?php
-                                              for ($i2 = 0; $i2 < count($trx_status); $i2++) {
-                                                if ($trx_status[$i2]->id_anggaran ==  $anggaran[$i]->id) {
-                                                  echo "{ " . $trx_status[$i2]->id_anggaran . " }";
-                                                  $no = 1;
-                                                  if ($trx_status[$i2]->id_anggaran == $trx_status[$i2]->id_anggaran) {
-                                                    break;
-                                                  }
-                                                } else {
-                                                  $no = 0;
+                                            <!-- AKSI ANGGARAN -->
+                                            <?php
+                                            for ($i2 = 0; $i2 < count($trx_status); $i2++) {
+                                              if ($trx_status[$i2]->id_anggaran ==  $anggaran[$i]->id) {
+                                                echo "{ " . $trx_status[$i2]->id_anggaran . " }";
+                                                $no = 1;
+                                                if ($trx_status[$i2]->id_anggaran == $trx_status[$i2]->id_anggaran) {
+                                                  break;
                                                 }
+                                              } else {
+                                                $no = 0;
                                               }
+                                            }
 
-                                              ?>
-                                              @include('dashboards/users/tor/aksi/aksi_anggaran')
-                                              <!-- MODAL UPDATE DI ANGGARAN -->
-                                              @include('dashboards/users/tor/modal/update_anggaran')
-                                            </span>
-                                          </h6>
+                                            ?>
+                                            @include('dashboards/users/tor/aksi/aksi_anggaran')
+                                            <!-- MODAL UPDATE DI ANGGARAN -->
+                                            @include('dashboards/users/tor/modal/update_anggaran')
+                                          </span>
+                                        </h6>
                               <?php
-                                        }
                                       }
                                     }
                                   }

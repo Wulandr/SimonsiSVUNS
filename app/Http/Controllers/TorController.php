@@ -139,6 +139,7 @@ class TorController extends Controller
     }
     public function lengkapitor($id) //DETAIL TOR
     {
+        $id = base64_decode($id);
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
 
@@ -269,6 +270,7 @@ class TorController extends Controller
     }
     public function update($id)
     {
+        $id = base64_decode($id);
         $tor = Tor::findOrFail($id);
         $userLogin = Auth()->user()->name;
         $roleLogin2 = DB::table('roles')->select('name')->where('id', Auth()->user()->role)->get();
@@ -331,6 +333,7 @@ class TorController extends Controller
 
     public function revisi($id, Request $request)
     {
+        $id = base64_decode($id);
         $tor = Tor::findOrFail($id);
         $userLogin = Auth()->user()->name;
         $roleLogin2 = DB::table('roles')->select('name')->where('id', Auth()->user()->role)->get();
@@ -401,6 +404,7 @@ class TorController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         $userLogin = Auth()->user()->name;
         $roleLogin2 = DB::table('roles')->select('name')->where('id', Auth()->user()->role)->get();
 
@@ -608,6 +612,8 @@ class TorController extends Controller
     }
     public function deleteJadwal($id)
     {
+        $id = base64_decode($id);
+
         try {
             $process = DB::table('komponen_jadwal')->where('id', $id)->delete();
             if ($process) {

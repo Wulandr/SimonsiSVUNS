@@ -55,13 +55,13 @@
                                                         <td><a href="#">{{$role->name}}</a></td>
 
                                                         <td width="2">
-                                                            <a href="<?= route('roles.show', ['role' => $role]) ?>" class="btn btn-primary">Detail</a>
+                                                            <a href="<?= route('roles.show', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary">Detail</a>
                                                         </td>
                                                         <td width="2">
-                                                            <a href="<?= route('roles.edit', ['role' => $role]) ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href="<?= route('roles.edit', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                                                         </td>
                                                         <td width="2">
-                                                            <form action="{{route('roles.destroy',['role' => $role])}}" method="POST">
+                                                            <form action="{{route('roles.destroy',['role' => base64_encode($role->id)])}}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="fa fa-trash"></i></button>

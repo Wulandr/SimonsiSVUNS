@@ -14,19 +14,19 @@ class TahapAnggaranSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tahap_anggaran')->insert([
-            [
-                'id' => 1,
-                'nama_tahap' => 'Ajuan',
-            ],
-            [
-                'id' => 2,
-                'nama_tahap' => 'Revisi',
-            ],
-            [
-                'id' => 3,
-                'nama_tahap' => 'Realisasi',
-            ],
-        ]);
+        // DB::table('tahap_anggaran')->insert([
+        //     [
+        //         'id' => 1,
+        //         'nama_tahap' => 'Ajuan',
+        //     ],
+        //     [
+        //         'id' => 2,
+        //         'nama_tahap' => 'Revisi',
+        //     ],
+        //     [
+        //         'id' => 3,
+        //         'nama_tahap' => 'Realisasi',
+        //     ],
+        // ]);
     }
 }

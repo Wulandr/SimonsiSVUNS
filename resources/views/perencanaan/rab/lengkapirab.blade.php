@@ -104,36 +104,34 @@ for ($r = 0; $r < count($rab); $r++) {
                         for ($i = 0; $i < count($anggaran); $i++) {
                             if ($anggaran[$i]->anggaran != 0) {
                                 if ($anggaran[$i]->id_rab == $rab[$r]->id) {
-                                    if ($anggaran[$i]->id_tahap_anggaran == 1) {
-                                        $totanggaran1 += $anggaran[$i]->anggaran;
-                                        for ($j = 0; $j < count($detail_mak); $j++) {
-                                            if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
+                                    $totanggaran1 += $anggaran[$i]->anggaran;
+                                    for ($j = 0; $j < count($detail_mak); $j++) {
+                                        if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
                         ?>
-                                                <tr>
-                                                    <td>{{$detail_mak[$j]->detail}}
-                                                        <h6><?= $anggaran[$i]->catatan ?></h6>
-                                                        <!-- MODAL UPDATE DI ANGGARAN -->
-                                                        @include('perencanaan/modal2/update_anggaran')
-                                                    </td>
-                                                    <td>{{$anggaran[$i]->kebutuhan_vol}}</td>
-                                                    <td>{{$anggaran[$i]->kebutuhan_sat}}</td>
-                                                    <td>{{$anggaran[$i]->frek}}</td>
-                                                    <td>{{$anggaran[$i]->perhitungan_vol}}</td>
-                                                    <td>{{$anggaran[$i]->perhitungan_sat}}</td>
-                                                    <td>{{"Rp. ".number_format($anggaran[$i]->harga_satuan,2,',',',')}}</td>
-                                                    <td>{{"Rp. ".number_format($anggaran[$i]->anggaran,2,',',',')}}</td>
-                                                    <td>
-                                                        <?php if ($tor[$t]->nama_pic == Auth::user()->name ||   $unitLoginLengkapi == "Admin"  ||   $unitLoginLengkapi == "Prodi") { ?>
-                                                            @include('perencanaan/aksi/aksi_anggaran')
-                                                        <?php } ?>
-                                                        @include('perencanaan/modal2/update_anggaran')
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{$detail_mak[$j]->detail}}
+                                                    <h6><?= $anggaran[$i]->catatan ?></h6>
+                                                    <!-- MODAL UPDATE DI ANGGARAN -->
+                                                    @include('perencanaan/modal2/update_anggaran')
+                                                </td>
+                                                <td>{{$anggaran[$i]->kebutuhan_vol}}</td>
+                                                <td>{{$anggaran[$i]->kebutuhan_sat}}</td>
+                                                <td>{{$anggaran[$i]->frek}}</td>
+                                                <td>{{$anggaran[$i]->perhitungan_vol}}</td>
+                                                <td>{{$anggaran[$i]->perhitungan_sat}}</td>
+                                                <td>{{"Rp. ".number_format($anggaran[$i]->harga_satuan,2,',',',')}}</td>
+                                                <td>{{"Rp. ".number_format($anggaran[$i]->anggaran,2,',',',')}}</td>
+                                                <td>
+                                                    <?php if ($tor[$t]->nama_pic == Auth::user()->name ||   $unitLoginLengkapi == "Admin"  ||   $unitLoginLengkapi == "Prodi") { ?>
+                                                        @include('perencanaan/aksi/aksi_anggaran')
+                                                    <?php } ?>
+                                                    @include('perencanaan/modal2/update_anggaran')
+                                                </td>
+                                            </tr>
 
                         <?php
-                                                $totalAnggaranRab += $anggaran[$i]->anggaran;
-                                                $urut += 1;
-                                            }
+                                            $totalAnggaranRab += $anggaran[$i]->anggaran;
+                                            $urut += 1;
                                         }
                                     }
                                 }

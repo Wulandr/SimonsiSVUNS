@@ -145,7 +145,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Triwulan" data-original-title="Update Triwulan" href="" data-target="#update_tw<?= $triwulan[$a]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('triwulan_delete')
-                                                                <a class="iq-bg-primary tw-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/triwulan/delete/'.$triwulan[$a]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-primary tw-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/triwulan/delete/'.base64_encode($triwulan[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

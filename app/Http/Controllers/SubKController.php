@@ -62,6 +62,7 @@ class SubKController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('indikator_subk')->where('id', $id)->delete();
             if ($process) {

@@ -170,7 +170,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pagu" data-original-title="Update Pagu" href="" data-target="#update_pagu<?= $pagu[$a]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('pagu_delete')
-                                                                <a class="pagu-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/pagu/delete/'.$pagu[$a]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="pagu-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/pagu/delete/'.base64_encode($pagu[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

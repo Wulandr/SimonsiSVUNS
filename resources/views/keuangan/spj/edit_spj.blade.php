@@ -65,8 +65,8 @@ use App\Models\DokumenSPJ;
                                         Total SPJ</label>
                                     <div class="col-sm-7">
                                         <input type="text" name="nilai_total" class="form-control"
-                                            id="validationCustom01"
-                                            value="{{ 'Rp ' . number_format($nilai_total) }}"required>
+                                            id="validationCustom01" value="{{ 'Rp ' . number_format($nilai_total) }}"
+                                            required>
                                     </div>
                                     <div class="invalid-feedback">
                                         Required!
@@ -184,16 +184,15 @@ use App\Models\DokumenSPJ;
                                                             } ?>
                                                             </table>
                                                         </div>
+                                                        <?php
+                                                    } ?>
                                                     </div>
-                                                    <?php
-                                        } ?>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="iq-card-footer float-right">
-                                        <button type="submit" class="btn btn-primary m-3">Update</button>
-                                    </div>
+                                        <div class="iq-card-footer float-right">
+                                            <button type="submit" class="btn btn-primary m-3">Update</button>
+                                        </div>
                             </form>
                         </div>
                     </div>

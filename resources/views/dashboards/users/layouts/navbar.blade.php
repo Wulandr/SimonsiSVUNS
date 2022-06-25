@@ -90,7 +90,7 @@ use Spatie\Permission\Contracts\Role;
                                         <i class="ri-login-box-line ml-2">
                                         </i>
                                     </a> -->
-                                <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
+                                <div class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-file-user-line"></i>
@@ -108,8 +108,9 @@ use Spatie\Permission\Contracts\Role;
                                                         if ($r3->id == $tag) { ?>
                                             <form class="form-horizontal" method="post" action="{{ url('/pergantian') }}">
                                                 {{csrf_field()}}
-                                                <button class="btn btn-danger mr-1" type="submit">
-                                                    {{ $r3->name}}
+                                                <button class="btn mb-1 {{Auth()->user()->role == $r3->id ? 'bg-success disabled' : 'bg-secondary'}} " style="color: white;" type="submit">
+                                                    {{ $r3->name}} <i class="ri-login-box-line ml-2">
+                                                    </i>
                                                     <input type="text" name="pilihrole" id="pilihrole" value="{{$r3->id}}" style="display:none;">
                                                 </button>
                                             </form>
@@ -119,7 +120,7 @@ use Spatie\Permission\Contracts\Role;
                                 </p>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                                 <!-- </div> -->
                                 <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">

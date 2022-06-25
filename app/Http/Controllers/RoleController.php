@@ -112,8 +112,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
+        $id = base64_decode($id);
+        $role = new Role();
+        $role = role::all()->where('id', $id)->first();
         $tabelRole =  Role::all();
         return view('pengaturan.roles.detail', [
             'role' => $role,
@@ -129,8 +132,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
+        $id = base64_decode($id);
+        $role = new Role();
+        $role = role::all()->where('id', $id)->first();
         $tabelRole =  Role::all();
         return view('pengaturan.roles.update', [
             'role' => $role,
@@ -188,8 +194,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
+        $id = base64_decode($id);
+        $role = new Role();
+        $role = role::all()->where('id', $id)->first();
         DB::beginTransaction();
         try {
             $role->revokePermissionTo($role->permissions->pluck('name')->toArray());

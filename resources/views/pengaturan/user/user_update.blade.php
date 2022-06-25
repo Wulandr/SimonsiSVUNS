@@ -42,7 +42,7 @@
                         <option value="{{old('role',$roleSelected->id)}}" selected>{{old('role',$roleSelected->name)}} </option>
                         @endif -->
                           @foreach($role as $role)
-                          <option value="{{$role->id}}" {{$role->id == $user->role ? 'selected' : ''}}>{{$role->name}} </option>
+                          <option value="{{$role->id}}" {{$role->id == $user->multirole ? 'selected' : ''}}>{{$role->name}} </option>
                           @endforeach
                         </select>
                       </div>

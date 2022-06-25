@@ -155,7 +155,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update IK" data-original-title="Update IK" href="" data-target="#update_ik<?= $indikatorIK->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('ik_delete')
-                                                                <a class="ik-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/ik/delete/'.$indikatorIK->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="ik-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/ik/delete/'.base64_encode($indikatorIK->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

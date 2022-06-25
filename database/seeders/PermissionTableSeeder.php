@@ -226,8 +226,9 @@ class PermissionTableSeeder extends Seeder
             'id' => 1,
             'id_unit' => '1',
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'wdari0161@gmail.com',
             'role' => 1, //admin
+            'multirole' => '1, 3, 8, 2',
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -241,6 +242,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Wulan aja',
             'email' => 'wdari@gmail.com',
             'role' => 1, //admin
+            'multirole' => '1',
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -254,6 +256,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Abdul Aziz,S.Kom.,M.Cs',
             'email' => 'abdulazil@gmail.com',
             'role' => 7, //wd2
+            'multirole' => 7,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -267,6 +270,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Dr.Eng.Herman',
             'email' => 'hermans@gmail.com',
             'role' => 4, //wd3
+            'multirole' => 4,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -280,6 +284,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Agus Dwi Priyanto, S.S.,M.CALL',
             'email' => 'agusdwi@gmail.com',
             'role' => 8, //wd1
+            'multirole' => 8,
             'image' => 'anth.jfif',
             'is_aktif' => 1,
             'email_verified_at' => now(),
@@ -294,6 +299,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Nur Chayati',
             'email' => 'nurchayati@gmail.com',
             'role' => 3, //bpu
+            'multirole' => 3,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -307,6 +313,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Iman',
             'email' => 'iman@admin.com',
             'role' => 6, //staf keu
+            'multirole' => 6,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -320,6 +327,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Rangga Azof',
             'email' => 'azof@gmail.com',
             'role' => 5, //staf perencanaan
+            'multirole' => 5,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -333,6 +341,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Lusi Ismayenti, S.T.,M.Kes.',
             'email' => 'lusiismayenti@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -346,6 +355,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Rosita Mei Damayanti, S.E.,M.Rech',
             'email' => 'rosita@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -359,6 +369,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Lina Nur Ardila, SE., M.AK.',
             'email' => 'linanur@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -372,6 +383,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Sari N Marifah',
             'email' => 'sarienm@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -385,6 +397,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Juairiah Nastiti S,S.Pd.,M.TCSOL',
             'email' => 'JuairiahNastiti@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -398,6 +411,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Oktavia Kurnianingsih, S.T.,M.T.',
             'email' => 'oktavia@gmail.com',
             'role' => 2, //prodi
+            'multirole' => 2,
             'is_aktif' => 1,
             'image' => 'irish.jpg',
             'email_verified_at' => now(),
@@ -413,6 +427,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Coba PIC 1',
             'email' => 'pic@gmail.com',
             'role' => 9,
+            'multirole' => 9,
             'image' => 'NULL',
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -426,6 +441,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Coba Staf WD',
             'email' => 'stafwd1@gmail.com',
             'role' => 8,
+            'multirole' => 8,
             'image' => 'NULL',
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -439,6 +455,7 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Agus Purbayu, S.Si., M.Kom.',
             'email' => 'pakbayu@gmail.com',
             'role' => 9,
+            'multirole' => 9,
             'image' => 'pakbayu.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -452,6 +469,35 @@ class PermissionTableSeeder extends Seeder
             'name' => 'Sahirul Alim Tri Bawono, S.Kom., M.Eng.',
             'email' => 'paksahirul@gmail.com',
             'role' => 9,
+            'multirole' => 9,
+            'image' => 'NULL',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        $user11 = User::create([
+            'id' => 23,
+            'id_unit' => '2',
+            'name' => 'Nanang Maulana Yoeseph, S.Si., M.Cs.',
+            'email' => 'paknanang@gmail.com',
+            'role' => 9,
+            'multirole' => 9,
+            'image' => 'NULL',
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+        $user11 = User::create([
+            'id' => 24,
+            'id_unit' => '2',
+            'name' => 'Wulan coba',
+            'email' => 'wabcd19@gmail.com',
+            'role' => 2,
+            'multirole' => '2,3,4',
             'image' => 'NULL',
             'email_verified_at' => now(),
             'password' => Hash::make('vokasibergerak'),
@@ -480,5 +526,7 @@ class PermissionTableSeeder extends Seeder
         $user8->assignRole([$wd1]);
         $user9->assignRole([$pic]);
         $user10->assignRole([$pic]);
+        $user10->assignRole([$pic]);
+        $user10->assignRole([$prodi]);
     }
 }

@@ -126,7 +126,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update IKU" data-original-title="Update IKU" href="" data-target="#update_iku<?= $iku[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                         @endcan
                                                                         @can('iku_delete')
-                                                                        <a class="iku-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/iku/delete/'.$iku[$k1]->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                        <a class="iku-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/iku/delete/'.base64_encode($iku[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                         @endcan
                                                                     </div>
                                                                 </td>

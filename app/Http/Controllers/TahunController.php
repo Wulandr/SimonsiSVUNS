@@ -64,6 +64,8 @@ class TahunController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
+
         try {
             $process =  DB::table('tahun')->where('id', $id)->delete();
             if ($process) {

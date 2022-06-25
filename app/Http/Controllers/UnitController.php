@@ -49,6 +49,7 @@ class UnitController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('unit')->where('id', $id)->delete();
             if ($process) {

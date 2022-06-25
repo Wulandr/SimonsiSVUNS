@@ -175,7 +175,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update SUB K" href="" data-target="#update_subk<?= $k4->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('subk_delete')
-                                                                <a class="subk-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/subk/delete/'.$k4->id)}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="subk-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/subk/delete/'.base64_encode($k4->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

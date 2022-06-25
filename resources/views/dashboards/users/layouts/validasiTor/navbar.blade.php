@@ -122,7 +122,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                             $count += 1;
                                                                                             if ($hitungNotif < 4) {
                                                         ?>
-                                                                                                <a href="{{url('/detailtor/'.$tor2->id)}}" class="iq-sub-card">
+                                                                                                <a href="{{url('/detailtor/'.base64_encode($tor2->id))}}" class="iq-sub-card">
                                                                                                     <div class="media align-items-center">
                                                                                                         <div class="media-body">
                                                                                                             <h6><?php foreach ($unit as $unitTor) {
@@ -203,6 +203,37 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="bg-primary p-3">
                                     <h5 class="mb-0 text-white line-height">Hello <?= Auth::user()->name ?></h5>
                                     <span class="text-white font-size-12">Available</span>
+                                </div>
+                                <div class="iq-sub-card iq-bg-primary-hover">
+                                    <div class="media align-items-center">
+                                        <div class="rounded iq-card-icon iq-bg-primary">
+                                            <i class="ri-file-user-line"></i>
+                                        </div>
+                                        <div class="media-body ml-3">
+                                            <h6 class="mb-0 ">Change Role</h6>
+                                            <p class="mb-0 font-size-12">
+                                                <?php
+                                                $myArray = (explode(',', Auth()->user()->multirole));
+                                                // print_r($myArray[0]);
+                                                ?>
+                                                <?php $var = 0;
+                                                foreach ($myArray as $tag) {
+                                                    foreach ($tabelRole as $r3) {
+                                                        if ($r3->id == $tag) { ?>
+                                            <form class="form-horizontal" method="post" action="{{ url('/pergantian') }}">
+                                                {{csrf_field()}}
+                                                <button class="btn mb-1 {{Auth()->user()->role == $r3->id ? 'bg-success disabled' : 'bg-secondary'}} " style="color: white;" type="submit">
+                                                    {{ $r3->name}} <i class="ri-login-box-line ml-2">
+                                                    </i>
+                                                    <input type="text" name="pilihrole" id="pilihrole" value="{{$r3->id}}" style="display:none;">
+                                                </button>
+                                            </form>
+                                <?php }
+                                                    }
+                                                } ?>
+                                </p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <a href="{{ url('/profil') }}" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">

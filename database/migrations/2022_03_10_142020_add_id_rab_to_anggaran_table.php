@@ -17,8 +17,8 @@ class AddIdRabToAnggaranTable extends Migration
             $table->unsignedBigInteger('id_rab')->after('id');
             $table->foreign('id_rab')->references('id')->on('rab')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->unsignedBigInteger('id_tahap_anggaran')->after('id_rab');
-            $table->foreign('id_tahap_anggaran')->references('id')->on('tahap_anggaran')->onDelete('cascade')->onUpdate('cascade');
+            // $table->unsignedBigInteger('id_tahap_anggaran')->after('id_rab');
+            // $table->foreign('id_tahap_anggaran')->references('id')->on('tahap_anggaran')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

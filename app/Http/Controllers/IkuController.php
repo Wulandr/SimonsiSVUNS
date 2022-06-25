@@ -64,6 +64,7 @@ class IkuController extends Controller
 
     public function delete($id)
     {
+        $id = base64_decode($id);
         try {
             $process =  DB::table('indikator_iku')->where('id', $id)->delete();
             if ($process) {

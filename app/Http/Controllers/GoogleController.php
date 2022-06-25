@@ -24,15 +24,23 @@ class GoogleController extends Controller
             // 
             // jika email user sama dengan di database maka langsung redirect ke halaman selanjutnya
             $cekAdaEmail = DB::table('users')->where('email', $user->email)->first();
+            $cekAktif =  DB::table('users')
+                ->where('email', $user->email)
+                ->first();
+            // dd($cekAktif->is_aktif);
 
             if ($findemail) {
                 Auth::login($findemail);
-                if (!empty($cekAdaEmail) == 'true') {
-                    return redirect('/home'); //hanya contoh
+                if (!empty($cekAdaEmail) == 'true' && $cekAktif->is_aktif == 1) { //akun sudah diaktifkan admin
+                    return redirect('/home');
+                } elseif (!empty($cekAdaEmail) == 'true' && $cekAktif->is_aktif == 0) { //akun belum diaktifkan
+                    Auth::logout();
+                    return redirect('/tidak_aktif');
                 }
-            } else {
-                return redirect('/tidak_aktif');;
+            } else { // email tidak cocok dengan database
+                dd($cekAktif);
             }
+            // dd($cekAktif);
         } catch (\Throwable $th) {
             dd($th);
         }

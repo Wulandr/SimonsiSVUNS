@@ -147,10 +147,6 @@ class SPJController extends Controller
           $nilai_total = $spj_value->nilai_total;
           $nilai_kembali = $spj_value->nilai_kembali;
 
-
-          // dd($request['id_subkategori']);
-          // $file_spj = $dokspj->name;
-
           return view(
                'keuangan.spj.edit_spj',
                compact(
@@ -178,13 +174,13 @@ class SPJController extends Controller
                     'nilai_kembali',
                     'tabelRole',
                     'id_tor'
-                    // 'file_spj'
                )
           );
      }
 
      public function detailSpj(Request $request)
      {
+          $tabelRole =  Role::all();
           $tor = Tor::all();
           $tabelRole =  Role::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();

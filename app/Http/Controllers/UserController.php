@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -112,24 +113,33 @@ class UserController extends Controller
         // dd(implode(',', $rol));
     }
 
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $id = base64_decode($id);
+        $user = new User;
+        $user = User::all()->where('id', $id)->first();
         $role =  DB::table('roles')->select('name')->where('id', $user->role)->first();
         $authorities =  config('permission.authorities');
         $permissionChecked = $user->getAllPermissions()->pluck('name')->toArray();
-
+        $tabelRole =  Role::all();
         return view('pengaturan.user.user_detail', [
             'user' => $user,
             'role' => $role,
             'authorities' => $authorities,
-            'permissionChecked' => $permissionChecked
+            'permissionChecked' => $permissionChecked,
+            'tabelRole' => $tabelRole
         ]);
+        // return $user;
+        // $user2 = encrypt($user);
+        // return decrypt($user2);
         // return $permissionChecked;
     }
 
-    public function update(User $user)
+    public function update($id)
     {
+        $id = base64_decode($id);
+        $user = new User;
+        $user = User::all()->where('id', $id)->first();
         try {
             $role = Role::all();
             $unit = Unit::all();
@@ -212,7 +222,7 @@ class UserController extends Controller
         }
     }
 
-    public function delete(User $user)
+    public function delete($id)
     {
         // try {
         //     $process = User::findOrFail($id)->delete();
@@ -224,6 +234,9 @@ class UserController extends Controller
         // } catch (\Exception $e) {
         //     abort(404);
         // }
+        $id = base64_decode($id);
+        $user = new User;
+        $user = User::all()->where('id', $id)->first();
         $role = DB::table('roles')->where('id', $user->role)->first();
         $assignrole = $role->name;
         DB::beginTransaction();
