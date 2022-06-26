@@ -146,7 +146,64 @@ foreach ($role as $roles) {
 <!-- ----------------- F I T U R  A L E R T  S E G E R A   R E V I S I ---------------  -->
 <!-- ------------------------------------------------ ---------------- ---------------- -->
 
-<?php if ($perbaikan < $revisi) { ?>
+<?php
+$pengajuan = 0;
+$detail = "Lengkapi Data";
+$name;
+$dalamRevisi = 0; // apakah sekarang dalam proses revisi? jika iya, maka dpt ditampilkan aksi jadwal dan rab
+$countRevisi = 0; //megnhitung brp kali revisi
+$countPerbaikan = 0; //megnhitung brp kali perbaikan
+for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
+    if ($trx_status_tor[$trx1]->id_tor == $tor[$t]->id) {
+        for ($st1 = 0; $st1 < count($status); $st1++) {
+            if ($trx_status_tor[$trx1]->id_status == $status[$st1]->id) {
+                $name = $status[$st1]->nama_status;
+                if ($status[$st1]->nama_status == "Proses Pengajuan") {
+                    $pengajuan = 1;
+                    $detail = "Detail";
+                }
+                if ($status[$st1]->nama_status == "Revisi") {
+                    $countRevisi += 1;
+                }
+                if ($status[$st1]->nama_status == "Pengajuan Perbaikan") {
+                    $countPerbaikan += 1;
+                }
+            }
+        }
+    }
+}
+
+$dalamRevisi = 0; //false
+$angSudahRevisi = "-"; //apakah ang sudah direvisi
+
+//jika jumlah revisi tidak sama dengan perbaikan, maka aktifkan button aksi
+if ($countRevisi != $countPerbaikan) {
+    $dalamRevisi = 1;
+}
+$alertRevisi = ""; //menampilkan peringatan untuk merevisi jadwal dan rab
+
+if ($dalamRevisi == 1) { //true
+    foreach ($trx_status_tor as $revisian) {
+        if ($revisian->id_tor == $tor[$t]->id) {
+
+            //cek di tabel T O R apakah update_at > created_at di trx tor revisi
+            $TorSudahRevisi = "-"; //apakah TOR sudah direvisi
+            foreach ($tor as $torRev) {
+                if ($torRev->updated_at > $revisian->created_at) {
+                    $TorSudahRevisi = "Sudah";
+                }
+                if ($torRev->updated_at > $revisian->created_at) {
+                    if ($TorSudahRevisi != "Sudah") {
+                        $TorSudahRevisi = "Belum"; //berarti belum direvisi
+                    }
+                }
+            }
+        }
+    }
+}
+?>
+
+<?php if ($perbaikan < $revisi && $TorSudahRevisi == '-') { ?>
     <form class="form-horizontal" method="get" action="{{ url('/tor/revisi/'.  base64_encode($tor[$t]->id)) }}">
         @csrf
         <input type="hidden" name="akses" value="1">
@@ -155,6 +212,8 @@ foreach ($role as $roles) {
         </button>
     </form>
 <?php } ?>
+
+
 
 <!-- ------------------------------------------------ ---------------- ---------------- -->
 <!-- ------------------------------------------------ ---------------- ---------------- -->

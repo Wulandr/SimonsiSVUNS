@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <?php $data = 1 ?>
                             <div class="iq-card-body">
-                                <form id="form-wizard1" class="text-center mt-4" method="post" action="{{ url('/tor/revisi/'.$id) }}">
+                                <form id="form-wizard1" class="text-center mt-4" method="post" action="{{ url('/tor/revisi/'.base64_encode($id)) }}">
                                     @csrf
                                     <ul id="top-tab-list" class="p-0">
                                         <li class="active" id="account">

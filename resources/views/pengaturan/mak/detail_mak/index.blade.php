@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     @csrf
                                                                     <div class="form-group">
                                                                         <label>Belanja MAK</label>
-                                                                        <select name="id_belanja" id="id_belanja" class="js-example-basic-single1" aria-hidden="true" data-select2-id="select2-data-58-6f8l" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                                                                        <select name="id_belanja" id="tambahselect" aria-hidden="true" data-select2-id="select2-data-58-6f88" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                             @foreach($belanja_mak as $iniBel)
                                                                             <option value="{{$iniBel->id}}">{{$iniBel->belanja}}</option>
                                                                             @endforeach
@@ -147,13 +147,15 @@ use Illuminate\Support\Facades\Auth;
                                                                     <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Detail" data-original-title="Update Detail" href="" data-target="#update_det<?= $join->idDetail ?>"><i class="ri-pencil-line"></i></a>
                                                                     @endcan
                                                                     @can('detailmak_delete')
-                                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/detail_mak/delete/'.base64_encode($join->idDetail))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    <a class="iq-bg-primary detailmak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/detail_mak/delete/'.base64_encode($join->idDetail))}}"><i class="ri-delete-bin-line"></i></a>
                                                                     @endcan
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         <!-- Modal Ubah IK -->
-                                                        <div class="modal fade" style="overflow:hidden;" role="dialog" id="update_det<?= $join->idDetail ?>">
+                                                        <!-- <div class="modal fade" role="dialog" id="tambahDetMak" style="overflow:hidden;"> -->
+
+                                                        <div class="modal fade" role="dialog" id="update_det<?= $join->idDetail ?>" style="overflow:hidden;">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -167,7 +169,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             @csrf
                                                                             <div class="form-group">
                                                                                 <label>Belanja</label>
-                                                                                <select name="id_belanja" id="id_belanja" class="js-example-basic-single2" aria-hidden="true" data-select2-id="select2-data-58-6f8l" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                                                                                <select name="id_belanja" id="detailselect" aria-hidden="true" data-select2-id="select2-data-58-6f8l" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                                     <?php for ($b2 = 0; $b2 < count($belanja_mak); $b2++) { ?>
                                                                                         <option value="{{old('id_belanja',$belanja_mak[$b2]->id)}}" {{$belanja_mak[$b2]->id == $join->idBelanja ? 'selected' : ''}}>{{$belanja_mak[$b2]->belanja}}</option>
                                                                                     <?php
@@ -203,81 +205,41 @@ use Illuminate\Support\Facades\Auth;
         </div>
     </div>
 
-    <!-- Wrapper END -->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-single1').select2();
+            $('#tambahselect').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#detailselect').select2();
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single1').select2().on('change', function() {
-                var id_belanja = $(this).val();
-                if (id_belanja) {
-                    $.ajax({
-                        url: '/getbelanjaMak/' + id_mak,
-                        type: "GET",
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="id_belanja"]').empty();
-                            $('select[name="id_belanja"]').append('<option hidden>Choose Course</option>');
-                            $.each(data, function(key, namabelanja) {
-                                $('select[name="id_belanja"]').append('<option value="' + namabelanja.id + '">' + namabelanja.belanja + '-' + namabelanja.id + '</option>');
-                            });
-
-                        }
-                    });
-                } else {
-                    $('select[name="id_belanja"]').empty();
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single2').select2();
-        });
-    </script>
-
-
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single2').select2().on('change', function() {
-                var id_belanja = $(this).val();
-                if (id_belanja) {
-                    $.ajax({
-                        url: '/getbelanjaMak/' + id_mak,
-                        type: "GET",
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="id_belanja"]').empty();
-                            $('select[name="id_belanja"]').append('<option hidden>Choose Course</option>');
-                            $.each(data, function(key, namabelanja) {
-                                $('select[name="id_belanja"]').append('<option value="' + namabelanja.id + '">' + namabelanja.belanja + '-' + namabelanja.id + '</option>');
-                            });
-
-                        }
-                    });
-                } else {
-                    $('select[name="id_belanja"]').empty();
-                }
-            });
-        });
-    </script>
     <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
         }, 2000);
+    </script>
+    <script>
+        $('.detailmak-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
     </script>
     @include('dashboards/users/layouts/footer')
 </body>

@@ -91,62 +91,62 @@ use Illuminate\Support\Facades\Auth;
                                                     if ($trx_status_tor[$trx]->create_by == $users[$us]->id) {
                                                         if (!empty($trx_status_tor[$trx]->k_sub)) {
                                                             if ($trx_status_tor[$trx]->k_sub != '-') {
-                                                                $komentar['sub'][] = $trx_status_tor[$trx]->k_sub . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['sub'][] = " \"" . $trx_status_tor[$trx]->k_sub . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_judul)) {
                                                             if ($trx_status_tor[$trx]->k_judul != '-') {
-                                                                $komentar['judul'][] = $trx_status_tor[$trx]->k_judul . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['judul'][] = " \"" . $trx_status_tor[$trx]->k_judul . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_latar_belakang)) {
                                                             if ($trx_status_tor[$trx]->k_latar_belakang != '-') {
-                                                                $komentar['latarbelakang'][] = $trx_status_tor[$trx]->k_latar_belakang . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['latarbelakang'][] = " \"" . $trx_status_tor[$trx]->k_latar_belakang . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_rasionalisasi)) {
                                                             if ($trx_status_tor[$trx]->k_rasionalisasi != '-') {
-                                                                $komentar['rasionalisasi'][] = $trx_status_tor[$trx]->k_rasionalisasi . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['rasionalisasi'][] = " \"" . $trx_status_tor[$trx]->k_rasionalisasi . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_tujuan)) {
                                                             if ($trx_status_tor[$trx]->k_tujuan != '-') {
-                                                                $komentar['tujuan'][] = $trx_status_tor[$trx]->k_tujuan . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['tujuan'][] = " \"" . $trx_status_tor[$trx]->k_tujuan . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_mekanisme)) {
                                                             if ($trx_status_tor[$trx]->k_mekanisme != '-') {
-                                                                $komentar['mekanisme'][] = $trx_status_tor[$trx]->k_mekanisme . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['mekanisme'][] = " \"" . $trx_status_tor[$trx]->k_mekanisme . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_jadwal)) {
                                                             if ($trx_status_tor[$trx]->k_jadwal != '-') {
-                                                                $komentar['jadwal'][] = $trx_status_tor[$trx]->k_jadwal . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['jadwal'][] = " \"" . $trx_status_tor[$trx]->k_jadwal . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_iku)) {
                                                             if ($trx_status_tor[$trx]->k_iku != '-') {
-                                                                $komentar['iku'][] = $trx_status_tor[$trx]->k_iku . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['iku'][] = " \"" . $trx_status_tor[$trx]->k_iku . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_ik)) {
                                                             if ($trx_status_tor[$trx]->k_ik != '-') {
-                                                                $komentar['ik'][] = $trx_status_tor[$trx]->k_ik . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['ik'][] = " \"" . $trx_status_tor[$trx]->k_ik . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_keberlanjutan)) {
                                                             if ($trx_status_tor[$trx]->k_keberlanjutan != '-') {
-                                                                $komentar['keberlanjutan'][] = $trx_status_tor[$trx]->k_keberlanjutan . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['keberlanjutan'][] = " \"" . $trx_status_tor[$trx]->k_keberlanjutan . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_penanggung)) {
                                                             if ($trx_status_tor[$trx]->k_penanggung != '-') {
-                                                                $komentar['penanggung'][] = $trx_status_tor[$trx]->k_penanggung . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['penanggung'][] = " \"" . $trx_status_tor[$trx]->k_penanggung . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_rab)) {
                                                             if ($trx_status_tor[$trx]->k_rab != '-') {
-                                                                $komentar['rab'][] = $trx_status_tor[$trx]->k_rab . "\n (" . $users[$us]->name . ")";
+                                                                $komentar['rab'][] = " \"" . $trx_status_tor[$trx]->k_rab . "\"\n (" . $users[$us]->name . ")";
                                                             }
                                                         }
                                                     }
@@ -169,7 +169,7 @@ use Illuminate\Support\Facades\Auth;
                                                         }
 
                                                         if ($status[$is]->nama_status == "Pengajuan Perbaikan") {
-                                                            $note = "komentar sebelum perbaikan tor";
+                                                            $note = "<b><i>komentar sebelum perbaikan tor</b></i>";
                                                             $warna_komentar = "alert-success";
                                                         }
                                                     }

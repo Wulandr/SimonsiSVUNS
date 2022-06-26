@@ -327,19 +327,32 @@ use Illuminate\Support\Facades\Auth;
                                                                                     <ul class="iq-timeline">
                                                                                         <?php
                                                                                         $indexwarna = 0;
-                                                                                        $warnaLingkar = [
-                                                                                            'timeline-dots',
-                                                                                            'timeline-dots border-success',
-                                                                                            'timeline-dots border-secondary',
-                                                                                            'timeline-dots border-info',
-                                                                                        ];
                                                                                         $ada = 0;
                                                                                         if (!empty($trx_status_tor)) {
                                                                                             foreach ($trx_status_tor as $q3) {
                                                                                                 if ($q3->id_tor == $tor[$m]->id) {
                                                                                         ?>
                                                                                                     <li>
-                                                                                                        <div class="{{$warnaLingkar[$indexwarna]}}"><i class="ri-check-fill" style="color:black"></i></div>
+                                                                                                        <?php for ($st = 0; $st < count($status); $st++) {
+                                                                                                            if ($status[$st]->id == $q3->id_status) {
+                                                                                                                $wstatus = $status[$st]->nama_status;
+                                                                                                                if ($wstatus == 'Proses Pengajuan') {
+                                                                                                                    $warnaLingkar = 'timeline-dots';
+                                                                                                                } elseif ($wstatus == 'Verifikasi') {
+                                                                                                                    $warnaLingkar = 'timeline-dots border-warning';
+                                                                                                                } elseif ($wstatus == 'Review') {
+                                                                                                                    $warnaLingkar = 'timeline-dots  border-info';
+                                                                                                                } elseif ($wstatus == 'Revisi') {
+                                                                                                                    $warnaLingkar = 'timeline-dots  border-danger';
+                                                                                                                } elseif ($wstatus == 'Validasi') {
+                                                                                                                    $warnaLingkar = 'timeline-dots  border-success';
+                                                                                                                } elseif ($wstatus == 'Pengajuan Perbaikan') {
+                                                                                                                    $warnaLingkar = 'timeline-dots';
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                        ?>
+                                                                                                        <div class="{{$warnaLingkar}}"><i class="ri-check-fill" style="color:black"></i></div>
                                                                                                         <?php
                                                                                                         $indexwarna += 1;
                                                                                                         if ($indexwarna > 3) {

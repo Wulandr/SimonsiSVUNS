@@ -147,7 +147,6 @@ class TorController extends Controller
         if ($unitUser !=  $unitTor[0]->id_unit && $unitUser !=  1) {
             abort(403);
         }
-        $id = $id;
         $tor = Tor::all();
         $unit = Unit::all();
         $unit2 = Unit::all();
@@ -359,7 +358,7 @@ class TorController extends Controller
             abort(403);
         }
 
-        $id = $id;
+        // $id = $id;
         $data = 0;
         $filtertahun = date('Y');
         $filterprodi = 0;
@@ -393,10 +392,11 @@ class TorController extends Controller
 
     public function processRevisi(Request $request, $id)
     {
+        $id = base64_decode($id);
         $request->validate([]);
         $process = Tor::findOrFail($id)->update($request->except('_token'));
         if ($process) {
-            return redirect('/lengkapitor/' . $id)->with("success", "Data berhasil diperbarui");
+            return redirect('/lengkapitor/' . base64_encode($id))->with("success", "Data berhasil diperbarui");
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }

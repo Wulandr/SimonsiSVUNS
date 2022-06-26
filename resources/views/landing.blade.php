@@ -14,9 +14,7 @@
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('landing/assets/vendor/aos/aos.css') }}" rel="stylesheet">
@@ -45,8 +43,7 @@
 
             <div class="logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('findash/assets/images/logo.png') }}" class="img-fluid rounded"
-                        alt="">
+                    <img src="{{ asset('findash/assets/images/logo.png') }}" class="img-fluid rounded" alt="">
                 </a>
             </div>
 
@@ -58,15 +55,15 @@
                     <li><a class="nav-link scrollto" href="#team">Team</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     @if (Route::has('google.login'))
-                        @auth
-                            <li>
-                                <a href="{{ url('/home') }}">Home</a>
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{ route('google.login') }}"><i class="lab la-google-plus"></i>Login</a>
-                            </li>
-                        @endauth
+                    @auth
+                    <li>
+                        <a href="{{ url('/home') }}">Home</a>
+                    </li>
+                    @else
+                    <li>
+                        <a href="{{ route('google.login') }}"><i class="lab la-google-plus"></i>Login</a>
+                    </li>
+                    @endauth
                     @endif
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -203,8 +200,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="member" data-aos="fade-up">
-                            <div class="pic"><img src="landing/assets/img/team/team-1.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="pic"><img src="landing/assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>Walter White</h4>
                                 <span>Chief Executive Officer</span>
@@ -220,8 +216,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="150">
-                            <div class="pic"><img src="landing/assets/img/team/team-2.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="pic"><img src="landing/assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>Sarah Jhonson</h4>
                                 <span>Product Manager</span>
@@ -237,8 +232,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="300">
-                            <div class="pic"><img src="landing/assets/img/team/team-3.jpg" class="img-fluid"
-                                    alt=""></div>
+                            <div class="pic"><img src="landing/assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>William Anderson</h4>
                                 <span>CTO</span>
@@ -298,26 +292,21 @@
                 <div class="row">
 
                     <div class="col-lg-6 ">
-                        <iframe class="mb-4 mb-lg-0"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-                            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                        <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
                     </div>
 
                     <div class="col-lg-6">
                         <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                 </div>
                             </div>
                             <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" required>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                             </div>
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
@@ -414,8 +403,7 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('landing/assets/vendor/purecounter/purecounter.js') }}"></script>

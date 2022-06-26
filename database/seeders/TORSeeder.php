@@ -413,7 +413,7 @@ class TORSeeder extends Seeder
 
             [
                 'id' => '10',
-                'id_unit' => '6',
+                'id_unit' => '2',
                 'id_tw' => '2',
                 'id_subK' => '9',
                 'nama_kegiatan' => 'Pengiriman Mahasiswa Untuk Melakukan Sertifikasi Kompetensi',

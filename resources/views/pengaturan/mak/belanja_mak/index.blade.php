@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     @csrf
                                                                     <div class="form-group">
                                                                         <label>Kelompok MAK</label>
-                                                                        <select name="id_kelompok" id="id_kelompok" class="form-control">
+                                                                        <select class="js-example-basic-single1" name="id_kelompok" id="id_kelompok" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                             @foreach($kelompok_mak as $iniKel)
                                                                             <option value="{{$iniKel->id}}">{{$iniKel->kelompok}}</option>
                                                                             @endforeach
@@ -144,7 +144,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Belanja" data-original-title="Update Belanja" href="" data-target="#update_bel<?= $join->idBelanja ?>"><i class="ri-pencil-line"></i></a>
                                                                     @endcan
                                                                     @can('belanjamak_delete')
-                                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/belanja_mak/delete/'.base64_encode($join->idBelanja))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    <a class="iq-bg-primary belanjamak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/belanja_mak/delete/'.base64_encode($join->idBelanja))}}"><i class="ri-delete-bin-line"></i></a>
                                                                     @endcan
                                                                 </div>
                                                             </td>
@@ -164,12 +164,10 @@ use Illuminate\Support\Facades\Auth;
                                                                             @csrf
                                                                             <div class="form-group">
                                                                                 <label>Kelompok</label>
-                                                                                <select name="id_kelompok" id="id_kelompok" class="form-control">
-                                                                                    <?php for ($b2 = 0; $b2 < count($kelompok_mak); $b2++) {
-                                                                                        if ($kelompok_mak[$b2]->id == $join->idKelompok) { ?>
-                                                                                            <option value="{{$kelompok_mak[$b2]->id}}">{{$kelompok_mak[$b2]->kelompok}}</option>
+                                                                                <select aria-hidden="true" data-select2-id="select2-data-58-6f88" name="id_kelompok" id="id_kelompok_select" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                                                                                    <?php for ($b2 = 0; $b2 < count($kelompok_mak); $b2++) { ?>
+                                                                                        <option value="{{$kelompok_mak[$b2]->id}}" {{$kelompok_mak[$b2]->id == $join->idKelompok ? 'selected' : ''}}>{{$kelompok_mak[$b2]->kelompok}}</option>
                                                                                     <?php
-                                                                                        }
                                                                                     } ?>
                                                                                 </select>
                                                                             </div>
@@ -202,6 +200,34 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single1').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#id_kelompok_select').select2();
+        });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.belanjamak-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {

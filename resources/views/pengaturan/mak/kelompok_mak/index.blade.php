@@ -148,7 +148,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_kel<?= $kelompok_mak[$k2]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('kelompokmak_delete')
-                                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/kelompok_mak/delete/'.base64_encode($kelompok_mak[$k2]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-primary kelompokmak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/kelompok_mak/delete/'.base64_encode($kelompok_mak[$k2]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>
@@ -158,7 +158,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Update MAK</h5>
+                                                                    <h5 class="modal-title">Update Kelompok MAK</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -170,9 +170,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             <label>MAK</label>
                                                                             <select name="id_mak" id="id_mak" class="form-control">
                                                                                 @foreach($mak as $iniMak)
-                                                                                <?php if ($iniMak->id == $kelompok_mak[$k2]->id_mak) { ?>
-                                                                                    <option value="{{$iniMak->id}}">{{$iniMak->jenis_belanja}}</option>
-                                                                                <?php } ?>
+                                                                                <option value="{{$iniMak->id}}" {{$iniMak->id == $kelompok_mak[$k2]->id_mak ? 'selected' : ''}}>{{$iniMak->jenis_belanja}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
@@ -203,6 +201,24 @@ use Illuminate\Support\Facades\Auth;
         </div>
     </div>
     <!-- Wrapper END -->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.kelompokmak-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {

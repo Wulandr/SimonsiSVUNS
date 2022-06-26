@@ -34,9 +34,10 @@
                                                 }
                                             }
                                         }
-                                    } else {
-                                        $jenisDiajukan = "Belum Diajukan";
                                     }
+                                    // if ($trxstatus->id_tor != $tor[$t]->id) {
+                                    //     $jenisDiajukan = "Belum Diajukan";
+                                    // }
                                 }
                             } else {
                                 $jenisDiajukan = "";
@@ -66,6 +67,7 @@
                                     }
                                 }
                             } ?>
+                            <!-- {{$jenisDiajukan}} -->
                             <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
                             <input type="hidden" name="id_tor" value="<?= $tor[$t]->id ?>">
                             <?php date_default_timezone_set('Asia/Jakarta'); ?>

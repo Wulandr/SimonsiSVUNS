@@ -118,7 +118,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_mak<?= $mak[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('mak_delete')
-                                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="return confirm('Apakah anda yakin ingin hapus ?')" href="{{url('/mak/delete/'.base64_encode($mak[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-primary mak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/mak/delete/'.base64_encode($mak[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>
@@ -161,6 +161,24 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
         <!-- Wrapper END -->
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $('.mak-confirm').on('click', function(event) {
+                event.preventDefault();
+                const url = $(this).attr('href');
+                swal({
+                    title: 'Are you sure?',
+                    text: 'This record and it`s details will be permanantly deleted!',
+                    icon: 'warning',
+                    buttons: ["Cancel", "Yes!"],
+                }).then(function(value) {
+                    if (value) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        </script>
         <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
