@@ -59,8 +59,8 @@
                                                     if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
                                                         for ($rl = 0; $rl < count($role); $rl++) {
                                                             if ($role[$rl]->id == $user[$u]->role) {
-                                                                echo '<br/>' . ' - create by : ' . $user[$u]->name . ' - ' . $role[$rl]->name;
-                                                                $pengvalidasi = $role[$rl]->id;
+                                                                echo '<br/>' . ' - create by : ' . $user[$u]->name . ' - ' . $trx_status_tor[$q]->role_by;
+                                                                // $pengvalidasi = $role[$rl]->id;
                                                             }
                                                         }
                                                     }
@@ -124,8 +124,8 @@
                                                                     if ($us->id == $tsk->create_by) {
                                                                         foreach ($role as $rl2) {
                                                                             if ($rl2->id == $us->role) {
-                                                                                echo '<br/>' . ' - create by : ' . $us->name . ' - ' . $rl2->name;
-                                                                                $pengvalidasi = $rl2->id;
+                                                                                echo '<br/>' . ' - create by : ' . $us->name . ' - ' . $tsk->role_by;
+                                                                                // $pengvalidasi = $rl2->id;
                                                                             }
                                                                         }
                                                                     }

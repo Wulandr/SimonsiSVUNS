@@ -149,7 +149,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                     if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
                                                                                         for ($rl = 0; $rl < count($role); $rl++) {
                                                                                             if ($role[$rl]->id == $user[$u]->role) {
-                                                                                                $pengvalidasi = $role[$rl]->name;
+                                                                                                $pengvalidasi = $trx_status_tor[$q3]->role_by;
                                                                                             }
                                                                                         }
                                                                                     }

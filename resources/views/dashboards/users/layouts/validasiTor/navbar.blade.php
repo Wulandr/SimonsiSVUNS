@@ -117,7 +117,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             if ($u->id == $tstor3->create_by) {
                                                                                 foreach ($status as $sts3) {
                                                                                     if ($tstor3->id_status == $sts3->id) {
-                                                                                        $namastat = $sts3->nama_status . " " . $r->name;
+                                                                                        $namastat = $sts3->nama_status . " " . $tstor3->role_by;
                                                                                         if ($namastat != "Validasi WD 3") {
                                                                                             $count += 1;
                                                                                             if ($hitungNotif < 4) {
@@ -132,7 +132,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                                                 } ?>
                                                                                                                 {{$tor2->nama_kegiatan." "}}
                                                                                                             </h6>
-                                                                                                            <small class="badge badge-warning">{{$sts3->nama_status." ".$r->name}}</small>
+                                                                                                            <small class="badge badge-warning">{{$sts3->nama_status." ".$tstor3->role_by}}</small>
                                                                                                             <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
                                                                                                             <p class="mb-0">
                                                                                                             </p>

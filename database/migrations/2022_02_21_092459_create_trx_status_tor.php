@@ -17,6 +17,7 @@ class CreateTrxStatusTor extends Migration
             $table->id();
 
             // komentar tiap field
+            $table->string("role_by")->nullable();
             $table->string("k_sub")->nullable();
             $table->string("k_judul")->nullable();
             $table->string("k_latar_belakang")->nullable();

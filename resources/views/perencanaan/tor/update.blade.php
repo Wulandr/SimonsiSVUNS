@@ -89,18 +89,17 @@ use Illuminate\Support\Facades\Auth;
                                                     ?>
 
 
-                                                    <br />
                                                     <input type="hidden" name="create_by" id="create_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <input type="hidden" name="update_by" id="update_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <div class="form-group mt-3">
-                                                        <label>Jenis Ajuan</label><br />
+                                                        <label><b>Jenis Ajuan</b></label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">
                                                             <input type="radio" id="customRadio6" name="jenis_ajuan" id="jenis_ajuan" value="Baru" class="custom-control-input" {{$ch}}>
                                                             <label class="custom-control-label" for="customRadio6"> Baru </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Prodi</label>
+                                                        <label><b>Prodi</b></label>
                                                         <?php
                                                         $UnitUser = "";
                                                         if (!empty($unit)) {
@@ -132,52 +131,61 @@ use Illuminate\Support\Facades\Auth;
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Kode Sub Kegiatan</label>
+                                                        <label><b>Kode Sub Kegiatan</b></label>
                                                         <select name="id_subK" id="id_subK" class="form-control">
                                                             <?php for ($s = 0; $s < count($subkeg); $s++) { ?>
                                                                 <option value="{{old('id_subK',$subkeg[$s]->id)}}" {{$subkeg[$s]->id == $tor['id_subK'] ? 'selected' : '' }}>{{$subkeg[$s]->subK . " - " . substr($subkeg[$s]->deskripsi, 0, 100) }}</option>
                                                             <?php } ?>
                                                         </select>
-                                                    </div>
+                                                    </div><br />
 
-                                                    <div class="col-sm-8">
-                                                        <div class="card iq-mb-3 shadow">
-                                                            <img width="700" src="../../assets/contoh/contohiku.png" class="card-img-top">
-                                                            <div class="card-body">
+                                                    <div class="row" style="border: 1cm;">
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
                                                                 <b>
-                                                                    <h6 class="card-title">Indikator Kinerja Utama (IKU)</h6>
+                                                                    <h6 class="card-title"><b>Indikator Kinerja Utama (IKU)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
                                                                     <label>Realisasi IKU</label>
-                                                                    <input name="realisasi_IKU" id="realisasi_IKU" value="{{old('realisasi_IKU',$tor['realisasi_IKU'])}}" type="text" class="form-control">
+                                                                    <input name="realisasi_IKU" id="realisasi_IKU" value="{{old('realisasi_IKU',$tor['realisasi_IKU'])}}" type="text" class="form-control @error('realisasi_IKU') is-invalid @enderror">
                                                                 </div>
+                                                                @error('realisasi_IKU')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
                                                                 <div class="form-group">
                                                                     <label>Target IKU</label>
-                                                                    <input name="target_IKU" id="target_IKU" value="{{old('target_IKU',$tor['target_IKU'])}}" type="text" class="form-control">
+                                                                    <input name="target_IKU" id="target_IKU" value="{{old('target_IKU',$tor['target_IKU'])}}" type="text" class="form-control @error('target_IKU') is-invalid @enderror">
                                                                 </div>
+                                                                @error('target_IKU')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="card iq-mb-3 shadow">
-                                                            <img width="700" src="../../assets/contoh/contohik.png" class="card-img-top">
-                                                            <div class="card-body">
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
                                                                 <b>
-                                                                    <h6 class="card-title">Indikator Kinerja Kegiatan (IK)</h6>
+                                                                    <h6 class="card-title"><b>Indikator Kinerja Kegiatan (IK)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
                                                                     <label>Realisasi IK</label>
-                                                                    <input name="realisasi_IK" id="realisasi_IK" value="{{old('realisasi_IK',$tor['realisasi_IK'])}}" type="text" class="form-control">
+                                                                    <input name="realisasi_IK" id="realisasi_IK" value="{{old('realisasi_IK',$tor['realisasi_IK'])}}" type="text" class="form-control @error('realisasi_IK') is-invalid @enderror">
                                                                 </div>
+                                                                @error('realisasi_IK')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
                                                                 <div class="form-group">
                                                                     <label>Target IK</label>
-                                                                    <input name="target_IK" id="target_IK" value="{{old('target_IK',$tor['target_IK'])}}" type="text" class="form-control">
+                                                                    <input name="target_IK" id="target_IK" value="{{old('target_IK',$tor['target_IK'])}}" type="text" class="form-control @error('target_IK') is-invalid @enderror">
                                                                 </div>
+                                                                @error('target_IK')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div><br />
+
                                                     <div class="form-group">
-                                                        <label>Nama Kegiatan</label>
+                                                        <label><b>Nama Kegiatan</b></label>
                                                         <input name="nama_kegiatan" id="nama_kegiatan" type="text" value="{{old('nama_kegiatan',$tor['nama_kegiatan'])}}" class="form-control">
                                                     </div>
                                                 </div>
@@ -190,23 +198,23 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Latar Belakang</label>
+                                                    <label><b>Latar Belakang</b></label>
                                                     <textarea class="ckeditor form-control" id="latar_belakang" name="latar_belakang" value="{!!old('latar_belakang',$tor['latar_belakang'])!!}">{{$tor['latar_belakang']}}</textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Rasionalisasi</label>
+                                                    <label><b>Rasionalisasi</b></label>
                                                     <textarea class="ckeditor form-control" id="rasionalisasi" name="rasionalisasi" rows="2">{{$tor['rasionalisasi']}}</textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Tujuan</label>
+                                                    <label><b>Tujuan</b></label>
                                                     <textarea class="ckeditor form-control" id="tujuan" name="tujuan" rows="2">{{$tor['tujuan']}}</textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>mekanisme</label>
+                                                    <label><b>Mekanisme</b></label>
                                                     <textarea class="ckeditor form-control" id="mekanisme" name="mekanisme" rows="2">{{$tor['mekanisme']}}</textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>keberlanjutan</label>
+                                                    <label><b>Keberlanjutan</b></label>
                                                     <textarea class="ckeditor form-control" id="keberlanjutan" name="keberlanjutan" rows="2">{{$tor['keberlanjutan']}}</textarea>
                                                 </div>
                                             </div>
@@ -219,7 +227,7 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Nama PIC Kegiatan</label>
+                                                    <label><b>Nama PIC Kegiatan</b></label>
                                                     <select name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror">
                                                         <?php
                                                         for ($pi2 = 0; $pi2 < count($roles); $pi2++) {
@@ -245,11 +253,11 @@ use Illuminate\Support\Facades\Auth;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email SSO PIC Kegiatan</label>
+                                                    <label><b>Email SSO PIC Kegiatan</b></label>
                                                     <input name="email_pic" id="email_pic" type="text" class="form-control" value="{{old('email_pic',$tor['email_pic'])}}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Kontak PIC Kegiatan</label>
+                                                    <label><b>Kontak PIC Kegiatan</b></label>
                                                     <input name="kontak_pic" id="kontak_pic" type="text" class="form-control" value="{{old('kontak_pic',$tor['kontak_pic'])}}">
                                                 </div>
                                             </div>
@@ -263,20 +271,20 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="form-card text-left">
                                             <div class="container mt-3">
                                                 <div class="form-group">
-                                                    <label>Tanggal Mulai Pelaksanaan</label>
+                                                    <label><b>Tanggal Mulai Pelaksanaan</b></label>
                                                     <input name="tgl_mulai_pelaksanaan" id="tgl_mulai_pelaksanaan" value="{{old('tgl_mulai_pelaksanaan',$tor['tgl_mulai_pelaksanaan'])}}" type="date" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Tanggal Selesai Pelaksanaan</label>
+                                                    <label><b>Tanggal Selesai Pelaksanaan</b></label>
                                                     <input name="tgl_akhir_pelaksanaan" id="tgl_akhir_pelaksanaan" value="{{old('tgl_akhir_pelaksanaan',$tor['tgl_akhir_pelaksanaan'])}}" type="date" class="form-control">
                                                 </div>
                                                 <!-- <div class="form-group">
-                                                    <label>Jumlah Anggaran</label> -->
+                                                    <label><b>Jumlah Anggaran</b></label> -->
                                                 <input name="jumlah_anggaran" id="jumlah_anggaran" value="{{old('jumlah_anggaran',$tor['jumlah_anggaran'])}}" type="hidden" class="form-control">
                                                 <!-- </div> -->
 
                                                 <div class="form-group">
-                                                    <label>Rencana Penarikan Dana</label>
+                                                    <label><b>Rencana Penarikan Dana</b></label>
                                                     <select name="id_tw" id="id_tw" class="form-control">
                                                         <?php for ($t2 = 0; $t2 < count($tw); $t2++) { ?>
                                                             <option value="{{old('id_tw',$tw[$t2]->id)}}" {{$tw[$t2]->id == $tor['id_tw'] ? 'selected' : ''}}><?= $tw[$t2]->triwulan ?></option>

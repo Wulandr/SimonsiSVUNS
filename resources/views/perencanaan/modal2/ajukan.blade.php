@@ -35,9 +35,9 @@
                                             }
                                         }
                                     }
-                                    // if ($trxstatus->id_tor != $tor[$t]->id) {
-                                    //     $jenisDiajukan = "Belum Diajukan";
-                                    // }
+                                    if ($trxstatus->id_tor != $tor[$t]->id) {
+                                        $jenisDiajukan = "Belum Diajukan";
+                                    }
                                 }
                             } else {
                                 $jenisDiajukan = "";

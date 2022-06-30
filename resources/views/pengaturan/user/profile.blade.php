@@ -23,19 +23,14 @@ use Illuminate\Support\Facades\Auth;
                             <div class="iq-card-body p-0">
                                 <div class="iq-edit-list">
                                     <ul class="iq-edit-profile d-flex nav nav-pills">
-                                        <li class="col-md-4 p-0">
+                                        <li class="col-md-6 p-0">
                                             <a class="nav-link active" data-toggle="pill" href="#personal-information">
                                                 Personal Information
                                             </a>
                                         </li>
-                                        <li class="col-md-4 p-0">
+                                        <li class="col-md-6 p-0">
                                             <a class="nav-link" data-toggle="pill" href="#chang-pwd">
                                                 Change Information
-                                            </a>
-                                        </li>
-                                        <li class="col-md-4 p-0">
-                                            <a class="nav-link" data-toggle="pill" href="#chang-ps">
-                                                Change Password
                                             </a>
                                         </li>
                                     </ul>
@@ -63,47 +58,6 @@ use Illuminate\Support\Facades\Auth;
                     <div class="col-lg-12">
                         <div class="iq-edit-list-data">
                             <div class="tab-content">
-                                <div class="tab-pane fade" id="chang-ps" role="tabpanel">
-                                    <div class="iq-card">
-                                        <div class="iq-card-header d-flex justify-content-between">
-                                            <div class="iq-header-title">
-                                                <h4 class="card-title">Change Password</h4>
-                                            </div>
-                                        </div>
-                                        <div class="iq-card-body">
-                                            <form class="form-horizontal" method="post" action="{{ route('profil.changepassword',['id'=>Auth::user()->id]) }}">
-                                                @csrf
-                                                <!-- <div class="row">
-                                                    <div class="form-group col-sm-4">
-                                                        <label for="fname">Current Password :</label>
-                                                        <input id="current_password" type="password" class="form-control" style="border: 1px solid #aba4a4" name="current_password" required autocomplete="new-password">
-                                                    </div>
-                                                </div> -->
-                                                <div class="row">
-                                                    <div class="form-group col-sm-4">
-                                                        <label for="fname">Password :</label>
-                                                        <input type="password" class="form-control" style="border: 1px solid #aba4a4" id="password" name="password" value="{{old('password')}}">
-
-                                                        @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="row">
-                                                    <div class="form-group col-sm-4">
-                                                        <label for="fname">Confirm Password :</label>
-                                                        <input id="password-confirm" type="password" class="form-control" style="border: 1px solid #aba4a4" name="password_confirmation" required autocomplete="new-password">
-                                                    </div>
-                                                </div> -->
-                                                <input type="hidden" id="id" value="{{Auth::user()->id}}">
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancel</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
                                     <div class="iq-card">
@@ -140,7 +94,7 @@ use Illuminate\Support\Facades\Auth;
                                                     </label>
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="cname">NIP/NIK/NIM : {{Auth::user()->nik}}</label>
+                                                    <label for="cname">NIP/NIK/NIM : {{Auth::user()->nip}}</label>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="cname">Email : {{Auth::user()->email}}</label>

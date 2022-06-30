@@ -162,13 +162,6 @@ class ProfilController extends Controller
     }
     public function ganti(Request $request)
     {
-        // $input = $request->all();
-        // $this->validate($request, [
-        //     'email' => 'required|email',
-        //     'password' => 'required'
-        // ]);
-
-        // if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
         DB::table('users')->where('id', auth()->user()->id)->update(
             [
                 'role' => $request->pilihrole
@@ -177,20 +170,5 @@ class ProfilController extends Controller
         return redirect()->route(
             'home',
         );
-
-        //     if (auth()->user()->role == 1) {
-        //         return redirect()->route(
-        //             'admin.dashboard',
-        //         );
-        //     } elseif (auth()->user()->role != 1) { //selain admin
-        //         return redirect()->route(
-        //             'sv.dashboard',
-        //         );
-        //     }
-        // } else {
-        //     session()->flash('error', 'Alamat Email atau Password Anda salah!.');
-        //     return redirect()->route('login');
-        // }
-        // return $request->all();
     }
 }

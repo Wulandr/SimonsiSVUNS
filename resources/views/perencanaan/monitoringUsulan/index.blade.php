@@ -74,20 +74,14 @@ use Illuminate\Support\Facades\Auth;
                                                                                 $statusTor2[$tor[$m2]->id][$i2] = $status[$s2]->nama_status . ' , ';
                                                                                 for ($u5 = 0; $u5 < count($users); $u5++) {
                                                                                     if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
-                                                                                        for ($r5 = 0; $r5 < count($roles); $r5++) {
-                                                                                            if ($users[$u5]->role == $roles[$r5]->id) {
-                                                                                                if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
-                                                                                                    if ($users[$u5]->role == $roles[$r5]->id) {
-                                                                                                        if ($status[$s2]->nama_status == 'Validasi' && $roles[$r5]->name == 'WD 3') {
-                                                                                                            $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran;
-                                                                                                            $disetujui['tor'][$i3] = $tor[$m2]->id;
-                                                                                                            'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
-                                                                                                            $i3 += 1;
-                                                                                                        }
-                                                                                                        $i2 += 1;
-                                                                                                    }
-                                                                                                }
+                                                                                        if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
+                                                                                            if ($status[$s2]->nama_status == 'Validasi' && $trx_status_tor[$tr2]->role_by == 'WD 3') {
+                                                                                                $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran;
+                                                                                                $disetujui['tor'][$i3] = $tor[$m2]->id;
+                                                                                                'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
+                                                                                                $i3 += 1;
                                                                                             }
+                                                                                            $i2 += 1;
                                                                                         }
                                                                                     }
                                                                                 }
@@ -233,7 +227,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         if ($trx_status_tor[$tr]->create_by == $users[$u]->id) {
                                                                             for ($r = 0; $r < count($roles); $r++) {
                                                                                 if ($users[$u]->role == $roles[$r]->id) {
-                                                                                    $statusTor[0]['status'] = $status[$s]->nama_status . " - " . $roles[$r]->name;
+                                                                                    $statusTor[0]['status'] = $status[$s]->nama_status . " - " . $trx_status_tor[$tr]->role_by;
                                                                                 }
                                                                             }
                                                                         }
@@ -370,8 +364,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                                                                 if ($u->id == $q3->create_by) {
                                                                                                                                     foreach ($roles as $rl) {
                                                                                                                                         if ($rl->id == $u->role) {
-                                                                                                                                            echo "<br/>" . " - create by : " . $u->name . " - " . $rl->name;
-                                                                                                                                            $pengvalidasi = $rl->id;
+                                                                                                                                            echo "<br/>" . " - create by : " . $u->name . " - " . $q3->role_by;
+                                                                                                                                            // $pengvalidasi = $rl->id;
                                                                                                                                         }
                                                                                                                                     }
                                                                                                                                 }

@@ -62,8 +62,8 @@
                                                                 if ($user[$u]->id == $trx_status_tor[$q3]->create_by) {
                                                                     for ($rl = 0; $rl < count($role); $rl++) {
                                                                         if ($role[$rl]->id == $user[$u]->role) {
-                                                                            echo "<br/>" . " - create by : " . $user[$u]->name . " - " . $role[$rl]->name;
-                                                                            $pengvalidasi = $role[$rl]->id;
+                                                                            echo "<br/>" . " - create by : " . $user[$u]->name . " - " . $trx_status_tor[$q3]->role_by;
+                                                                            // $pengvalidasi = $role[$rl]->id;
                                                                         }
                                                                     }
                                                                 }

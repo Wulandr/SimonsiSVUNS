@@ -33,7 +33,7 @@ for ($trx1 = 0; $trx1 < count($trx_status_tor); $trx1++) {
                         for ($r5 = 0; $r5 < count($role); $r5++) {
                             if ($user[$u5]->role == $role[$r5]->id) {
                                 $name['status'][$i] = $status[$st1]->nama_status;
-                                $name['pembuat'][$i]  = $role[$r5]->name;
+                                $name['pembuat'][$i]  = $trx_status_tor[$trx1]->role_by;
                             }
                         }
                     }
