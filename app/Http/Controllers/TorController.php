@@ -262,7 +262,7 @@ class TorController extends Controller
 
         $data = 1;
         if ($inserting) {
-            return redirect('/torab');
+            return redirect('/torab')->with("success", "Data berhasil ditambahkan");
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }

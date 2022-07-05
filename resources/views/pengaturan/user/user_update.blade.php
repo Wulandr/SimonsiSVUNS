@@ -37,18 +37,25 @@
                       </div>
                       <div class="form-group">
                         <label>Role</label>
-                        <select class="js-example-basic-multiple2" name="role[]" id="role" multiple="multiple" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1">
+                        <select class="js-example-basic-multiple2" name="role[]" id="role" multiple="multiple" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;
+                        min-height: 52px;">
                           <!-- @if(old('role',$roleSelected))
                         <option value="{{old('role',$roleSelected->id)}}" selected>{{old('role',$roleSelected->name)}} </option>
                         @endif -->
+                          <?php
+                          $myString = $user->multirole;
+                          $myArray = [];
+                          $myArray = explode(',', $myString);
+                          print_r($myArray);
+                          ?>
                           @foreach($role as $role)
-                          <option value="{{$role->id}}" {{$role->id == $user->multirole ? 'selected' : ''}}>{{$role->name}} </option>
+                          <option style="height: 42px;" value="{{$role->id}}" {{in_array($role->id , $myArray) ? 'selected' : ''}}>{{$role->name}} </option>
                           @endforeach
                         </select>
                       </div>
                       <div class="form-group">
                         <label>Unit</label>
-                        <select name="id_unit" id="id_unit" class="form-control">
+                        <select class="js-example-basic-multiple3" name="id_unit" id="id_unit" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;">
                           @foreach($unit as $unit)
                           <option value="{{$unit->id}}" {{$unit->id == $user->id_unit ? 'selected' : ''}}>{{$unit->nama_unit}}</option>
                           @endforeach
@@ -84,6 +91,9 @@
 <script>
   $(document).ready(function() {
     $('.js-example-basic-multiple2').select2();
+  });
+  $(document).ready(function() {
+    $('.js-example-basic-multiple3').select2();
   });
 </script>
 

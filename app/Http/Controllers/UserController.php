@@ -206,7 +206,7 @@ class UserController extends Controller
             $user->save();
             //allert
             if ($user) {
-                return redirect('/user')->with("success", "Data berhasil ditambahkan");
+                return redirect('/user')->with("success", "Data berhasil diupdate");
             } else {
                 return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
             }
@@ -246,13 +246,12 @@ class UserController extends Controller
         try {
             $user->removeRole($assignrole);
             $user->delete();
-            //allert
         } catch (\Throwable $th) {
             DB::rollBack();
         } finally {
             DB::commit();
-            return redirect()->back();
         }
+        return redirect()->back()->with("success", "Data berhasil dihapus");
     }
     public function search(Request $request)
     {

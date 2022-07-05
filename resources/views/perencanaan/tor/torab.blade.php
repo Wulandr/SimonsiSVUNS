@@ -155,6 +155,11 @@ use Illuminate\Support\Facades\Auth;
                   </span>
                 </div>
                 <div style="overflow-x:auto;" class="container mt-2 mr-5">
+                  @if (session('success'))
+                  <div class="alert alert-success">
+                    {{ session('success') }}
+                  </div>
+                  @endif
                   <table id="torab" class="table table-bordered table-responsive-md table-striped text-center" style="box-shadow:5px;">
                     <thead class="bg-primary" style="color: white;">
                       <tr>
@@ -514,7 +519,13 @@ use Illuminate\Support\Facades\Auth;
       doc.save('page.pdf');
     });
   </script>
-
+  <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+      });
+    }, 2000);
+  </script>
   @include('dashboards/users/layouts/footer')
 
 </body>
