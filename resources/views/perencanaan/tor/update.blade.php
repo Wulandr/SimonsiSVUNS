@@ -146,14 +146,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Utama (IKU)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IKU</label>
+                                                                    <label>Realisasi IKU (%)</label>
                                                                     <input name="realisasi_IKU" id="realisasi_IKU" value="{{old('realisasi_IKU',$tor['realisasi_IKU'])}}" type="text" class="form-control @error('realisasi_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IKU')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IKU</label>
+                                                                    <label>Target IKU (%)</label>
                                                                     <input name="target_IKU" id="target_IKU" value="{{old('target_IKU',$tor['target_IKU'])}}" type="text" class="form-control @error('target_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IKU')
@@ -167,14 +167,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Kegiatan (IK)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IK</label>
+                                                                    <label>Realisasi IK (%)</label>
                                                                     <input name="realisasi_IK" id="realisasi_IK" value="{{old('realisasi_IK',$tor['realisasi_IK'])}}" type="text" class="form-control @error('realisasi_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IK')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IK</label>
+                                                                    <label>Target IK (%)</label>
                                                                     <input name="target_IK" id="target_IK" value="{{old('target_IK',$tor['target_IK'])}}" type="text" class="form-control @error('target_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IK')
@@ -253,7 +253,7 @@ use Illuminate\Support\Facades\Auth;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><b>Email SSO PIC Kegiatan</b></label>
+                                                    <label><b>Email PIC Kegiatan</b></label>
                                                     <input name="email_pic" id="email_pic" type="text" class="form-control" value="{{old('email_pic',$tor['email_pic'])}}">
                                                 </div>
                                                 <div class="form-group">

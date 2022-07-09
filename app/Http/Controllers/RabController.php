@@ -35,7 +35,7 @@ class RabController extends Controller
 
         $inserting = Rab::create($request->except('_token'));
         if ($inserting) {
-            return redirect()->back()->with("success", "Data berhasil ditambahkan");
+            return redirect()->back()->with("success", "RAB berhasil ditambahkan, Segera Lengkapi Data TOR & Anggaran");
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }

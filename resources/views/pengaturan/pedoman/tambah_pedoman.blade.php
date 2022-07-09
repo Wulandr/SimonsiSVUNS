@@ -17,6 +17,10 @@
                             <label>Standar Biaya
                                 Masukan</label>
                         </div>
+                        <div id="torrab">
+                            <input type="radio" name="jenis" class="btn-check" id="jenis" value="TorRab" autocomplete="off">
+                            <label>Template TOR & RAB</label>
+                        </div>
                         <div id="spj"><input type="radio" name="jenis" class="btn-check" id="jenis" value="SPJ" autocomplete="off">
                             <label>SPJ</label>
                         </div>

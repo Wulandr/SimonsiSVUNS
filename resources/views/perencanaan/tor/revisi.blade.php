@@ -243,11 +243,11 @@ use Illuminate\Support\Facades\Auth;
                                                                 <hr class="mt-3">
                                                                 @endforeach
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IKU</label>
+                                                                    <label>Realisasi IKU (%)</label>
                                                                     <input name="realisasi_IKU" id="realisasi_IKU" value="{{old('realisasi_IKU',$tor['realisasi_IKU'])}}" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Target IKU</label>
+                                                                    <label>Target IKU (%)</label>
                                                                     <input name="target_IKU" id="target_IKU" value="{{old('target_IKU',$tor['target_IKU'])}}" type="text" class="form-control">
                                                                 </div>
                                                             </div>
@@ -265,11 +265,11 @@ use Illuminate\Support\Facades\Auth;
                                                                 <hr class="mt-3">
                                                                 @endforeach
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IK</label>
+                                                                    <label>Realisasi IK (%)</label>
                                                                     <input name="realisasi_IK" id="realisasi_IK" value="{{old('realisasi_IK',$tor['realisasi_IK'])}}" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Target IK</label>
+                                                                    <label>Target IK (%)</label>
                                                                     <input name="target_IK" id="target_IK" value="{{old('target_IK',$tor['target_IK'])}}" type="text" class="form-control">
                                                                 </div>
                                                             </div>
@@ -372,7 +372,7 @@ use Illuminate\Support\Facades\Auth;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email SSO PIC Kegiatan</label>
+                                                    <label>Email PIC Kegiatan</label>
                                                     <input name="email_pic" id="email_pic" type="text" class="form-control" value="{{old('email_pic',$tor['email_pic'])}}">
                                                 </div>
                                                 <div class="form-group">

@@ -14,12 +14,6 @@
                     <ul class="iq-timeline">
                         <?php
                         $indexwarna = 0;
-                        // $warnaLingkar = [
-                        //     'timeline-dots',
-                        //     'timeline-dots border-success',
-                        //     'timeline-dots border-secondary',
-                        //     'timeline-dots border-info',
-                        // ];
                         $wstatus;
                         $warnaLingkar;
 
@@ -48,13 +42,10 @@
                                         ?>
 
                                                 <div class="{{ $warnaLingkar }}"><i class="ri-check-fill" style="color:black"></i></div>
-
-
                                                 <h6 class="float-left mb-1">
                                             <?php
-
+                                                //nama status
                                                 echo '<b>' . '' . '</b>' . $status[$st]->nama_status;
-
                                                 for ($u = 0; $u < count($user); $u++) {
                                                     if ($user[$u]->id == $trx_status_tor[$q]->create_by) {
                                                         for ($rl = 0; $rl < count($role); $rl++) {

@@ -16,7 +16,7 @@ class CreateTbPedoman extends Migration
         Schema::create('pedoman', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('jenis', ['SBM', 'SPJ Dasar Hukum', 'SPJ Panduan', 'SPJ Template', 'LPJ']);
+            $table->enum('jenis', ['SBM', 'TorRab', 'SPJ Dasar Hukum', 'SPJ Panduan', 'SPJ Template', 'LPJ']);
             $table->string('file');
             $table->string('tahun');
             $table->string('path');

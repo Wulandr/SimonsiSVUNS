@@ -86,9 +86,9 @@ foreach ($role as $roles) {
 
 
 <!-- -------------------------------------------------- B U T T O N ------------------------------------------ -->
-
+<!-- LENGKAPI TOR -->
 <a href="{{url('/lengkapitor/'.  base64_encode($tor[$t]->id))}}">
-    <button class="badge badge-warning rounded">{{ $detail}}</button>
+    <button class="badge {{$detail == 'Lengkapi Data' ? 'badge-danger' : 'badge-warning'}} rounded">{{ $detail}}</button>
 </a>
 
 <!-- Jika belum diajukan oleh prodi atau pic, dan nama pic sama dengan user login, maka tampilkan aksi -->

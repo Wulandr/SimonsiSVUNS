@@ -160,6 +160,17 @@ use Illuminate\Support\Facades\Auth;
                     {{ session('success') }}
                   </div>
                   @endif
+
+                  <div class="alert text-white bg-danger" role="alert">
+                    <div class="iq-alert-icon">
+                      <i class="ri-information-line"></i>
+                    </div>
+                    <div class="iq-alert-text">Lengkapi data TOR, Jadwal, RAB & Anggaran</div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="ri-close-line"></i>
+                    </button>
+                  </div>
+
                   <table id="torab" class="table table-bordered table-responsive-md table-striped text-center" style="box-shadow:5px;">
                     <thead class="bg-primary" style="color: white;">
                       <tr>
@@ -196,6 +207,7 @@ use Illuminate\Support\Facades\Auth;
                           <h6 id="tornya" style="color: #000102b5;"><b>{{$tor[$t]->nama_kegiatan}}</b>
                             <!-- AKSI TOR  -->
                             @include('perencanaan/aksi/aksi_tor')
+
                           </h6>
                         </th>
                       </tr>
@@ -494,6 +506,7 @@ use Illuminate\Support\Facades\Auth;
       });
     });
 
+
     //print page
     function printDiv() {
       var printContents = document.getElementById("content-page").innerHTML;
@@ -521,10 +534,10 @@ use Illuminate\Support\Facades\Auth;
   </script>
   <script>
     window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function() {
+      $(".alert alert").fadeTo(1000, 0).slideUp(1000, function() {
         $(this).remove();
       });
-    }, 2000);
+    }, 3000);
   </script>
   @include('dashboards/users/layouts/footer')
 

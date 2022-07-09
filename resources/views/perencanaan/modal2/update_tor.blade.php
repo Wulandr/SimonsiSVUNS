@@ -76,7 +76,7 @@
                          <input name="nama_pic" value="{{old('nama_pic',$tor[$t]->nama_pic)}}" id="nama_pic" type="text" class="form-control" value="">
                      </div>
                      <div class="form-group">
-                         <label>Email SSO PIC Kegiatan</label>
+                         <label>Email PIC Kegiatan</label>
                          <input name="email_pic" value="{{old('email_pic',$tor[$t]->email_pic)}}" id="email_pic" type="text" class="form-control" value="">
                      </div>
                      <div class="form-group">

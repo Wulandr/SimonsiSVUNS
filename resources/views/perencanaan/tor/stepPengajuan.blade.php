@@ -123,14 +123,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Utama (IKU)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IKU</label>
+                                                                    <label>Realisasi IKU (%)</label>
                                                                     <input name="realisasi_IKU" id="realisasi_IKU" type="text" class="form-control @error('realisasi_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IKU')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IKU</label>
+                                                                    <label>Target IKU (%)</label>
                                                                     <input name="target_IKU" id="target_IKU" type="text" class="form-control @error('target_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IKU')
@@ -144,14 +144,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Kegiatan (IK)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IK</label>
+                                                                    <label>Realisasi IK (%)</label>
                                                                     <input name="realisasi_IK" id="realisasi_IK" type="text" class="form-control @error('realisasi_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IK')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IK</label>
+                                                                    <label>Target IK (%)</label>
                                                                     <input name="target_IK" id="target_IK" type="text" class="form-control @error('target_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IK')
@@ -266,7 +266,7 @@ use Illuminate\Support\Facades\Auth;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><b>Email SSO PIC Kegiatan</b></label>
+                                                    <label><b>Email PIC Kegiatan</b></label>
                                                     <input name="email_pic" id="email_pic" type="text" class="form-control @error('email_pic') is-invalid @enderror" value="">
                                                 </div>
                                                 @error('email_pic')
@@ -373,6 +373,15 @@ use Illuminate\Support\Facades\Auth;
 <script type="text/javascript">
     $(document).ready(function() {
         $('.ckeditor').ckeditor();
+    });
+</script>
+
+<script>
+    $('#tgl_mulai_pelaksanaan').on('input', function() {
+        $('#tgl_akhir_pelaksanaan').attr('min', this.value);
+    });
+    $('#tgl_akhir_pelaksanaan').on('input', function() {
+        $('#tgl_mulai_pelaksanaan').attr('max', this.value);
     });
 </script>
 

@@ -29,8 +29,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
-
         $i  = Role::all()->where('id', Auth()->user()->role);
         $unit = Unit::all();
         $tor = Tor::all();

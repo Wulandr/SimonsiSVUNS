@@ -75,7 +75,7 @@
                          <input name="nama_pic" id="nama_pic" type="text" class="form-control" value="">
                      </div>
                      <div class="form-group">
-                         <label>Email SSO PIC Kegiatan</label>
+                         <label>Email PIC Kegiatan</label>
                          <input name="email_pic" id="email_pic" type="text" class="form-control" value="">
                      </div>
                      <div class="form-group">
