@@ -69,6 +69,11 @@
                             } ?>
                             <!-- {{$jenisDiajukan}} -->
                             <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
+                            @foreach($role as $roleby)
+                            @if(Auth()->user()->role == $roleby->id)
+                            <input type="hidden" name="role_by" value="<?= $roleby->name ?>">
+                            @endif
+                            @endforeach
                             <input type="hidden" name="id_tor" value="<?= $tor[$t]->id ?>">
                             <?php date_default_timezone_set('Asia/Jakarta'); ?>
                             <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">

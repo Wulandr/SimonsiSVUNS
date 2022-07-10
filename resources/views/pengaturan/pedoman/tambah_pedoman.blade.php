@@ -77,6 +77,7 @@
     const lpj = document.getElementById("lpj");
     const spj = document.getElementById("spj");
     const sbm = document.getElementById("sbm");
+    const torrab = document.getElementById("torrab");
     const list = document.getElementById("list");
     list.style.display = "none";
     spj.addEventListener("click", (event) => {
@@ -90,6 +91,9 @@
         list.style.display = "none";
     })
     sbm.addEventListener("click", (event) => {
+        list.style.display = "none";
+    })
+    torrab.addEventListener("click", (event) => {
         list.style.display = "none";
     })
 </script>

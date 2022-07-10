@@ -76,8 +76,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                     if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
                                                                                         if ($trx_status_tor[$tr2]->create_by == $users[$u5]->id) {
                                                                                             if ($status[$s2]->nama_status == 'Validasi' && $trx_status_tor[$tr2]->role_by == 'WD 3') {
-                                                                                                $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran;
-                                                                                                $disetujui['tor'][$i3] = $tor[$m2]->id;
+                                                                                                $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran; //anggaran kegiatan yg telah divalidasi WD 3
+                                                                                                $disetujui['tor'][$i3] = $tor[$m2]->id; // Kegiatan yg telah divalidasi wd 3
                                                                                                 'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
                                                                                                 $i3 += 1;
                                                                                             }
@@ -89,7 +89,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         }
                                                                         if ($tor[$m2]->id != $cekId) {
                                                                             $count1 += 1;
-                                                                            $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran;
+                                                                            $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran; //penjumlahan anggaran yg disetujui wd 3
                                                                             $cekId = $tor[$m2]->id;
                                                                         }
                                                                     }

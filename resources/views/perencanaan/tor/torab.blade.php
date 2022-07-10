@@ -314,7 +314,7 @@ use Illuminate\Support\Facades\Auth;
                                       if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
                               ?>
                                         <h6 align="left" style="font-size: smaller;">
-                                          {{$detail_mak[$j]->detail . " - " .$anggaran[$i]->anggaran}}
+                                          {{$detail_mak[$j]->detail . " - " ." Rp. " .  number_format($anggaran[$i]->anggaran, 2, ',', '.')}}
                                           <!-- include('perencanaan/aksi/aksi_anggaran') -->
                                           <!-- MODAL UPDATE DI ANGGARAN -->
                                           </span>
@@ -516,25 +516,26 @@ use Illuminate\Support\Facades\Auth;
     };
 
 
-    // javascript change html to pdf
+    // javascript change html to pdf?
 
-    var doc = new jsPDF();
-    var specialElementHandlers = {
-      '#editor': function(element, renderer) {
-        return true;
-      }
-    };
-    $('#generatePDF').click(function() {
-      doc.fromHTML($('#torab').html(), 15, 15, {
-        'width': 700,
-        'elementHandlers': specialElementHandlers
-      });
-      doc.save('page.pdf');
-    });
+    // var doc = new jsPDF();
+    // var specialElementHandlers = {
+    //   '#editor': function(element, renderer) {
+    //     return true;
+    //   }
+    // };
+    // $('#generatePDF').click(function() {
+    //   doc.fromHTML($('#torab').html(), 15, 15, {
+    //     'width': 700,
+    //     'elementHandlers': specialElementHandlers
+    //   });
+    //   doc.save('page.pdf');
+    // });
   </script>
+
   <script>
     window.setTimeout(function() {
-      $(".alert alert").fadeTo(1000, 0).slideUp(1000, function() {
+      $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
         $(this).remove();
       });
     }, 3000);

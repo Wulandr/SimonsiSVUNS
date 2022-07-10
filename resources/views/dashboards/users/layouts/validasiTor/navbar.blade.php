@@ -199,7 +199,7 @@ use Illuminate\Support\Facades\Auth;
                     </a>
                     <div class="iq-sub-dropdown iq-user-dropdown">
                         <div class="iq-card shadow-none m-0">
-                            <div class="iq-card-body p-0 ">
+                            <div class="iq-card-body p-0 scroll-card">
                                 <div class="bg-primary p-3">
                                     <h5 class="mb-0 text-white line-height">Hello <?= Auth::user()->name ?></h5>
                                     <span class="text-white font-size-12">Available</span>

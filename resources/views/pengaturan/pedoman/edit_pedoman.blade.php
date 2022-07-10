@@ -13,10 +13,35 @@
                      <div class="form-group">
                          <label>Jenis</label>
                          <div class="">
-                             <input type="radio" name="jenis" id="jenis" value="{{ $pedomansbm->jenis }}" checked>
+                             <!-- <input type="radio" name="jenis" id="jenis" value="{{ $pedomansbm->jenis }}" checked>
                              <label class="">
-                                 {{ $pedomansbm->jenis }}</label>
+                                 {{ $pedomansbm->jenis }}</label> -->
+                             <div id="sbm2">
+                                 <input type="radio" name="jenis" class="btn-check" id="sbm2" value="SBM" autocomplete="off">
+                                 <label>Standar Biaya
+                                     Masukan</label>
+                             </div>
+                             <div id="torrab2">
+                                 <input type="radio" name="jenis" class="btn-check" id="torrab2" value="TorRab" autocomplete="off">
+                                 <label>Template TOR & RAB</label>
+                             </div>
+                             <div id="spj2"><input type="radio" name="jenis" class="btn-check" id="spj2" value="SPJ" autocomplete="off">
+                                 <label>SPJ</label>
+                             </div>
+                             <div id="lpj2">
+                                 <input type="radio" name="jenis" class="btn-check" id="lpj2" value="LPJ" autocomplete="off">
+                                 <label>LPJ</label>
+                             </div>
                          </div>
+                     </div>
+                     <div id="list2" class="form-group">
+                         <label>Kategori File SPJ</label>
+                         <select name="jenis" class="form-control">
+                             <option selected="" disabled="">Pilih Kategori</option>
+                             <option value="SPJ Dasar Hukum">Dasar Hukum</option>
+                             <option value="SPJ Panduan">Panduan</option>
+                             <option value="SPJ Template">Template</option>
+                         </select>
                      </div>
                      <div class="form-group">
                          <label>Nama File</label>
@@ -44,3 +69,25 @@
          </div>
      </div>
  </div>
+
+ {{-- Dropdown on Click Radio Button --}}
+ <script>
+     const lpj2 = document.getElementById("lpj2");
+     const spj2 = document.getElementById("spj2");
+     const sbm2 = document.getElementById("sbm2");
+     const list2 = document.getElementById("list2");
+     list2.style.display = "none";
+     spj2.addEventListener("click", (event) => {
+         if (list2.style.display = "none") {
+             list2.style.display = "block";
+         } else {
+             list2.style.display = "none";
+         }
+     })
+     lpj2.addEventListener("click", (event) => {
+         list2.style.display = "none";
+     })
+     sbm2.addEventListener("click", (event) => {
+         list2.style.display = "none";
+     })
+ </script>

@@ -12,6 +12,8 @@ use App\Models\SubKegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+
 
 class ValidasiController extends Controller
 {
@@ -27,6 +29,8 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
+        $role = DB::table('roles')->get();
+
         if ($roleUser ==  2) {
             abort(403);
         }
@@ -38,7 +42,6 @@ class ValidasiController extends Controller
         $status = DB::table('status')->get();
         $tor = DB::table('tor')->get();
         $user = DB::table('users')->get();
-        $role = DB::table('roles')->get();
         $triwulan = DB::table('triwulan')->get();
         $notifikasiTor = Tor::notifikasi();
         $tabelRole =  Role::all();
@@ -59,9 +62,9 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
-            abort(403);
-        }
+        // if (Auth::user()->getroleNames() == 'Prodi' || Auth::user()->getroleNames() == 'PIC') {
+        //     abort(403);
+        // }
         if ($prodi != 0) {
             $join = DB::table('tor')
                 ->where('id_unit', $prodi)
@@ -113,7 +116,7 @@ class ValidasiController extends Controller
                 'tabelRole' => $tabelRole
             ]
         );
-        // return $join;
+        // return Auth::user()->getroleNames();
     }
     public function verifTor(Request $request)
     {

@@ -87,8 +87,8 @@ use Illuminate\Support\Facades\Auth;
                                                         <i class="ri-more-fill"></i>
                                                     </span>
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                        <a class="dropdown-item" href="" onclick="printDiv()"><i class="ri-printer-fill mr-2" onclick="printDiv()"></i>Print</a>
+                                                        <!-- <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,6 +224,14 @@ use Illuminate\Support\Facades\Auth;
                 $(this).remove();
             });
         }, 2000);
+
+        //print page
+        function printDiv() {
+            var printContents = document.getElementById("content-page").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+        };
     </script>
     <script>
         $('.detailmak-confirm').on('click', function(event) {

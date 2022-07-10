@@ -26,7 +26,7 @@ class MonitoringUsulanController extends Controller
             abort(403);
         }
 
-        $tor = Tor::all();
+        $tor = DB::table('tor')->orderBy('tgl_mulai_pelaksanaan', 'desc')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();

@@ -72,7 +72,7 @@ for ($r = 0; $r < count($rab); $r++) {
                                 <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
 
                                     @can('anggaran_create')
-                                    <!-- yang bisa akses Admin, prodi, dan PIC yang bertanggung jawab di TOR tsb -->
+                                    <!-- yang bisa akses Admin prodi, dan PIC yang bertanggung jawab di TOR tsb -->
                                     <?php if ($tor[$t]->nama_pic == Auth::user()->name ||   $unitLoginLengkapi == "Admin"  ||   $unitLoginLengkapi == "Prodi") { ?>
                                         <a id="validasi" class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Tambah Anggaran" data-original-title="Tambah Anggaran" data-target="#tambah_anggaran<?= $rab[$r]->id ?>" href="">
                                             <i class="ri-user-add-line"></i> Tambah Anggaran</a>

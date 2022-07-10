@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
                         <div class="iq-card">
                             <div class="iq-card-body p-0">
                                 <div class="iq-edit-list">
+
                                 </div>
                             </div>
                         </div>
@@ -32,6 +33,22 @@ use Illuminate\Support\Facades\Auth;
                     <?php $active = 2; ?>
                     <div class="col-sm-12">
                         <div class="iq-card">
+                            <div class="row">
+                                <div class="container mt-2 mb-2 mr-2">
+                                    <div class="user-list-files d-flex float-right">
+                                        <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
+                                            Print
+                                        </a>
+                                        <!-- <a class="iq-bg-primary" href="javascript:void();">
+                                            Excel
+                                        </a>
+                                        <a class="iq-bg-primary" href="javascript:void();">
+                                            Pdf
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+
                             <br />
                             <div class="container center" id="iniprint">
                                 <?php
@@ -165,7 +182,7 @@ use Illuminate\Support\Facades\Auth;
                                                                     if ($users[$us2]->id == $trx_status_tor[$trx]->create_by) {
                                                                         if ($users[$us2]->role == $roles[$ro2]->id) {
                                                                             // echo $status[$is]->nama_status . " - " . $roles[$ro2]->name . "<br />";
-                                                                            if ($status[$is]->nama_status == "Validasi" && $roles[$ro2]->name == "WD 3") {
+                                                                            if ($status[$is]->nama_status == "Validasi" &&  $trx_status_tor[$trx]->role_by == "WD 3") {
                                                                                 $disetujui = 1;
                                                                             }
                                                                         }
@@ -192,7 +209,7 @@ use Illuminate\Support\Facades\Auth;
 
                                             function buttonPlus($Href)
                                             {
-                                                echo ' <a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                echo ' <a id="validasiplus" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="las la-plus"></i>
                                             </a>';
                                             }
@@ -657,24 +674,23 @@ use Illuminate\Support\Facades\Auth;
                         <?php
                                         //menyembunyikan option, jika user sudah memverif
                                         $userSudahKomentar;
-                                        foreach ($trx_status_tor as $trx3) {
-                                            if ($trx3->id_tor == $tor[$t]->id) {
-                                                if ($tor[$t]->jenis_ajuan == "Baru" && $trx3->create_by == auth()->user()->id) {
-                                                    $userSudahKomentar = 1;
-                                                } else {
-                                                    $userSudahKomentar = 0;
-                                                }
-                                                if ($tor[$t]->jenis_ajuan == "Perbaikan" && $trx3->create_by == auth()->user()->id) {
-                                                    $userSudahKomentar = 1;
-                                                } else {
-                                                    $userSudahKomentar = 0;
-                                                }
-                                            }
-                                        }
+                                        // foreach ($trx_status_tor as $trx3) {
+                                        //     if ($trx3->id_tor == $tor[$t]->id) {
+                                        //         if ($tor[$t]->jenis_ajuan == "Baru" && $trx3->create_by == auth()->user()->id) {
+                                        //             $userSudahKomentar = 1;
+                                        //         } else {
+                                        //             $userSudahKomentar = 0;
+                                        //         }
+                                        //         if ($tor[$t]->jenis_ajuan == "Perbaikan" && $trx3->create_by == auth()->user()->id) {
+                                        //             $userSudahKomentar = 1;
+                                        //         } else {
+                                        //             $userSudahKomentar = 0;
+                                        //         }
+                                        //     }
+                                        // }
                         ?>
-
                         @if(Gate::check('tor_verifikasi') || Gate::check('tor_revisi') || Gate::check('tor_validasi'))
-                        <?php if ($disetujui != 1 && $userSudahKomentar == 0) { ?>
+                        <?php if ($disetujui != 1) { ?>
                             <div id="validasi" class="container center">
                                 <?php
                                             $blok = 0;
@@ -693,13 +709,13 @@ use Illuminate\Support\Facades\Auth;
                                                         if ($statusTor->id == $trx_status_tor[$stk2]->id_status) {
                                                             $currentStatus = $statusTor->nama_status;
                                                             foreach ($users as $userrole) {
-                                                                foreach ($roles as $statusrole) {
-                                                                    if ($trx_status_tor[$stk2]->create_by == $userrole->id) {
-                                                                        if ($userrole->role == $statusrole->id) {
-                                                                            $currentStatusRole =  $statusrole->name;
-                                                                        }
-                                                                    }
-                                                                }
+                                                                // foreach ($roles as $statusrole) {
+                                                                //     if ($trx_status_tor[$stk2]->create_by == $userrole->id) {
+                                                                //         if ($userrole->role == $statusrole->id) {
+                                                                $currentStatusRole =  $trx_status_tor[$stk2]->role_by;
+                                                                //         }
+                                                                //     }
+                                                                // }
                                                             }
                                                         }
                                                     }
@@ -713,7 +729,8 @@ use Illuminate\Support\Facades\Auth;
                                 <?php for ($s = 1; $s < count($status); $s++) {
                                                 if ($status[$s]->kategori == "TOR" && $status[$s]->nama_status != "Pengajuan Perbaikan") {
                                                     for ($r3 = 0; $r3 < count($roles); $r3++) {
-                                                        if (Auth()->user()->role == $roles[$r3]->id) { ?>
+                                                        if (Auth()->user()->role == $roles[$r3]->id) {
+                                ?>
 
 
                                                 <?php if ($roles[$r3]->name == "BPU") {
@@ -721,14 +738,6 @@ use Illuminate\Support\Facades\Auth;
                                                                     $buttonSubmit = 1; ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php }
-                                                                if ($currentStatus == "Verifikasi") { ?>
-                                                        <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
-                                                            };
-                                                        </script>
                                                     <?php }
                                                             } elseif ($roles[$r3]->name == "WD 1") { ?>
                                                     <?php
@@ -741,9 +750,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                                                     <?php }
                                                             } elseif ($roles[$r3]->name == "WD 2") {
-                                                                // echo "xx - " . $currentStatus . "-" . $currentStatusRole;
+                                                                // echo $currentStatus . $currentStatusRole . "<br/ >"; //menampilkan status sebelumnya itu apa?
                                                                 if ($currentStatus == "Validasi" && $currentStatusRole == "WD 1" &&  ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
-                                                                    $buttonSubmit = 1;  ?>
+                                                                    $buttonSubmit = 1;
+                                                                    // echo "xx - " . $currentStatus . "-" . $currentStatusRole; 
+                                                    ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
                                                     <?php }
@@ -762,6 +773,11 @@ use Illuminate\Support\Facades\Auth;
                                                 }
                                             } ?>
                                 <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
+                                @foreach($roles as $roleby)
+                                @if(Auth()->user()->role == $roleby->id)
+                                <input type="hidden" name="role_by" value="<?= $roleby->name ?>">
+                                @endif
+                                @endforeach
                                 <input type="hidden" name="id_tor" value="<?= $id ?>">
                                 <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
                                 <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
@@ -966,8 +982,10 @@ use Illuminate\Support\Facades\Auth;
                     </div>
                     <hr>
                     <div class="container ml-1">
-                        <button type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint" onclick="remove()">REMOVE</button>
-                        <button type="button" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button>
+
+
+                        <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint">REMOVE</button>
+                        <button type="button" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button> -->
                     </div>
                 </div>
             </div>
@@ -986,18 +1004,13 @@ use Illuminate\Support\Facades\Auth;
 </div>
 <!-- Wrapper END -->
 <script>
-    function remove() {
-        var n = document.getElementById("validasi");
-        while (n) {
-            document.getElementById("validasi").remove();
-        }
-    };
-
     function printDiv() {
+
         var printContents = document.getElementById("iniprint").innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
         window.print();
+
     };
 </script>
 @include('dashboards/users/layouts/footer')

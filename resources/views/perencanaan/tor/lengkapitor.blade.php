@@ -29,6 +29,21 @@ use Illuminate\Support\Facades\Auth;
                     <?php $active = 2; ?>
                     <div class="col-sm-12">
                         <div class="iq-card">
+                            <div class="row">
+                                <div class="container mt-2 mb-2 mr-2">
+                                    <div class="user-list-files d-flex float-right">
+                                        <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
+                                            Print
+                                        </a>
+                                        <!-- <a class="iq-bg-primary" href="javascript:void();">
+                                            Excel
+                                        </a>
+                                        <a class="iq-bg-primary" href="javascript:void();">
+                                            Pdf
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
                             <br />
                             <div class="container center" id="iniprint">
                                 <?php
@@ -880,8 +895,8 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                         </div>
                         <br />
-                        <button id="buttonremove1" type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint" onclick="remove()">REMOVE</button>
-                        <button type="button" id="buttonremove2" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button>
+                        <!-- <button id="buttonremove1" type="button" class="btn btn-primary mb-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove Komentar Sebelum Diprint" onclick="remove()">REMOVE</button>
+                        <button type="button" id="buttonremove2" class="btn btn-primary mb-3" onclick="printDiv()">PRINT</button> -->
 
                 <?php }
                                 } ?>

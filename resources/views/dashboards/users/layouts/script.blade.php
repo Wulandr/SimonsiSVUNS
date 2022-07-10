@@ -45,6 +45,12 @@
             max-height: 300px;
             overflow-y: auto;
         }
+
+        /* @media print {
+            #validasi {
+                display: none !important;
+            }
+        } */
     </style>
 </head>
 

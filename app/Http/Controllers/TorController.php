@@ -81,12 +81,13 @@ class TorController extends Controller
             }
             $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE',  $filtertahun . '%')
                 ->where('id_unit', auth()->user()->id_unit)
-                ->orderBy('id')->cursorPaginate($h);
+                ->orderBy('created_at', 'desc')->cursorPaginate($h);
             // ->where('tgl_pelaksanaan', 'LIKE', date('Y') . '%')
             // ->simplepaginate(3);
         }
         if (auth()->user()->id_unit == 1) {
             $tor = DB::table('tor')
+                ->orderBy('created_at', 'desc')
                 // $tor = Tor::where('tgl_pelaksanaan', 'LIKE', date('Y') . '%')
                 ->simplePaginate(3);
         }
@@ -455,12 +456,12 @@ class TorController extends Controller
             if (!empty($request->tahun)) {
                 $tor = Tor::where('id_unit', auth()->user()->id_unit)
                     ->where('tgl_mulai_pelaksanaan', 'LIKE',  '%' . $request->tahun . '%')
-                    ->orderBy('id')
+                    ->orderBy('created_at', 'desc')
                     ->cursorPaginate($h);
             }
             if (empty($request->tahun)) {
                 $tor = DB::table('tor')->where('id_unit', auth()->user()->id_unit)
-                    ->orderBy('id')
+                    ->orderBy('created_at', 'desc')
                     ->cursorPaginate($h);
             }
         }
@@ -531,7 +532,7 @@ class TorController extends Controller
     public function filter_pagu(Request $request)
     {
         if (auth()->user()->id_unit != 1) {
-            $tor = Tor::where('id_unit', auth()->user()->id_unit)->simplepaginate(5);
+            $tor = Tor::where('id_unit', auth()->user()->id_unit)->orderBy('created_at', 'desc')->simplepaginate(5);
         }
         if (auth()->user()->id_unit == 1) {
             $tor = DB::table('tor')
