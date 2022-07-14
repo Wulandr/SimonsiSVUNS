@@ -202,7 +202,7 @@ use Illuminate\Support\Facades\Auth;
                                             <?php
                                             function buttonKomentar($Href)
                                             {
-                                                echo '<a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                echo '<a id="komen" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="' . $Href . '" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                         Lihat Komentar
                                                     </a>';
                                             }
@@ -723,47 +723,108 @@ use Illuminate\Support\Facades\Auth;
                                                 }
                                             }
                                 ?>
-                                <h4><b>
+                                <h4 id="validasiplus"><b>
                                         Verifikasi & Validasi TOR
                                     </b></h4>
-                                <?php for ($s = 1; $s < count($status); $s++) {
+                                <?php
+                                            $muncul = ''; //memunculkan dan menyembunyika icon plus untuk kolom komentar
+                                            $muncul1 = '';
+                                            $muncul2 = '';
+                                            $muncul3 = '';
+                                            for ($s = 1; $s < count($status); $s++) {
                                                 if ($status[$s]->kategori == "TOR" && $status[$s]->nama_status != "Pengajuan Perbaikan") {
                                                     for ($r3 = 0; $r3 < count($roles); $r3++) {
                                                         if (Auth()->user()->role == $roles[$r3]->id) {
                                 ?>
 
-
                                                 <?php if ($roles[$r3]->name == "BPU") {
                                                                 if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi") {
+                                                                    $muncul = 'ada';
                                                                     $buttonSubmit = 1; ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php } elseif ($currentStatus != "Proses Pengajuan" || $currentStatus != "Pengajuan Perbaikan") {
+                                                                    $muncul = 'tidak ada';
+                                                                }
+                                                                // echo $muncul . $status[$s]->id . "<br />";
+                                                                if ($muncul == 'tidak ada') { ?>
+                                                        <!-- <script>
+                                                            var n = document.getElementById("validasiplus");
+                                                            while (n) {
+                                                                document.getElementById("validasiplus").remove();
+                                                            }
+                                                        </script> -->
                                                     <?php }
+
+                                                                // W D 1
                                                             } elseif ($roles[$r3]->name == "WD 1") { ?>
                                                     <?php
                                                                 if ($currentStatus == "Verifikasi" && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
+                                                                    $muncul1 = 'ada';
                                                                     if ($status[$s]->nama_status == "Revisi") {
                                                     ?>
                                                         <?php } ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php } elseif ($currentStatus != "Verifikasi") {
+                                                                    $muncul1 = 'tidak ada';
+                                                                }
+                                                                // echo $muncul1;
+                                                                if ($muncul1 == 'tidak ada') { ?>
+                                                        <!-- <script>
+                                                            var n = document.getElementById("validasiplus");
+                                                            while (n) {
+                                                                document.getElementById("validasiplus").remove();
+                                                            }
+                                                        </script> -->
                                                     <?php }
+
+                                                                // W D 2
                                                             } elseif ($roles[$r3]->name == "WD 2") {
                                                                 // echo $currentStatus . $currentStatusRole . "<br/ >"; //menampilkan status sebelumnya itu apa?
                                                                 if ($currentStatus == "Validasi" && $currentStatusRole == "WD 1" &&  ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
+                                                                    $muncul2 = 'ada';
                                                                     // echo "xx - " . $currentStatus . "-" . $currentStatusRole; 
                                                     ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 1") {
+                                                                    $muncul2 = 'tidak ada';
+                                                                }
+                                                                // echo $muncul2;
+                                                                if ($muncul2 == 'tidak ada') { ?>
+                                                        <!-- <script>
+                                                            var n = document.getElementById("validasiplus");
+                                                            while (n) {
+                                                                document.getElementById("validasiplus").remove();
+                                                            }
+                                                        </script> -->
                                                     <?php }
+
+                                                                // W D 3
                                                             } elseif ($roles[$r3]->name == "WD 3") {
                                                                 if ($currentStatus == "Validasi" && $currentStatusRole == "WD 2"   && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
-                                                                    $buttonSubmit = 1;  ?>
+                                                                    $buttonSubmit = 1;
+                                                                    $muncul3 = 'ada'; ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                         <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 2") {
+                                                                    $muncul3 = 'tidak ada';
+                                                                }
+                                                                // echo $muncul3;
+                                                                if ($muncul3 == 'tidak ada') {
+                                                    ?>
+                                                        <!-- <script>
+                                                            var n = document.getElementById("validasiplus");
+                                                            while (n) {
+                                                                document.getElementById("validasiplus").remove();
+                                                            }
+                                                        </script> -->
                                                     <?php }
+
+                                                                //
                                                             } else { ?>
                                                     <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
                                                     <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
@@ -784,6 +845,15 @@ use Illuminate\Support\Facades\Auth;
                                 <?php if ($buttonSubmit == 1) { ?>
                                     <button class="btn btn-primary btn-sm" type="submit">Kirim</button>
                                 <?php } ?>
+                                <?php if ($buttonSubmit != 1) { ?>
+                                    <script>
+                                        var n = document.getElementById("validasiplus");
+                                        while (n) {
+                                            document.getElementById("validasiplus").remove();
+                                        }
+                                    </script>
+                                <?php } ?>
+
                                 <br />
                             </div>
                         <?php } ?>

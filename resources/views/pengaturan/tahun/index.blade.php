@@ -70,13 +70,119 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: "{{session('success')}}",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    </script>
                                     @endif
+
+
+
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
                                         </div>
+
+                                        <!-- <table id="example" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2">Name</th>
+                                                    <th colspan="2">HR Information</th>
+                                                    <th colspan="2">Contact</th>
+                                                    <th colspan="">Contact</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Position</th>
+                                                    <th>Salary</th>
+                                                    <th>Office</th>
+                                                    <th>Extn.</th>
+                                                    <th>E-mail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Garrett Winters</td>
+                                                    <td>Accountant</td>
+                                                    <td>$170,750</td>
+                                                    <td>Tokyo</td>
+                                                    <td>8422</td>
+                                                    <td>g.winters@datatables.net</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>Ashton CoxAshton CoxAshton CoxAshton CoxAshton CoxAshton Cox</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cedric Kelly</td>
+                                                    <td>Senior Javascript Developer</td>
+                                                    <td>$433,060</td>
+                                                    <td>Edinburgh</td>
+                                                    <td>6224</td>
+                                                    <td>c.kelly@datatables.net</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Airi Satou</td>
+                                                    <td>Accountant</td>
+                                                    <td>$162,700</td>
+                                                    <td>Tokyo</td>
+                                                    <td>5407</td>
+                                                    <td>a.satou@datatables.net</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Brielle Williamson</td>
+                                                    <td>Integration Specialist</td>
+                                                    <td>$372,000</td>
+                                                    <td>New York</td>
+                                                    <td>4804</td>
+                                                    <td>b.williamson@datatables.net</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Herrod Chandler</td>
+                                                    <td>Sales Assistant</td>
+                                                    <td>$137,500</td>
+                                                    <td>San Francisco</td>
+                                                    <td>9608</td>
+                                                    <td>h.chandler@datatables.net</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rhona Davidson</td>
+                                                    <td>Integration Specialist</td>
+                                                    <td>$327,900</td>
+                                                    <td>Tokyo</td>
+                                                    <td>6200</td>
+                                                    <td>r.davidson@datatables.net</td>
+                                                </tr>
+                                                <?php for ($i = 0; $i < 12; $i++) { ?>
+                                                    <tr>
+                                                        <td>Colleen Hurst</td>
+                                                        <td>Javascript Developer</td>
+                                                        <td>$205,500</td>
+                                                        <td>San Francisco</td>
+                                                        <td>2360</td>
+                                                        <td>c.hurst@datatables.net</td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Salary</th>
+                                                    <th>Office</th>
+                                                    <th>Extn.</th>
+                                                    <th>E-mail</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <br /> -->
+
                                         <table id="mytahun" class="table mb-0">
                                             <thead class="thead-light">
                                                 <tr>
@@ -168,6 +274,7 @@ use Illuminate\Support\Facades\Auth;
         $(document).ready(function() {
             $.noConflict();
             $('#mytahun').DataTable();
+            // $('#example').DataTable();
         });
         //print page
         function printDiv() {
@@ -223,5 +330,10 @@ use Illuminate\Support\Facades\Auth;
         }, 2000);
     </script>
     @include('dashboards/users/layouts/footer')
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 
     </html>

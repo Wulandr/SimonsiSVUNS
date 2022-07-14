@@ -417,6 +417,16 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
 
                                         <h6>10. Jadwal Pelaksanaan : <br />
+                                            @if (session('success'))
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: "{{session('success')}}",
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                            </script>
+                                            @endif
                                             <?php
                                             foreach ($roles as $roles1) {
                                                 if ($roles1->id == Auth::user()->role) {

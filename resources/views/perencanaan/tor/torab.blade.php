@@ -156,11 +156,15 @@ use Illuminate\Support\Facades\Auth;
                 </div>
                 <div style="overflow-x:auto;" class="container mt-2 mr-5">
                   @if (session('success'))
-                  <div class="alert alert-success">
-                    {{ session('success') }}
-                  </div>
+                  <script>
+                    Swal.fire({
+                      icon: 'success',
+                      title: "{{session('success')}}",
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                  </script>
                   @endif
-
                   <div class="alert text-white bg-danger" role="alert">
                     <div class="iq-alert-icon">
                       <i class="ri-information-line"></i>
@@ -540,6 +544,7 @@ use Illuminate\Support\Facades\Auth;
       });
     }, 3000);
   </script>
+
   @include('dashboards/users/layouts/footer')
 
 </body>

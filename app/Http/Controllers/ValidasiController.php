@@ -31,9 +31,9 @@ class ValidasiController extends Controller
         $roleUser = Auth()->user()->role;
         $role = DB::table('roles')->get();
 
-        if ($roleUser ==  2) {
-            abort(403);
-        }
+        // if ($roleUser ==  2) {
+        //     abort(403);
+        // }
 
         $unit = Unit::all();
         $rab = Rab::all();
@@ -123,10 +123,9 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if (Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
             abort(403);
         }
-
         $request->validate([]);
 
         $inserting = DB::table('trx_status_tor')->insert($request->except('_token'));
@@ -153,7 +152,7 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if (Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
             abort(403);
         }
 
@@ -173,7 +172,7 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if (Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
             abort(403);
         }
 
@@ -217,7 +216,7 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if (Auth::user()->getroleNames() == 'Prodi' || Auth::user()->getroleNames() == 'PIC') {
             abort(403);
         }
 
@@ -249,7 +248,7 @@ class ValidasiController extends Controller
         $userLogin = Auth()->user()->id;
         $unitUser = Auth()->user()->id_unit; //prodi mana?
         $roleUser = Auth()->user()->role;
-        if ($roleUser ==  2) {
+        if (Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
             abort(403);
         }
 

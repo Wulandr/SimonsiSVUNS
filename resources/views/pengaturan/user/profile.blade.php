@@ -40,19 +40,37 @@ use Illuminate\Support\Facades\Auth;
                     </div>
                     <div class="container ml-3">
                         @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
+                        <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: "{{session('error')}}",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        </script>
                         @endif
                         @if (session('success'))
-                        <div class="alert alert-success">
+                        <!-- <div class="alert alert-success">
                             {{ session('success') }}
-                        </div>
+                        </div> -->
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: "{{session('success')}}",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        </script>
                         @endif
                         @if (session('successPass'))
-                        <div class="alert alert-success">
-                            {{ session('successPass') }}
-                        </div>
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: "{{session('successPass')}}",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        </script>
                         @endif
                     </div>
                     <div class="col-lg-12">

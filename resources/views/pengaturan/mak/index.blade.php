@@ -91,9 +91,14 @@ use Illuminate\Support\Facades\Auth;
                                             </div>
                                         </span> -->
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: "{{session('success')}}",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    </script>
                                     @endif
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">

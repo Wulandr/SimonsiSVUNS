@@ -89,11 +89,16 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: "{{session('success')}}",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    </script>
                                     @endif
-                                    <span class="table-add float-right mb-3 mr-2">
+                                    <span class="table-add float-right mr-2">
                                         <div class="form-group row">
                                             <form action="{{ url('/triwulan/filtertahun') }}" method="GET">
                                                 <div class="row mr-3">
@@ -182,20 +187,29 @@ use Illuminate\Support\Facades\Auth;
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Periode Awal</label>
-                                                                            <input name="periode_awal" id="periode_awal" type="date" value="{{old('periode_awal',$triwulan[$a]->periode_awal)}}" class="form-control">
+                                                                            <input name="periode_awal" id="periode_awal2" type="date" value="{{old('periode_awal',$triwulan[$a]->periode_awal)}}" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Periode Akhir</label>
-                                                                            <input name="periode_akhir" id="periode_akhir" type="date" value="{{old('periode_akhir',$triwulan[$a]->periode_akhir)}}" class="form-control">
+                                                                            <input name="periode_akhir" id="periode_akhir2" type="date" value="{{old('periode_akhir',$triwulan[$a]->periode_akhir)}}" class="form-control">
                                                                         </div>
                                                                         <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                                                                         <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
                                                                         <button class="btn btn-primary mr-1" type="submit">Submit</button>
+
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- <script>
+                                                        $('#periode_awal2').on('input', function() {
+                                                            $('#periode_akhir2').attr('min', this.value);
+                                                        });
+                                                        $('#periode_akhir2').on('input', function() {
+                                                            $('#periode_awal2').attr('max', this.value);
+                                                        });
+                                                    </script> -->
                                                     <?php $num += 1; ?>
                                                 <?php } ?>
                                             </tbody>
@@ -250,6 +264,14 @@ use Illuminate\Support\Facades\Auth;
                 $(this).remove();
             });
         }, 2000);
+    </script>
+    <script>
+        $('#periode_awal').on('input', function() {
+            $('#periode_akhir').attr('min', this.value);
+        });
+        $('#periode_akhir').on('input', function() {
+            $('#periode_awal').attr('max', this.value);
+        });
     </script>
     @include('dashboards/users/layouts/footer')
 

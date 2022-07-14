@@ -79,9 +79,14 @@
                                 </div>
                                 <div class="iq-card-body">
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: "{{session('success')}}",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    </script>
                                     @endif
                                     <div class="table-responsive table-invoice">
                                         <table id="myusers" class="table table-striped">

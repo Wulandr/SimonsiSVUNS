@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Auth;
                                             @endcan
                                         </h4>
                                         <!-- Modal Tambah TOR -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="tambahpagu">
+                                        <div class="modal fade" role="dialog" id="tambahpagu" style="overflow:hidden;">
                                             <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -64,7 +64,7 @@ use Illuminate\Support\Facades\Auth;
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Prodi</label>
-                                                                <select name="id_unit" id="id_unit" class="form-control">
+                                                                <select name="id_unit" id="tambahunit" aria-hidden="true" data-select2-id="select2-data-58-6f47" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                     @foreach($unit as $unit)
                                                                     <option value="{{$unit->id}}">{{$unit->nama_unit}}</option>
                                                                     @endforeach
@@ -102,9 +102,14 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: "{{session('success')}}",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    </script>
                                     @endif
                                     <span class="table-add float-right mb-3 mr-2">
                                         <div class="form-group row">
@@ -176,7 +181,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </td>
                                                     </tr>
                                                     <!-- Modal Ubah Pagu -->
-                                                    <div class="modal fade" tabindex="-1" role="dialog" id="update_pagu<?= $pagu[$a]->id ?>">
+                                                    <div class="modal fade" role="dialog" id="update_pagu<?= $pagu[$a]->id ?>" style="overflow:hidden;">
                                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -210,12 +215,9 @@ use Illuminate\Support\Facades\Auth;
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Prodi</label>
-                                                                            <select name="id_unit" id="id_unit" class="form-control">
+                                                                            <select name="id_unit" id="updateunit" aria-hidden="true" data-select2-id="select2-data-58-6f57" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
                                                                                 @foreach($unit2 as $unit)
-                                                                                <?php
-                                                                                if ($unit->id == $pagu[$a]->id_unit) { ?>
-                                                                                    <option value="{{$unit->id}}">{{$unit->nama_unit}}</option>
-                                                                                <?php } ?>
+                                                                                <option value="{{$unit->id}}" {{$unit->id == $pagu[$a]->id_unit ? 'selected' : ''}}>{{$unit->nama_unit}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
@@ -249,6 +251,8 @@ use Illuminate\Support\Facades\Auth;
         </div>
     </div>
     <!-- Wrapper END -->
+
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $('.pagu-confirm').on('click', function(event) {
@@ -288,7 +292,16 @@ use Illuminate\Support\Facades\Auth;
             });
         }, 2000);
     </script>
+
     @include('dashboards/users/layouts/footer')
+    <script>
+        $(document).ready(function() {
+            $('#tambahunit').select2();
+        });
+        $(document).ready(function() {
+            $('#updateunit').select2();
+        });
+    </script>
 </body>
 
 </html>

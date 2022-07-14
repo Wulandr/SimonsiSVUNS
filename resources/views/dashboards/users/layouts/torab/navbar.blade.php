@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 ?>
+<!-- N A V B A R   T O R A B   U N T U K   P R O D I  /  P I C -->
 
-<!-- N A V B A R   V A L I D A S I   U N T U K   B P U  /  W A K I L  D E K A N -->
 <div class="iq-top-navbar">
     <div class="iq-navbar-custom">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
@@ -52,126 +52,160 @@ use Illuminate\Support\Facades\Auth;
                 </ul>
             </div>
             <?php
-            $jumlahpengajuan = 0;
-            if (!empty($notifikasi)) {  ?>
-                <?php if ($notifikasi == 1) {  ?>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto navbar-list">
-                            <li class="nav-item nav-icon">
-                                <a href="#" class="search-toggle iq-waves-effect bg-info rounded">
-                                    <i class="ri-notification-line"></i>
-                                    <span class="bg-danger dots"></span>
-                                </a>
-                                <div class="iq-sub-dropdown scrollable">
-                                    <div class="iq-card shadow-none m-0">
-                                        <div class="iq-card-body p-0 scroll-card">
-                                            <div class="bg-primary p-3">
-                                                <h5 class="mb-0 text-white">Notifikasi Pengajuan Kegiatan<small class="badge  badge-light float-right pt-1"></small></h5>
-                                            </div>
-                                            <?php
-                                            $idtor = 0;
-                                            $simpanTor = [
-                                                $idtor => []
-                                            ];
-                                            $i = 0;
-                                            $simpanId = [];
-                                            $length = 0;
-                                            $count = 0; //hitung total tor yang blm
-                                            foreach ($trx_status_tor as $tstor) {
-                                                foreach ($status as $sts) {
-                                                    if ($sts->nama_status == "Proses Pengajuan") {
-                                                        $simpanId[$i] = $tstor->id_tor;
-                                            ?>
+            echo "hiihi";
+            $jumlahpengajuan = 0; ?>
 
-                                            <?php
-                                                        $i += 1;
-                                                    }
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-list">
+                    <!-- Notifikasi tor yang belum diajukan  -->
+                    <!-- <li class="nav-item nav-icon">
+                        <a href="#" class="search-toggle iq-waves-effect bg-warning rounded"><span class="ripple rippleEffect" style="width: 35px; height: 35px; top: -7.5px; left: 12.2969px;"></span>
+                            <i class="ri-book-line"></i>
+                            <span class="bg-danger dots"></span>
+                        </a>
+                        <div class="iq-sub-dropdown">
+                            <div class="iq-card shadow-none m-0">
+                                <div class="iq-card-body p-0 ">
+                                    <div class="bg-primary p-3">
+                                        <h5 class="mb-0 text-white">Kegiatan Belum Diajukan<small class="badge  badge-light float-right pt-1">4</small></h5>
+                                    </div>
+                                    <a href="" class="iq-sub-card">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <h6>
+                                                    <small class="badge badge-secondary">aaa</small>
+                                                    ddddddddddddddddd
+                                                </h6>
+                                                <small class="badge badge-warning">bbb</small>
+                                                <small class="float-right font-size-12">ccc</small>
+                                                <p class="mb-0">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+
+                    <!-- Notifikasi tor yang sudah diajukan -->
+                    <li class="nav-item nav-icon">
+                        <a href="#" class="search-toggle iq-waves-effect bg-success rounded">
+                            <i class="ri-notification-line"></i>
+                            <span class="bg-danger dots"></span>
+                        </a>
+                        <div class="iq-sub-dropdown scrollable">
+                            <div class="iq-card shadow-none m-0">
+                                <div class="iq-card-body p-0 scroll-card">
+                                    <div class="bg-primary p-3">
+                                        <h5 class="mb-0 text-white">Notifikasi Pengajuan Kegiatan<small class="badge  badge-light float-right pt-1"></small></h5>
+                                    </div>
+                                    <?php
+                                    $idtor = 0;
+                                    $simpanTor = [
+                                        $idtor => []
+                                    ];
+                                    $i = 0;
+                                    $simpanId = [];
+                                    $length = 0;
+                                    $count = 0; //hitung total tor yang blm
+                                    foreach ($trx_status_tor as $tstor) {
+                                        foreach ($status as $sts) {
+                                            if ($sts->nama_status == "Proses Pengajuan") {
+                                                $simpanId[$i] = $tstor->id_tor;
+                                    ?>
+
+                                    <?php
+                                                $i += 1;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <?php
+                                    $clear_array = array_unique($simpanId); // Mengambil yg unik, bukan yg duplicate
+                                    ?>
+
+
+                                    <a><?php
+                                        $trxStatusTor = [];
+                                        $i2 = 0;
+                                        foreach ($clear_array as $s1) {
+                                            // echo "Trx status tor ";
+                                            foreach ($trx_status_tor as $tstor2) {
+                                                if ($s1 == $tstor2->id_tor) {
+                                                    $trxStatusTor[$i2] = $tstor2->id;
+                                                    $i2 += 1;
                                                 }
                                             }
-                                            ?>
-                                            <?php
-                                            $clear_array = array_unique($simpanId);
-                                            ?>
-                                            <?php
-                                            $trxStatusTor = [];
-                                            $i2 = 0;
-                                            foreach ($clear_array as $s1) {
-                                                // echo "Trx status tor ";
-                                                foreach ($trx_status_tor as $tstor2) {
-                                                    if ($s1 == $tstor2->id_tor) {
-                                                        $trxStatusTor[$i2] = $tstor2->id;
-                                                        // echo  $trxStatusTor[$i2] . " ";
-                                                        $i2 += 1;
-                                                    }
-                                                }
-                                                foreach ($tor as $tor2) {
-                                                    if ($s1 == $tor2->id) {
-                                            ?>
+                                            foreach ($tor as $tor2) {
+                                                if ($s1 == $tor2->id && $tor2->id_unit == Auth()->user()->id_unit) {
+                                        ?>
+                                    </a>
 
-                                                        <?php
-                                                        $namastat = "";
-                                                        $hitungNotif = 1;
-                                                        foreach ($trx_status_tor as $tstor3) {
-                                                            if ($trxStatusTor[$i2 - 1] == $tstor3->id) {
-                                                                foreach ($user as $u) {
-                                                                    foreach ($role as $r) {
-                                                                        if ($u->role == $r->id) {
-                                                                            if ($u->id == $tstor3->create_by) {
-                                                                                foreach ($status as $sts3) {
-                                                                                    if ($tstor3->id_status == $sts3->id) {
-                                                                                        $namastat = $sts3->nama_status . " " . $tstor3->role_by;
-                                                                                        if ($namastat != "Validasi WD 3") {
-                                                                                            $count += 1;
-                                                                                            if ($hitungNotif < 4) {
-                                                        ?>
-                                                                                                <a href="{{url('/detailtor/'.base64_encode($tor2->id))}}" class="iq-sub-card">
-                                                                                                    <div class="media align-items-center">
-                                                                                                        <div class="media-body">
-                                                                                                            <h6><?php foreach ($unit as $unitTor) {
-                                                                                                                    if ($tor2->id_unit == $unitTor->id) { ?>
-                                                                                                                        <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
-                                                                                                                <?php }
-                                                                                                                } ?>
-                                                                                                                {{$tor2->nama_kegiatan." "}}
-                                                                                                            </h6>
-                                                                                                            <small class="badge badge-warning">{{$sts3->nama_status." ".$tstor3->role_by}}</small>
-                                                                                                            <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
-                                                                                                            <p class="mb-0">
-                                                                                                            </p>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </a>
-                                                        <?php
-                                                                                            }
+                                    <?php
+                                                    $namastat = "";
+                                                    $hitungNotif = 1;
+                                                    foreach ($trx_status_tor as $tstor3) {
+                                                        if ($trxStatusTor[$i2 - 1] == $tstor3->id) {
+                                                            foreach ($user as $u) {
+                                                                foreach ($role as $r) {
+                                                                    if ($u->role == $r->id) {
+                                                                        if ($u->id == $tstor3->create_by) {
+                                                                            foreach ($status as $sts3) {
+                                                                                if ($tstor3->id_status == $sts3->id) {
+                                                                                    $namastat = $sts3->nama_status . " " . $tstor3->role_by;
+                                                                                    if ($namastat != "Validasi WD 3") {
+                                                                                        $count += 1;
+                                                                                        if ($hitungNotif < 4) {
+                                    ?>
+                                                                            <a href="{{url('/lengkapitor/'.base64_encode($tor2->id))}}" class="iq-sub-card">
+                                                                                <div class="media align-items-center">
+                                                                                    <div class="media-body">
+                                                                                        <h6><?php foreach ($unit as $unitTor) {
+                                                                                                if ($tor2->id_unit == $unitTor->id) { ?>
+                                                                                                    <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
+                                                                                            <?php }
+                                                                                            } ?>
+                                                                                            {{$tor2->nama_kegiatan." "}}
+                                                                                        </h6>
+                                                                                        <small class="badge badge-warning">{{$sts3->nama_status." ".$tstor3->role_by}}</small>
+                                                                                        <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
+                                                                                        <p class="mb-0">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                    <?php
                                                                                         }
                                                                                     }
                                                                                 }
-                                                                                $hitungNotif += 1;
                                                                             }
+                                                                            $hitungNotif += 1;
                                                                         }
                                                                     }
                                                                 }
                                                             }
-                                                        } ?>
+                                                        }
+                                                    } ?>
 
-                                            <?php
-                                                    }
+                        <?php
                                                 }
                                             }
-                                            ?>
-                                            <?php
-                                            // echo $hitungNotif;
-                                            if ($hitungNotif > 3) { ?>
-                                            <?php }
-                                            ?>
-                                        </div>
-                                    </div>
+                                        }
+                        ?>
+                        <?php
+                        // echo $hitungNotif;
+                        if ($hitungNotif > 3) { ?>
+                        <?php }
+                        ?>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                <?php  } ?>
-            <?php  } ?>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
             <ul class="navbar-nav ml-auto navbar-list">
                 <li class="line-height">
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">

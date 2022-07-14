@@ -100,9 +100,14 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
                                         <div class="iq-card-body">
                                             @if (session('success'))
-                                            <div class="alert alert-success">
-                                                {{ session('success') }}
-                                            </div>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: "{{session('success')}}",
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                            </script>
                                             @endif
                                             <span class="table-add float-right mb-3 mr-2">
                                                 <div class="form-group row">

@@ -160,7 +160,7 @@ class ProfilController extends Controller
     {
         //
     }
-    public function ganti(Request $request)
+    public function ganti(Request $request) //beralih ke role lain
     {
         DB::table('users')->where('id', auth()->user()->id)->update(
             [
