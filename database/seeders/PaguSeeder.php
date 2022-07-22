@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pagu;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -14,21 +15,25 @@ class PaguSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pagu')->insert([
-            [
-                'id_unit' => '2',
-                'id_tahun' => '3',
-                'pagu' => '1000000000',
-                'created_at' => '2022-02-22 00:00:00',
-                'updated_at' => '2022-02-22 00:00:00'
-            ],
-            [
-                'id_unit' => '3',
-                'id_tahun' => '3',
-                'pagu' => '1000000000',
-                'created_at' => '2022-02-22 00:00:00',
-                'updated_at' => '2022-02-22 00:00:00'
-            ],
-        ]);
+        $csvFile = fopen(base_path("database/data/paguCsv.csv"), "r");
+
+        $firstline = true;
+        while (($data = fgetcsv($csvFile, 2000, ";")) !== FALSE) {
+            if (!$firstline) {
+                Pagu::create([
+                    "id" => $data['0'],
+                    "id_unit" => $data['1'],
+                    "id_tahun" => $data['2'],
+                    "pagu" => $data['3'],
+                    "tw1" => $data['4'],
+                    "tw2" => $data['5'],
+                    "tw3" => $data['6'],
+                    "tw4" => $data['7'],
+                ]);
+            }
+            $firstline = false;
+        }
+
+        fclose($csvFile);
     }
 }

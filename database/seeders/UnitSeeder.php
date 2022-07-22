@@ -144,6 +144,26 @@ class UnitSeeder extends Seeder
                 'telepon' => '081910238817',
                 'email' => 'd3ti@gmail.com',
             ],
+            [
+                'nama_unit' => 'D3 Agribisnis',
+                'telepon' => '081910238817',
+                'email' => 'd3ti@gmail.com',
+            ],
+            [
+                'nama_unit' => 'D3 Akuntansi (PSDKU)',
+                'telepon' => '081910238817',
+                'email' => 'd3ti@gmail.com',
+            ],
+            [
+                'nama_unit' => 'D3 Teknik Informatika (PSDKU)',
+                'telepon' => '081910238817',
+                'email' => 'd3ti@gmail.com',
+            ],
+            [
+                'nama_unit' => 'D3 Teknologi Hasil Pertanian (PSDKU)',
+                'telepon' => '081910238817',
+                'email' => 'd3ti@gmail.com',
+            ],
         ]);
     }
 }

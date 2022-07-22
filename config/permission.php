@@ -2,6 +2,7 @@
 
 return [
     'authorities' => [
+
         //penambahan
         'manage_buttonpengajuan' => [
             'ajuan_monitoring',
