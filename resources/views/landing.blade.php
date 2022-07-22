@@ -19,7 +19,7 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('landing/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('landing/assets/vendor/bootstrap-icons/bootstrap-icons.css)') }}" rel="stylesheet">
+    <link href="{{ asset('landing/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
@@ -75,8 +75,9 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container" data-aos="fade-up">
-            <h1>Welcome to Squad</h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
+            <h2>Welcome to</h2>
+            <h1>S I M O N S I</h1>
+            <h2>(Sistem Monev Sekolah Vokasi)</h2>
             <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
         </div>
     </section><!-- End Hero -->
@@ -411,7 +412,7 @@
     <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->

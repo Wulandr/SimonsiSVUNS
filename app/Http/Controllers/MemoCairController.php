@@ -39,24 +39,6 @@ class MemoCairController extends Controller
 
     public function store(Request $request)
     {
-        //membuat validasi, jika tidak diisi maka akan menampilkan pesan error
-        // $this->validate($request, [
-        //     'name'          => 'required',
-        // ]);
-        // $validatedData = $request->validate([
-        //  'file' => 'required|pdf',
-
-        // ]);
-
-        // $validator = Validator::make($request->all(), [
-        //     'file' => 'required|pdf',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('keuangan.memo_cair.index_memocair')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
         //mengambil data file yang diupload
         $file           = $request->file('file');
         //mengambil nama file

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class AddIdSpjSubkategoriToDokumenSpj extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('dokumen_spj', function (Blueprint $table) {
@@ -21,11 +16,6 @@ class AddIdSpjSubkategoriToDokumenSpj extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('dokumen_spj', function (Blueprint $table) {

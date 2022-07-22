@@ -27,7 +27,6 @@ class GoogleController extends Controller
             $cekAktif =  DB::table('users')
                 ->where('email', $user->email)
                 ->first();
-            // dd($cekAktif->is_aktif);
 
             if ($findemail) {
                 Auth::login($findemail);
@@ -40,7 +39,6 @@ class GoogleController extends Controller
             } else { // email tidak cocok dengan database
                 dd($cekAktif);
             }
-            // dd($cekAktif);
         } catch (\Throwable $th) {
             dd($th);
         }
