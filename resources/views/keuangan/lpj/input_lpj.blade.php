@@ -9,8 +9,18 @@
                 </button>
             </div>
             <div class="modal-body">
+                @if (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script>
+                @endif
                 <form class="needs-validation" method="post" enctype="multipart/form-data"
-                    action="{{ url('/input_lpj') }}" novalidate>
+                    action="{{ url('/input_lpj') }}">
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for=" validationCustom01">Nama
@@ -98,7 +108,8 @@
                                 materiil!
                             </small>
                         </label>
-                        <input type="file" class="form-control-file" name="file" id="file" required>
+                        <input type="file" class="form-control-file" name="file" id="file"
+                            accept="application/pdf" required>
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
                         </div>
@@ -111,4 +122,10 @@
         </div>
     </div>
 </div>
-</div>
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

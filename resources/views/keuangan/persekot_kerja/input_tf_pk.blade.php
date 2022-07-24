@@ -9,8 +9,18 @@
                 </button>
             </div>
             <div class="modal-body text-left">
+                @if (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script>
+                @endif
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/persekot_kerja/input_buktitransfer') }}" novalidate>
+                    action="{{ url('/persekot_kerja/input_buktitransfer') }}">
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">Nama
@@ -34,7 +44,8 @@
                                 Upload bukti transfer berupa file Dokumen maupun Gambar.
                             </small>
                         </label>
-                        <input type="file" class="form-control-file" name="file" id="file" required>
+                        <input type="file" class="form-control-file" name="file" id="file"
+                            accept="application/pdf, application/msword, image/*" required>
                         <div class="invalid-feedback">
                             Tolong tambahkan file sebelum submit!
                         </div>
@@ -47,3 +58,10 @@
         </div>
     </div>
 </div>
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

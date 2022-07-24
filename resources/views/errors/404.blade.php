@@ -17,7 +17,7 @@
                             alt="">
                         <h2 class="mb-0 mt-4">Oops! This Page is Not Found.</h2>
                         <p>The requested page dose not exist.</p>
-                        <a class="btn btn-primary mt-3" href="{{ url('home') }}"><i class="ri-home-4-line"></i>Back
+                        <a class="btn btn-primary mt-3" href="{{ url('/') }}"><i class="ri-home-4-line"></i>Back
                             to Home</a>
                     </div>
                 </div>

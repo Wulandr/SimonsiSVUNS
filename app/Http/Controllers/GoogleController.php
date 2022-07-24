@@ -37,7 +37,7 @@ class GoogleController extends Controller
                     return redirect('/tidak_aktif');
                 }
             } else { // email tidak cocok dengan database
-                dd($cekAktif);
+                return redirect('/unregister');
             }
         } catch (\Throwable $th) {
             dd($th);

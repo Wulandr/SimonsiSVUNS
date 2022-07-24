@@ -11,9 +11,23 @@ use Spatie\Permission\Models\Role;
 
 class MonitoringKakController extends Controller
 {
+    private $filtertw = 0;
+
+    private function cekWulan()
+    {
+        $model = Tor::all();
+        if (!isset($_REQUEST['filterTw'])) {
+            $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
+            $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+            $this->filtertw = $tw->id;
+        }
+        return $model;
+    }
+
     public function index()
     {
-        $tor = Tor::all();
+        $tor = $this->cekWulan();
+        // $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();
@@ -25,7 +39,7 @@ class MonitoringKakController extends Controller
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
-        $filtertw = 0;
+        $filtertw = $this->filtertw;
         $data = MemoCair::all();
         $spj = SPJ::all();
         $tabeltahun = DB::table('tahun')->get();
@@ -58,8 +72,10 @@ class MonitoringKakController extends Controller
     public function filter_tw(Request $request)
     {
         $filtertw = base64_decode($request->filterTw);
-        if ($filtertw == 0) {
-            return redirect('/monitoring_kak');
+        $tor = Tor::all();
+        if ($filtertw == 'all') {
+            // return redirect('/monitoring_kak');
+            $tor = Tor::all();
         } elseif ($filtertw != 0) {
             $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
         }

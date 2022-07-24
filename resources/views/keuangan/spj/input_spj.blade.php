@@ -9,8 +9,18 @@
                 </button>
             </div>
             <div class="modal-body">
+                @if (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script>
+                @endif
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/input_spj') }}" novalidate>
+                    action="{{ url('/input_spj') }}">
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">
@@ -85,3 +95,10 @@
             </div>
         </div>
     </div>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>

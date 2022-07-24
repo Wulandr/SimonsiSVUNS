@@ -45,7 +45,7 @@ class HomeController extends Controller
         return view(
             "dashboards.users.index",
             [
-                'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor,
+                'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'prodi' => $prodi,
                 'status' => $status, 'unit' => $unit, 'users' => $users, 'roles' => $roles,
                 'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
                 'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj, 'tabelRole' => $tabelRole

@@ -1,4 +1,13 @@
 @include('dashboards/users/layouts/script')
+<?php
+function ngecekWulan($awal, $akhir)
+{
+    if (new datetime(date('Y-m-d')) >= new datetime($awal) && new datetime(date('Y-m-d')) <= new datetime($akhir) && !empty($_REQUEST['filterTw'])) {
+        return true;
+    }
+    return false;
+}
+?>
 
 <body>
     <div id="loading">
@@ -27,13 +36,14 @@
                                                     <div class="col mr-1">
                                                         <select class="form-control filter" name="filterTw"
                                                             id="filterTw">
-                                                            <option value="0">All</option>
-                                                            <?php for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
+                                                            <option value="all">All</option>
+                                                            <?php
+                                                            for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
                                                                                 if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
                                                             <option value="{{ base64_encode($tw[$tw1]->id) }}"
-                                                                {{ $filtertw == $tw[$tw1]->id ? 'selected' : '' }}>
+                                                                {{ $filtertw == $tw[$tw1]->id ? 'selected' : '' }}{{ ngecekWulan($tw[$tw1]->periode_awal, $tw[$tw1]->periode_akhir) ? 'selected' : '' }}>
                                                                 {{ $tw[$tw1]->triwulan }}</option>
                                                             <?php }
                                                                             }
@@ -82,7 +92,7 @@
                                             foreach ($tw as $twname) {
                                                 if ($twname->id == $filtertw) {
                                                     // ngambil nomor TW dari Filter yang dipilih
-                                                    $nomorTw = substr($twname->triwulan, 14, 1);
+                                                    $nomorTw = substr($twname->triwulan, -1, 1);
                                             
                                                     // ngambil Tahun TW dari Filter yang dipilih
                                                     $tahunTw = substr($twname->triwulan, 0, 4);

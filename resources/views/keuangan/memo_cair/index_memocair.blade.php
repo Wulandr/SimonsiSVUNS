@@ -80,37 +80,49 @@
                                                                                                 if ($triwulan[$x]->id == $tor[$m]->id_tw) {
                                                                                                     $namatw = $triwulan[$x]->triwulan; ?>
 
-                                                                                                    <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                                                                                    <td width="30%">
-                                                                                                        {{ $tor[$m]->nama_kegiatan }}
-                                                                                                    </td>
-                                                                                                    <td>{{ $namaprodi }}</td>
-                                                                                                    <td>{{ $namatw }}</td>
-                                                                                                    <td class="text-center">
-                                                                                                        <?php if ($statusTor[0]['sudahUpload'] == 1) { ?>
-                                                                                                            <button type="button" class="btn iq-bg-primary btn-rounded btn-sm my-0">Sudah
-                                                                                                                Terbit</button>
-                                                                                                        <?php } else { ?>
-                                                                                                            <button type="button" class="btn iq-bg-danger btn-rounded btn-sm my-0">Belum
-                                                                                                                Terbit</button>
-                                                                                                        <?php } ?>
-                                                                                                    <td>
-                                                                                                        <?php if ($statusTor[0]['sudahUpload'] == 1) { ?>
-                                                                                                            <button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_memocair<?= $tor[$m]->id ?>"><i class="las la-external-link-alt"></i></i></button>
-                                                                                                            <button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_memocair<?= $tor[$m]->id ?>"><i class=" las la-edit"></i></i></button>
-                                                                                                            <!-- MODAL - Detail Memo Cair -->
-                                                                                                            @include('keuangan/memo_cair/detail_memocair')
-                                                                                                            <!-- MODAL - Edit Memo Cair -->
-                                                                                                            @include('keuangan/memo_cair/edit_memocair')
-                                                                                                        <?php } else { ?>
-                                                                                                            <button type="button" class="btn bg-dark btn-rounded btn-sm my-0" title="Upload File Memo Cair" data-toggle="modal" data-target="#upload_memocair<?= $tor[$m]->id ?>"><i class="las la-upload"></i>
-                                                                                                            </button>
-                                                                                                    </td>
-                                                                                                    <!-- MODAL - Upload Memo Cair -->
-                                                                                                    @include('keuangan/memo_cair/upload_memocair')
+                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
+                                            <td width="30%">
+                                                {{ $tor[$m]->nama_kegiatan }}
+                                            </td>
+                                            <td>{{ $namaprodi }}</td>
+                                            <td>{{ $namatw }}</td>
+                                            <td class="text-center">
+                                                <?php if ($statusTor[0]['sudahUpload'] == 1) { ?>
+                                                <button type="button"
+                                                    class="btn iq-bg-primary btn-rounded btn-sm my-0">Sudah
+                                                    Terbit</button>
+                                                <?php } else { ?>
+                                                <button type="button"
+                                                    class="btn iq-bg-danger btn-rounded btn-sm my-0">Belum
+                                                    Terbit</button>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($statusTor[0]['sudahUpload'] == 1) { ?>
+                                                <button class="btn btn-sm bg-info rounded-pill" title="Detail"
+                                                    data-toggle="modal"
+                                                    data-target="#detail_memocair<?= $tor[$m]->id ?>"><i
+                                                        class="las la-external-link-alt"></i></i></button>
+                                                <button class="btn btn-sm bg-warning rounded-pill" title="Edit"
+                                                    data-toggle="modal"
+                                                    data-target="#edit_memocair<?= $tor[$m]->id ?>"><i
+                                                        class=" las la-edit"></i></i></button>
+                                                <!-- MODAL - Detail Memo Cair -->
+                                                @include('keuangan/memo_cair/detail_memocair')
+                                                <!-- MODAL - Edit Memo Cair -->
+                                                @include('keuangan/memo_cair/edit_memocair')
+                                                <?php } else { ?>
+                                                <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
+                                                    title="Upload File Memo Cair" data-toggle="modal"
+                                                    data-target="#upload_memocair<?= $tor[$m]->id ?>"><i
+                                                        class="las la-upload"></i>
+                                                </button>
+                                            </td>
+                                            <!-- MODAL - Upload Memo Cair -->
+                                            @include('keuangan/memo_cair/upload_memocair')
 
 
-                                                <?php
+                                            <?php
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -127,7 +139,7 @@
                                                 ?>
 
                                         </tr>
-                                <?php
+                                        <?php
                                                 }
                                             } ?>
                                     </tbody>

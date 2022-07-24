@@ -17,7 +17,8 @@
                         <h1 class="text-in-box">500</h1>
                         <h2 class="mb-0">Oops! This Page is Not Working.</h2>
                         <p>The requested is Internal Server Error.</p>
-                        <a class="btn btn-primary mt-3" href="{{ url('home') }}"><i class="ri-home-4-line"></i>Back to
+                        <a class="btn btn-primary mt-3" href="{{ url('/') }}"><i class="ri-home-4-line"></i>Back
+                            to
                             Home</a>
 
                     </div>

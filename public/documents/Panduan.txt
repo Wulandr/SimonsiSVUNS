@@ -1,7 +1,0 @@
-Tutorial
-Extract file "R-and-D-Project-Management-System.zip" di C:\xampp\htdocs
-
-database
-1. Buka aplikasi xampp, klik tombol admin di baris MySQL 
-2. buat database baru di phpmyadmin dengan nama "rnd"
-3. import file "rnd.sql" di database rnd

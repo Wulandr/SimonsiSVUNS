@@ -63,9 +63,18 @@ Route::get('choose_role', [LoginController::class, 'chooseRole'])->name('pilih_r
 Route::get('/', function () {
     return view('landing');
 });
+
+// Unregiter user view
+Route::get('/unregister', function () {
+    return view('unregister_user');
+})->name('unregister');
+
+// Tidak aktif user view
 Route::get('/tidak_aktif', function () {
     return view('dashboards.users.layouts.tidak_aktif');
 })->name('tidak_aktif');
+
+// logout
 Route::get('/logout', function () {
     return view('welcome');
 });

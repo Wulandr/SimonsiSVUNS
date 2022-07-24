@@ -90,8 +90,6 @@
                                         Required!
                                     </div>
                                 </div>
-                                {{-- <button type="submit" class="btn btn-primary">Upload</button>
-                            </form> --}}
                         </div>
                     </div>
                     <div class="iq-card">

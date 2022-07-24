@@ -88,8 +88,8 @@ use App\Models\DokumenSPJ;
                                         <small style="color: darkred"><b>(Jika Ada)</b></small></label>
                                     <div class="col-sm-7">
                                         <input type="text" name="nilai_kembali" class="form-control"
-                                            id="validationCustom01"
-                                            value="{{ 'Rp ' . number_format($nilai_kembali) }}" required>
+                                            id="validationCustom01" value="{{ 'Rp ' . number_format($nilai_kembali) }}"
+                                            required>
                                     </div>
                                     <div class="invalid-feedback">
                                         Required!
@@ -113,9 +113,8 @@ use App\Models\DokumenSPJ;
                                                     for ($a = 0; $a < count($spj_kategori); $a++) {
                                                     ?>
                                                     <a class="nav-link" id="tab-spj_kategori[$a]->id }}"
-                                                        data-toggle="pill"
-                                                        href="#content-{{ $spj_kategori[$a]->id }}" role="tab"
-                                                        aria-controls="{{ $spj_kategori[$a]->id }}"
+                                                        data-toggle="pill" href="#content-{{ $spj_kategori[$a]->id }}"
+                                                        role="tab" aria-controls="{{ $spj_kategori[$a]->id }}"
                                                         aria-selected="true">{{ $spj_kategori[$a]->nama_kategori }}
                                                     </a>
                                                     <?php } ?>
@@ -184,9 +183,9 @@ use App\Models\DokumenSPJ;
                                                             } ?>
                                                             </table>
                                                         </div>
-                                                        <?php
-                                                    } ?>
                                                     </div>
+                                                    <?php
+                                                    } ?>
                                                 </div>
                                             </div>
                                         </div>

@@ -9,11 +9,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{-- <p></p> --}}
+                @if (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script>
+                @endif
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('store') }}" novalidate>
+                    action="{{ url('store') }}">
                     {{ csrf_field() }}
-                    {{-- <input type="hidden" name="create_by" class="form-control" value="<?= Auth()->user()->id ?>"> --}}
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
                         <input type="text" name="nomor" class="form-control" id="validationCustom01" required>
@@ -34,7 +42,8 @@
                     </div>
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
-                        <input type="file" class="form-control-file" name="file" id="file" required>
+                        <input type="file" class="form-control-file" name="file" id="file"
+                            accept="application/pdf" required>
                         <input type="hidden" name="jenis" value="Memo Cair" class="custom-file-input" required>
                         @error('file')
                             <div class="alert text-white bg-success" role="alert">
@@ -56,3 +65,10 @@
         </div>
     </div>
 </div>
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

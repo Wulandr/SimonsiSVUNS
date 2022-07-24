@@ -9,10 +9,20 @@
                 </button>
             </div>
             <div class="modal-body text-left">
+                @if (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script>
+                @endif
                 <p>Yang bertanda tangan di bawah ini menyatakan bertanggung-jawab tentang penggunaan,
                     pertanggungjawaban, dan pelaporan dana kegiatan sebagai berikut. </p>
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/input_pk') }}" novalidate>
+                    action="{{ url('/input_pk') }}">
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">1. &ensp; Nama</label>
@@ -56,10 +66,19 @@
                     } ?>
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">
-                            5. &ensp; Tanggal Pelaksanaan Kegiatan</label>
+                            5. &ensp; Tanggal Mulai Pelaksanaan Kegiatan</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control"
                                 value="{{ date_format(date_create($tor[$m]->tgl_mulai_pelaksanaan), 'd-m-Y') }}"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-4 align-self-center mb-0">
+                            6. &ensp; Tanggal Akhir Pelaksanaan Kegiatan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                value="{{ date_format(date_create($tor[$m]->tgl_akhir_pelaksanaan), 'd-m-Y') }}"
                                 disabled>
                         </div>
                     </div>
@@ -71,9 +90,9 @@
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">
-                            6. &ensp; Total Anggaran Dialokasikan</label>
+                            7. &ensp; Total Anggaran Dialokasikan</label>
                         <div class="col-sm-8">
-                            <input type="text" name="alokasi_anggaran" class="form-control">
+                            <input type="text" name="alokasi_anggaran" class="form-control" required>
                         </div>
                         <div class="invalid-feedback">
                             Tolong inputkan nominal anggaran sebelum submit!
@@ -81,10 +100,11 @@
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">
-                            7. &ensp; Tanggal Selesai Pelaporan</label>
+                            8. &ensp; Tanggal Selesai Pelaporan</label>
                         <div class="col-sm-8">
-                            <input type="date" name="tgl_selesai" class="form-control" placeholder="01-01-2022"
-                                required>
+                            <input type="date"
+                                max="<?= date('Y-m-d', strtotime($tor[$m]->tgl_akhir_pelaksanaan . '+14 days')) ?>"
+                                name="tgl_selesai" class="form-control" required>
                         </div>
                         <div class="invalid-feedback">
                             Tolong inputkan tanggal sebelum submit!
@@ -99,3 +119,10 @@
                 </form>
             </div>
         </div>
+        <script>
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        </script>

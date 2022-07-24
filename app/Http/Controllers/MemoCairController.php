@@ -39,6 +39,8 @@ class MemoCairController extends Controller
 
     public function store(Request $request)
     {
+        //memvalidasi inputan
+        $request->validate([]);
         //mengambil data file yang diupload
         $file           = $request->file('file');
         //mengambil nama file
@@ -62,7 +64,11 @@ class MemoCairController extends Controller
         $upload2->nominal = $request->nominal;
         $upload2->id_tor = $request->id_tor;
         $upload2->save();
-
+        if ($upload2) {
+            return redirect()->back()->with("success", "Sertifikat Memo Cair Sudah Terbit");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
         //kembali ke halaman sebelumnya
         return back();
     }
@@ -77,10 +83,5 @@ class MemoCairController extends Controller
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
-    }
-
-    public function destroy(MemoCair $memoCair)
-    {
-        //
     }
 }

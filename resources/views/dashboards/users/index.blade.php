@@ -88,21 +88,6 @@ use Illuminate\Support\Facades\Auth;
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI AJUAN PER TW</h4>
                             </div>
-                            <div class="iq-card-header-toolbar d-flex align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle text-primary" id="dropdownMenuButton5"
-                                        data-toggle="dropdown">
-                                        <i class="ri-more-fill"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right"
-                                        aria-labelledby="dropdownMenuButton5">
-                                        <a class="dropdown-item" href="#"><i
-                                                class="ri-printer-fill mr-2"></i>Print</a>
-                                        <a class="dropdown-item" href="#"><i
-                                                class="ri-file-download-fill mr-2"></i>Download</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="iq-card-body">
                             <div id="table" class="table-editable">
@@ -112,6 +97,7 @@ use Illuminate\Support\Facades\Auth;
                                         <tr class="bg-primary">
                                             <th>No</th>
                                             <th>Nama Kegiatan</th>
+                                            <th>Program Studi</th>
                                             <th>Penanggungjawab</th>
                                             <th width="12%">Anggaran</th>
                                             <th width="12%">Realisasi</th>
@@ -129,6 +115,13 @@ use Illuminate\Support\Facades\Auth;
                                             ?>
                                             <td>{{ $no + 1 }}</td><?php $no++; ?>
                                             <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
+                                            <?php
+                                            for ($v = 0; $v < count($prodi); $v++) {
+                                                if ($prodi[$v]->id == $tor[$m]->id_unit) {
+                                                    $namaprodi = $prodi[$v]->nama_unit;
+                                            ?>
+                                            <td>{{ $namaprodi }}</td>
+                                            <?php }} ?>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
                                             <td>{{ 'Rp ' . number_format($anggaran) }}</td>
                                             @foreach ($spj as $nominal)
