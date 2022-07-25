@@ -151,6 +151,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/tor', [TorController::class, 'index']);
     Route::get('/pengajuantor', [TorController::class, 'pengajuan']);
     Route::get('/steppengajuantor', [TorController::class, 'stepPengajuan']);
+    Route::get('/getEmailPIC/{namapic}', [TorController::class, 'getEmailPIC']);
+
+
     Route::get('/lengkapitor/{id}', [TorController::class, 'lengkapitor']);
     // Route::get('/tor/filter_tahun/{tahun}', [TorController::class, 'filter_tahun']);
     Route::get('/filtertahun', [TorController::class, 'filter_tahun']);

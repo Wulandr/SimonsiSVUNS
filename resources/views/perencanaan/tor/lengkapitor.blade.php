@@ -30,7 +30,8 @@ use Illuminate\Support\Facades\Auth;
                     <div class="col-sm-12">
                         <div class="iq-card">
                             <div class="row">
-                                <div class="container mt-2 mb-2 mr-2">
+                                <div class="container mt-2 mb-2 mr-2 ml-2">
+                                    <a href="{{url('/torab')}}"><button type="button" class="btn btn-primary btn-sm mr-2">Back</button></a>
                                     <div class="user-list-files d-flex float-right">
                                         <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
                                             Print
@@ -931,8 +932,8 @@ use Illuminate\Support\Facades\Auth;
             var printContents = document.getElementById("iniprint").innerHTML;
             var originalContents = document.body.innerHTML;
             document.body.innerHTML = printContents;
-            document.getElementById("buttonremove1").remove();
-            document.getElementById("buttonremove2").remove();
+            // document.getElementById("buttonremove1").remove();
+            // document.getElementById("buttonremove2").remove();
             window.print();
         };
     </script>

@@ -73,7 +73,7 @@ use Illuminate\Support\Facades\Auth;
                             if ($pagu[$pg]->id_unit == Auth()->user()->id_unit) {
                               for ($t3 = 0; $t3 < count($tabeltahun); $t3++) {
                                 if ($pagu[$pg]->id_tahun == $tabeltahun[$t3]->id) { ?>
-                                  <h6>{{$tabeltahun[$t3]->tahun}} <b>{{"Rp".number_format($pagu[$pg]->pagu,2,',','.')}}</b></h6>
+                                  <h6>{{$tabeltahun[$t3]->tahun}} : <b>{{"Rp".number_format($pagu[$pg]->pagu,2,',','.')}}</b></h6>
 
                           <?php }
                               }

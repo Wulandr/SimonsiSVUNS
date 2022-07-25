@@ -56,8 +56,7 @@ use Spatie\Permission\Contracts\Role;
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
                         <?php if (empty(Auth::user()->image) || Auth::user()->image == 'NULL') { ?>
                             <img src="{{ asset('findash/assets/images/user/1.jpg') }}" class="img-fluid rounded mr-3" alt="user">
-                        <?php } ?>
-                        <?php if (!empty(Auth::user()->image)) { ?>
+                        <?php } elseif (!empty(Auth::user()->image || Auth::user()->image != 'NULL')) { ?>
                             <img src="{{ asset('imageprofil/'.Auth::user()->image) }}" class="img-fluid rounded mr-3" alt="user">
                         <?php } ?>
                         <div class="caption">

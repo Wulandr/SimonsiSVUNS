@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     <!-- A N G G A R A N -->
+
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-5">
                                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -149,6 +150,7 @@ use Illuminate\Support\Facades\Auth;
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">

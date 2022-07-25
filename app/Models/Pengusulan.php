@@ -14,6 +14,5 @@ class Pengusulan extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'pengusulan';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
 }

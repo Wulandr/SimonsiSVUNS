@@ -24,7 +24,6 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'users';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
     protected $fillable = [
         'id_unit',

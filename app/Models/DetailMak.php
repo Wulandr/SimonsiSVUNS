@@ -12,6 +12,5 @@ class DetailMak extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'detail_mak';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
 }

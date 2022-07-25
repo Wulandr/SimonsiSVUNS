@@ -11,6 +11,5 @@ class Unit extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'unit';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
 }

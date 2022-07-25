@@ -12,6 +12,5 @@ class KelompokMak extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'kelompok_mak';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
 }

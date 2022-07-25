@@ -636,4 +636,10 @@ class TorController extends Controller
             abort(404);
         }
     }
+
+    public function getEmailPIC($namapic)
+    {
+        $pic = DB::table('users')->where('name', $namapic)->get();
+        return response()->json($pic);
+    }
 }

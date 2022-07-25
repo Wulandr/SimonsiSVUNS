@@ -66,6 +66,8 @@ use Illuminate\Support\Facades\Auth;
                                                 <div class="container ml-3">
                                                     <input type="hidden" name="create_by" id="create_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
                                                     <input type="hidden" name="update_by" id="update_by" value="{{ Auth()->user()->id }}" class="custom-control-input">
+
+
                                                     <div class="form-group">
                                                         <label><b>Jenis Ajuan</b></label><br />
                                                         <div class="custom-control custom-radio custom-control-inline">
@@ -123,14 +125,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Utama (IKU)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IKU (%)</label>
+                                                                    <label>Realisasi IKU {{date('Y')-1}} (%)</label>
                                                                     <input name="realisasi_IKU" id="realisasi_IKU" type="text" class="form-control @error('realisasi_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IKU')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IKU (%)</label>
+                                                                    <label>Target IKU {{date('Y')}} (%)</label>
                                                                     <input name="target_IKU" id="target_IKU" type="text" class="form-control @error('target_IKU') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IKU')
@@ -144,14 +146,14 @@ use Illuminate\Support\Facades\Auth;
                                                                     <h6 class="card-title"><b>Indikator Kinerja Kegiatan (IK)</b></h6>
                                                                 </b>
                                                                 <div class="form-group">
-                                                                    <label>Realisasi IK (%)</label>
+                                                                    <label>Realisasi IK {{date('Y')-1}} (%)</label>
                                                                     <input name="realisasi_IK" id="realisasi_IK" type="text" class="form-control @error('realisasi_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('realisasi_IK')
                                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                                 @enderror
                                                                 <div class="form-group">
-                                                                    <label>Target IK (%)</label>
+                                                                    <label>Target IK {{date('Y')}} (%)</label>
                                                                     <input name="target_IK" id="target_IK" type="text" class="form-control @error('target_IK') is-invalid @enderror">
                                                                 </div>
                                                                 @error('target_IK')
@@ -223,12 +225,15 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="container mt-3">
                                                 <div class="form-group">
                                                     <label><b>Nama PIC Kegiatan</b></label><br />
-                                                    <select name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                                                    <select name="nama_pic" id="selectnya" onchange="Ganti()" class="form-control @error('nama_pic') is-invalid @enderror" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+
+                                                        <option selected="" disabled>Pilih PIC</option>
                                                         <?php
                                                         for ($pi2 = 0; $pi2 < count($roles); $pi2++) {
                                                             if (Auth::user()->role == $roles[$pi2]->id) {
                                                                 if ($roles[$pi2]->name == "PIC") { ?>
                                                                     <option value="<?= Auth::user()->name; ?>"><?= Auth::user()->name; ?></option>
+
                                                                 <?php } elseif ($roles[$pi2]->name == "Prodi") {
                                                                     // for ($pi1 = 0; $pi1 < count($users); $pi1++) {
                                                                     //     for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
@@ -249,7 +254,7 @@ use Illuminate\Support\Facades\Auth;
                                                                             for ($pi3 = 0; $pi3 < count($roles2); $pi3++) {
                                                                                 if ($users[$pi1]->role == $roles2[$pi3]->id) {
                                                                                     if ($roles2[$pi3]->name == "PIC") { ?>
-                                                                    <option value="<?= $users[$pi1]->name ?>"><?= $users[$pi1]->name ?></option>
+                                                                    <option value="<?= $users[$pi1]->name ?>" id="namapic"><?= $users[$pi1]->name ?></option>
                                                 <?php }
                                                                                 }
                                                                             }
@@ -267,14 +272,46 @@ use Illuminate\Support\Facades\Auth;
                                                 </div>
                                                 <div class="form-group">
                                                     <label><b>Email PIC Kegiatan</b></label>
-                                                    <input name="email_pic" id="email_pic" type="text" class="form-control @error('email_pic') is-invalid @enderror" value="">
+                                                    <input name="email_pic" id="email_pic" type="email" class="form-control @error('email_pic') is-invalid @enderror" value="" placeholder="">
                                                 </div>
+
+                                                <!-- J A V A S C R I P T   O T O M A T I S   S H O W   E M A I L -->
+                                                <?php
+                                                $emailpic = Auth()->user()->email;
+                                                $telppic = Auth()->user()->telepon;
+                                                ?>
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        $('#selectnya').select2();
+                                                    });
+
+                                                    function Ganti() {
+                                                        var namapic = document.getElementById('selectnya').value;
+                                                        $.ajax({
+                                                            url: '/getEmailPIC/' + namapic,
+                                                            type: "GET",
+                                                            data: {
+                                                                "_token": "{{ csrf_token() }}",
+                                                            },
+                                                            dataType: "json",
+                                                            success: function(data) {
+                                                                $.each(data, function(key, pic) {
+                                                                    document.getElementById("email_pic").value = pic.email;
+                                                                    document.getElementById("kontak_pic").value = pic.telepon;
+                                                                });
+
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                                <!-- -------------------------------------------------------------------------- -->
+
                                                 @error('email_pic')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="form-group">
                                                     <label><b>Kontak PIC Kegiatan</b></label>
-                                                    <input name="kontak_pic" id="kontak_pic" type="text" class="form-control @error('kontak_pic') is-invalid @enderror" value="">
+                                                    <input name="kontak_pic" id="kontak_pic" type="text" class="form-control @error('kontak_pic') is-invalid @enderror" value="" placeholder="">
                                                 </div>
                                                 @error('kontak_pic')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -326,6 +363,7 @@ use Illuminate\Support\Facades\Auth;
                                                 @error('id_tw')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
+
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary next action-button float-right">Submit</button>

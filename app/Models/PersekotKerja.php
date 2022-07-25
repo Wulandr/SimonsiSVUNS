@@ -10,6 +10,5 @@ class PersekotKerja extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'persekot_kerja';
-    //protected $fillable = ['nip'];
     protected $guarded = [];
 }
