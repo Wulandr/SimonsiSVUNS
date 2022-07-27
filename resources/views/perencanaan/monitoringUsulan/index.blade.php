@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Auth;
 
 ?>
 @include('dashboards/users/layouts/script')
+<?php
+function ngecekWulan($awal, $akhir)
+{
+    if (new datetime(date('Y-m-d')) >= new datetime($awal) && new datetime(date('Y-m-d')) <= new datetime($akhir) && !empty($_REQUEST['filterTw'])) {
+        return true;
+    }
+    return false;
+}
+?>
 
 <body>
     <div id="loading">
@@ -40,6 +49,7 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="iq-card-body">
                                     <!-- A N G G A R A N -->
+
 
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-5">
@@ -151,6 +161,14 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
                                     </div>
 
+                                    <!-- <div class="row">
+                                        <div class="col-sm-12 col-lg-6">
+                                            <div class="iq-card-body">
+                                                <div id="apex-column-wulan"></div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
 
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
@@ -165,7 +183,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
                                                                                 if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
-                                                                                    <option value="{{$tw[$tw1]->id}}" {{$filtertw==$tw[$tw1]->id ? 'selected':''}}>{{$tw[$tw1]->triwulan}}</option>
+                                                                                    <option value="{{ base64_encode($tw[$tw1]->id) }}" {{$filtertw==$tw[$tw1]->id ? 'selected':''}} {{ ngecekWulan($tw[$tw1]->periode_awal, $tw[$tw1]->periode_akhir) ? 'selected' : '' }}>{{$tw[$tw1]->triwulan}}</option>
                                                                     <?php }
                                                                             }
                                                                         }

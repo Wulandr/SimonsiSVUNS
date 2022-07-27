@@ -42,10 +42,7 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
                                                 <h4 class="card-text">Indikator Kegiatan
-                                                    @can('k_create')
-                                                    <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah k" data-original-title="Tambah k" data-target="#tambahk"><i class="fa fa-plus-circle"></i>
-                                                    </button>
-                                                    @endcan
+
                                                 </h4>
                                                 <!-- Modal Tambah k -->
                                                 <div class="modal fade" tabindex="-1" role="dialog" id="tambahk">
@@ -99,6 +96,11 @@ use Illuminate\Support\Facades\Auth;
 
                                         </div>
                                         <div class="iq-card-body">
+                                            @can('k_create')
+                                            <button class="btn btn-primary" data-toggle="modal" title="Tambah k" data-original-title="Tambah k" data-target="#tambahk">
+                                                <i class="fa fa-plus me-1"></i> Tambah Data
+                                            </button>
+                                            @endcan
                                             @if (session('success'))
                                             <script>
                                                 Swal.fire({
@@ -139,7 +141,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <th scope="col">IK</th>
                                                             <th scope="col">K</th>
                                                             <th scope="col">Deskripsi</th>
-                                                            <th scope="col">Aksi</th>
+                                                            <th scope="col" width="8%">Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -171,10 +173,10 @@ use Illuminate\Support\Facades\Auth;
                                                                 <td>
                                                                     <div class="flex align-items-center list-user-action">
                                                                         @can('ik_update')
-                                                                        <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update K" href="" data-target="#update_k<?= $indikatorK->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                        <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update K" href="" data-target="#update_k<?= $indikatorK->id ?>"><i class="ri-pencil-line"></i></a>
                                                                         @endcan
                                                                         @can('ik_delete')
-                                                                        <a class="k-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/k/delete/'.base64_encode($indikatorK->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                        <a class="k-confirm iq-bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/k/delete/'.base64_encode($indikatorK->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                         @endcan
                                                                     </div>
                                                                 </td>

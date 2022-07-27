@@ -40,10 +40,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-text">Sub Kegiatan
-                                            @can('subk_create')
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah SUB K" data-original-title="Tambah SUB K" data-target="#tambahsubk"><i class="fa fa-plus-circle"></i>
-                                            </button>
-                                            @endcan
+
                                         </h4>
                                         <!-- Modal Tambah SUBK -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="tambahsubk">
@@ -97,6 +94,11 @@ use Illuminate\Support\Facades\Auth;
 
                                 </div>
                                 <div class="iq-card-body">
+                                    @can('subk_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah SUB K" data-original-title="Tambah SUB K" data-target="#tambahsubk">
+                                        <i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -178,10 +180,10 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('subk_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update SUB K" href="" data-target="#update_subk<?= $k4->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update K" data-original-title="Update SUB K" href="" data-target="#update_subk<?= $k4->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('subk_delete')
-                                                                <a class="subk-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/subk/delete/'.base64_encode($k4->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="subk-confirm iq-bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/subk/delete/'.base64_encode($k4->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

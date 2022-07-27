@@ -45,10 +45,10 @@
                                                             <input name="email" id="email" type="email" class="form-control">
 
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label>Password</label>
                                                             <input name="password" id="password" type="password" class="form-control">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group">
                                                             <label>Role</label>
                                                             <select class="js-role-tambah" name="role[]" id="role[]" multiple="multiple" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1">
@@ -92,14 +92,15 @@
                                         <table id="myusers" class="table table-striped">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>No.</th>
+                                                    <th width="5%">No.</th>
+                                                    <th>Foto</th>
                                                     <th>Nama</th>
                                                     <th>Email</th>
                                                     <th>Role</th>
                                                     <th>Multirole</th>
                                                     <th>Unit</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
+                                                    <th width="8%">Status</th>
+                                                    <th width="8%">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -107,6 +108,7 @@
                                                 @foreach($user as $u)
                                                 <tr>
                                                     <td><a href="#">{{$num}}</a></td>
+                                                    <td><img src="{{asset('imageprofil/'.$u->image)}}" class="avatar-35 rounded img-fluid"></img></td>
                                                     <td class="font-weight-600">{{$u -> name}}</td>
                                                     <td class="font-weight-600">{{$u->email}}</td>
                                                     <?php foreach ($role as $roleindex) { ?>
@@ -163,12 +165,14 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="flex align-items-center list-user-action">
-                                                                <a href="{{route('user.detail',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary"><i class="fa fa-list"></i></a>
-                                                                <?php if ($u->role != 1) { ?>
-                                                                    <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update User" data-original-title="Update User" href="" data-target="#update_user<?= $u->id ?>"><i class="ri-pencil-line"></i></a>
-                                                                    <!-- <a href="{{route('user.update',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a> -->
-                                                                    <a href="{{route('user.delete',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a>
-                                                                <?php } ?>
+                                                                <div class="row">
+                                                                    <a href="{{route('user.detail',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary"><i class="fa fa-list"></i></a>
+                                                                    <?php if ($u->role != 1) { ?>
+                                                                        <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update User" data-original-title="Update User" href="" data-target="#update_user<?= $u->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                        <!-- <a href="{{route('user.update',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a> -->
+                                                                        <a href="{{route('user.delete',['user'=> base64_encode($u->id)])}}" class="iq-bg-danger" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a>
+                                                                    <?php } ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -194,10 +198,10 @@
                                                                         <label>Email</label>
                                                                         <input name="email" id="email" value="{{old('email',$u->email)}}" type="text" class="form-control">
                                                                     </div>
-                                                                    <div class="form-group">
+                                                                    <!-- <div class="form-group">
                                                                         <label>Password</label>
                                                                         <input name="password" id="password" value="{{old('password')}}" type="password" class="form-control">
-                                                                    </div>
+                                                                    </div> -->
                                                                     <div class="form-group">
                                                                         <label>Role</label>
                                                                         <select class="js-role-update" name="role[]" multiple="multiple" style="width: 100%;height: 100%;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;
@@ -268,6 +272,7 @@
             $('.custom-control-input').change(function() {
                 var is_aktif = $(this).prop('checked') == true ? 1 : 0;
                 var id = $(this).data('id');
+                console.log(is_aktif);
 
                 $.ajax({
                     type: "GET",

@@ -58,7 +58,7 @@ class UserController extends Controller
                 "name" => "required|string|max:30",
                 "role" => "required",
                 "email" => "required|email|unique:users,email",
-                "password" => "required|min:6|confirmed"
+                // "password" => "required|min:6|confirmed"
                 // google_id
                 // username
             ],
@@ -86,7 +86,8 @@ class UserController extends Controller
             $inserting->multirole = implode(',', $rol);
             // $inserting->nip = $request->nip;
             $inserting->email_verified_at = now();
-            $inserting->password = Hash::make($request->password);
+            // $inserting->password = Hash::make($request->password);
+            $inserting->password = Hash::make("vokasibergerak");
             $inserting->remember_token = Str::random(10);
             $inserting->created_at = $request->created_at;
             $inserting->updated_at = $request->updated_at;

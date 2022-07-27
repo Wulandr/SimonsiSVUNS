@@ -19,6 +19,19 @@ class MonitoringUsulanController extends Controller
         $this->middleware('permission:ajuan_monitoring', ['only' => 'index']);
     }
 
+    private $filtertw = 0;
+
+    private function cekWulan()
+    {
+        $model = Tor::all();
+        if (!isset($_REQUEST['filterTw'])) {
+            $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
+            $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+            $this->filtertw = $tw->id;
+        }
+        return $model;
+    }
+
     public function index()
     {
         $roleUser = Auth()->user()->role;
@@ -26,7 +39,10 @@ class MonitoringUsulanController extends Controller
             abort(403);
         }
 
-        $tor = DB::table('tor')->orderBy('tgl_mulai_pelaksanaan', 'asc')->get();
+        $tor = $this->cekWulan();
+        $filtertw = $this->filtertw;
+
+        // $tor = DB::table('tor')->orderBy('tgl_mulai_pelaksanaan', 'asc')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();
@@ -38,7 +54,6 @@ class MonitoringUsulanController extends Controller
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
-        $filtertw = 0;
         $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
         return view(
             "perencanaan.monitoringUsulan.index",
@@ -56,9 +71,13 @@ class MonitoringUsulanController extends Controller
         if ($roleUser == 2) {
             abort(403);
         }
-        $filtertw = $request->filterTw;
+        // $filtertw = $request->filterTw;
+        $filtertw = base64_decode($request->filterTw);
+        $tor = Tor::all();
+
         if ($filtertw == 0) {
-            return redirect('/monitoringUsulan');
+            // return redirect('/monitoringUsulan');
+            $tor = Tor::all();
         } elseif ($filtertw != 0) {
             $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
         }

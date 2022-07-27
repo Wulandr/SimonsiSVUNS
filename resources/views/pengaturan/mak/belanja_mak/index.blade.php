@@ -42,10 +42,7 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
                                                 <h4 class="card-text">Belanja MAK
-                                                    @can('belanjamak_create')
-                                                    <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah Belanja MAK" data-original-title="Tambah Belanja MAK" data-target="#tambahBelMak"><i class="fa fa-plus-circle"></i>
-                                                    </button>
-                                                    @endcan
+
                                                 </h4>
                                                 <!-- T A M B A H    -->
                                                 <div class="modal fade" tabindex="-1" role="dialog" id="tambahBelMak">
@@ -95,6 +92,11 @@ use Illuminate\Support\Facades\Auth;
                                         </div>
 
                                         <div class="iq-card-body">
+                                            @can('belanjamak_create')
+                                            <button class="btn btn-primary" data-toggle="modal" title="Tambah Belanja MAK" data-original-title="Tambah Belanja MAK" data-target="#tambahBelMak">
+                                                <i class="fa fa-plus me-1"></i> Tambah Data
+                                            </button>
+                                            @endcan
                                             @if (session('success'))
                                             <script>
                                                 Swal.fire({
@@ -128,7 +130,7 @@ use Illuminate\Support\Facades\Auth;
                                                         <tr>
                                                             <th>No.</th>
                                                             <th scope="col">MAK</th>
-                                                            <th scope="col">Kelompok MAK</th>
+                                                            <th scope="col" width="30%">Kelompok MAK</th>
                                                             <th scope="col">Nama Belanja MAK</th>
                                                             <th scope="col">Aksi</th>
                                                         </tr>
@@ -145,12 +147,14 @@ use Illuminate\Support\Facades\Auth;
                                                             <td>{{$join->belanja}}</td>
                                                             <td>
                                                                 <div class="flex align-items-center list-user-action">
-                                                                    @can('belanjamak_update')
-                                                                    <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Belanja" data-original-title="Update Belanja" href="" data-target="#update_bel<?= $join->idBelanja ?>"><i class="ri-pencil-line"></i></a>
-                                                                    @endcan
-                                                                    @can('belanjamak_delete')
-                                                                    <a class="iq-bg-primary belanjamak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/belanja_mak/delete/'.base64_encode($join->idBelanja))}}"><i class="ri-delete-bin-line"></i></a>
-                                                                    @endcan
+                                                                    <div class="row">
+                                                                        @can('belanjamak_update')
+                                                                        <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Belanja" data-original-title="Update Belanja" href="" data-target="#update_bel<?= $join->idBelanja ?>"><i class="ri-pencil-line"></i></a>
+                                                                        @endcan
+                                                                        @can('belanjamak_delete')
+                                                                        <a class="iq-bg-danger belanjamak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/belanja_mak/delete/'.base64_encode($join->idBelanja))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                        @endcan
+                                                                    </div>
                                                                 </div>
                                                             </td>
                                                         </tr>

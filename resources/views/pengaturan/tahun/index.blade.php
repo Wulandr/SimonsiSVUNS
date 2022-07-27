@@ -24,10 +24,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">TAHUN
-                                            @can('tahun_create')
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah TAHUN" data-original-title="Tambah TAHUN" data-target="#tambahtahun"><i class="fa fa-plus-circle"></i>
-                                            </button>
-                                            @endcan
+
                                         </h4>
                                         <!-- Modal Tambah TAHUN -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="tambahtahun">
@@ -40,11 +37,11 @@ use Illuminate\Support\Facades\Auth;
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-horizontal" method="post" action="{{ url('/tahun/create') }}">
+                                                        <form class="form-horizontal needs-validation" method="post" action="{{ url('/tahun/create') }}">
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label>Tahun</label>
-                                                                <input name="tahun" id="tahun" type="text" class="form-control">
+                                                                <input name="tahun" id="tahun" type="text" class="form-control" required>
                                                             </div>
                                                             <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d') ?>">
                                                             <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
@@ -69,6 +66,11 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
+                                    @can('tahun_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah TAHUN" data-original-title="Tambah TAHUN" data-target="#tambahtahun"><i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
+
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -217,10 +219,10 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('tahun_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Tahun" data-original-title="Update Tahun" href="" data-target="#update_thn<?= $thn->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Tahun" data-original-title="Update Tahun" href="" data-target="#update_thn<?= $thn->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('tahun_delete')
-                                                                <a href="{{url('/tahun/delete/'.base64_encode($thn->id))}}" class="iq-bg-primary tahun-confirm" data-toggle="tooltip" title="Delete">
+                                                                <a href="{{url('/tahun/delete/'.base64_encode($thn->id))}}" class="iq-bg-danger tahun-confirm" data-toggle="tooltip" title="Delete">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
                                                                 <!-- <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/tahun/delete/'.$thn->id)}}" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="ri-delete-bin-line"></i></a> -->

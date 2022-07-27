@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Auth;
                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
-                                        <h4 class="card-title">Kategori File SPJ<button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah Kategori" data-original-title="Tambah Kategori" data-target="#add_kategori"><i class="fa fa-plus-circle"></i>
-                                            </button>
+                                        <h4 class="card-title">Kategori File SPJ
+
                                         </h4>
                                         @include('pengaturan/spj_kategori/tambah_kategori')
                                     </div>
@@ -40,10 +40,10 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah Kategori" data-original-title="Tambah Kategori" data-target="#add_kategori"><i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+
                                     @if (session('success'))
-                                    <!-- <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div> -->
                                     <script>
                                         Swal.fire({
                                             icon: 'success',
@@ -72,8 +72,8 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>{{ $spj_kategori[$a]->nama_kategori }}</td>
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Kategori" data-original-title="Update Kategori" data-target="#update_kategori<?= $spj_kategori[$a]->id ?>"><i class="ri-pencil-line"></i></a>
-                                                                <a class="iq-bg-primary unit-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{ url('/spj_kategori/delete/' . $spj_kategori[$a]->id) }}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Kategori" data-original-title="Update Kategori" data-target="#update_kategori<?= $spj_kategori[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-danger unit-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{ url('/spj_kategori/delete/' . $spj_kategori[$a]->id) }}"><i class="ri-delete-bin-line"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>

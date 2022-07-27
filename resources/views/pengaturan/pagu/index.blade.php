@@ -24,10 +24,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">PAGU
-                                            @can('pagu_create')
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah PAGU" data-original-title="Tambah PAGU" data-target="#tambahpagu"><i class="fa fa-plus-circle"></i>
-                                            </button>
-                                            @endcan
+
                                         </h4>
                                         <!-- Modal Tambah TOR -->
                                         <div class="modal fade" role="dialog" id="tambahpagu" style="overflow:hidden;">
@@ -101,6 +98,12 @@ use Illuminate\Support\Facades\Auth;
 
                                 </div>
                                 <div class="iq-card-body">
+                                    @can('pagu_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah PAGU" data-original-title="Tambah PAGU" data-target="#tambahpagu">
+                                        <i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
+
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -171,12 +174,14 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>{{"Rp. " .  number_format($pagu[$a]->tw4, 2, ',', '.') }}</td>
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
-                                                                @can('pagu_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Pagu" data-original-title="Update Pagu" href="" data-target="#update_pagu<?= $pagu[$a]->id ?>"><i class="ri-pencil-line"></i></a>
-                                                                @endcan
-                                                                @can('pagu_delete')
-                                                                <a class="pagu-confirm iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/pagu/delete/'.base64_encode($pagu[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
-                                                                @endcan
+                                                                <div class="row">
+                                                                    @can('pagu_update')
+                                                                    <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Pagu" data-original-title="Update Pagu" href="" data-target="#update_pagu<?= $pagu[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                    @endcan
+                                                                    @can('pagu_delete')
+                                                                    <a class="pagu-confirm iq-bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/pagu/delete/'.base64_encode($pagu[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                    @endcan
+                                                                </div>
                                                             </div>
                                                         </td>
                                                     </tr>

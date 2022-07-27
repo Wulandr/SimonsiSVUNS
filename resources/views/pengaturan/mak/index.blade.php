@@ -86,10 +86,11 @@ use Illuminate\Support\Facades\Auth;
 
                                 </div>
                                 <div class="iq-card-body">
-                                    <!-- <span class="table-add float-right mb-3 mr-2">
-                                            <div class="form-group row">
-                                            </div>
-                                        </span> -->
+                                    @can('mak_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah MAK" data-original-title="Tambah MAK" data-target="#tambahmak">
+                                        <i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -120,10 +121,10 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('mak_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_mak<?= $mak[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update MAK" data-original-title="Update MAK" href="" data-target="#update_mak<?= $mak[$k1]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('mak_delete')
-                                                                <a class="iq-bg-primary mak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/mak/delete/'.base64_encode($mak[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-danger mak-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/mak/delete/'.base64_encode($mak[$k1]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

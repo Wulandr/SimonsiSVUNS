@@ -52,6 +52,14 @@
                 display: none !important;
             }
         } */
+        /* .iq-bg-warning {
+            background: #f5c43559 !important;
+            color: #f1a003 !important;
+        }
+
+        .iq-bg-danger {
+            background: #fd18183d !important;
+        } */
     </style>
 </head>
 

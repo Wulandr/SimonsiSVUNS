@@ -45,11 +45,9 @@
                                             <table id="myroles" class="table table-striped">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th>No.</th>
+                                                        <th width="10%">No.</th>
                                                         <th>Role</th>
                                                         <th>Aksi</th>
-                                                        <th></th>
-                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -59,18 +57,18 @@
                                                         <td><a href="#">{{$num}}</a></td>
                                                         <td><a href="#">{{$role->name}}</a></td>
 
-                                                        <td width="2">
-                                                            <a href="<?= route('roles.show', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary">Detail</a>
-                                                        </td>
-                                                        <td width="2">
-                                                            <a href="<?= route('roles.edit', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                                                        </td>
-                                                        <td width="2">
-                                                            <form action="{{route('roles.destroy',['role' => base64_encode($role->id)])}}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="fa fa-trash"></i></button>
-                                                            </form>
+                                                        <td>
+                                                            <div class="row">
+                                                                <a href="<?= route('roles.show', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-list"></i></a>
+
+                                                                <a href="<?= route('roles.edit', ['role' => base64_encode($role->id)]) ?>" class="btn btn-warning btn-action btn-sm mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+
+                                                                <form action="{{route('roles.destroy',['role' => base64_encode($role->id)])}}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger btn-action btn-sm mr-1 trigger--fire-modal-1" data-toggle="tooltip" title="" onclick="return confirm('Apakah anda yakin ingin hapus ?')"><i class="fa fa-trash"></i></button>
+                                                                </form>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <?php $num += 1; ?>

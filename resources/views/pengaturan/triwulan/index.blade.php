@@ -23,10 +23,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">TRIWULAN
-                                            @can('triwulan_create')
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah TRIWULAN" data-original-title="Tambah TRIWULAN" data-target="#tambahpagu"><i class="fa fa-plus-circle"></i>
-                                            </button>
-                                            @endcan
+
                                         </h4>
                                         <!-- Modal Tambah TOR -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="tambahpagu">
@@ -88,6 +85,12 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
+                                    @can('triwulan_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah TRIWULAN" data-original-title="Tambah TRIWULAN" data-target="#tambahpagu">
+                                        <i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
+
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -147,10 +150,10 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('triwulan_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Triwulan" data-original-title="Update Triwulan" href="" data-target="#update_tw<?= $triwulan[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Triwulan" data-original-title="Update Triwulan" href="" data-target="#update_tw<?= $triwulan[$a]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('triwulan_delete')
-                                                                <a class="iq-bg-primary tw-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/triwulan/delete/'.base64_encode($triwulan[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-danger tw-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/triwulan/delete/'.base64_encode($triwulan[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>

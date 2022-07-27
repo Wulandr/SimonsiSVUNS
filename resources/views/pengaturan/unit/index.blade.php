@@ -23,10 +23,7 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">UNIT
-                                            @can('unit_create')
-                                            <button class="search-toggle iq-waves-effect bg-primary rounded" data-toggle="modal" title="Tambah UNIT" data-original-title="Tambah UNIT" data-target="#tambahunit"><i class="fa fa-plus-circle"></i>
-                                            </button>
-                                            @endcan
+
                                         </h4>
                                         <!-- Modal Tambah UNIT -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="tambahunit">
@@ -77,11 +74,11 @@ use Illuminate\Support\Facades\Auth;
                                     </div>
                                 </div>
                                 <div class="iq-card-body">
-                                    <!-- <span class="table-add float-right mb-3 mr-2">
-                                        <div class="form-group row">
-
-                                        </div>
-                                    </span> -->
+                                    @can('unit_create')
+                                    <button class="btn btn-primary" data-toggle="modal" title="Tambah UNIT" data-original-title="Tambah UNIT" data-target="#tambahunit">
+                                        <i class="fa fa-plus me-1"></i> Tambah Data
+                                    </button>
+                                    @endcan
                                     @if (session('success'))
                                     <script>
                                         Swal.fire({
@@ -116,10 +113,10 @@ use Illuminate\Support\Facades\Auth;
                                                         <td>
                                                             <div class="flex align-items-center list-user-action">
                                                                 @can('unit_update')
-                                                                <a class="iq-bg-primary" data-toggle="modal" data-placement="top" title="Update Unit" data-original-title="Update Unit" href="" data-target="#update_unit<?= $unit[$a]->id ?>"><i class="ri-pencil-line"></i></a>
+                                                                <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Unit" data-original-title="Update Unit" href="" data-target="#update_unit<?= $unit[$a]->id ?>"><i class="ri-pencil-line"></i></a>
                                                                 @endcan
                                                                 @can('unit_delete')
-                                                                <a class="iq-bg-primary unit-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/unit/delete/'.base64_encode($unit[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
+                                                                <a class="iq-bg-danger unit-confirm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/unit/delete/'.base64_encode($unit[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                 @endcan
                                                             </div>
                                                         </td>
