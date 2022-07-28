@@ -497,8 +497,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                     </a>
                                                                                 </div>
                                                                             <?php } ?>
-                                                                            <!-- Modal Edit Jadwal -->
-                                                                            <div class="modal fade" tabindex="-1" role="dialog" id="edit_jadwal<?= $komponen_jadwal[$j]->id ?>">
+                                                                            <!-- Modal Ubah Jadwal -->
+                                                                            <div class="modal fade" role="dialog" id="edit_jadwal<?= $komponen_jadwal[$j]->id ?>" style="overflow:hidden;">
                                                                                 <div class="modal-dialog" role="document">
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-header">
@@ -527,7 +527,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                                 <div class="row">
                                                                                                     <div class="col">
                                                                                                         <label>Mulai Kegiatan</label>
-                                                                                                        <select name="bulan_awal" id="bulan_awal" class="form-control">
+                                                                                                        <select name="bulan_awal" id="bulan_awal_ubah" onclick="min_ubah()" class="form-control">
+                                                                                                            <option hidden>Pilih</option>
                                                                                                             <?php
                                                                                                             $bulan = [
                                                                                                                 'Januari', 'Februari', 'Maret', 'April',
@@ -541,7 +542,8 @@ use Illuminate\Support\Facades\Auth;
                                                                                                     </div>
                                                                                                     <div class="col">
                                                                                                         <label>Selesai Kegiatan</label>
-                                                                                                        <select name="bulan_akhir" id="bulan_akhir" class="form-control">
+                                                                                                        <select name="bulan_akhir" id="bulan_akhir_ubah" onclick="max_ubah()" class="form-control">
+                                                                                                            <option hidden>Pilih</option>
                                                                                                             <?php
                                                                                                             $bulan = [
                                                                                                                 'Januari', 'Februari', 'Maret', 'April',
@@ -558,6 +560,33 @@ use Illuminate\Support\Facades\Auth;
                                                                                                 </div>
                                                                                                 <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                                                                             </form>
+                                                                                            <script>
+                                                                                                function min_ubah() {
+                                                                                                    var selectBox = document.getElementById("bulan_awal_ubah");
+                                                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                                                    console.log(selectedValue);
+                                                                                                    for (i = 1; i <= 12; i++) {
+                                                                                                        if (i < selectedValue) {
+                                                                                                            document.getElementById("bulan_akhir_ubah").options[i].disabled = true;
+                                                                                                        } else {
+                                                                                                            document.getElementById("bulan_akhir_ubah").options[i].disabled = false;
+                                                                                                        }
+                                                                                                    }
+                                                                                                };
+
+                                                                                                function max_ubah() {
+                                                                                                    var selectBox = document.getElementById("bulan_akhir_ubah");
+                                                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                                                    console.log(selectedValue);
+                                                                                                    for (i = 1; i <= 12; i++) {
+                                                                                                        if (i > selectedValue) {
+                                                                                                            document.getElementById("bulan_awal_ubah").options[i].disabled = true;
+                                                                                                        } else {
+                                                                                                            document.getElementById("bulan_awal_ubah").options[i].disabled = false;
+                                                                                                        }
+                                                                                                    }
+                                                                                                };
+                                                                                            </script>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -738,7 +767,8 @@ use Illuminate\Support\Facades\Auth;
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <label>Mulai Kegiatan</label>
-                                                                    <select name="bulan_awal" id="bulan_awal" class="form-control">
+                                                                    <select name="bulan_awal" id="bulan_awal" onclick="min()" class="form-control">
+                                                                        <option hidden>Pilih</option>
                                                                         <?php
                                                                         $bulan = [
                                                                             'Januari', 'Februari', 'Maret', 'April',
@@ -749,10 +779,12 @@ use Illuminate\Support\Facades\Auth;
                                                                             <option value="{{$ba}}">{{$bulan[$ba-1]}}</option>
                                                                         <?php } ?>
                                                                     </select>
+                                                                    <!-- <input type="month" id="start" name="start" min="2018-03" value="2018-05"> -->
                                                                 </div>
                                                                 <div class="col">
                                                                     <label>Selesai Kegiatan</label>
-                                                                    <select name="bulan_akhir" id="bulan_akhir" class="form-control">
+                                                                    <select name="bulan_akhir" id="bulan_akhir" onclick="max()" class="form-control">
+                                                                        <option hidden>Pilih</option>
                                                                         <?php
                                                                         $bulan = [
                                                                             'Januari', 'Februari', 'Maret', 'April',
@@ -771,6 +803,33 @@ use Illuminate\Support\Facades\Auth;
                                                             <br />
                                                             <button class="btn btn-primary mr-1" type="submit">Submit</button>
                                                         </form>
+                                                        <script>
+                                                            function min() {
+                                                                var selectBox = document.getElementById("bulan_awal");
+                                                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                console.log(selectedValue);
+                                                                for (i = 1; i < 12; i++) {
+                                                                    if (i < selectedValue) {
+                                                                        document.getElementById("bulan_akhir").options[i].disabled = true;
+                                                                    } else {
+                                                                        document.getElementById("bulan_akhir").options[i].disabled = false;
+                                                                    }
+                                                                }
+                                                            };
+
+                                                            function max() {
+                                                                var selectBox = document.getElementById("bulan_akhir");
+                                                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                console.log(selectedValue);
+                                                                for (i = 1; i < 12; i++) {
+                                                                    if (i > selectedValue) {
+                                                                        document.getElementById("bulan_awal").options[i].disabled = true;
+                                                                    } else {
+                                                                        document.getElementById("bulan_awal").options[i].disabled = false;
+                                                                    }
+                                                                }
+                                                            };
+                                                        </script>
                                                     </div>
                                                 </div>
                                             </div>

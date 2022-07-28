@@ -13,11 +13,11 @@
                         @csrf
                         <div class="form-group">
                             <label>Masukan</label>
-                            <textarea class="form-control" id="masukan" name="masukan" rows="2" cols="50"></textarea>
+                            <textarea class="form-control" id="masukan" name="masukan" rows="2" cols="50" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Keluaran</label>
-                            <textarea class="form-control" id="keluaran" name="keluaran" rows="2" cols="50"></textarea>
+                            <textarea class="form-control" id="keluaran" name="keluaran" rows="2" cols="50" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>TOR</label>

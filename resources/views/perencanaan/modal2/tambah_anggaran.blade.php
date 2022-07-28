@@ -23,6 +23,7 @@
                     <div class="form-group">
                         <label>Kategori MAK</label><br />
                         <select class="js-example-basic-single1" name="id_mak" id="mak" style="width: 100%;height:50px;line-height:45px;color:#a09e9e;background:#00000000;border:1px solid #f1f1f1;border-radius:5px">
+                            <option hidden>Pilih Kategori MAK</option>
                             <?php for ($e = 0; $e < count($mak); $e++) { ?>
                                 <option value="{{$mak[$e]->id}}" style="color:1px solid #f1f1f1;">{{$mak[$e]->jenis_belanja}}</option>
                             <?php } ?>
@@ -56,41 +57,41 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Kebutuan - Volume</label>
-                                <input name="kebutuhan_vol" id="kebutuhan_vol" type="text" class="form-control">
+                                <input name="kebutuhan_vol" id="kebutuhan_vol" type="text" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Kebutuan - Satuan</label>
-                                <input name="kebutuhan_sat" id="kebutuhan_sat" type="text" class="form-control">
+                                <input name="kebutuhan_sat" id="kebutuhan_sat" type="text" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Frekuensi</label>
-                        <input name="frek" id="frek" type="text" class="form-control">
+                        <input name="frek" id="frek" type="text" class="form-control" required>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Perhitungan - Volume</label>
-                                <input name="perhitungan_vol" id="perhitungan_vol" type="text" class="form-control">
+                                <input name="perhitungan_vol" id="perhitungan_vol" type="text" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Perhitungan - Satuan</label>
-                                <input name="perhitungan_sat" id="perhitungan_sat" type="text" class="form-control">
+                                <input name="perhitungan_sat" id="perhitungan_sat" type="text" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Harga Satuan</label>
-                        <input name="harga_satuan" id="harga_satuan" type="text" class="form-control">
+                        <input name="harga_satuan" id="harga_satuan" type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Nominal</label>
-                        <input name="anggaran" id="anggaran" type="text" class="form-control">
+                        <input name="anggaran" id="anggaran" type="text" class="form-control" required>
                     </div><?php $i = 1 ?>
                     <input name="created_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
                     <input name="updated_at" type="hidden" value="<?= date('Y:m:d H:i:s') ?>">
@@ -137,7 +138,7 @@
                     dataType: "json",
                     success: function(data) {
                         $('select[name="id_kelompok"]').empty();
-                        $('select[name="id_kelompok"]').append('<option hidden>Choose Course</option>');
+                        $('select[name="id_kelompok"]').append('<option hidden>Pilih Kelompok MAK</option>');
                         $.each(data, function(key, namakelompok) {
                             $('select[name="id_kelompok"]').append('<option value="' + namakelompok.id + '">' + namakelompok.kelompok + '-' + namakelompok.id + '</option>');
                         });
@@ -165,7 +166,7 @@
                     dataType: "json",
                     success: function(data) {
                         $('select[name="id_belanja"]').empty();
-                        $('select[name="id_belanja"]').append('<option hidden>Choose Course</option>');
+                        $('select[name="id_belanja"]').append('<option hidden>Pilih Belanja MAK</option>');
                         $.each(data, function(key, namabelanja) {
                             $('select[name="id_belanja"]').append('<option value="' + namabelanja.id + '">' + namabelanja.belanja + '-' + namabelanja.id + '</option>');
                         });
@@ -192,7 +193,7 @@
                     dataType: "json",
                     success: function(data) {
                         $('select[name="id_detail_mak"]').empty();
-                        $('select[name="id_detail_mak"]').append('<option hidden>Choose Course</option>');
+                        $('select[name="id_detail_mak"]').append('<option hidden>Pilih Detail MAK</option>');
                         $.each(data, function(key, namadetail) {
                             $('select[name="id_detail_mak"]').append('<option value="' + namadetail.id + '">' + namadetail.detail + '-' + namadetail.id + '</option>');
                         });
