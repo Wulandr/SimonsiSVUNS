@@ -89,7 +89,7 @@ class PersekotKerjaController extends Controller
 
         $inserting = DB::table('trx_status_keu')->insert($request->except('_token'));
         if ($inserting) {
-            return redirect()->back()->with("success", "Data berhasil ditambahkan");
+            return redirect()->back()->with("success", "Status Berhasil diubah");
         } else {
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }

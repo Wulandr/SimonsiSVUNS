@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Tor;
 use App\Models\MemoCair;
+use App\Models\Pagu;
 use App\Models\SPJ;
+use App\Models\Triwulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -12,6 +14,7 @@ use Spatie\Permission\Models\Role;
 class MonitoringKakController extends Controller
 {
     private $filtertw = 0;
+    private $tahuntw = 0;
 
     private function cekWulan()
     {
@@ -20,6 +23,7 @@ class MonitoringKakController extends Controller
             $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
             $model = DB::table('tor')->where('id_tw', $tw->id)->get();
             $this->filtertw = $tw->id;
+            $this->tahuntw = $tw->id_tahun;
         }
         return $model;
     }
@@ -35,7 +39,7 @@ class MonitoringKakController extends Controller
         $roles = DB::table('roles')->get();
         $tw = DB::table('triwulan')->get();
         $tahun = DB::table('tahun')->get();
-        $pagu = DB::table('pagu')->get();
+        $pagu = Pagu::where('id_tahun', $this->tahuntw)->get();
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();
@@ -85,8 +89,13 @@ class MonitoringKakController extends Controller
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
         $tw = DB::table('triwulan')->get();
+        if ($filtertw != 0) {
+            $this->tahuntw = Triwulan::where('id', $filtertw)->first()->id_tahun;
+            $pagu = Pagu::where('id_tahun', $this->tahuntw)->get();
+        } else {
+            $pagu = Pagu::all();
+        }
         $tahun = DB::table('tahun')->get();
-        $pagu = DB::table('pagu')->get();
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();

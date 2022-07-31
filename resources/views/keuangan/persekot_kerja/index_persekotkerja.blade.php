@@ -111,9 +111,11 @@
                                                 @include('keuangan/persekot_kerja/status_pk')
                                             </td>
                                             <td class="text-center">
-                                                <?php
-                                                $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
-                                                ?>
+                                                @can('pk_create')
+                                                    <?php
+                                                    $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
+                                                    ?>
+                                                @endcan
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)

@@ -99,28 +99,35 @@
                                             </td>
                                             <td>
                                                 <?php if ($statusTor[0]['sudahUpload'] == 1) { ?>
-                                                <button class="btn btn-sm bg-info rounded-pill" title="Detail"
-                                                    data-toggle="modal"
-                                                    data-target="#detail_memocair<?= $tor[$m]->id ?>"><i
-                                                        class="las la-external-link-alt"></i></i></button>
-                                                <button class="btn btn-sm bg-warning rounded-pill" title="Edit"
-                                                    data-toggle="modal"
-                                                    data-target="#edit_memocair<?= $tor[$m]->id ?>"><i
-                                                        class=" las la-edit"></i></i></button>
-                                                <!-- MODAL - Detail Memo Cair -->
-                                                @include('keuangan/memo_cair/detail_memocair')
-                                                <!-- MODAL - Edit Memo Cair -->
-                                                @include('keuangan/memo_cair/edit_memocair')
+                                                @can('memo_detail')
+                                                    <button class="btn btn-sm bg-info rounded-pill" title="Detail"
+                                                        data-toggle="modal"
+                                                        data-target="#detail_memocair<?= $tor[$m]->id ?>"><i
+                                                            class="las la-external-link-alt"></i></i>
+                                                    </button>
+                                                    <!-- MODAL - Detail Memo Cair -->
+                                                    @include('keuangan/memo_cair/detail_memocair')
+                                                @endcan
+                                                @can('memo_edit')
+                                                    <button class="btn btn-sm bg-warning rounded-pill" title="Edit"
+                                                        data-toggle="modal"
+                                                        data-target="#edit_memocair<?= $tor[$m]->id ?>"><i
+                                                            class=" las la-edit"></i></i>
+                                                    </button>
+                                                    <!-- MODAL - Edit Memo Cair -->
+                                                    @include('keuangan/memo_cair/edit_memocair')
+                                                @endcan
                                                 <?php } else { ?>
-                                                <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
-                                                    title="Upload File Memo Cair" data-toggle="modal"
-                                                    data-target="#upload_memocair<?= $tor[$m]->id ?>"><i
-                                                        class="las la-upload"></i>
-                                                </button>
-                                            </td>
-                                            <!-- MODAL - Upload Memo Cair -->
-                                            @include('keuangan/memo_cair/upload_memocair')
-
+                                                @can('memo_create')
+                                                    <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
+                                                        title="Upload File Memo Cair" data-toggle="modal"
+                                                        data-target="#upload_memocair<?= $tor[$m]->id ?>"><i
+                                                            class="las la-upload"></i>
+                                                    </button>
+                                                </td>
+                                                <!-- MODAL - Upload Memo Cair -->
+                                                @include('keuangan/memo_cair/upload_memocair')
+                                            @endcan
 
                                             <?php
                                                                                                         }

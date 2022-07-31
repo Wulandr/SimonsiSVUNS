@@ -12,4 +12,14 @@ class Pagu extends Model
     public $keyType = 'string';
     protected $table = 'pagu';
     protected $guarded = [];
+
+    public function unit()
+    {
+        return $this->hasOne(Unit::class, 'id', 'id_unit');
+    }
+
+    public function tor()
+    {
+        return $this->hasMany(Tor::class, 'id_unit', 'id_unit');
+    }
 }

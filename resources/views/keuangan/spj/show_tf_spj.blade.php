@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="show_tf_spj">Detail SPJ</h5>
+                <h5 class="modal-title" id="show_tf_spj">Detail Bukti Transfer SPJ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,10 +70,10 @@
                 <?php }} ?>
                 <hr style="border: 1px dashed black">
                 <?php
-                        for ($b = 0; $b < count($dokumen); $b++) {
-                            if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
-                                if ($dokumen[$b]->jenis == "SPJ Bukti Transfer") {
-                        ?>
+                    for ($b = 0; $b < count($dokumen); $b++) {
+                        if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
+                            if ($dokumen[$b]->jenis == "SPJ Bukti Transfer") {
+                ?>
                 <div class="form-group">
                     <h4 class="text-center"><b>Bukti Transfer</b></h4>
                     <br>
@@ -81,7 +81,10 @@
                         height="500px"></embed>
                 </div>
                 <?php 
-                    }}} ?>
+                    }
+                    else {
+                    }}}
+                ?>
             </div>
         </div>
     </div>

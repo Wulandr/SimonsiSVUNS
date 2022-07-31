@@ -156,10 +156,10 @@
                                                                         $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Verifikasi')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_spj' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_spj' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_spj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                        <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_spj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
                                                                         ?>
                                                                     @endif
                                                                 @endif
@@ -170,8 +170,6 @@
                                                 <?= $file ?>
                                             </td>
 
-                                            <!-- MODAL - Input spj -->
-                                            @include('keuangan/spj/input_spj')
                                             <!-- MODAL - Bukti TF spj -->
                                             @include('keuangan/spj/input_tf_spj')
                                             @include('keuangan/spj/show_tf_spj')

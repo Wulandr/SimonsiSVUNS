@@ -2955,7 +2955,7 @@ if (jQuery("#apex-bar").length) {
 if (jQuery("#apex-column").length) {
 	options = {
 		chart: {
-			height: 350,
+			height: 300,
 			type: "bar"
 		},
 		plotOptions: {
@@ -2973,23 +2973,20 @@ if (jQuery("#apex-column").length) {
 			width: 2,
 			colors: ["transparent"]
 		},
-		colors: ["#1e3d73", "#99f6ca", "#fe517e"],
+		colors: ["#99f6ca", "#fe517e"],
 		series: [{
-			name: "Net Profit",
-			data: [44, 55, 57, 56, 61, 58]
+			name: "Total Realisasi",
+			data: [30, 40, 50, 60]
 		}, {
-			name: "Revenue",
-			data: [76, 85, 101, 98, 87, 105]
-		}, {
-			name: "Free Cash Flow",
-			data: [35, 41, 36, 26, 45, 48]
+			name: "Total Sisa",
+			data: [15, 35, 25, 76]
 		}],
 		xaxis: {
-			categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+			categories: ["Triwulan 1", "Triwulan 2", "Triwulan 3", "Triwulan 4"]
 		},
 		yaxis: {
 			title: {
-				text: "$ (thousands)"
+				text: "Rp (Juta)"
 			}
 		},
 		fill: {
@@ -2998,7 +2995,7 @@ if (jQuery("#apex-column").length) {
 		tooltip: {
 			y: {
 				formatter: function (e) {
-					return "$ " + e + " thousands"
+					return "Rp " + e + " Juta"
 				}
 			}
 		}
@@ -10666,7 +10663,6 @@ if (jQuery('#iq-chart-box4').length) {
 	var options = {
 		series: [{
 			name: "Total Profit",
-			data: [10, 10, 35, 10]
 		}],
 		colors: ["#ffbf43"],
 		chart: {

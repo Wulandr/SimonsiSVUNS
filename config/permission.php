@@ -3,18 +3,57 @@
 return [
     'authorities' => [
 
+        // MENU KEUANGAN
+        'manage_buttonkeuangan' => [
+            'dashboard',
+            'keu_memocair',
+            'keu_persekot',
+            'keu_spj',
+            'keu_lpj',
+            'keu_monitoring',
+        ],
+
+        // Memo Cair
+        'manage_memocair' => [
+            'memo_create',
+            'memo_edit',
+            'memo_detail'
+        ],
+
+        // Persekot Kerja
+        'manage_pk' => [
+            'pk_create',
+            'pk_edit',
+            'pk_detail',
+            'pk_validasi',
+            'pk_transfer'
+        ],
+
+        // SPJ
+        'manage_spj' => [
+            'spj_create',
+            'spj_edit',
+            'spj_detail',
+            'spj_revisi',
+            'spj_verifikasi',
+            'spj_transfer'
+        ],
+
+        // LPJ
+        'manage_lpj' => [
+            'lpj_create',
+            'lpj_edit',
+            'lpj_detail',
+            'lpj_revisi',
+            'lpj_verifikasi',
+            'lpj_selesai'
+        ],
+
         //penambahan
         'manage_buttonpengajuan' => [
             'ajuan_monitoring',
             'ajuan_torrab',
             'ajuan_validasi'
-        ],
-        'manage_buttonkeuangan' => [
-            'keu_memocari',
-            'keu_persekot',
-            'keu_spj',
-            'keu_lpj',
-            'keu_monitoring',
         ],
         'manage_tor' => [
             'tor_show',

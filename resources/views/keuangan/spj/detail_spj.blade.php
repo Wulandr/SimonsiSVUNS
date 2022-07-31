@@ -1,3 +1,7 @@
+<?php
+use App\Models\DokumenSPJ;
+?>
+
 @include('dashboards/users/layouts/script')
 
 <body>
@@ -58,14 +62,6 @@
                                         <td class="text-center">:</td>
                                         <td style="width: 60%">{{ 'Rp ' . number_format($nilai_kembali) }}</td>
                                     </tr>
-                                    {{-- <tr>
-                                    <td width="30%">4. &ensp; Sertifikat Memo Cair</td>
-                                    <td class="text-center">:</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><embed src="{{ asset('documents/') }}" type="application/pdf"
-                                            width="100%" height="500px"></embed></td>
-                                </tr> --}}
                             </b>
                             </table>
                             <div class="iq-card" style="box-shadow: none">
@@ -119,25 +115,20 @@
                                                                         {{ $spj_subkategori[$b]->nama_subkategori }}
                                                                     </label>
                                                                 </td>
+                                                                <?php
+                                                                $dokspj = '';
+                                                                $bambang = DokumenSPJ::where([['id_tor', '=', $id_tor], ['id_subkategori', '=', $spj_subkategori[$b]->id]])->get();
+                                                                foreach ($bambang as $isi) {
+                                                                    $dokspj = $isi['name'];
+                                                                }
+                                                                ?>
                                                                 <td rowspan="2">
-                                                                    <input type="file" class="form-control-file"
-                                                                        name="file" id="file">
-
-                                                                    <input type="hidden" class="form-control-file"
-                                                                        name="id_subkategori" id="id_subkategori"
-                                                                        value="{{ $spj_subkategori[$b]->id }}">
-                                                                    <input type="hidden" name="id_tor"
-                                                                        class="form-control"
-                                                                        value="<?= $_GET['idtor'] ?>">
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td
-                                                                    style="border: none; padding-top: 0; padding-bottom: 0">
-                                                                    <small style="color: darkorange">File yang sudah
-                                                                        diupload:
-                                                                        <a class="text-primary" href=""
-                                                                            target="_blank"></a>
+                                                                    <small style="color: darkorange">File
+                                                                        yang
+                                                                        sudah diupload:
+                                                                        <a class="text-primary"
+                                                                            href="{{ asset('document_spj/' . $dokspj) }}"
+                                                                            target="_blank">{{ $dokspj }}</a>
                                                                     </small>
                                                                 </td>
                                                             </tr>

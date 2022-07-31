@@ -180,7 +180,6 @@ class SPJController extends Controller
 
      public function detailSpj(Request $request)
      {
-          $tabelRole =  Role::all();
           $tor = Tor::all();
           $tabelRole =  Role::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
@@ -244,7 +243,7 @@ class SPJController extends Controller
      {
           // Menyimpan Form Input SPJ ke Database
           $uploadspj = new SPJ();
-          $uploadspj->id_tor = $request->id_tor;
+          $uploadspj->id_tor = base64_decode($request->id_tor);
           $uploadspj->nilai_total = $request->nilai_total;
           $uploadspj->nilai_kembali = $request->nilai_kembali;
           $uploadspj->save();
@@ -252,7 +251,7 @@ class SPJController extends Controller
           //Menyimpan ke TRX Status
           $upload2 = TrxStatusKeu::create([
                'id_status' => 4,
-               'id_tor' => $request->id_tor,
+               'id_tor' => base64_decode($request->id_tor),
                'create_by' => $request->create_by,
                'created_at' => $request->created_at,
                'updated_at' => $request->updated_at,
@@ -266,7 +265,7 @@ class SPJController extends Controller
                //mengambil nama file
                $nama_file      = $file->getClientOriginalName();
                $id_subkategori = $request->id_subkategori;
-               $id_tor          = $request->id_tor;
+               $id_tor          = base64_decode($request->id_tor);
                //memindahkan file ke folder tujuan
                $file->move('documents', $file->getClientOriginalName());
           }
@@ -274,7 +273,7 @@ class SPJController extends Controller
                $file      = "null";
                $nama_file      = "null";
                $id_subkategori = $request->id_subkategori;
-               $id_tor          = $request->id_tor;
+               $id_tor          = base64_decode($request->id_tor);
           }
 
           $addfile_spj         = new DokumenSPJ;
@@ -306,7 +305,7 @@ class SPJController extends Controller
 
           $inserting = DB::table('trx_status_keu')->insert($request->except('_token'));
           if ($inserting) {
-               return redirect()->back()->with("success", "Data berhasil ditambahkan");
+               return redirect()->back()->with("success", "Status Berhasil diubah");
           } else {
                return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
           }

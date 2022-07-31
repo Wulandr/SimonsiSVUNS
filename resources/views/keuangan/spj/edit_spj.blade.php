@@ -176,7 +176,6 @@ use App\Models\DokumenSPJ;
                                                                                 target="_blank">{{ $dokspj }}</a>
                                                                         </small>
                                                                     </td>
-
                                                                 </tr>
                                                                 <?php $no += 1;
                                                                 }
