@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
                                         <h4 class="card-title">PAGU
 
                                         </h4>
-                                        <!-- Modal Tambah TOR -->
+                                        <!-- Modal Tambah pagu -->
                                         <div class="modal fade" role="dialog" id="tambahpagu" style="overflow:hidden;">
                                             <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                 <div class="modal-content">
@@ -46,6 +46,30 @@ use Illuminate\Support\Facades\Auth;
                                                                 <input name="pagu" id="pagu" type="text"
                                                                     class="form-control">
                                                             </div>
+                                                            <!-- <script>
+                                                                /* Dengan Rupiah */
+                                                                var dengan_rupiah = document.getElementById('pagu');
+                                                                dengan_rupiah.addEventListener('keyup', function(e) {
+                                                                    dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
+                                                                });
+
+                                                                /* Fungsi */
+                                                                function formatRupiah(angka, prefix) {
+                                                                    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                                                        split = number_string.split(','),
+                                                                        sisa = split[0].length % 3,
+                                                                        rupiah = split[0].substr(0, sisa),
+                                                                        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                                                                    if (ribuan) {
+                                                                        separator = sisa ? '.' : '';
+                                                                        rupiah += separator + ribuan.join('.');
+                                                                    }
+
+                                                                    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                                                                    return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+                                                                }
+                                                            </script> -->
                                                             <div class="form-group">
                                                                 <label>RPD Triwulan 1</label>
                                                                 <input name="tw1" id="tw1" type="text"

@@ -38,18 +38,27 @@
                                     </div>
 
                                     <div class="row">
+                                        <?php $m = 1; ?>
                                         @foreach($authorities as $manageName => $permissions)
                                         <div class="col lg-4">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title"> {{$manageName}}</h5>
                                                     <p class="card-text">
-                                                        @foreach($permissions as $p)
+
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" onchange="checkAll(this,<?php echo $m ?>)" name="chk[]">
+                                                        <label class="form-check-label">
+                                                            Select All
+                                                        </label>
+                                                    </div>
+
+                                                    @foreach($permissions as $p)
                                                     <div class="form-check">
                                                         @if(old('permissions',$permissionChecked))
-                                                        <input id="{{$p}}" name="permissions[]" class="form-check-input" type="checkbox" value="{{$p}}" {{in_array($p,old('permissions',$permissionChecked)) ? "checked" : null}}>
+                                                        <input id="{{$p}}" name="permissions[]" class="form-check-input {{$m}}" type="checkbox" value="{{$p}}" {{in_array($p,old('permissions',$permissionChecked)) ? "checked" : null}}>
                                                         @else
-                                                        <input id="{{$p}}" name="permissions[]" class="form-check-input" type="checkbox" value="{{$p}}">
+                                                        <input id="{{$p}}" name="permissions[]" class="form-check-input {{$m}}" type="checkbox" value="{{$p}}">
                                                         @endif
                                                         <label class="form-check-label" for="{{$p}}">
                                                             {{trans("permissions.{$p}")}}
@@ -61,6 +70,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php $m += 1; ?>
                                         @endforeach
                                     </div>
                                     <div class="text-right">
@@ -77,4 +87,23 @@
             </div>
         </div>
 </body>
+<script type="text/javascript">
+    function checkAll(ele, p) {
+        // alert('form-check-input' + p);
+        var checkboxes = document.getElementsByClassName('form-check-input ' + p);
+        if (ele.checked) {
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].type == 'checkbox') {
+                    checkboxes[i].checked = true;
+                }
+            }
+        } else {
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].type == 'checkbox') {
+                    checkboxes[i].checked = false;
+                }
+            }
+        }
+    }
+</script>
 @include('dashboards/users/layouts/footer')

@@ -34,23 +34,10 @@ function ngecekWulan($awal, $akhir)
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Monitoring Usulan</h4>
                                     </div>
-                                    <!-- <div class="iq-card-header-toolbar d-flex align-items-center">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
-                                                <i class="ri-more-fill"></i>
-                                            </span>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                 </div>
                                 <div class="iq-card-body">
                                     <!-- A N G G A R A N -->
-
-
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-5">
                                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -61,6 +48,15 @@ function ngecekWulan($awal, $akhir)
                                                     <div class="row">
                                                         <div class="col">
                                                             <?php
+                                                            $ajuanTw1 = 0;
+                                                            $ajuanTw2 = 0;
+                                                            $ajuanTw3 = 0;
+                                                            $ajuanTw4 = 0;
+                                                            $setujuTw1 = 0;
+                                                            $setujuTw2 = 0;
+                                                            $setujuTw3 = 0;
+                                                            $setujuTw4 = 0;
+
                                                             $jml_ang_ajuan = 0;
                                                             $jml_ang_disetujui = 0;
                                                             $statusTor2 = [];
@@ -89,7 +85,9 @@ function ngecekWulan($awal, $akhir)
                                                                                             if ($status[$s2]->nama_status == 'Validasi' && $trx_status_tor[$tr2]->role_by == 'WD 3') {
                                                                                                 $disetujui['anggaran'][$i3] = $tor[$m2]->jumlah_anggaran; //anggaran kegiatan yg telah divalidasi WD 3
                                                                                                 $disetujui['tor'][$i3] = $tor[$m2]->id; // Kegiatan yg telah divalidasi wd 3
-                                                                                                'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . '<br />';
+                                                                                                $disetujui['tw'][$i3] = $tor[$m2]->id_tw;
+                                                                                                'TOR' . $tor[$m2]->id . ' -' . '[' . $tor[$m2]->id . '[[' . $i2 . '] ' . $statusTor2[$tor[$m2]->id][$i2] . " tw: " . $disetujui['tw'][$i3] . '<br />';
+
                                                                                                 $i3 += 1;
                                                                                             }
                                                                                             $i2 += 1;
@@ -100,7 +98,27 @@ function ngecekWulan($awal, $akhir)
                                                                         }
                                                                         if ($tor[$m2]->id != $cekId) {
                                                                             $count1 += 1;
-                                                                            $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran; //penjumlahan anggaran yg disetujui wd 3
+                                                                            $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran; //penjumlahan anggaran yg diajukan
+
+                                                                            // TOTAL ANGGARAN TIAP TW BERAPA -----------------------------------------------------
+                                                                            foreach ($tw as $twS) {
+                                                                                if ($tor[$m2]->id_tw == $twS->id && substr($twS->triwulan, 0, 4) == date('Y')) {
+                                                                                    if (substr($twS->triwulan, -1, 1) == 1) {
+                                                                                        $ajuanTw1 += $tor[$m2]->jumlah_anggaran;
+                                                                                    }
+                                                                                    if (substr($twS->triwulan, -1, 1) == 2) {
+                                                                                        $ajuanTw2 += $tor[$m2]->jumlah_anggaran;
+                                                                                    }
+                                                                                    if (substr($twS->triwulan, -1, 1) == 3) {
+                                                                                        $ajuanTw3 += $tor[$m2]->jumlah_anggaran;
+                                                                                    }
+                                                                                    if (substr($twS->triwulan, -1, 1) == 4) {
+                                                                                        $ajuanTw4 += $tor[$m2]->jumlah_anggaran;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            // END TOTAL ANGGARAN TIAP TW BERAPA -----------------------------------------------------
+
                                                                             $cekId = $tor[$m2]->id;
                                                                         }
                                                                     }
@@ -112,13 +130,39 @@ function ngecekWulan($awal, $akhir)
                                                             <div class="d-flex align-items-center justify-content-between" style="position: relative;">
                                                                 <?php
                                                                 $x = 0; //agar array tidakduplicate
+
+                                                                // TOTAL ANGGARAN DISETUJUI, TIDAK DUPLICATE
                                                                 for ($d = 0; $d < count($disetujui['tor']); $d++) {
                                                                     if ($disetujui['tor'][$d] != $x) {
-                                                                        $jml_ang_disetujui += $disetujui['anggaran'][$d];
+                                                                        $jml_ang_disetujui += $disetujui['anggaran'][$d]; //penjumlahan anggaran yg disetujui
                                                                         $count2 += 1;
                                                                     }
 
                                                                     $x = $disetujui['tor'][$d];
+                                                                }
+
+                                                                // TOTAL DISETUJUI TIAP TW
+                                                                if (!empty($disetujui['tw'])) {
+                                                                    for ($e = 0; $e < count($disetujui['tw']); $e++) { // echo $disetujui['tw'][$e];
+                                                                        //----- TIAP TRIWULAN ADA BERAPA ANGGARAN -----
+                                                                        foreach ($tw as $twS) {
+                                                                            if ($disetujui['tw'][$e] == $twS->id && substr($twS->triwulan, 0, 4) == date('Y')) {
+                                                                                if (substr($twS->triwulan, -1, 1) == 1) {
+                                                                                    $setujuTw1 += $disetujui['anggaran'][$e];
+                                                                                }
+                                                                                if (substr($twS->triwulan, -1, 1) == 2) {
+                                                                                    $setujuTw2 += $disetujui['anggaran'][$e];
+                                                                                }
+                                                                                if (substr($twS->triwulan, -1, 1) == 3) {
+                                                                                    $setujuTw2 += $disetujui['anggaran'][$e];
+                                                                                }
+                                                                                if (substr($twS->triwulan, -1, 1) == 4) {
+                                                                                    $setujuTw4 += $disetujui['anggaran'][$e];
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        //---------------------------------------------
+                                                                    }
                                                                 }
                                                                 ?>
                                                                 <h4><b>{{ 'Rp. ' . number_format($jml_ang_ajuan - $jml_ang_disetujui) }}</b>
@@ -162,12 +206,101 @@ function ngecekWulan($awal, $akhir)
                                     </div>
 
                                     <!-- <div class="row">
-                                        <div class="col-sm-12 col-lg-6">
+                                        <div class="col-sm-5">
                                             <div class="iq-card-body">
                                                 <div id="apex-column-wulan"></div>
                                             </div>
                                         </div>
                                     </div> -->
+
+                                    <!-- STORE ANGGARAN ke tiap TW SESUAI FILTER  -->
+                                    <?php
+                                    if ($filtertw == 0) {
+                                        $setujuTw1 = $setujuTw1;
+                                        $setujuTw2 = $setujuTw2;
+                                        $setujuTw3 = $setujuTw3;
+                                        $setujuTw4 = $setujuTw4;
+                                    }
+                                    if ($filtertw != 0) {
+                                        foreach ($tw as $cektw) {
+                                            if ($cektw->id == $filtertw) {
+                                                if (substr($cektw->triwulan, -1, 1) == 1) {
+                                                    $ajuanTw1 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $setujuTw1 = $jml_ang_disetujui;
+                                                }
+                                                if (substr($cektw->triwulan, -1, 1) == 2) {
+                                                    $ajuanTw2 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $setujuTw2 = $jml_ang_disetujui;
+                                                }
+                                                if (substr($cektw->triwulan, -1, 1) == 3) {
+                                                    $ajuanTw3 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $setujuTw3 = $jml_ang_disetujui;
+                                                }
+                                                if (substr($cektw->triwulan, -1, 1) == 4) {
+                                                    $ajuanTw4 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $setujuTw4 = $jml_ang_disetujui;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-7">
+                                            <canvas id="myChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                    <script>
+                                        const labels = [
+                                            'Triwulan 1',
+                                            'Triwulan 2',
+                                            'Triwulan 3',
+                                            'Triwulan 4',
+                                        ];
+                                        const data = {
+                                            labels: labels,
+                                            datasets: [{
+                                                    label: 'Anggaran Ajuan',
+                                                    backgroundColor: '#fe517e',
+                                                    borderColor: 'rgb(255, 99, 132)',
+                                                    data: [<?php echo  $ajuanTw1 ?>, <?php echo  $ajuanTw2 ?>,
+                                                        <?php echo  $ajuanTw3 ?>, <?php echo  $ajuanTw4 ?>
+                                                    ],
+                                                },
+                                                {
+                                                    label: 'Anggaran Disetujui',
+                                                    backgroundColor: '#99f6ca',
+                                                    borderColor: '#99f6ca',
+                                                    data: [<?php echo  $setujuTw1 ?>, <?php echo  $setujuTw2 ?>,
+                                                        <?php echo  $setujuTw3 ?>, <?php echo  $setujuTw4 ?>
+                                                    ],
+                                                }
+                                            ]
+                                        };
+                                        const config = {
+                                            type: 'bar',
+                                            data: data,
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        max: 50000000,
+                                                    }
+                                                },
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Diagram Monitoring Usulan Anggaran <?= date('Y') ?>'
+                                                    },
+                                                }
+                                            }
+                                        };
+                                        const myChart = new Chart(
+                                            document.getElementById('myChart'),
+                                            config
+                                        );
+                                    </script>
 
 
                                     <div class="table-responsive">
@@ -183,7 +316,7 @@ function ngecekWulan($awal, $akhir)
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
                                                                                 if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
-                                                                                    <option value="{{ base64_encode($tw[$tw1]->id) }}" {{$filtertw==$tw[$tw1]->id ? 'selected':''}} {{ ngecekWulan($tw[$tw1]->periode_awal, $tw[$tw1]->periode_akhir) ? 'selected' : '' }}>{{$tw[$tw1]->triwulan}}</option>
+                                                                                    <option value="{{ base64_encode($tw[$tw1]->id) }}" {{$filtertw==$tw[$tw1]->id ? 'selected':''}}>{{$tw[$tw1]->triwulan}}</option>
                                                                     <?php }
                                                                             }
                                                                         }

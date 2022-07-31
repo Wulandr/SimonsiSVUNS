@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggaran;
+use App\Models\Pagu;
 use App\Models\Pedoman;
 use App\Models\SubKegiatan;
+use App\Models\Tahun;
 use App\Models\Tor;
 use App\Models\Unit;
 use App\Models\Triwulan;
@@ -66,8 +68,8 @@ class TorController extends Controller
     }
     public function pengajuan2()
     {
-        $filterpagu = 0;
         $filtertahun = date('Y');
+        $filterprodi = 0;
         if (auth()->user()->id_unit != 1) {
             // $tor = Tor::where('id_unit', auth()->user()->id_unit)->simplePaginate(3);
             $torcount = Tor::where('tgl_mulai_pelaksanaan', 'LIKE',  $filtertahun . '%')
@@ -92,8 +94,7 @@ class TorController extends Controller
                 ->simplePaginate(3);
         }
 
-        // $filtertahun = date('Y');
-        $filterprodi = 0;
+
         $rab = DB::table('rab')->get();
         $role = DB::table('roles')->get();
         $mak = DB::table('mak')->get();
@@ -107,7 +108,11 @@ class TorController extends Controller
         $detail_mak = DB::table('detail_mak')->get();
         $tahun = DB::table('tor')->get();
         $tabeltahun = DB::table('tahun')->get();
-        $pagu = DB::table('pagu')->get();
+
+        $idtahun = DB::table('tahun')->select('id')->where('tahun', date('Y'))->get();
+        $pagu = DB::table('pagu')->where('id_tahun', 'LIKE', $idtahun[0]->id . '%')->get();
+        $filterpagu = $idtahun[0]->id;
+
         $subkeg = DB::table('indikator_subK')->get();
         $indikator_k = DB::table('indikator_k')->get();
         $rab_ang = Anggaran::Rab_Ang();
@@ -122,6 +127,7 @@ class TorController extends Controller
         $pedoman = Pedoman::all();
         $tabelRole =  Role::all();
 
+        // return $filterpagu[0]->id;
         return view(
             "perencanaan.tor.torab",
             [
@@ -136,7 +142,6 @@ class TorController extends Controller
             ]
         );
         // return $totalpertw;
-        // return $tor;
     }
     public function lengkapitor($id) //DETAIL TOR
     {
@@ -487,6 +492,7 @@ class TorController extends Controller
             }
         }
 
+        $filterpagu = $request->pagu;
         $filtertahun = $request->tahun;
         $filterprodi = $request->prodi;
         $rab = DB::table('rab')->get();
@@ -522,7 +528,7 @@ class TorController extends Controller
                 'tahun' => $tahun,  'filtertahun' => $filtertahun, 'rab' => $rab, 'mak' => $mak, 'anggaran' => $anggaran,
                 'filterprodi' => $filterprodi, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'rab_ang' => $rab_ang, 'totalpertw' => $totalpertw, 'status' => $status, 'user' => $user, 'role' => $role,
-                'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal,
+                'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
                 'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'pedoman' => $pedoman, 'tabelRole' => $tabelRole
             ]
 
@@ -538,7 +544,7 @@ class TorController extends Controller
             $tor = DB::table('tor')
                 ->simplepaginate(5);
         }
-        $filterpagu = $request->tahun;
+        $filterpagu = $request->pagu;
         $filtertahun = 0;
         $filterprodi = 0;
         $rab = DB::table('rab')->get();
@@ -567,12 +573,12 @@ class TorController extends Controller
         $pedoman = Pedoman::all();
         $tabelRole =  Role::all();
 
-        if ($request->tahun == 0) {
+        if ($filterpagu == 0) {
             $pagu = DB::table('pagu')->get();
             redirect('/torab');
         }
-        if (!empty($request->tahun)) {
-            $pagu = DB::table('pagu')->where('id_tahun', 'LIKE', $request->tahun . '%')->get();
+        if (!empty($filterpagu)) {
+            $pagu = DB::table('pagu')->where('id_tahun', 'LIKE', $request->pagu . '%')->get();
         }
         return view(
             "perencanaan.tor.torab",
