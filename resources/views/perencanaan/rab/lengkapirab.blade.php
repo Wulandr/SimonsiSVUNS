@@ -4,13 +4,13 @@ $totanggaran1 = 0;
 for ($r = 0; $r < count($rab); $r++) {
     if ($rab[$r]->id_tor == $tor[$t]->id) { ?>
         <div class="container center">
-            <h5 style="text-align: center;">RINCIAN ANGGARAN BELANJA</h5>
+            <h5 style="text-align: center;"><b>RINCIAN ANGGARAN BELANJA</b></h5>
             <?php for ($u = 0; $u < count($unit2); $u++) {
                 if ($tor[$t]->id_unit == $unit2[$u]->id) {
                     $namaunit = $unit2[$u]->nama_unit;
                 }
             } ?>
-            <h5 style="text-align: center;">{{strtoupper($namaunit)}}</h5><br />
+            <h5 style="text-align: center;"><b>{{strtoupper($namaunit)}}</h5><br />
             <br />
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped table-bordered">

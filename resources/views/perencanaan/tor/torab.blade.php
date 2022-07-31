@@ -48,17 +48,17 @@ use Illuminate\Support\Facades\Auth;
                   <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-body iq-box-relative">
                       <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
-                        <i class="ri-focus-2-line"></i>
+                        <i class="ri-database-2-line"></i>
                       </div>
                       <p class="text-secondary">Total Pagu</p>
                       <form action="http://127.0.0.1:8000/filterpagu" method="GET">
                         <div class="row mr-3">
                           <div class="col mr-1">
-                            <select class="form-control filter sm-8" name="tahun" id="input">
+                            <select class="form-control filter sm-8" name="pagu" id="input">
                               <option value="0">All</option>
                               <?php for ($t2 = 0; $t2 < count($tabeltahun); $t2++) {
                                 if ($tabeltahun[$t2]->is_aktif == 1) {                                              ?>
-                                  <option value="{{$tabeltahun[$t2]->id}}" {{$filtertahun==$tabeltahun[$t2]->id ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
+                                  <option value="{{$tabeltahun[$t2]->id}}" {{$filterpagu==$tabeltahun[$t2]->id  ? 'selected':''}}>{{$tabeltahun[$t2]->tahun}}</option>
                               <?php }
                               } ?>
                             </select>
@@ -66,14 +66,20 @@ use Illuminate\Support\Facades\Auth;
                           <input type="submit" class="btn btn-primary btn-sm" value="OK">
                         </div>
                       </form>
-                      <br />
-                      <div class="d-flex align-items-center justify-content-between" style="position: relative;">
+                      <div class="d-flex align-items-center justify-content-between mt-2" style="position: relative;">
                         <div class="row ml-1">
                           <?php for ($pg = 0; $pg < count($pagu); $pg++) {
                             if ($pagu[$pg]->id_unit == Auth()->user()->id_unit) {
                               for ($t3 = 0; $t3 < count($tabeltahun); $t3++) {
                                 if ($pagu[$pg]->id_tahun == $tabeltahun[$t3]->id) { ?>
-                                  <h6>{{$tabeltahun[$t3]->tahun}} : <b>{{"Rp".number_format($pagu[$pg]->pagu,2,',','.')}}</b></h6>
+                                  <div class="badge badge-pill badge-success">Tahun {{$tabeltahun[$t3]->tahun}}</div>
+                                  <h6>
+                                    {{"Pagu : Rp. ".number_format($pagu[$pg]->pagu,2,',','.')}}<br />
+                                    {{"Triwulan 1 : "."Rp. ".number_format($pagu[$pg]->tw1,2,',','.')}}<br />
+                                    {{"Triwulan 2 : "."Rp. ".number_format($pagu[$pg]->tw2,2,',','.')}}<br />
+                                    {{"Triwulan 3 : "."Rp. ".number_format($pagu[$pg]->tw3,2,',','.')}}<br />
+                                    {{"Triwulan 4 : "."Rp. ".number_format($pagu[$pg]->tw4,2,',','.')}}<br />
+                                  </h6>
 
                           <?php }
                               }
@@ -93,14 +99,16 @@ use Illuminate\Support\Facades\Auth;
                 <div class="col-sm-6 col-md-6 col-lg-3">
                   <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-body iq-box-relative">
-                      <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
-                        <i class="ri-focus-2-line"></i>
+                      <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
+                        <i class="ri-database-2-line"></i>
                       </div>
                       <p class="text-secondary">Standar Biaya Masukan</p>
                       <div class="d-flex align-items-center justify-content-between" style="position: relative;">
                         <div class="row ml-1">
                           @foreach($pedoman as $pedomansbm)
+                          @if($pedomansbm->tahun == date('Y'))
                           <a href="{{asset('/pedoman/'.$pedomansbm->file)}}">{{$pedomansbm->tahun . " : " .$pedomansbm->nama}}</a>
+                          @endif
                           @endforeach
                         </div>
                         <div class="resize-triggers">

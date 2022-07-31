@@ -79,7 +79,7 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $inserting = new User;
-            $inserting->id_unit     = $request->id_unit;
+            $inserting->id_unit = $request->id_unit;
             $inserting->name = $request->name;
             $inserting->email = $request->email;
             $inserting->role = $request->role[0];
@@ -190,6 +190,7 @@ class UserController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->id_unit = $request->id_unit;
 
             $input = $request->all();
             $hobby = $input['role'];

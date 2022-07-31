@@ -52,6 +52,8 @@ var options = {
 };
 
 if (jQuery("#apex-column-wulan").length) {
+	var ajuan1 = 89;
+	console.log(ajuan1);
 	options = {
 		chart: {
 			height: 350,
@@ -74,21 +76,18 @@ if (jQuery("#apex-column-wulan").length) {
 		},
 		colors: ["#1e3d73", "#99f6ca", "#fe517e"],
 		series: [{
-			name: "Net Profit",
-			data: [44, 55, 57, 56, 61, 58]
+			name: "Pengajuan",
+			data: [ajuan1, 44, 55, 57]
 		}, {
-			name: "Revenue",
-			data: [76, 85, 101, 98, 87, 105]
-		}, {
-			name: "Free Cash Flow",
-			data: [35, 41, 36, 26, 45, 48]
+			name: "Disetujui",
+			data: [79, 35, 41, 36]
 		}],
 		xaxis: {
-			categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+			categories: ["Triwulan 1", "Triwulan 2", "Triwulan 3", "Triwulan 4"]
 		},
 		yaxis: {
 			title: {
-				text: "$ (thousands)"
+				text: "Rp (juta)"
 			}
 		},
 		fill: {

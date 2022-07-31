@@ -304,664 +304,665 @@ use Illuminate\Support\Facades\Auth;
                                             }
                                         }
                                         ?>
-                                        <h5 style="text-align: center;" id="judul">
-                                            KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
-                                            PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
-                                        </h5>
-                                        <br />
-
-                                        <h6>1. Indikator Kinerja Utama (IKU) : {{$iku . " ".  $deskripsi_iku}}</h6><br />
-                                        <h6>2. Indikator Kinerja Kegiatan (IK) : {{$ik ." ".$deskripsi_ik}}</h6><br />
-                                        <h6>3. Kegiatan : {{$indikator_k . " ".    $deskripsi_indikator_k}} </h6><br />
-
-                                        <h6>4. Sub Kegiatan : {{$sub_k . " ". $deskripsi_sub_k}}</h6>
-                                        <?php if (!empty($komentar['sub'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
+                                        <h5 style="text-align: center;" id="judul"><b>
+                                                KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
+                                                PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
+                                            </< /h5>
                                             <br />
-                                        <?php                                        } ?>
-                                        <div class="container collapse col-6" id="komen1">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['sub'] as $subs)
-                                                <h6 style="color: #dc3545;">{{$subs}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-
-                                        <h6 id="judul">5. Judul Kegiatan : <br />{{$tor[$t]->nama_kegiatan}}</h6>
-                                        <?php if (!empty($komentar['judul'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenjudul" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
                                             <br />
-                                        <?php
-                                        } ?>
-                                        <div class="container collapse col-6" id="komenjudul">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['judul'] as $j)
-                                                <h6 style="color: #dc3545;">{{$j}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
 
-                                        <h6 id="latar">6. Latar Belakang : <br />{!!$tor[$t]->latar_belakang!!}</h6>
-                                        <?php if (!empty($komentar['latarbelakang'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenlatar" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenlatar">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['latarbelakang'] as $l)
-                                                <h6 style="color: #dc3545;">{{$l}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                            <h6>1. Indikator Kinerja Utama (IKU) : {{$iku . " ".  $deskripsi_iku}}</h6><br />
+                                            <h6>2. Indikator Kinerja Kegiatan (IK) : {{$ik ." ".$deskripsi_ik}}</h6><br />
+                                            <h6>3. Kegiatan : {{$indikator_k . " ".    $deskripsi_indikator_k}} </h6><br />
 
-                                        <h6>7. Rasionalisasi : <br />{!!$tor[$t]->rasionalisasi!!}</h6>
-                                        <?php if (!empty($komentar['rasionalisasi'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrasionalisasi" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenrasionalisasi">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['rasionalisasi'] as $r)
-                                                <h6 style="color: #dc3545;">{{$r}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
+                                            <h6>4. Sub Kegiatan : {{$sub_k . " ". $deskripsi_sub_k}}</h6>
+                                            <?php if (!empty($komentar['sub'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php                                        } ?>
+                                            <div class="container collapse col-6" id="komen1">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['sub'] as $subs)
+                                                    <h6 style="color: #dc3545;">{{$subs}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <h6>8. Tujuan : <br />{!!$tor[$t]->tujuan!!}</h6>
-                                        <?php if (!empty($komentar['tujuan'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komentujuan" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komentujuan">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['tujuan'] as $tujuan)
-                                                <h6 style="color: #dc3545;">{{$tujuan}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-
-                                        <h6>9. Mekanisme dan Rancangan : <br />{!!$tor[$t]->mekanisme!!}</h6>
-                                        <?php if (!empty($komentar['mekanisme'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenmekanisme" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenmekanisme">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['mekanisme'] as $mekanisme)
-                                                <h6 style="color: #dc3545;">{{$mekanisme}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-
-                                        <h6>10. Jadwal Pelaksanaan : <br />
-                                            @if (session('success'))
-                                            <script>
-                                                Swal.fire({
-                                                    icon: 'success',
-                                                    title: "{{session('success')}}",
-                                                    showConfirmButton: false,
-                                                    timer: 1500
-                                                })
-                                            </script>
-                                            @endif
+                                            <h6 id="judul">5. Judul Kegiatan : <br />{{$tor[$t]->nama_kegiatan}}</h6>
+                                            <?php if (!empty($komentar['judul'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenjudul" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
                                             <?php
-                                            foreach ($roles as $roles1) {
-                                                if ($roles1->id == Auth::user()->role) {
-                                                    $RoleLogin = $roles1->name;
+                                            } ?>
+                                            <div class="container collapse col-6" id="komenjudul">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['judul'] as $j)
+                                                    <h6 style="color: #dc3545;">{{$j}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <h6 id="latar">6. Latar Belakang : <br />{!!$tor[$t]->latar_belakang!!}</h6>
+                                            <?php if (!empty($komentar['latarbelakang'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenlatar" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenlatar">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['latarbelakang'] as $l)
+                                                    <h6 style="color: #dc3545;">{{$l}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <h6>7. Rasionalisasi : <br />{!!$tor[$t]->rasionalisasi!!}</h6>
+                                            <?php if (!empty($komentar['rasionalisasi'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrasionalisasi" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenrasionalisasi">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['rasionalisasi'] as $r)
+                                                    <h6 style="color: #dc3545;">{{$r}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <h6>8. Tujuan : <br />{!!$tor[$t]->tujuan!!}</h6>
+                                            <?php if (!empty($komentar['tujuan'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komentujuan" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komentujuan">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['tujuan'] as $tujuan)
+                                                    <h6 style="color: #dc3545;">{{$tujuan}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <h6>9. Mekanisme dan Rancangan : <br />{!!$tor[$t]->mekanisme!!}</h6>
+                                            <?php if (!empty($komentar['mekanisme'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenmekanisme" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenmekanisme">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['mekanisme'] as $mekanisme)
+                                                    <h6 style="color: #dc3545;">{{$mekanisme}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <h6>10. Jadwal Pelaksanaan : <br />
+                                                @if (session('success'))
+                                                <script>
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: "{{session('success')}}",
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                    })
+                                                </script>
+                                                @endif
+                                                <?php
+                                                foreach ($roles as $roles1) {
+                                                    if ($roles1->id == Auth::user()->role) {
+                                                        $RoleLogin = $roles1->name;
+                                                    }
                                                 }
-                                            }
-                                            ?>
-                                            <!-- TAMBAH JADWAL -->
+                                                ?>
+                                                <!-- TAMBAH JADWAL -->
 
-                                            <?php
-                                            if (!empty($komponen_jadwal)) {
-                                            ?>
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col" rowspan="2" class="align-middle">Komponen Input
-                                                                <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
-                                                                    <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
-                                                                        <a id="validasi" class="iq-bg-primary rounded rounded mt-3 mb-1" style="padding: 0.5%;margin: top 12px;" data-toggle="modal" title="Tambah Jadwal" data-original-title="Tambah Jadwal" data-target="#tambah_jadwal<?= $tor[$t]->id ?>" href="">
-                                                                            <i class="ri-user-add-line"></i> Tambah Jadwal<br />
-                                                                        </a>
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                            </th>
-                                                            <th scope="col" colspan="12" style="text-align: center;">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                                                            <th id="validasi"></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>5</td>
-                                                            <td>6</td>
-                                                            <td>7</td>
-                                                            <td>8</td>
-                                                            <td>9</td>
-                                                            <td>10</td>
-                                                            <td>11</td>
-                                                            <td>12</td>
-                                                            <td id="validasi">
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        for ($j = 0; $j < count($komponen_jadwal); $j++) {
-                                                            if ($komponen_jadwal[$j]->id_tor == $tor[$t]->id) { ?>
-                                                                <tr>
-                                                                    <td>{{$komponen_jadwal[$j]->komponen}}</td>
-                                                                    <?php for ($b = 1; $b < $komponen_jadwal[$j]->bulan_awal; $b++) { ?>
-                                                                        <td></td>
-                                                                    <?php } ?>
-                                                                    <?php for ($kj = 0; $kj <= ($komponen_jadwal[$j]->bulan_akhir - $komponen_jadwal[$j]->bulan_awal); $kj++) { ?>
-                                                                        <td style=" background-color:black!important; -webkit-print-color-adjust: exact; "></td>
-                                                                    <?php }
-                                                                    for ($c = 12; $c > $komponen_jadwal[$j]->bulan_akhir; $c--) { ?>
-                                                                        <td></td>
-                                                                    <?php } ?>
+                                                <?php
+                                                if (!empty($komponen_jadwal)) {
+                                                ?>
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" rowspan="2" class="align-middle">Komponen Input
                                                                     <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
-                                                                        <td id="validasi">
-                                                                            <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
-                                                                                <div class="flex align-items-center list-user-action">
-                                                                                    <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Edit Jadwal" data-original-title="Edit Jadwal" data-target="#edit_jadwal<?= $komponen_jadwal[$j]->id ?>" href=""><i class="ri-pencil-line"></i></a>
-                                                                                    <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.base64_encode($komponen_jadwal[$j]->id))}}" data-toggle="tooltip" title="Delete">
-                                                                                        <i class="ri-delete-bin-line"></i>
-                                                                                    </a>
-                                                                                </div>
-                                                                            <?php } ?>
-                                                                            <!-- Modal Ubah Jadwal -->
-                                                                            <div class="modal fade" role="dialog" id="edit_jadwal<?= $komponen_jadwal[$j]->id ?>" style="overflow:hidden;">
-                                                                                <div class="modal-dialog" role="document">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                            <h5 class="modal-title">Edit Jadwal Pelaksanaan</h5>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                <span aria-hidden="true">&times;</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                            <form class="form-horizontal" method="post" action="{{ url('/tor/update_jadwal/'.$komponen_jadwal[$j]->id) }}">
-                                                                                                @csrf
-                                                                                                <label>Contoh</label><br />
-                                                                                                <img width="450" src="../assets/contoh/jadwaltor.png">
-                                                                                                <br />
-                                                                                                <div class="form-group">
-                                                                                                    <label>TOR</label>
-                                                                                                    <select name="id_tor" id="id_tor" class="form-control">
-                                                                                                        <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                                <div class="form-group ">
-                                                                                                    <label>Komponen</label>
-                                                                                                    <textarea class="form-control" name="komponen" id="komponen" value="{{old('komponen',$komponen_jadwal[$j]->komponen)}}" rows="2">{{$komponen_jadwal[$j]->komponen}}
-                                                                                                    </textarea>
-                                                                                                </div>
-                                                                                                <div class="row">
-                                                                                                    <div class="col">
-                                                                                                        <label>Mulai Kegiatan</label>
-                                                                                                        <select name="bulan_awal" id="bulan_awal_ubah" onclick="min_ubah()" class="form-control">
-                                                                                                            <option hidden>Pilih</option>
-                                                                                                            <?php
-                                                                                                            $bulan = [
-                                                                                                                'Januari', 'Februari', 'Maret', 'April',
-                                                                                                                'Mei', 'Juni', 'Juli', 'Agustus',
-                                                                                                                'September',  'Oktober', 'November', 'Desember'
-                                                                                                            ];
-                                                                                                            for ($ba = 1; $ba <= 12; $ba++) { ?>
-                                                                                                                <option {{ $ba==$komponen_jadwal[$j]->bulan_awal ? 'selected' : ''}} value="{{$ba}}">{{$bulan[$ba-1]}}</option>
-                                                                                                            <?php } ?>
+                                                                        <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
+                                                                            <a id="validasi" class="iq-bg-primary rounded rounded mt-3 mb-1" style="padding: 0.5%;margin: top 12px;" data-toggle="modal" title="Tambah Jadwal" data-original-title="Tambah Jadwal" data-target="#tambah_jadwal<?= $tor[$t]->id ?>" href="">
+                                                                                <i class="ri-user-add-line"></i> Tambah Jadwal<br />
+                                                                            </a>
+                                                                        <?php } ?>
+                                                                    <?php } ?>
+                                                                </th>
+                                                                <th scope="col" colspan="12" style="text-align: center;">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                                <th id="validasi"></th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                                <td>7</td>
+                                                                <td>8</td>
+                                                                <td>9</td>
+                                                                <td>10</td>
+                                                                <td>11</td>
+                                                                <td>12</td>
+                                                                <td id="validasi">
+                                                                </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            for ($j = 0; $j < count($komponen_jadwal); $j++) {
+                                                                if ($komponen_jadwal[$j]->id_tor == $tor[$t]->id) { ?>
+                                                                    <tr>
+                                                                        <td>{{$komponen_jadwal[$j]->komponen}}</td>
+                                                                        <?php for ($b = 1; $b < $komponen_jadwal[$j]->bulan_awal; $b++) { ?>
+                                                                            <td></td>
+                                                                        <?php } ?>
+                                                                        <?php for ($kj = 0; $kj <= ($komponen_jadwal[$j]->bulan_akhir - $komponen_jadwal[$j]->bulan_awal); $kj++) { ?>
+                                                                            <td style=" background-color:black!important; -webkit-print-color-adjust: exact; "></td>
+                                                                        <?php }
+                                                                        for ($c = 12; $c > $komponen_jadwal[$j]->bulan_akhir; $c--) { ?>
+                                                                            <td></td>
+                                                                        <?php } ?>
+                                                                        <?php if ($disetujui != 1 && $tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin") { ?>
+                                                                            <td id="validasi">
+                                                                                <?php if ($pengajuan == 0 || $dalamRevisi == 1) { ?>
+                                                                                    <div class="flex align-items-center list-user-action">
+                                                                                        <a class="iq-bg-primary rounded" style="padding: 1%;" data-toggle="modal" data-placement="top" title="Edit Jadwal" data-original-title="Edit Jadwal" data-target="#edit_jadwal<?= $komponen_jadwal[$j]->id ?>" href=""><i class="ri-pencil-line"></i></a>
+                                                                                        <a class="jadwal-confirm iq-bg-danger rounded" style="padding: 1%;margin:2%" href="{{url('/tor/delete_jadwal/'.base64_encode($komponen_jadwal[$j]->id))}}" data-toggle="tooltip" title="Delete">
+                                                                                            <i class="ri-delete-bin-line"></i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                <?php } ?>
+                                                                                <!-- Modal Ubah Jadwal -->
+                                                                                <div class="modal fade" role="dialog" id="edit_jadwal<?= $komponen_jadwal[$j]->id ?>" style="overflow:hidden;">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h5 class="modal-title">Edit Jadwal Pelaksanaan</h5>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <form class="form-horizontal" method="post" action="{{ url('/tor/update_jadwal/'.$komponen_jadwal[$j]->id) }}">
+                                                                                                    @csrf
+                                                                                                    <label>Contoh</label><br />
+                                                                                                    <img width="450" src="../assets/contoh/jadwaltor.png">
+                                                                                                    <br />
+                                                                                                    <div class="form-group">
+                                                                                                        <label>TOR</label>
+                                                                                                        <select name="id_tor" id="id_tor" class="form-control">
+                                                                                                            <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
                                                                                                         </select>
                                                                                                     </div>
-                                                                                                    <div class="col">
-                                                                                                        <label>Selesai Kegiatan</label>
-                                                                                                        <select name="bulan_akhir" id="bulan_akhir_ubah" onclick="max_ubah()" class="form-control">
-                                                                                                            <option hidden>Pilih</option>
-                                                                                                            <?php
-                                                                                                            $bulan = [
-                                                                                                                'Januari', 'Februari', 'Maret', 'April',
-                                                                                                                'Mei', 'Juni', 'Juli', 'Agustus',
-                                                                                                                'September',  'Oktober', 'November', 'Desember'
-                                                                                                            ];
-                                                                                                            for ($br = 1; $br <= 12; $br++) { ?>
-                                                                                                                <option {{ $br==$komponen_jadwal[$j]->bulan_akhir ? 'selected' : ''}} value="{{$br}}">{{$bulan[$br-1]}}</option>
-                                                                                                            <?php } ?>
-                                                                                                        </select>
+                                                                                                    <div class="form-group ">
+                                                                                                        <label>Komponen</label>
+                                                                                                        <textarea class="form-control" name="komponen" id="komponen" value="{{old('komponen',$komponen_jadwal[$j]->komponen)}}" rows="2">{{$komponen_jadwal[$j]->komponen}}
+                                                                                                        </textarea>
                                                                                                     </div>
-                                                                                                    <input name="created_at" id="created_at" type="hidden" value="<?= $komponen_jadwal[$j]->created_at ?>">
-                                                                                                    <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
-                                                                                                </div>
-                                                                                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                                                                            </form>
-                                                                                            <script>
-                                                                                                function min_ubah() {
-                                                                                                    var selectBox = document.getElementById("bulan_awal_ubah");
-                                                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                                                                                    console.log(selectedValue);
-                                                                                                    for (i = 1; i <= 12; i++) {
-                                                                                                        if (i < selectedValue) {
-                                                                                                            document.getElementById("bulan_akhir_ubah").options[i].disabled = true;
-                                                                                                        } else {
-                                                                                                            document.getElementById("bulan_akhir_ubah").options[i].disabled = false;
+                                                                                                    <div class="row">
+                                                                                                        <div class="col">
+                                                                                                            <label>Mulai Kegiatan</label>
+                                                                                                            <select name="bulan_awal" id="bulan_awal_ubah" onclick="min_ubah()" class="form-control">
+                                                                                                                <option hidden>Pilih</option>
+                                                                                                                <?php
+                                                                                                                $bulan = [
+                                                                                                                    'Januari', 'Februari', 'Maret', 'April',
+                                                                                                                    'Mei', 'Juni', 'Juli', 'Agustus',
+                                                                                                                    'September',  'Oktober', 'November', 'Desember'
+                                                                                                                ];
+                                                                                                                for ($ba = 1; $ba <= 12; $ba++) { ?>
+                                                                                                                    <option {{ $ba==$komponen_jadwal[$j]->bulan_awal ? 'selected' : ''}} value="{{$ba}}">{{$bulan[$ba-1]}}</option>
+                                                                                                                <?php } ?>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                        <div class="col">
+                                                                                                            <label>Selesai Kegiatan</label>
+                                                                                                            <select name="bulan_akhir" id="bulan_akhir_ubah" onclick="max_ubah()" class="form-control">
+                                                                                                                <option hidden>Pilih</option>
+                                                                                                                <?php
+                                                                                                                $bulan = [
+                                                                                                                    'Januari', 'Februari', 'Maret', 'April',
+                                                                                                                    'Mei', 'Juni', 'Juli', 'Agustus',
+                                                                                                                    'September',  'Oktober', 'November', 'Desember'
+                                                                                                                ];
+                                                                                                                for ($br = 1; $br <= 12; $br++) { ?>
+                                                                                                                    <option {{ $br==$komponen_jadwal[$j]->bulan_akhir ? 'selected' : ''}} value="{{$br}}">{{$bulan[$br-1]}}</option>
+                                                                                                                <?php } ?>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                        <input name="created_at" id="created_at" type="hidden" value="<?= $komponen_jadwal[$j]->created_at ?>">
+                                                                                                        <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                                                                                    </div>
+                                                                                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                                                                </form>
+                                                                                                <script>
+                                                                                                    function min_ubah() {
+                                                                                                        var selectBox = document.getElementById("bulan_awal_ubah");
+                                                                                                        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                                                        console.log(selectedValue);
+                                                                                                        for (i = 1; i <= 12; i++) {
+                                                                                                            if (i < selectedValue) {
+                                                                                                                document.getElementById("bulan_akhir_ubah").options[i].disabled = true;
+                                                                                                            } else {
+                                                                                                                document.getElementById("bulan_akhir_ubah").options[i].disabled = false;
+                                                                                                            }
                                                                                                         }
-                                                                                                    }
-                                                                                                };
+                                                                                                    };
 
-                                                                                                function max_ubah() {
-                                                                                                    var selectBox = document.getElementById("bulan_akhir_ubah");
-                                                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                                                                                    console.log(selectedValue);
-                                                                                                    for (i = 1; i <= 12; i++) {
-                                                                                                        if (i > selectedValue) {
-                                                                                                            document.getElementById("bulan_awal_ubah").options[i].disabled = true;
-                                                                                                        } else {
-                                                                                                            document.getElementById("bulan_awal_ubah").options[i].disabled = false;
+                                                                                                    function max_ubah() {
+                                                                                                        var selectBox = document.getElementById("bulan_akhir_ubah");
+                                                                                                        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                                                        console.log(selectedValue);
+                                                                                                        for (i = 1; i <= 12; i++) {
+                                                                                                            if (i > selectedValue) {
+                                                                                                                document.getElementById("bulan_awal_ubah").options[i].disabled = true;
+                                                                                                            } else {
+                                                                                                                document.getElementById("bulan_awal_ubah").options[i].disabled = false;
+                                                                                                            }
                                                                                                         }
-                                                                                                    }
-                                                                                                };
-                                                                                            </script>
+                                                                                                    };
+                                                                                                </script>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    <?php } ?>
-                                                                </tr>
-                                                        <?php }
-                                                        }
-                                                        ?>
+                                                                            </td>
+                                                                        <?php } ?>
+                                                                    </tr>
+                                                            <?php }
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                <?php } ?>
+                                            </h6><br />
+                                            <?php if (!empty($komentar['jadwal'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenjadwal" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenjadwal">
+                                                <div class="container ml-3">
+                                                    @foreach($komentar['jadwal'] as $jadwal)
+                                                    <h6 style="color: #dc3545;">{{$jadwal}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+
+                                            <h6>11. Indikator Kinerja Utama : <br />
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Indikator</th>
+                                                            <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
+                                                            <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{$iku ." ".$deskripsi_iku}}</td>
+                                                            <td>{{$tor[$t]->realisasi_IKU ."%"}}</td>
+                                                            <td>{{$tor[$t]->target_IKU ."%"}}</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
+                                            </h6>
+                                            <?php if (!empty($komentar['iku'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komeniku" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
                                             <?php } ?>
-                                        </h6><br />
-                                        <?php if (!empty($komentar['jadwal'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenjadwal" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenjadwal">
-                                            <div class="container ml-3">
-                                                @foreach($komentar['jadwal'] as $jadwal)
-                                                <h6 style="color: #dc3545;">{{$jadwal}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
+                                            <div class="container collapse col-6" id="komeniku">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['iku'] as $iku)
+                                                    <h6 style="color: #dc3545;">{{$iku}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <h6>11. Indikator Kinerja Utama : <br />
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Indikator</th>
-                                                        <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
-                                                        <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{{$iku ." ".$deskripsi_iku}}</td>
-                                                        <td>{{$tor[$t]->realisasi_IKU ."%"}}</td>
-                                                        <td>{{$tor[$t]->target_IKU ."%"}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </h6>
-                                        <?php if (!empty($komentar['iku'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komeniku" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komeniku">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['iku'] as $iku)
-                                                <h6 style="color: #dc3545;">{{$iku}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
+                                            <h6>12. Indikator Kinerja Kegiatan : <br />
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Indikator</th>
+                                                            <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
+                                                            <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{$iku ." ".$deskripsi_ik}}</td>
+                                                            <td>{{$tor[$t]->realisasi_IK ."%"}}</td>
+                                                            <td>{{$tor[$t]->target_IK ."%"}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </h6> <?php if (!empty($komentar['ik'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenik" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenik">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['ik'] as $ik)
+                                                    <h6 style="color: #dc3545;">{{$ik}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
 
-
-                                        <h6>12. Indikator Kinerja Kegiatan : <br />
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Indikator</th>
-                                                        <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
-                                                        <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{{$iku ." ".$deskripsi_ik}}</td>
-                                                        <td>{{$tor[$t]->realisasi_IK ."%"}}</td>
-                                                        <td>{{$tor[$t]->target_IK ."%"}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </h6> <?php if (!empty($komentar['ik'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenik" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenik">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['ik'] as $ik)
-                                                <h6 style="color: #dc3545;">{{$ik}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
+                                            <h6>13. keberlanjutan : <br />{!!$tor[$t]->keberlanjutan!!}</h6>
+                                            <?php if (!empty($komentar['keberlanjutan'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenkeberlanjutan" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenkeberlanjutan">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['keberlanjutan'] as $keberlanjutan)
+                                                    <h6 style="color: #dc3545;">{{$keberlanjutan}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <h6>13. keberlanjutan : <br />{!!$tor[$t]->keberlanjutan!!}</h6>
-                                        <?php if (!empty($komentar['keberlanjutan'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenkeberlanjutan" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenkeberlanjutan">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['keberlanjutan'] as $keberlanjutan)
-                                                <h6 style="color: #dc3545;">{{$keberlanjutan}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
+                                            <h6>14. Penanggung Jawab : <br />{{$tor[$t]->nama_pic}}</h6>
+                                            <?php if (!empty($komentar['penanggung'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenpenanggung" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenpenanggung">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['penanggung'] as $penanggung)
+                                                    <h6 style="color: #dc3545;">{{$penanggung}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
+                                            <h6 id="validasi">15. Total Ajuan : <br />{{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}</h6><br />
+                                            <!-- R A B -->
+                                            @include('perencanaan/rab/lengkapirab')
+                                            <?php if (!empty($komentar['rab'])) { ?>
+                                                <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrab" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Lihat Komentar
+                                                    </a></p>
+                                            <?php } else { ?>
+                                                <br />
+                                            <?php } ?>
+                                            <div class="container collapse col-6" id="komenrab">
+                                                <div id="validasi" class="container ml-3">
+                                                    @foreach($komentar['rab'] as $rabs)
+                                                    <h6 style="color: #dc3545;">{{$rabs}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
 
-                                        <h6>14. Penanggung Jawab : <br />{{$tor[$t]->nama_pic}}</h6>
-                                        <?php if (!empty($komentar['penanggung'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenpenanggung" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenpenanggung">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['penanggung'] as $penanggung)
-                                                <h6 style="color: #dc3545;">{{$penanggung}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        <h6 id="validasi">15. Total Ajuan : <br />{{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}</h6><br />
-                                        <!-- R A B -->
-                                        @include('perencanaan/rab/lengkapirab')
-                                        <?php if (!empty($komentar['rab'])) { ?>
-                                            <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrab" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    Lihat Komentar
-                                                </a></p>
-                                        <?php } else { ?>
-                                            <br />
-                                        <?php } ?>
-                                        <div class="container collapse col-6" id="komenrab">
-                                            <div id="validasi" class="container ml-3">
-                                                @foreach($komentar['rab'] as $rabs)
-                                                <h6 style="color: #dc3545;">{{$rabs}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-
-                                        <!-- Modal Tambah Jadwal -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="tambah_jadwal<?= $tor[$t]->id ?>">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah Jadwal Pelaksanaan</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="form-horizontal" method="post" action="{{ url('/tor/create_jadwal/') }}">
-                                                            @csrf
-                                                            <label>Contoh</label><br />
-                                                            <img width="450" src="../assets/contoh/jadwaltor.png">
-                                                            <br />
-                                                            <div class="form-group">
-                                                                <label>TOR</label>
-                                                                <select name="id_tor" id="id_tor" class="form-control">
-                                                                    <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group ">
-                                                                <label>Komponen Jadwal</label>
-                                                                <textarea class="form-control" id="komponen" name="komponen" rows="2" placeholder="komponen..."></textarea>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label>Mulai Kegiatan</label>
-                                                                    <select name="bulan_awal" id="bulan_awal" onclick="min()" class="form-control">
-                                                                        <option hidden>Pilih</option>
-                                                                        <?php
-                                                                        $bulan = [
-                                                                            'Januari', 'Februari', 'Maret', 'April',
-                                                                            'Mei', 'Juni', 'Juli', 'Agustus',
-                                                                            'September',  'Oktober', 'November', 'Desember'
-                                                                        ];
-                                                                        for ($ba = 1; $ba <= 12; $ba++) { ?>
-                                                                            <option value="{{$ba}}">{{$bulan[$ba-1]}}</option>
-                                                                        <?php } ?>
-                                                                    </select>
-                                                                    <!-- <input type="month" id="start" name="start" min="2018-03" value="2018-05"> -->
-                                                                </div>
-                                                                <div class="col">
-                                                                    <label>Selesai Kegiatan</label>
-                                                                    <select name="bulan_akhir" id="bulan_akhir" onclick="max()" class="form-control">
-                                                                        <option hidden>Pilih</option>
-                                                                        <?php
-                                                                        $bulan = [
-                                                                            'Januari', 'Februari', 'Maret', 'April',
-                                                                            'Mei', 'Juni', 'Juli', 'Agustus',
-                                                                            'September',  'Oktober', 'November', 'Desember'
-                                                                        ];
-                                                                        for ($br = 1; $br <= 12; $br++) { ?>
-                                                                            <option value="{{$br}}">{{$bulan[$br-1]}}</option>
-                                                                        <?php } ?>
+                                            <!-- Modal Tambah Jadwal -->
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="tambah_jadwal<?= $tor[$t]->id ?>">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Tambah Jadwal Pelaksanaan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal" method="post" action="{{ url('/tor/create_jadwal/') }}">
+                                                                @csrf
+                                                                <label>Contoh</label><br />
+                                                                <img width="450" src="../assets/contoh/jadwaltor.png">
+                                                                <br />
+                                                                <div class="form-group">
+                                                                    <label>TOR</label>
+                                                                    <select name="id_tor" id="id_tor" class="form-control">
+                                                                        <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
                                                                     </select>
                                                                 </div>
+                                                                <div class="form-group ">
+                                                                    <label>Komponen Jadwal</label>
+                                                                    <textarea class="form-control" id="komponen" name="komponen" rows="2" placeholder="komponen..."></textarea>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label>Mulai Kegiatan</label>
+                                                                        <select name="bulan_awal" id="bulan_awal" onclick="min()" class="form-control">
+                                                                            <option hidden>Pilih</option>
+                                                                            <?php
+                                                                            $bulan = [
+                                                                                'Januari', 'Februari', 'Maret', 'April',
+                                                                                'Mei', 'Juni', 'Juli', 'Agustus',
+                                                                                'September',  'Oktober', 'November', 'Desember'
+                                                                            ];
+                                                                            for ($ba = 1; $ba <= 12; $ba++) { ?>
+                                                                                <option value="{{$ba}}">{{$bulan[$ba-1]}}</option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                        <!-- <input type="month" id="start" name="start" min="2018-03" value="2018-05"> -->
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label>Selesai Kegiatan</label>
+                                                                        <select name="bulan_akhir" id="bulan_akhir" onclick="max()" class="form-control">
+                                                                            <option hidden>Pilih</option>
+                                                                            <?php
+                                                                            $bulan = [
+                                                                                'Januari', 'Februari', 'Maret', 'April',
+                                                                                'Mei', 'Juni', 'Juli', 'Agustus',
+                                                                                'September',  'Oktober', 'November', 'Desember'
+                                                                            ];
+                                                                            for ($br = 1; $br <= 12; $br++) { ?>
+                                                                                <option value="{{$br}}">{{$bulan[$br-1]}}</option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </div>
 
-                                                            </div>
-                                                            <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
-                                                            <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
-                                                            <br />
-                                                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                                        </form>
-                                                        <script>
-                                                            function min() {
-                                                                var selectBox = document.getElementById("bulan_awal");
-                                                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                                                console.log(selectedValue);
-                                                                for (i = 1; i < 12; i++) {
-                                                                    if (i < selectedValue) {
-                                                                        document.getElementById("bulan_akhir").options[i].disabled = true;
-                                                                    } else {
-                                                                        document.getElementById("bulan_akhir").options[i].disabled = false;
+                                                                </div>
+                                                                <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                                                <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                                                <br />
+                                                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                            </form>
+                                                            <script>
+                                                                function min() {
+                                                                    var selectBox = document.getElementById("bulan_awal");
+                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                    console.log(selectedValue);
+                                                                    for (i = 1; i < 12; i++) {
+                                                                        if (i < selectedValue) {
+                                                                            document.getElementById("bulan_akhir").options[i].disabled = true;
+                                                                        } else {
+                                                                            document.getElementById("bulan_akhir").options[i].disabled = false;
+                                                                        }
                                                                     }
-                                                                }
-                                                            };
+                                                                };
 
-                                                            function max() {
-                                                                var selectBox = document.getElementById("bulan_akhir");
-                                                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                                                console.log(selectedValue);
-                                                                for (i = 1; i < 12; i++) {
-                                                                    if (i > selectedValue) {
-                                                                        document.getElementById("bulan_awal").options[i].disabled = true;
-                                                                    } else {
-                                                                        document.getElementById("bulan_awal").options[i].disabled = false;
+                                                                function max() {
+                                                                    var selectBox = document.getElementById("bulan_akhir");
+                                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                                    console.log(selectedValue);
+                                                                    for (i = 1; i < 12; i++) {
+                                                                        if (i > selectedValue) {
+                                                                            document.getElementById("bulan_awal").options[i].disabled = true;
+                                                                        } else {
+                                                                            document.getElementById("bulan_awal").options[i].disabled = false;
+                                                                        }
                                                                     }
-                                                                }
-                                                            };
-                                                        </script>
+                                                                };
+                                                            </script>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Modal Tambah IKU -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="tambah_iku<?= $tor[$t]->id ?>">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah IKU</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="form-horizontal" method="post" action="{{ url('/tor/create_indikator/') }}">
-                                                            @csrf
-                                                            <label>Contoh</label><br />
-                                                            <img width="450" src="../assets/contoh/contohiku.png">
-                                                            <br />
-                                                            <div class="form-group">
-                                                                <label>TOR</label>
-                                                                <select name="id_tor" id="id_tor" class="form-control">
-                                                                    <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="container mt-3">
-                                                                <div class="row">
-                                                                    <div class="col-md-7">
-                                                                        <div class="form-group">
-                                                                            <input name="jenis" id="jenis" value="IKU" type="hidden" class="form-control">
+                                            <!-- Modal Tambah IKU -->
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="tambah_iku<?= $tor[$t]->id ?>">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Tambah IKU</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal" method="post" action="{{ url('/tor/create_indikator/') }}">
+                                                                @csrf
+                                                                <label>Contoh</label><br />
+                                                                <img width="450" src="../assets/contoh/contohiku.png">
+                                                                <br />
+                                                                <div class="form-group">
+                                                                    <label>TOR</label>
+                                                                    <select name="id_tor" id="id_tor" class="form-control">
+                                                                        <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="container mt-3">
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <div class="form-group">
+                                                                                <input name="jenis" id="jenis" value="IKU" type="hidden" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Realisasi</label>
+                                                                                <input name="realisasi" id="realisasi" type="text" class="form-control">
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label>Realisasi</label>
-                                                                            <input name="realisasi" id="realisasi" type="text" class="form-control">
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>Tahun Realisasi</label>
+                                                                                <input name="thn_realisasi" id="thn_realisasi" type="text" class="form-control">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Tahun Realisasi</label>
-                                                                            <input name="thn_realisasi" id="thn_realisasi" type="text" class="form-control">
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <div class="form-group">
+                                                                                <label>Target</label>
+                                                                                <input name="target" id="target" type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>Tahun Target</label>
+                                                                                <input name="thn_target" id="thn_target" type="text" class="form-control">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-7">
-                                                                        <div class="form-group">
-                                                                            <label>Target</label>
-                                                                            <input name="target" id="target" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Tahun Target</label>
-                                                                            <input name="thn_target" id="thn_target" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
 
-                                                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <hr>
-
-
-                                        <!-- Modal Tambah IK -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="tambah_ik<?= $tor[$t]->id ?>">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah IK</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="form-horizontal" method="post" action="{{ url('/tor/create_indikator/') }}">
-                                                            @csrf
-                                                            <label>Contoh</label><br />
-                                                            <img width="450" src="../assets/contoh/contohik.png">
-                                                            <br />
-                                                            <div class="form-group">
-                                                                <label>TOR</label>
-                                                                <select name="id_tor" id="id_tor" class="form-control">
-                                                                    <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="container mt-3">
-                                                                <div class="row">
-                                                                    <div class="col-md-7">
-                                                                        <div class="form-group">
-                                                                            <input name="jenis" id="jenis" value="IK" type="hidden" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Realisasi</label>
-                                                                            <input name="realisasi" id="realisasi" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Tahun Realisasi</label>
-                                                                            <input name="thn_realisasi" id="thn_realisasi" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-7">
-                                                                        <div class="form-group">
-                                                                            <label>Target</label>
-                                                                            <input name="target" id="target" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Tahun Target</label>
-                                                                            <input name="thn_target" id="thn_target" type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-
-                                                        </form>
+                                                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <br />
+                                            <hr>
+
+
+                                            <!-- Modal Tambah IK -->
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="tambah_ik<?= $tor[$t]->id ?>">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Tambah IK</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal" method="post" action="{{ url('/tor/create_indikator/') }}">
+                                                                @csrf
+                                                                <label>Contoh</label><br />
+                                                                <img width="450" src="../assets/contoh/contohik.png">
+                                                                <br />
+                                                                <div class="form-group">
+                                                                    <label>TOR</label>
+                                                                    <select name="id_tor" id="id_tor" class="form-control">
+                                                                        <option value="{{$tor[$t]->id}}">{{$tor[$t]->nama_kegiatan}}</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="container mt-3">
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <div class="form-group">
+                                                                                <input name="jenis" id="jenis" value="IK" type="hidden" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Realisasi</label>
+                                                                                <input name="realisasi" id="realisasi" type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>Tahun Realisasi</label>
+                                                                                <input name="thn_realisasi" id="thn_realisasi" type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <div class="form-group">
+                                                                                <label>Target</label>
+                                                                                <input name="target" id="target" type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>Tahun Target</label>
+                                                                                <input name="thn_target" id="thn_target" type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                             </div>
                         </div>
                         <br />
