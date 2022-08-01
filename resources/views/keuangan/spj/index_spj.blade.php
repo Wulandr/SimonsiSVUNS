@@ -46,7 +46,6 @@
                                         <tr>
                                             <th>Status</th>
                                             <th>Form</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,15 +103,31 @@
                                             } ?>
                                             <td>{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
+
+                                            {{-- Mengetahui role user --}}
+                                            <?php
+                                            foreach ($roles as $role) {
+                                                if ($role->id == Auth::user()->role) {
+                                                    $RoleLogin = $role->name;
+                                                }
+                                            }
+                                            ?>
+
                                             <td class="text-center">
-                                                <?php
-                                                $tidakada_status = '<span class="badge border border-danger text-danger">Belum ada status</span>';
-                                                ?>
+                                                @can('spj_create')
+                                                    <?php
+                                                    $tidakada_status = '<span class="badge border border-danger text-danger">Belum ada status</span>';
+                                                    ?>
+                                                @endcan
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'SPJ')
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'SPJ')
+                                                                <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                ?>
+
+                                                                {{-- Jika Role Staf Keuangan --}}
+                                                                @if ($RoleLogin === 'Staf Keuangan')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_spj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_spj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Revisi')
@@ -130,7 +145,10 @@
                                                         @endforeach
                                                     @endif
                                                 @endforeach
-                                                <?= $tidakada_status ?>
+
+                                                @can('spj_create')
+                                                    <?= $tidakada_status ?>
+                                                @endcan
                                                 <!-- MODAL - Status spj -->
                                                 @include('keuangan/spj/status_spj')
                                                 <!-- MODAL - Validasi spj -->
@@ -140,14 +158,25 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <?php
-                                                $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
-                                                ?>
+                                                @if ($RoleLogin === 'Prodi')
+                                                    <?php
+                                                    $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
+                                                    ?>
+                                                @else
+                                                    <?php $file = '<span class="badge border border-danger text-danger">Prodi Belum Mengajukan SPJ</span>'; ?>
+                                                @endif
+
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'SPJ')
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'SPJ')
+                                                                <?php
+                                                                $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a>';
+                                                                ?>
+                                                                @if ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
+                                                                    <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_spj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                    ?>
+                                                                @elseif ($RoleLogin === 'Prodi')
                                                                     <?php
                                                                     $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><a href="' . url('/edit_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-warning rounded-pill" title="Edit File SPJ"><i class="las la-edit"></i></i></button></a>';
                                                                     ?>
@@ -156,6 +185,14 @@
                                                                         $file = '<a href="' . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-secondary rounded-pill" title="Upload File SPJ"><i class="las la-upload"></i></i></button></a>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Verifikasi')
+                                                                        <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
+                                                                        <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_spj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                                        ?>
+                                                                    @endif
+                                                                @elseif ($RoleLogin === 'Staf Keuangan')
+                                                                    @if ($b->nama_status == 'Verifikasi')
                                                                         <?php $file = '<a href="' . url('/detail_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . '"><button class="btn btn-sm bg-info rounded-pill" title="Detail File SPJ"><i class="las la-external-link-alt"></i></i></button></a><button class="btn btn-sm bg-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_spj' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Pelunasan Pembayaran/SPJ Selesai')
@@ -167,7 +204,10 @@
                                                         @endforeach
                                                     @endif
                                                 @endforeach
+
+
                                                 <?= $file ?>
+
                                             </td>
 
                                             <!-- MODAL - Bukti TF spj -->

@@ -123,6 +123,16 @@
                     </ul>
                 </li>
 
+                {{-- <?php
+                foreach ($role as $roles) {
+                    if ($roles->id == Auth::user()->role) {
+                        $RoleLogin = $roles->name;
+                    }
+                }
+
+                if($RoleLogin === 'Admin' || $RoleLogin === 'BPU' || $RoleLogin === 'Staf Keuangan' || $RoleLogin === 'Staf Perencanaan') {
+                ?> --}}
+
                 <li
                     class="{{ Request::is('pedomans', 'spj_kategori', 'spj_subkategori', 'tahun', 'triwulan', 'unit', 'pagu', 'mak', 'iku', 'roles', 'user') ? 'active' : '' }}">
                     <a href="#pengaturan" class="iq-waves-effect collapsed" data-toggle="collapse"
@@ -235,6 +245,8 @@
                         @endcan
                     </ul>
                 </li>
+
+                {{-- <?php } ?> --}}
             </ul>
         </nav>
         <div class="p-3"></div>

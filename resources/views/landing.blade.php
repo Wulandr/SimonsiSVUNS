@@ -57,7 +57,7 @@
                     @if (Route::has('google.login'))
                     @auth
                     <li>
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Dashboard</a>
                     </li>
                     @else
                     <li>

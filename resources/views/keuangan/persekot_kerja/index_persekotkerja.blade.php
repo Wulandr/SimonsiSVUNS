@@ -31,6 +31,15 @@
                                             <th style="width: 25%" colspan="2">Status</th>
                                         </tr>
                                     </thead>
+
+                                    <?php
+                                    foreach ($roles as $role) {
+                                        if ($role->id == Auth::user()->role) {
+                                            $RoleLogin = $role->name;
+                                        }
+                                    }
+                                    ?>
+
                                     <tbody>
                                         <tr>
                                             <?php
@@ -86,17 +95,12 @@
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'Persekot Kerja')
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'Persekot Kerja')
+                                                                <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                ?>
+                                                                @if ($RoleLogin === 'WD 1')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_pk' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'Validasi')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'Transfer Uang')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
-                                                                        ?>
-                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endforeach
@@ -111,17 +115,39 @@
                                                 @include('keuangan/persekot_kerja/status_pk')
                                             </td>
                                             <td class="text-center">
-                                                @can('pk_create')
+                                                @if ($RoleLogin === 'Prodi')
                                                     <?php
                                                     $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
                                                     ?>
-                                                @endcan
+                                                @else
+                                                    <?php $upload = '<span class="badge border border-danger text-danger">Prodi Belum Mengajukan PK</span>'; ?>
+                                                @endif
+
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'Persekot Kerja')
-                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'Persekot Kerja')
+                                                                {{-- Semua Role selain Prodi dan Staf Keu --}}
+                                                                <?php
+                                                                $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button>';
+                                                                ?>
+                                                                {{-- Jika Role Prodi --}}
+                                                                @if ($RoleLogin === 'Prodi')
+                                                                    <?php
+                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                    ?>
+                                                                    @if ($b->nama_status == 'Validasi')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Transfer Uang')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        ?>
+                                                                    @endif
+
+                                                                    {{-- Jika Role Staf Keuangan --}}
+                                                                @elseif ($RoleLogin === 'Staf Keuangan')
+                                                                    <?php
+                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Validasi')
                                                                         <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm btn-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
@@ -135,7 +161,9 @@
                                                         @endforeach
                                                     @endif
                                                 @endforeach
+
                                                 <?= $upload ?>
+
                                                 <!-- MODAL - Input Bukti TF Persekot Kerja -->
                                                 @include('keuangan/persekot_kerja/input_tf_pk')
                                                 <!-- MODAL - Show Bukti TF Persekot Kerja -->
@@ -161,9 +189,7 @@
                                                             }
                                                         }
                                                     }
-                                                }
-
-
+                                                }                                            
                                                 ?>
                                         </tr>
                                         <?php

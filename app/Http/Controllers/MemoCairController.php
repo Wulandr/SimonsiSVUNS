@@ -35,6 +35,11 @@ class MemoCairController extends Controller
             'dokumen',
             'tabelRole'
         ));
+
+        if (auth()->user()->id_unit != 1) {
+            $tor = Tor::where('id_unit', auth()->user()->id_unit)
+                ->orderBy('created_at', 'desc');
+        }
     }
 
     public function store(Request $request)

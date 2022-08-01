@@ -32,6 +32,13 @@
                                             <th colspan="2" style="width: 20%">Status Memo Cair</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                    foreach ($roles as $role) {
+                                        if ($role->id == Auth::user()->role) {
+                                            $RoleLogin = $role->name;
+                                        }
+                                    }
+                                    ?>
                                     <tbody>
                                         <tr>
 
@@ -118,16 +125,21 @@
                                                     @include('keuangan/memo_cair/edit_memocair')
                                                 @endcan
                                                 <?php } else { ?>
-                                                @can('memo_create')
-                                                    <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
-                                                        title="Upload File Memo Cair" data-toggle="modal"
-                                                        data-target="#upload_memocair<?= $tor[$m]->id ?>"><i
-                                                            class="las la-upload"></i>
-                                                    </button>
+
+                                                @if ($RoleLogin === 'Prodi')
+                                                    @can('memo_create')
+                                                        <button type="button" class="btn bg-dark btn-rounded btn-sm my-0"
+                                                            title="Upload File Memo Cair" data-toggle="modal"
+                                                            data-target="#upload_memocair<?= $tor[$m]->id ?>"><i
+                                                                class="las la-upload"></i>
+                                                        </button>
                                                 </td>
                                                 <!-- MODAL - Upload Memo Cair -->
                                                 @include('keuangan/memo_cair/upload_memocair')
                                             @endcan
+                                        @else
+                                            <?php $file = '<span class="badge border border-danger text-danger">Prodi Belum Upload Memo Cair</span>'; ?>
+                                            @endif
 
                                             <?php
                                                                                                         }

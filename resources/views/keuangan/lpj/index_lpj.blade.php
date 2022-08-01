@@ -95,6 +95,16 @@
                                             } ?>
                                             <td>{{ $tor[$m]->nama_kegiatan }}</td>
                                             <td>{{ $tor[$m]->nama_pic }}</td>
+
+                                            {{-- Mengetahui role user --}}
+                                            <?php
+                                            foreach ($roles as $role) {
+                                                if ($role->id == Auth::user()->role) {
+                                                    $RoleLogin = $role->name;
+                                                }
+                                            }
+                                            ?>
+
                                             <td class="text-center">
                                                 <?php
                                                 $tidakada_status = '<span class="badge border border-danger text-danger">Belum ada status</span>';
@@ -102,8 +112,12 @@
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'LPJ')
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'LPJ')
+                                                                <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                ?>
+
+                                                                {{-- Jika Role Staf Perencanaan --}}
+                                                                @if ($RoleLogin === 'Staf Perencanaan')
                                                                     <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Revisi')
@@ -127,22 +141,28 @@
                                                 @include('keuangan/lpj/showrevisi_lpj')
                                             </td>
                                             <td class="text-center">
-                                                <?php
-                                                $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
-                                                ?>
+                                                @if ($RoleLogin === 'Prodi')
+                                                    <?php
+                                                    $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
+                                                    ?>
+                                                @else
+                                                    <?php $upload = '<span class="badge border border-danger text-danger">Prodi Belum Mengajukan SPJ</span>'; ?>
+                                                @endif
+
                                                 @foreach ($trx_status_keu as $a)
                                                     @if ($a->id_tor == $tor[$m]->id)
                                                         @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id)
-                                                                @if ($b->kategori == 'LPJ')
-                                                                    @if ($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj' . $tor[$m]->id . '"><i class="las la-edit"></i></button>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'Verifikasi')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'LPJ Selesai')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-check"></i></button>';
+                                                            @if ($a->id_status == $b->id && $b->kategori == 'LPJ')
+                                                                @if ($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi')
+                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>';
+                                                                    ?>
+                                                                    {{-- Jika Role Prodi --}}
+                                                                @elseif ($RoleLogin === 'Prodi')
+                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj' . $tor[$m]->id . '"><i class="las la-edit"></i></button>';
+                                                                    ?>
+                                                                    @if ($b->nama_status == 'Revisi')
+                                                                        <?php
+                                                                        $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
                                                                         ?>
                                                                     @endif
                                                                 @endif

@@ -17,8 +17,18 @@ use Illuminate\Support\Facades\Auth;
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
-            <h3 class="text-center">Welcome to SIMONSI (Sistem Monev Sekolah Vokasi) UNS, {{ Auth::user()->name }}</h3>
-            <br>
+            <?php
+            foreach ($role as $roles) {
+                if ($roles->id == Auth::user()->role) {
+                    $RoleLogin = $roles->name;
+                }
+            }
+            ?>
+            @if ($RoleLogin != 'Prodi')
+                <h3 class="text-center">Welcome to SIMONSI (Sistem Monev Sekolah Vokasi) UNS, {{ Auth::user()->name }}
+                </h3>
+                <br>
+            @endif
 
             {{-- Manajemen menu Dashboard --}}
             @can('dashboard')
@@ -39,7 +49,7 @@ use Illuminate\Support\Facades\Auth;
                     // Ambil data Sisa
                     $total_sisa = $total_anggaran - $total_realisasi;
                     ?>
-                    <div class="col-sm-6 col-md-6 col-lg-3">
+                    {{-- <div class="col-sm-6 col-md-6 col-lg-3">
                         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                             <div class="iq-card-body iq-box-relative">
                                 <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
@@ -53,7 +63,7 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-6 col-md-6 col-lg-3">
                         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                             <div class="iq-card-body iq-box-relative">

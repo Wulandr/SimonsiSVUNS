@@ -27,12 +27,11 @@ class HomeController extends Controller
         $assignrole = $rolenm->name;
         $user = Usernya::all()->where('id', Auth()->user()->id)->first()->syncRoles($assignrole);
         $unit = Unit::all();
-        $tor = Tor::all();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();
         $users = DB::table('users')->get();
-        $roles = DB::table('roles')->get();
+        $role = DB::table('roles')->get();
         $tabelRole =  Role::all();
         $tw = DB::table('triwulan')->get();
         $tahun = DB::table('tahun')->get();
@@ -42,11 +41,18 @@ class HomeController extends Controller
         $filtertw = 0;
         $spj = SPJ::all();
         $userrole = Usernya::join();
+        $tor = Tor::all();
+
+        // if (auth()->user()->id_unit != 1) {
+        //     $tor = Tor::where('id_unit', auth()->user()->id_unit)->orderBy('created_at', 'desc');
+        // } else {
+        //     $tor = Tor::all();
+        // }
         return view(
             "dashboards.users.index",
             [
                 'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'prodi' => $prodi,
-                'status' => $status, 'unit' => $unit, 'users' => $users, 'roles' => $roles,
+                'status' => $status, 'unit' => $unit, 'users' => $users, 'role' => $role,
                 'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
                 'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj, 'tabelRole' => $tabelRole
             ]
