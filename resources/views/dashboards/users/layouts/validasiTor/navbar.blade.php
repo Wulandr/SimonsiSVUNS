@@ -129,7 +129,7 @@ use Illuminate\Support\Facades\Auth;
                                                                                                         <div class="media-body">
                                                                                                             <h6><?php foreach ($unit as $unitTor) {
                                                                                                                     if ($tor2->id_unit == $unitTor->id) { ?>
-                                                                                                                        <small class="badge badge-secondary">{{$unitTor->nama_unit}}</small>
+                                                                                                                        <small class="badge badge-success">{{$unitTor->nama_unit}}</small>
                                                                                                                 <?php }
                                                                                                                 } ?>
                                                                                                                 {{$tor2->nama_kegiatan." "}}

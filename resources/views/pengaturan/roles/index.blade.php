@@ -42,7 +42,7 @@
                                     @endif
                                     <div class="card-body">
                                         <div class="table-responsive table-invoice">
-                                            <table id="myroles" class="table table-striped">
+                                            <table id="myroles" class="table table-striped table table-striped table-bordered">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th width="10%">No.</th>
@@ -58,7 +58,7 @@
                                                         <td><a href="#">{{$role->name}}</a></td>
 
                                                         <td>
-                                                            <div class="row">
+                                                            <div class="row ml-1">
                                                                 <a href="<?= route('roles.show', ['role' => base64_encode($role->id)]) ?>" class="btn btn-primary btn-sm mr-1"><i class="fa fa-list"></i></a>
 
                                                                 <a href="<?= route('roles.edit', ['role' => base64_encode($role->id)]) ?>" class="btn btn-warning btn-action btn-sm mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>

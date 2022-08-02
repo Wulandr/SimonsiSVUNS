@@ -89,7 +89,7 @@
                                     </script>
                                     @endif
                                     <div class="table-responsive table-invoice">
-                                        <table id="myusers" class="table table-striped">
+                                        <table id="myusers" class="table table-striped table table-striped table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th width="5%">No.</th>
@@ -100,7 +100,7 @@
                                                     <th>Multirole</th>
                                                     <th>Unit</th>
                                                     <th width="8%">Status</th>
-                                                    <th width="8%">Aksi</th>
+                                                    <th width="10%">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -163,7 +163,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="row">
+                                                        <div class="row ml-3">
                                                             <div class="flex align-items-center list-user-action">
                                                                 <div class="row">
                                                                     <a href="{{route('user.detail',['user'=> base64_encode($u->id)])}}" class="iq-bg-primary"><i class="fa fa-list"></i></a>

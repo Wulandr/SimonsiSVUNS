@@ -118,7 +118,7 @@ use Illuminate\Support\Facades\Auth;
                                             </form>
                                         </div>
                                     </span>
-                                    <div class="table-responsive">
+                                    <div class="table-responsive table table-striped table-bordered">
                                         <div class="form-group row float-right mb-3 mr-2">
                                         </div>
                                         <table id="mytw" class="table mb-0">

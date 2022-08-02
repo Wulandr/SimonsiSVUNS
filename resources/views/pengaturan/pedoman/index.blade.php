@@ -57,15 +57,15 @@ use Illuminate\Support\Facades\Auth;
                                         <div class="table-responsive">
                                             <div class="form-group row float-right mb-3 mr-2">
                                             </div>
-                                            <table id="mypedoman" class="table mb-0">
+                                            <table id="mypedoman" class="table mb-0 table table-striped table-bordered">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th width="5%">No.</th>
                                                         <th scope="col" width="30%">Jenis</th>
                                                         <th scope="col" width="40%">Nama</th>
                                                         <th scope="col" width="10%">File</th>
-                                                        <th scope="col" width="10%">Tahun</th>
-                                                        <th scope="col" width="5%">Action</th>
+                                                        <th scope="col" width="5%">Tahun</th>
+                                                        <th scope="col" width="10%">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,7 +86,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </td>
                                                         <td class="text-center">{{ $pedomansbm->tahun }}</td>
                                                         <td class="text-center">
-                                                            <div class="flex align-items-center list-user-action">
+                                                            <div class="flex align-items-center list-user-action ml-3">
                                                                 <div class="row">
                                                                     @can('pedoman_update')
                                                                     <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Pedoman" data-original-title="Update Pedoman" href="" data-target="#update_pedoman<?= $pedomansbm->id ?>"><i class="ri-pencil-line"></i></a>

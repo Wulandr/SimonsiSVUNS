@@ -40,12 +40,12 @@ use Illuminate\Support\Facades\Auth;
                                         <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
                                             Print
                                         </a>
-                                        <!-- <a class="iq-bg-primary" href="javascript:void();">
+                                        <a class="iq-bg-primary" href="javascript:void();">
                                             Excel
                                         </a>
                                         <a class="iq-bg-primary" href="javascript:void();">
                                             Pdf
-                                        </a> -->
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -246,6 +246,146 @@ use Illuminate\Support\Facades\Auth;
                                                 PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
                                             </h5>
                                             <br />
+
+                                            <div class="table-responsive">
+                                                <table id="datatable" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <td colspan="5"><b>
+                                                                    KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
+                                                                    PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1.</td>
+                                                            <td>Indikator Kinerja Utama</td>
+                                                            <td>:</td>
+                                                            <td>{{$iku}}</td>
+                                                            <td>{{$deskripsi_iku}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2.</td>
+                                                            <td>Indikator Kegiatan (IK)</td>
+                                                            <td>:</td>
+                                                            <td>{{$ik}}</td>
+                                                            <td>{{$deskripsi_ik}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3.</td>
+                                                            <td>Kegiatan</td>
+                                                            <td>:</td>
+                                                            <td>{{$indikator_k}}</td>
+                                                            <td>{{$deskripsi_indikator_k}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4.</td>
+                                                            <td>Sub Kegiatan</td>
+                                                            <td>:</td>
+                                                            <td>{{$sub_k}}</td>
+                                                            <td>{{$deskripsi_sub_k}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5.</td>
+                                                            <td>Judul Kegiatan</td>
+                                                            <td>:</td>
+                                                            <td colspan="2">{{$tor[$t]->nama_kegiatan}}</td>
+                                                        </tr>
+
+                                                        <!-- Latar Belakang -->
+                                                        <tr>
+                                                            <td>6.</td>
+                                                            <td colspan="4">Latar Belakang</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4">{!!$tor[$t]->latar_belakang!!}</td>
+                                                        </tr>
+
+                                                        <!-- Rasionalisasi -->
+                                                        <tr>
+                                                            <td>7.</td>
+                                                            <td colspan="4">Rasionalisasi</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Tujuan -->
+                                                        <tr>
+                                                            <td>8.</td>
+                                                            <td colspan="4">Tujuan</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Mekanisme dan Rancangan -->
+                                                        <tr>
+                                                            <td>9.</td>
+                                                            <td colspan="4">Mekanisme dan Rancangan</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Jadwal Pelaksanaan -->
+                                                        <tr>
+                                                            <td>10.</td>
+                                                            <td colspan="4">Jadwal Pelaksanaan</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Indikator Kinerja Utama (IKU) -->
+                                                        <tr>
+                                                            <td>11.</td>
+                                                            <td colspan="4">Indikator Kinerja Utama (IKU)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Indikator Kinerja Kegiatan (IK) -->
+                                                        <tr>
+                                                            <td>12.</td>
+                                                            <td colspan="4">Indikator Kinerja Kegiatan (IK)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Keberlanjutan -->
+                                                        <tr>
+                                                            <td>14.</td>
+                                                            <td colspan="4">Keberlanjutan</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <!-- Penanggungjawab -->
+                                                        <tr>
+                                                            <td>15.</td>
+                                                            <td colspan="4">Penanggungjawab</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                             <?php collapseKomentar(); ?>
                                             <h6><b>1. Indikator Kinerja Utama (IKU) : </b>{{$iku . " ".  $deskripsi_iku}}</h6><br />
                                             <h6><b>2. Indikator Kinerja Kegiatan (IK) : </b>{{$ik ." ".$deskripsi_ik}}</h6><br />
@@ -690,7 +830,7 @@ use Illuminate\Support\Facades\Auth;
                                         //     }
                                         // }
                         ?>
-                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_revisi') || Gate::check('tor_validasi'))
+                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_revisi') || Gate::check('tor_validasi') )
                         <?php if ($disetujui != 1) { ?>
                             <div id="validasi" class="container center">
                                 <?php
@@ -710,13 +850,7 @@ use Illuminate\Support\Facades\Auth;
                                                         if ($statusTor->id == $trx_status_tor[$stk2]->id_status) {
                                                             $currentStatus = $statusTor->nama_status;
                                                             foreach ($users as $userrole) {
-                                                                // foreach ($roles as $statusrole) {
-                                                                //     if ($trx_status_tor[$stk2]->create_by == $userrole->id) {
-                                                                //         if ($userrole->role == $statusrole->id) {
                                                                 $currentStatusRole =  $trx_status_tor[$stk2]->role_by;
-                                                                //         }
-                                                                //     }
-                                                                // }
                                                             }
                                                         }
                                                     }
@@ -738,8 +872,9 @@ use Illuminate\Support\Facades\Auth;
                                                         if (Auth()->user()->role == $roles[$r3]->id) {
                                 ?>
 
-                                                <?php if ($roles[$r3]->name == "BPU") {
-                                                                if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi") {
+                                                <!-- K A P R O D I -->
+                                                <?php if ($roles[$r3]->name == "Kaprodi") {
+                                                                if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi Kaprodi") {
                                                                     $muncul = 'ada';
                                                                     $buttonSubmit = 1; ?>
                                                         <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
@@ -747,15 +882,18 @@ use Illuminate\Support\Facades\Auth;
                                                     <?php } elseif ($currentStatus != "Proses Pengajuan" || $currentStatus != "Pengajuan Perbaikan") {
                                                                     $muncul = 'tidak ada';
                                                                 }
-                                                                // echo $muncul . $status[$s]->id . "<br />";
-                                                                if ($muncul == 'tidak ada') { ?>
-                                                        <!-- <script>
-                                                            var n = document.getElementById("validasiplus");
-                                                            while (n) {
-                                                                document.getElementById("validasiplus").remove();
                                                             }
-                                                        </script> -->
-                                                    <?php }
+
+                                                            // B P U
+                                                            elseif ($roles[$r3]->name == "BPU") {
+                                                                if (($currentStatus == "Verifikasi Kaprodi") && $status[$s]->nama_status == "Verifikasi") {
+                                                                    $muncul = 'ada';
+                                                                    $buttonSubmit = 1; ?>
+                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                    <?php } elseif ($currentStatus != "Verifikasi Kaprodi") {
+                                                                    $muncul = 'tidak ada';
+                                                                }
 
                                                                 // W D 1
                                                             } elseif ($roles[$r3]->name == "WD 1") { ?>

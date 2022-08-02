@@ -62,6 +62,7 @@ return [
             'tor_detail',
             'tor_delete',
             'tor_ajuan',
+            'tor_verifikasi_kaprodi',
             'tor_verifikasi',
             'tor_revisi',
             'tor_validasi'

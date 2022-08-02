@@ -351,7 +351,7 @@ use Illuminate\Support\Facades\Auth;
                                                     <select name="id_tw" id="id_tw" class="form-control @error('id_tw') is-invalid @enderror">
                                                         <?php for ($t2 = 0; $t2 < count($tw); $t2++) {
                                                             foreach ($tabeltahun as $thn) {
-                                                                if ($thn->is_aktif == 1 && $thn->tahun == date('Y')) {
+                                                                if ($thn->is_aktif == 1) {
                                                                     if ($thn->tahun == substr($tw[$t2]->triwulan, 0, 4)) { ?>
                                                                         <option value="{{$tw[$t2]->id}}"><?= $tw[$t2]->triwulan ?></option>
                                                         <?php }

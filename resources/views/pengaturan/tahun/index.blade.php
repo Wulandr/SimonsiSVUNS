@@ -185,7 +185,7 @@ use Illuminate\Support\Facades\Auth;
                                         </table>
                                         <br /> -->
 
-                                        <table id="mytahun" class="table mb-0">
+                                        <table id="mytahun" class="table mb-0 table table-striped table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>No.</th>

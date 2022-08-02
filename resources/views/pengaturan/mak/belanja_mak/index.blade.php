@@ -125,14 +125,14 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="table-responsive">
                                                 <div class="form-group row float-right mb-3 mr-2">
                                                 </div>
-                                                <table id="mybelmak" class="table mb-0">
+                                                <table id="mybelmak" class="table mb-0 table table-striped table-bordered">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>No.</th>
                                                             <th scope="col">MAK</th>
                                                             <th scope="col" width="30%">Kelompok MAK</th>
                                                             <th scope="col">Nama Belanja MAK</th>
-                                                            <th scope="col">Aksi</th>
+                                                            <th scope="col" width="10%">Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -146,7 +146,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <td>{{$join->kelompok}}</td>
                                                             <td>{{$join->belanja}}</td>
                                                             <td>
-                                                                <div class="flex align-items-center list-user-action">
+                                                                <div class="flex align-items-center list-user-action ml-3">
                                                                     <div class="row">
                                                                         @can('belanjamak_update')
                                                                         <a class="iq-bg-warning" data-toggle="modal" data-placement="top" title="Update Belanja" data-original-title="Update Belanja" href="" data-target="#update_bel<?= $join->idBelanja ?>"><i class="ri-pencil-line"></i></a>

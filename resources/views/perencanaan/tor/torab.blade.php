@@ -106,7 +106,7 @@ use Illuminate\Support\Facades\Auth;
                       <div class="d-flex align-items-center justify-content-between" style="position: relative;">
                         <div class="row ml-1">
                           @foreach($pedoman as $pedomansbm)
-                          @if($pedomansbm->tahun == date('Y'))
+                          @if($pedomansbm->tahun == date('Y') && ($pedomansbm->jenis =='SBM' || $pedomansbm->jenis =='TorRab'))
                           <a href="{{asset('/pedoman/'.$pedomansbm->file)}}">{{$pedomansbm->tahun . " : " .$pedomansbm->nama}}</a>
                           @endif
                           @endforeach
@@ -124,7 +124,7 @@ use Illuminate\Support\Facades\Auth;
               </div>
 
               <div class="iq-card-body">
-                <div id="table" class="table-editable">
+                <div id="table" class="table-editable table table-striped table-bordered">
                   <span class="table-add float-left ml-3 mr-2">
                     @can('tor_create')
                     <a href="http://127.0.0.1:8000/steppengajuantor"><button class="btn btn-sm bg-primary"><i class="las la-plus"></i><span class="pl-1">Tambah TOR</span>

@@ -220,6 +220,10 @@ function ngecekWulan($awal, $akhir)
                                         $setujuTw2 = $setujuTw2;
                                         $setujuTw3 = $setujuTw3;
                                         $setujuTw4 = $setujuTw4;
+                                        $ajuanTw1 = $ajuanTw1 - $setujuTw1;
+                                        $ajuanTw2 = $ajuanTw2 - $setujuTw2;
+                                        $ajuanTw3 = $ajuanTw3 - $setujuTw3;
+                                        $ajuanTw4 = $ajuanTw4 - $setujuTw4;
                                     }
                                     if ($filtertw != 0) {
                                         foreach ($tw as $cektw) {
@@ -279,7 +283,7 @@ function ngecekWulan($awal, $akhir)
                                             ]
                                         };
                                         const config = {
-                                            type: 'bar',
+                                            type: 'line',
                                             data: data,
                                             options: {
                                                 scales: {
@@ -329,7 +333,7 @@ function ngecekWulan($awal, $akhir)
                                                 </div>
                                             </span>
                                         </div>
-                                        <table id="monitoring" class="table table-striped responsive" style="display: block;
+                                        <table id="monitoring" class="table table-striped responsive table table-striped table-bordered" style="display: block;
     overflow-y: auto;
     white-space: nowrap;
   max-height:500px;">
@@ -339,6 +343,7 @@ function ngecekWulan($awal, $akhir)
                                                     <th scope="col">Triwulan</th>
                                                     <th scope="col">Prodi</th>
                                                     <th scope="col">Judul Kegiatan</th>
+                                                    <th scope="col">Jenis Ajuan</th>
                                                     <th scope="col">Tanggal Mulai</th>
                                                     <th scope="col">Nama PIC</th>
                                                     <th scope="col">Anggaran Ajuan</th>
@@ -430,6 +435,7 @@ function ngecekWulan($awal, $akhir)
                                                             } ?>
                                                             <td>{{ $prodiTor }}</td>
                                                             <td>{{ $tor[$m]->nama_kegiatan }}</td>
+                                                            <td>{{ $tor[$m]->jenis_ajuan }}</td>
                                                             <td><?php
                                                                 $date = date_create($tor[$m]->tgl_mulai_pelaksanaan);
                                                                 echo date_format($date, 'M d, Y'); ?></td>
@@ -464,7 +470,7 @@ function ngecekWulan($awal, $akhir)
                                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header" style="background-color: #ffc107;color:white">
-                                                                                <h5 class="modal-title" style="color:white"><b>Status Pengajuan TOR</b> </h5>
+                                                                                <h5 class="modal-title" style="color:white"><b>Status Pengajuan TOR & RAB</b> </h5>
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                     <span aria-hidden="true">&times;</span>
                                                                                 </button>
@@ -585,14 +591,25 @@ function ngecekWulan($awal, $akhir)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script>
         $(document).ready(function() {
             $.noConflict();
+            <?php date_default_timezone_set('Asia/Jakarta'); ?>
             $('#monitoring').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    'copy', 'csv', 'print',
+                    {
+                        extend: 'excelHtml5',
+                        title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
+                    },
+
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
+                    }
                 ]
             });
         });

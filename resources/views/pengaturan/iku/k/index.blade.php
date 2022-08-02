@@ -133,7 +133,7 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="table-responsive">
                                                 <div class="form-group row float-right mb-3 mr-2">
                                                 </div>
-                                                <table id="myk" class="table mb-0">
+                                                <table id="myk" class="table mb-0 table table-striped table-bordered">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>No.</th>

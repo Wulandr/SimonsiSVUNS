@@ -4,17 +4,21 @@ $totanggaran1 = 0;
 for ($r = 0; $r < count($rab); $r++) {
     if ($rab[$r]->id_tor == $tor[$t]->id) { ?>
         <div class="container center">
-            <h5 style="text-align: center;"><b>RINCIAN ANGGARAN BELANJA</b></h5>
             <?php for ($u = 0; $u < count($unit2); $u++) {
                 if ($tor[$t]->id_unit == $unit2[$u]->id) {
                     $namaunit = $unit2[$u]->nama_unit;
                 }
             } ?>
-            <h5 style="text-align: center;"><b>{{strtoupper($namaunit)}}</h5><br />
             <br />
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped table-bordered">
                     <thead>
+                        <tr>
+                            <td colspan="8">
+                                <h5 style="text-align: center;"><b>RINCIAN ANGGARAN BELANJA</b></h5>
+                                <h5 style="text-align: center;"><b>{{strtoupper($namaunit)}}</h5>
+                            </td>
+                        </tr>
                         <tr>
                             <td colspan="7"><b>Unit Kerja</b> : {{$namaunit}}</td>
                             <th>Tahun</th>
@@ -137,12 +141,85 @@ for ($r = 0; $r < count($rab); $r++) {
                                 }
                             }
                         } ?>
+
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="7">Total</th>
                             <th>{{"Rp. ".number_format($totalAnggaranRab,2,',',',')}}</th>
                         </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <!-- TANDA TANGAN -->
+                        <tr>
+                            <td colspan="4" style="text-align: center;" width="50%">Kepala Program Studi
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <?php
+                                foreach ($users as $us) {
+                                    foreach ($unit as $un) {
+                                        if ($un->id == $us->id_unit) {
+                                            foreach ($roles as $ro) {
+                                                if ($ro->id == $us->role) {
+                                                    if ($ro->name == "Kaprodi") {
+                                                        echo "<b>" . $us->name . "</b><br />";
+                                                        echo "NIP. " . $us->nip;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td colspan="4" style="text-align: center;" width="50%">Perencana/Penanggungjawab
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b>{{$tor[$t]->nama_pic}}</b><br />
+                                {{"NIP. ". Auth::user()->nip }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="text-align: center;">Menyetujui</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
+                                NIP. 197408182000121001
+                            </td>
+                            <td colspan="2">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                <br />
+                                <br />
+                                <br />
+                                <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
+                                NIP. 198208112006041001
+                            </td>
+                            <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b> Abdul Aziz, S.Kom., M.Cs.</b><br />
+                                NIP. 198104132005011001
+                            </td>
+                        </tr>
+                        <!-- TANDA TANGAN -->
+
                         @include('perencanaan/modal2/tambah_anggaran')
 
                     </tfoot>

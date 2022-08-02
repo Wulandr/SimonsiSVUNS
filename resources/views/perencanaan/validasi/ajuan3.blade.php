@@ -199,7 +199,11 @@ use Illuminate\Support\Facades\Auth;
                                                                         $badge = 'badge-success';
                                                                     } ?>
                                                                     <div class="badge badge-pill {{$badge}}">
-                                                                        {{ $statuskeg . ' ' . $pengvalidasi }}
+                                                                        <?php if ($statuskeg != 'Verifikasi Kaprodi') { ?>
+                                                                            {{ $statuskeg . ' ' . $pengvalidasi }}
+                                                                        <?php } elseif ($statuskeg == 'Verifikasi Kaprodi') { ?>
+                                                                            {{ $statuskeg }}
+                                                                        <?php } ?>
                                                                     </div>
                                                                     <button class="badge badge-info" data-toggle="modal" data-placement="top" data-target="#detail_tor{{ $x }}">
                                                                         <i class="fa fa-tasks"></i>
