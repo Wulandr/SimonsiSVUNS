@@ -147,6 +147,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/detailtor/{id}', [ValidasiController::class, 'detail']);
     Route::get('/detailrab/{id}', [ValidasiController::class, 'detailRab']);
 
+    Route::get('/exportPdf/{id}', [ValidasiController::class, 'createPDF']);
+    Route::get('/exportExcel/{id}', [ValidasiController::class, 'createExcel']);
 
     // Route::get('/tor', [TorController::class, 'index']);
     Route::get('/pengajuantor', [TorController::class, 'pengajuan']);

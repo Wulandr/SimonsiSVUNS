@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="iq-footer text-right">
+<!-- <footer class="iq-footer text-right">
     <div class="container-fluid">
         <div class="col-lg-12">
             <ul class="list-inline mb-0">
@@ -10,7 +10,7 @@
             </ul>
         </div>
     </div>
-</footer>
+</footer> -->
 <!-- Footer END -->
 
 <!-- Optional JavaScript -->

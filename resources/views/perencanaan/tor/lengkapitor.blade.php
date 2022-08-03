@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Auth;
                                         <a class="iq-bg-primary" href="javascript:void();">
                                             Excel
                                         </a>
-                                        <a class="iq-bg-primary" href="javascript:void();">
+                                        <a class="iq-bg-primary" href="{{url('exportPdf/' . base64_encode($id) )}}" target="_blank">
                                             Pdf
                                         </a>
                                     </div>
@@ -1245,6 +1245,7 @@ use Illuminate\Support\Facades\Auth;
             });
         });
     </script> -->
+
     @include('dashboards/users/layouts/footer')
 
 </body>

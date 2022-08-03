@@ -40,10 +40,10 @@ use Illuminate\Support\Facades\Auth;
                                         <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
                                             Print
                                         </a>
-                                        <a class="iq-bg-primary" href="javascript:void();">
+                                        <a class="iq-bg-primary" href="{{url('exportExcel/' . base64_encode($id) )}}" target="_blank">
                                             Excel
                                         </a>
-                                        <a class="iq-bg-primary" href="javascript:void();">
+                                        <a class="iq-bg-primary" href="{{url('exportPdf/' . base64_encode($id) )}}" target="_blank">
                                             Pdf
                                         </a>
                                     </div>
@@ -241,17 +241,17 @@ use Illuminate\Support\Facades\Auth;
 
                                             ?>
 
-                                            <h5 style="text-align: center;" id="judul">
+                                            <!-- <h5 style="text-align: center;" id="judul">
                                                 KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR), <br />
                                                 PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
-                                            </h5>
+                                            </h5> -->
                                             <br />
 
                                             <div class="table-responsive">
-                                                <table id="datatable" class="table table-striped table-bordered">
+                                                <table id="torx" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="5"><b>
+                                                            <td colspan="5" style="text-align: center;"><b>
                                                                     KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
                                                                     PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></td>
                                                         </tr>
@@ -1222,7 +1222,39 @@ use Illuminate\Support\Facades\Auth;
 
     };
 </script>
+<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.noConflict();
+        <?php date_default_timezone_set('Asia/Jakarta'); ?>
+        $('#torx').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'print',
+                {
+                    extend: 'excelHtml5',
+                    title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
+                },
+
+                {
+                    extend: 'pdfHtml5',
+                    title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
+                }
+            ]
+        });
+    });
+</script>
 @include('dashboards/users/layouts/footer')
+
 </body>
 
 </html>

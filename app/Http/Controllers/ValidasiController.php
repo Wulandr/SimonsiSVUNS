@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MultiExport;
 use App\Models\Rab;
 use App\Models\Anggaran;
 use App\Models\Tor;
@@ -13,7 +14,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
-
+// use Maatwebsite\Excel\Facades\Excel;
+// use PDF;
+use Dompdf\Dompdf;
+use Excel;
+use App\Exports\TORExport;
 
 class ValidasiController extends Controller
 {
@@ -206,10 +211,9 @@ class ValidasiController extends Controller
                 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'users' => $users,
                 'indikator_iku' => $indikator_iku, 'id' => $id, 'trx_status_tor' => $trx_status_tor, 'roles' => $roles,
                 'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang, 'detail_mak' => $detail_mak,
-                'tabelRole' => $tabelRole
+                'tabelRole' => $tabelRole, 'id' => $id
             ]
         );
-        // return $tor;
     }
     public function detailRab($id)
     {
@@ -331,5 +335,71 @@ class ValidasiController extends Controller
                 'tabeltahun' => $tabeltahun, 'join' => $join, 'user' => $user, 'role' => $role, 'filtertw' => $filtertw, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
             ]
         );
+    }
+
+    // Generate PDF
+    public function createPDF($id)
+    {
+        $id = base64_decode($id);;
+        $tor = Tor::all();
+        $judulTOR =  DB::table('tor')->select('nama_kegiatan')->where('id', $id)->get();
+        $judulTOR2 = $judulTOR[0]->nama_kegiatan;
+        $unit = Unit::all();
+        $unit2 = Unit::all();
+        $rab = DB::table('rab')->get();
+        $userrole = User::join();
+        $tw = Triwulan::all();
+        $detail_mak = DB::table('detail_mak')->get();
+        // $tahun = DB::table('tor')->get();
+        $status = DB::table('status')->get();
+        $roles = DB::table('roles')->get();
+        $trx_status_tor = DB::table('trx_status_tor')->get();
+        $tabeltahun = DB::table('tahun')->get();
+        $pagu = DB::table('pagu')->get();
+        $subkeg = DB::table('indikator_subK')->get();
+        $kategori_subK =  SubKegiatan::Kategori_Sub();
+        $komponen_jadwal = DB::table('komponen_jadwal')->get();
+        $indikator_iku = DB::table('indikator_iku')->get();
+        $users = DB::table('users')->get();
+        $anggaran = DB::table('anggaran')->get();
+        $subkeg = DB::table('indikator_subK')->get();
+        $rab_ang = Anggaran::Rab_Ang();
+        $tabelRole =  Role::all();
+        $data =
+            [
+                'tor' => $tor, 'rab' => $rab, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'userrole' => $userrole,  'detail_mak' => $detail_mak,
+                'status' => $status, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
+                'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'users' => $users,
+                'indikator_iku' => $indikator_iku, 'id' => $id, 'trx_status_tor' => $trx_status_tor, 'roles' => $roles,
+                'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang, 'detail_mak' => $detail_mak,
+                'tabelRole' => $tabelRole, 'id' => $id
+            ];
+        $datas =  view(
+            "perencanaan.validasi.printPDF",
+            $data
+        );
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($datas);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'potrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("TOR & RAB" . " - " . $judulTOR2 . date('Y-m-d_H-i-s') . ".pdf");
+        // return $judulTOR[0]->nama_kegiatan;
+    }
+
+    function createExcel($id)
+    {
+        $ids = base64_decode($id);;
+
+        $judulTOR =  DB::table('tor')->select('nama_kegiatan')->where('id', $ids)->get();
+        $judulTOR2 = $judulTOR[0]->nama_kegiatan;
+        $nama_file = 'TOR & RAB'  . " - " . $judulTOR2 . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new MultiExport($id), $nama_file);
     }
 }

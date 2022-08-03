@@ -212,7 +212,6 @@ use Illuminate\Support\Facades\Auth;
                                                                     <a class="pagu-confirm iq-bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{url('/pagu/delete/'.base64_encode($pagu[$a]->id))}}"><i class="ri-delete-bin-line"></i></a>
                                                                     @endcan
                                                                 </div>
-                                                                >>>>>>> Stashed changes
                                                             </div>
                                     </div>
                                     </td>
