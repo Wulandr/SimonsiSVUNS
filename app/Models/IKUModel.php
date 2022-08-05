@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Triwulan extends Model
+class IKUModel extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
     public $keyType = 'string';
-    protected $table = 'triwulan';
+    protected $table = 'indikator_Iku';
     protected $guarded = [];
-
-    public function tahun()
+    public function IndikatorIK()
     {
         // $this->relationsType("Model","Foreign_key","Local_key");
-        return $this->belongsTo('App\Models\Tahun', 'id_tahun', 'id');
+        return $this->hasMany('App\Models\IKModel', 'id_ik', 'id');
     }
 }

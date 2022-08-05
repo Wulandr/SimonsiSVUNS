@@ -16,7 +16,7 @@ class CreateTorTable extends Migration
         Schema::create('tor', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kegiatan');
-            $table->string('jenis_ajuan');
+            $table->enum('jenis_ajuan', ['Baru', 'Perbaikan']);
             $table->longText('latar_belakang', 2000);
             $table->longText('rasionalisasi', 2000);
             $table->longText('tujuan', 2000);

@@ -173,7 +173,7 @@ class TorController extends Controller
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
         $indikator_k = DB::table('indikator_k')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
-        $users = DB::table('users')->get();
+        $users = User::all();
         $anggaran = DB::table('anggaran')->get();
         $tabelRole =  Role::all();
 

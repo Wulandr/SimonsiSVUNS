@@ -12,4 +12,9 @@ class Tahun extends Model
     public $keyType = 'string';
     protected $table = 'tahun';
     protected $guarded = [];
+    public function triwulan()
+    {
+        // $this->relationsType("Model","Foreign_key","Local_key");
+        return $this->hasMany('App\Models\Triwulan', 'id_tahun', 'id');
+    }
 }

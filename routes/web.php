@@ -39,6 +39,7 @@ use App\Http\Controllers\MonitoringKakController;
 use App\Http\Controllers\PersekotKerjaController;
 use App\Http\Controllers\SPJSubKategoriController;
 use App\Http\Controllers\MonitoringUsulanController;
+use App\Http\Controllers\MonitoringIKUController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -252,6 +253,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/monitoringUsulan', [MonitoringUsulanController::class, 'index'])->name('monitoringUsulan');
     Route::get('/monitoringUsulan/filterTw', [MonitoringUsulanController::class, 'filter_tw']);
+    Route::get('/monitoringIKU', [MonitoringIKUController::class, 'index'])->name('monitoringIKU');
 
     // R O U T E    K E U A N G A N
 

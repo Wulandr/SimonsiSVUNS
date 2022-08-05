@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Auth;
                                         <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
                                             Print
                                         </a>
-                                        <a class="iq-bg-primary" href="javascript:void();">
+                                        <a class="iq-bg-primary" href="{{url('exportExcel/' . base64_encode($id) )}}" target="_blank">
                                             Excel
                                         </a>
                                         <a class="iq-bg-primary" href="{{url('exportPdf/' . base64_encode($id) )}}" target="_blank">
@@ -107,62 +107,62 @@ use Illuminate\Support\Facades\Auth;
                                                     if ($trx_status_tor[$trx]->create_by == $users[$us]->id) {
                                                         if (!empty($trx_status_tor[$trx]->k_sub)) {
                                                             if ($trx_status_tor[$trx]->k_sub != '-') {
-                                                                $komentar['sub'][] = " \"" . $trx_status_tor[$trx]->k_sub . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['sub'][] = " \"" . $trx_status_tor[$trx]->k_sub . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_judul)) {
                                                             if ($trx_status_tor[$trx]->k_judul != '-') {
-                                                                $komentar['judul'][] = " \"" . $trx_status_tor[$trx]->k_judul . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['judul'][] = " \"" . $trx_status_tor[$trx]->k_judul . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_latar_belakang)) {
                                                             if ($trx_status_tor[$trx]->k_latar_belakang != '-') {
-                                                                $komentar['latarbelakang'][] = " \"" . $trx_status_tor[$trx]->k_latar_belakang . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['latarbelakang'][] = " \"" . $trx_status_tor[$trx]->k_latar_belakang . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_rasionalisasi)) {
                                                             if ($trx_status_tor[$trx]->k_rasionalisasi != '-') {
-                                                                $komentar['rasionalisasi'][] = " \"" . $trx_status_tor[$trx]->k_rasionalisasi . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['rasionalisasi'][] = " \"" . $trx_status_tor[$trx]->k_rasionalisasi . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_tujuan)) {
                                                             if ($trx_status_tor[$trx]->k_tujuan != '-') {
-                                                                $komentar['tujuan'][] = " \"" . $trx_status_tor[$trx]->k_tujuan . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['tujuan'][] = " \"" . $trx_status_tor[$trx]->k_tujuan . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_mekanisme)) {
                                                             if ($trx_status_tor[$trx]->k_mekanisme != '-') {
-                                                                $komentar['mekanisme'][] = " \"" . $trx_status_tor[$trx]->k_mekanisme . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['mekanisme'][] = " \"" . $trx_status_tor[$trx]->k_mekanisme . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_jadwal)) {
                                                             if ($trx_status_tor[$trx]->k_jadwal != '-') {
-                                                                $komentar['jadwal'][] = " \"" . $trx_status_tor[$trx]->k_jadwal . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['jadwal'][] = " \"" . $trx_status_tor[$trx]->k_jadwal . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_iku)) {
                                                             if ($trx_status_tor[$trx]->k_iku != '-') {
-                                                                $komentar['iku'][] = " \"" . $trx_status_tor[$trx]->k_iku . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['iku'][] = " \"" . $trx_status_tor[$trx]->k_iku . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_ik)) {
                                                             if ($trx_status_tor[$trx]->k_ik != '-') {
-                                                                $komentar['ik'][] = " \"" . $trx_status_tor[$trx]->k_ik . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['ik'][] = " \"" . $trx_status_tor[$trx]->k_ik . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_keberlanjutan)) {
                                                             if ($trx_status_tor[$trx]->k_keberlanjutan != '-') {
-                                                                $komentar['keberlanjutan'][] = " \"" . $trx_status_tor[$trx]->k_keberlanjutan . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['keberlanjutan'][] = " \"" . $trx_status_tor[$trx]->k_keberlanjutan . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_penanggung)) {
                                                             if ($trx_status_tor[$trx]->k_penanggung != '-') {
-                                                                $komentar['penanggung'][] = " \"" . $trx_status_tor[$trx]->k_penanggung . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['penanggung'][] = " \"" . $trx_status_tor[$trx]->k_penanggung . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                         if (!empty($trx_status_tor[$trx]->k_rab)) {
                                                             if ($trx_status_tor[$trx]->k_rab != '-') {
-                                                                $komentar['rab'][] = " \"" . $trx_status_tor[$trx]->k_rab . "\"\n (" . $users[$us]->name . ")";
+                                                                $komentar['rab'][] = " \"" . $trx_status_tor[$trx]->k_rab . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                             }
                                                         }
                                                     }
@@ -310,7 +310,7 @@ use Illuminate\Support\Facades\Auth;
                                                 <table id="datatable" class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="5">
+                                                            <td colspan="8">
                                                                 <h5 style="text-align: center;"><b>KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
                                                                         PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></h5>
                                                             </td>
@@ -318,25 +318,25 @@ use Illuminate\Support\Facades\Auth;
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><b>1.</b></td>
-                                                            <td><b>Indikator Kinerja Utama</b></td>
-                                                            <td>:</td>
-                                                            <td><b>{{$iku}}</b></td>
-                                                            <td>{{$deskripsi_iku}}</td>
+                                                            <td width="2%"><b>1.</b></td>
+                                                            <td width="28%"><b>Indikator Kinerja Utama</b></td>
+                                                            <td width="3%">:</td>
+                                                            <td width="7%"><b>{{$iku}}</b></td>
+                                                            <td colspan="4" width="50%">{{$deskripsi_iku}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><b>2.</b></td>
                                                             <td><b>Indikator Kegiatan (IK)</b></td>
                                                             <td>:</td>
                                                             <td><b>{{$ik}}</b></td>
-                                                            <td>{{$deskripsi_ik}}</td>
+                                                            <td colspan="4">{{$deskripsi_ik}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><b>3.</b></td>
                                                             <td><b>Kegiatan</b></td>
                                                             <td>:</td>
                                                             <td><b>{{$indikator_k}}</b></td>
-                                                            <td>{{$deskripsi_indikator_k}}</td>
+                                                            <td colspan="4">{{$deskripsi_indikator_k}}</td>
                                                         </tr>
 
                                                         <!-- Sub Kegiatan -->
@@ -345,7 +345,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <td><b>Sub Kegiatan</b></td>
                                                             <td>:</td>
                                                             <td><b>{{$sub_k}}</b></td>
-                                                            <td>{{$deskripsi_sub_k}}
+                                                            <td colspan="4">{{$deskripsi_sub_k}}
                                                                 <?php if (!empty($komentar['sub'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komen1" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -369,7 +369,7 @@ use Illuminate\Support\Facades\Auth;
                                                             <td><b>5.</b></td>
                                                             <td><b>Judul Kegiatan</b></td>
                                                             <td>:</td>
-                                                            <td colspan="2">{{$tor[$t]->nama_kegiatan}}
+                                                            <td colspan="4">{{$tor[$t]->nama_kegiatan}}
                                                                 <?php if (!empty($komentar['judul'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenjudul" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -392,11 +392,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Latar Belakang -->
                                                         <tr>
                                                             <td><b>6.</b></td>
-                                                            <td colspan="4"><b>Latar Belakang</b></td>
+                                                            <td colspan="7"><b>Latar Belakang</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">{!!$tor[$t]->latar_belakang!!}
+                                                            <td colspan="7">{!!$tor[$t]->latar_belakang!!}
                                                                 <?php if (!empty($komentar['latarbelakang'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenlatar" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -418,11 +418,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Rasionalisasi -->
                                                         <tr>
                                                             <td><b>7.</b></td>
-                                                            <td colspan="4"><b>Rasionalisasi</b></td>
+                                                            <td colspan="7"><b>Rasionalisasi</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">{!!$tor[$t]->rasionalisasi!!}
+                                                            <td colspan="7">{!!$tor[$t]->rasionalisasi!!}
                                                                 <?php if (!empty($komentar['rasionalisasi'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrasionalisasi" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -444,11 +444,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Tujuan -->
                                                         <tr>
                                                             <td><b>8.</b></td>
-                                                            <td colspan="4"><b>Tujuan</b></td>
+                                                            <td colspan="7"><b>Tujuan</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4"> {!!$tor[$t]->tujuan!!}
+                                                            <td colspan="7"> {!!$tor[$t]->tujuan!!}
                                                                 <?php if (!empty($komentar['tujuan'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komentujuan" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -470,11 +470,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Mekanisme dan Rancangan -->
                                                         <tr>
                                                             <td><b>9.</b></td>
-                                                            <td colspan="4"><b>Mekanisme dan Rancangan</b></td>
+                                                            <td colspan="7"><b>Mekanisme dan Rancangan</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">{!!$tor[$t]->mekanisme!!}
+                                                            <td colspan="7">{!!$tor[$t]->mekanisme!!}
                                                                 <?php if (!empty($komentar['mekanisme'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenmekanisme" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -496,11 +496,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Jadwal Pelaksanaan -->
                                                         <tr>
                                                             <td><b>10.</b></td>
-                                                            <td colspan="4"><b>Jadwal Pelaksanaan</b></td>
+                                                            <td colspan="7"><b>Jadwal Pelaksanaan</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 @if (session('success'))
                                                                 <script>
                                                                     Swal.fire({
@@ -706,11 +706,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Indikator Kinerja Utama (IKU) -->
                                                         <tr>
                                                             <td><b>11.</b></td>
-                                                            <td colspan="4"><b>Indikator Kinerja Utama (IKU)</b></td>
+                                                            <td colspan="7"><b>Indikator Kinerja Utama (IKU)</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 <table class="table table-bordered">
                                                                     <thead>
                                                                         <tr>
@@ -750,11 +750,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Indikator Kinerja Kegiatan (IK) -->
                                                         <tr>
                                                             <td><b>12.</b></td>
-                                                            <td colspan="4"><b>Indikator Kinerja Kegiatan (IK)</b></td>
+                                                            <td colspan="7"><b>Indikator Kinerja Kegiatan (IK)</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 <table class="table table-bordered">
                                                                     <thead>
                                                                         <tr>
@@ -793,11 +793,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Keberlanjutan -->
                                                         <tr>
                                                             <td><b>14.</b></td>
-                                                            <td colspan="4"><b>Keberlanjutan</b></td>
+                                                            <td colspan="7"><b>Keberlanjutan</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 {!!$tor[$t]->keberlanjutan!!}
                                                                 <?php if (!empty($komentar['keberlanjutan'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenkeberlanjutan" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -820,11 +820,11 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Penanggungjawab -->
                                                         <tr>
                                                             <td><b>15.</b></td>
-                                                            <td colspan="4"><b>Penanggungjawab</b></td>
+                                                            <td colspan="7"><b>Penanggungjawab</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 Penanggung jawab dari kegiatan ini adalah {{$tor[$t]->nama_pic }}
                                                                 <?php if (!empty($komentar['penanggung'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenpenanggung" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -847,21 +847,21 @@ use Illuminate\Support\Facades\Auth;
                                                         <!-- Total Anggaran -->
                                                         <tr>
                                                             <td><b>16.</b></td>
-                                                            <td colspan="4"><b>Total Anggaran</b></td>
+                                                            <td colspan="7"><b>Total Anggaran</b></td>
                                                         </tr>
 
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">
+                                                            <td colspan="7">
                                                                 {{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="5"></td>
+                                                            <td colspan="8"></td>
                                                         </tr>
                                                         <!-- TANDA TANGAN -->
                                                         <tr>
-                                                            <td colspan="3" style="text-align: center;" width="50%">Kepala Program Studi
+                                                            <td colspan="4" style="text-align: center;" width="50%">Kepala Program Studi
                                                                 <br />
                                                                 <br />
                                                                 <br />
@@ -883,7 +883,7 @@ use Illuminate\Support\Facades\Auth;
                                                                 }
                                                                 ?>
                                                             </td>
-                                                            <td colspan="3" style="text-align: center;">Perencana/Penanggungjawab
+                                                            <td colspan="4" style="text-align: center;">Perencana/Penanggungjawab
                                                                 <br />
                                                                 <br />
                                                                 <br />
@@ -893,16 +893,16 @@ use Illuminate\Support\Facades\Auth;
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="6"></td>
+                                                            <td colspan="8"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="6" style="text-align: center;">Menyetujui</td>
+                                                            <td colspan="8" style="text-align: center;">Menyetujui</td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="6"></td>
+                                                            <td colspan="8"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="2" width="35%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
+                                                            <td colspan="2" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
                                                                 <br />
                                                                 <br />
                                                                 <br />
@@ -910,14 +910,15 @@ use Illuminate\Support\Facades\Auth;
                                                                 <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
                                                                 NIP. 197408182000121001
                                                             </td>
-                                                            <td colspan="2">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                                            <td colspan="3" width="30%">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                                                <br />
                                                                 <br />
                                                                 <br />
                                                                 <br />
                                                                 <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
                                                                 NIP. 198208112006041001
                                                             </td>
-                                                            <td colspan="2">Wakil Dekan SDM, Keuangan, dan Logistik
+                                                            <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
                                                                 <br />
                                                                 <br />
                                                                 <br />

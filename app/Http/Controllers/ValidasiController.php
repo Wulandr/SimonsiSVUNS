@@ -198,7 +198,7 @@ class ValidasiController extends Controller
         $kategori_subK =  SubKegiatan::Kategori_Sub();
         $komponen_jadwal = DB::table('komponen_jadwal')->get();
         $indikator_iku = DB::table('indikator_iku')->get();
-        $users = DB::table('users')->get();
+        $users = User::all();
         $anggaran = DB::table('anggaran')->get();
         $subkeg = DB::table('indikator_subK')->get();
         $rab_ang = Anggaran::Rab_Ang();
@@ -389,7 +389,7 @@ class ValidasiController extends Controller
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream("TOR & RAB" . " - " . $judulTOR2 . date('Y-m-d_H-i-s') . ".pdf");
+        $dompdf->stream("TOR & RAB" . " - " . $judulTOR2 . " - " . date('Y-m-d_H-i-s') . ".pdf");
         // return $judulTOR[0]->nama_kegiatan;
     }
 
@@ -399,7 +399,7 @@ class ValidasiController extends Controller
 
         $judulTOR =  DB::table('tor')->select('nama_kegiatan')->where('id', $ids)->get();
         $judulTOR2 = $judulTOR[0]->nama_kegiatan;
-        $nama_file = 'TOR & RAB'  . " - " . $judulTOR2 . date('Y-m-d_H-i-s') . '.xlsx';
+        $nama_file = 'TOR & RAB'  . " - " . $judulTOR2 . " - " . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new MultiExport($id), $nama_file);
     }
 }

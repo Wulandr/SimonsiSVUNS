@@ -20,8 +20,10 @@ for ($r = 0; $r < count($rab); $r++) {
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Unit Kerja</b> : {{$namaunit}}</td>
-                            <th>Tahun</th>
+                            <td width="28%"><b>Unit Kerja</b> </td>
+                            <td width="2%">:</td>
+                            <td colspan="5" width="50%">{{$namaunit}}</td>
+                            <td width="5%"><b>Tahun</b></td>
                         </tr>
                         <tr>
                             <?php
@@ -40,25 +42,36 @@ for ($r = 0; $r < count($rab); $r++) {
                                 }
                             }
                             ?>
-                            <td colspan="7"><b>Indikator Kegiatan</b> : {{ $nama_k." : ".$desk_k}}</td>
+                            <td><b>Indikator Kegiatan</b> </td>
+                            <td>:</td>
+                            <td colspan="5">{{ $nama_k." : ".$desk_k}}</td>
                             <td rowspan="3">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Sub Kegiatan</b> : {{$nama_subK." : ". $desk_subK}}</td>
+                            <td><b>Sub Kegiatan</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$nama_subK." : ". $desk_subK}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Kegiatan</b> : {{$tor[$t]->nama_kegiatan}}</td>
+                            <td><b>Kegiatan</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$tor[$t]->nama_kegiatan}}</td>
                         </tr>
                         <tr>
                             <td colspan="7" style="text-align: center;"><b>Indikator</b></td>
-                            <th>Target Kinerja</th>
+                            <td><b>Target Kinerja</b>
+                            </td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Input (Masukan)</b> : {{$rab[$r]->masukan }}</td>
+                            <td><b>Input (Masukan)</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$rab[$r]->masukan }}</td>
                             <td rowspan="2">{{$tor[$t]->target_IKU ."%"}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Output (Keluaran)</b> : {{$rab[$r]->keluaran}}</td>
+                            <td><b>Output (Keluaran)</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$rab[$r]->keluaran}}</td>
                         </tr>
                         <tr>
                             <th colspan="8" style="text-align: center;"><b>Anggaran Belanja</b></th>

@@ -30,7 +30,7 @@ function ngecekWulan($awal, $akhir)
                         <div class="iq-card">
 
                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                                <div class="iq-card-header d-flex justify-content-between">
+                                <div class="iq-card-header d-flex justify-content-between table-primary">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Monitoring Usulan</h4>
                                     </div>
@@ -39,7 +39,7 @@ function ngecekWulan($awal, $akhir)
                                 <div class="iq-card-body">
                                     <!-- A N G G A R A N -->
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-6 col-lg-5">
+                                        <div class="col-sm-3 col-md-3 col-lg-3">
                                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                                 <div class="iq-card-body iq-box-relative">
                                                     <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
@@ -165,21 +165,19 @@ function ngecekWulan($awal, $akhir)
                                                                     }
                                                                 }
                                                                 ?>
-                                                                <h4><b>{{ 'Rp. ' . number_format($jml_ang_ajuan - $jml_ang_disetujui) }}</b>
+                                                                <h4><b>{{ 'Rp. ' . number_format($jml_ang_ajuan) }}</b>
                                                                 </h4>
                                                             </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <p class="text-secondary">Record Count</p>
-                                                            <div class="d-flex align-items-center justify-content-between" style="position: relative;">
-                                                                <h4><b>{{ $count1 - $count2 }}</b></h4>
+                                                            <hr>
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                                <span class="">{{ $count1 }} Kegiatan</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="col-sm-3 col-md-3 col-lg-3">
                                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                                 <div class="iq-card-body iq-box-relative">
                                                     <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
@@ -192,11 +190,9 @@ function ngecekWulan($awal, $akhir)
                                                                 <h4><b>{{ 'Rp. ' . number_format($jml_ang_disetujui) }}</b>
                                                                 </h4>
                                                             </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <p class="text-secondary">Record Count</p>
-                                                            <div class="d-flex align-items-center justify-content-between" style="position: relative;">
-                                                                <h4><b>{{ $count2 }}</b></h4>
+                                                            <hr>
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                                <span class="">{{ $count2 }} Kegiatan</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -220,28 +216,28 @@ function ngecekWulan($awal, $akhir)
                                         $setujuTw2 = $setujuTw2;
                                         $setujuTw3 = $setujuTw3;
                                         $setujuTw4 = $setujuTw4;
-                                        $ajuanTw1 = $ajuanTw1 - $setujuTw1;
-                                        $ajuanTw2 = $ajuanTw2 - $setujuTw2;
-                                        $ajuanTw3 = $ajuanTw3 - $setujuTw3;
-                                        $ajuanTw4 = $ajuanTw4 - $setujuTw4;
+                                        $ajuanTw1 = $ajuanTw1;
+                                        $ajuanTw2 = $ajuanTw2;
+                                        $ajuanTw3 = $ajuanTw3;
+                                        $ajuanTw4 = $ajuanTw4;
                                     }
                                     if ($filtertw != 0) {
                                         foreach ($tw as $cektw) {
                                             if ($cektw->id == $filtertw) {
                                                 if (substr($cektw->triwulan, -1, 1) == 1) {
-                                                    $ajuanTw1 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $ajuanTw1 = $jml_ang_ajuan;
                                                     $setujuTw1 = $jml_ang_disetujui;
                                                 }
                                                 if (substr($cektw->triwulan, -1, 1) == 2) {
-                                                    $ajuanTw2 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $ajuanTw2 = $jml_ang_ajuan;
                                                     $setujuTw2 = $jml_ang_disetujui;
                                                 }
                                                 if (substr($cektw->triwulan, -1, 1) == 3) {
-                                                    $ajuanTw3 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $ajuanTw3 = $jml_ang_ajuan;
                                                     $setujuTw3 = $jml_ang_disetujui;
                                                 }
                                                 if (substr($cektw->triwulan, -1, 1) == 4) {
-                                                    $ajuanTw4 = $jml_ang_ajuan - $jml_ang_disetujui;
+                                                    $ajuanTw4 = $jml_ang_ajuan;
                                                     $setujuTw4 = $jml_ang_disetujui;
                                                 }
                                             }
@@ -285,23 +281,52 @@ function ngecekWulan($awal, $akhir)
                                         const config = {
                                             type: 'line',
                                             data: data,
+                                            bezierCurve: true,
                                             options: {
+                                                elements: {
+                                                    line: {
+                                                        tension: 0.4, //  bezier curves
+                                                    }
+                                                },
                                                 scales: {
                                                     y: {
                                                         beginAtZero: true,
-                                                        max: 50000000,
-                                                    }
+                                                        max: 20000000 + <?= $ajuanTw1 + $ajuanTw2 + $ajuanTw3 + $ajuanTw4 ?>,
+                                                    },
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            fontColor: "rgba(0,0,0,0.5)",
+                                                            fontStyle: "bold",
+                                                            beginAtZero: true,
+                                                            maxTicksLimit: 5,
+                                                            padding: 20
+                                                        },
+                                                        gridLines: {
+                                                            drawTicks: false,
+                                                            display: false
+                                                        }
+                                                    }],
+                                                    xAxes: [{
+                                                        gridLines: {
+                                                            zeroLineColor: "transparent"
+                                                        },
+                                                        ticks: {
+                                                            padding: 20,
+                                                            fontColor: "rgba(0,0,0,0.5)",
+                                                            fontStyle: "bold"
+                                                        }
+                                                    }]
                                                 },
                                                 plugins: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Diagram Monitoring Usulan Anggaran <?= date('Y') ?>'
+                                                        text: 'Diagram Monitoring Usulan Anggaran'
                                                     },
                                                 }
                                             }
                                         };
                                         const myChart = new Chart(
-                                            document.getElementById('myChart'),
+                                            document.getElementById('myChart').getContext("2d"),
                                             config
                                         );
                                     </script>

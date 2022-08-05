@@ -2,6 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Contracts\Role;
+
 ?>
 @include('dashboards/users/layouts/script')
 
@@ -35,7 +37,12 @@ use Illuminate\Support\Facades\Auth;
                         <div class="iq-card">
                             <div class="row">
                                 <div class="container mt-2 mb-2 mr-2 ml-2">
-                                    <a href="{{url('/validasi')}}"><button type="button" class="btn btn-primary btn-sm mr-2">Back</button></a>
+                                    <?php if (Auth::user()->getroleNames()[0] != 'Admin') { ?>
+                                        <a href="{{url('/validasi')}}"><button type="button" class="btn btn-primary btn-sm mr-2">Back</button></a>
+                                    <?php }
+                                    if (Auth::user()->getroleNames()[0] == 'Admin') { ?>
+                                        <a href="{{url('/monitoringUsulan')}}"><button type="button" class="btn btn-primary btn-sm mr-2">Back</button></a>
+                                    <?php } ?>
                                     <div class="user-list-files d-flex float-right">
                                         <a class="iq-bg-primary" href="javascript:void();" onclick="printDiv()">
                                             Print
@@ -115,62 +122,62 @@ use Illuminate\Support\Facades\Auth;
                                                         if ($trx_status_tor[$trx]->create_by == $users[$us]->id) {
                                                             if (!empty($trx_status_tor[$trx]->k_sub)) {
                                                                 if ($trx_status_tor[$trx]->k_sub != '-') {
-                                                                    $komentar['sub'][] = " \"" .  $trx_status_tor[$trx]->k_sub . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['sub'][] = " \"" .  $trx_status_tor[$trx]->k_sub . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_judul)) {
                                                                 if ($trx_status_tor[$trx]->k_judul != '-') {
-                                                                    $komentar['judul'][] = " \"" .  $trx_status_tor[$trx]->k_judul . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['judul'][] = " \"" .  $trx_status_tor[$trx]->k_judul . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_latar_belakang)) {
                                                                 if ($trx_status_tor[$trx]->k_latar_belakang != '-') {
-                                                                    $komentar['latarbelakang'][] = " \"" .  $trx_status_tor[$trx]->k_latar_belakang . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['latarbelakang'][] = " \"" .  $trx_status_tor[$trx]->k_latar_belakang . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_rasionalisasi)) {
                                                                 if ($trx_status_tor[$trx]->k_rasionalisasi != '-') {
-                                                                    $komentar['rasionalisasi'][] = " \"" .  $trx_status_tor[$trx]->k_rasionalisasi . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['rasionalisasi'][] = " \"" .  $trx_status_tor[$trx]->k_rasionalisasi . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_tujuan)) {
                                                                 if ($trx_status_tor[$trx]->k_tujuan != '-') {
-                                                                    $komentar['tujuan'][] = " \"" .  $trx_status_tor[$trx]->k_tujuan . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['tujuan'][] = " \"" .  $trx_status_tor[$trx]->k_tujuan . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_mekanisme)) {
                                                                 if ($trx_status_tor[$trx]->k_mekanisme != '-') {
-                                                                    $komentar['mekanisme'][] = " \"" .  $trx_status_tor[$trx]->k_mekanisme . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['mekanisme'][] = " \"" .  $trx_status_tor[$trx]->k_mekanisme . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_jadwal)) {
                                                                 if ($trx_status_tor[$trx]->k_jadwal != '-') {
-                                                                    $komentar['jadwal'][] = " \"" .  $trx_status_tor[$trx]->k_jadwal . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['jadwal'][] = " \"" .  $trx_status_tor[$trx]->k_jadwal . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_iku)) {
                                                                 if ($trx_status_tor[$trx]->k_iku != '-') {
-                                                                    $komentar['iku'][] = " \"" .  $trx_status_tor[$trx]->k_iku . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['iku'][] = " \"" .  $trx_status_tor[$trx]->k_iku . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_ik)) {
                                                                 if ($trx_status_tor[$trx]->k_ik != '-') {
-                                                                    $komentar['ik'][] = " \"" .  $trx_status_tor[$trx]->k_ik . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['ik'][] = " \"" .  $trx_status_tor[$trx]->k_ik . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_keberlanjutan)) {
                                                                 if ($trx_status_tor[$trx]->k_keberlanjutan != '-') {
-                                                                    $komentar['keberlanjutan'][] = " \"" .  $trx_status_tor[$trx]->k_keberlanjutan . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['keberlanjutan'][] = " \"" .  $trx_status_tor[$trx]->k_keberlanjutan . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_penanggung)) {
                                                                 if ($trx_status_tor[$trx]->k_penanggung != '-') {
-                                                                    $komentar['penanggung'][] = " \"" .  $trx_status_tor[$trx]->k_penanggung . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['penanggung'][] = " \"" .  $trx_status_tor[$trx]->k_penanggung . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                             if (!empty($trx_status_tor[$trx]->k_rab)) {
                                                                 if ($trx_status_tor[$trx]->k_rab != '-') {
-                                                                    $komentar['komentar_rab'][] = " \"" . $trx_status_tor[$trx]->k_rab . "\"\n (" . $users[$us]->name . ")";
+                                                                    $komentar['komentar_rab'][] = " \"" . $trx_status_tor[$trx]->k_rab . "\"\n (" . $users[$us]->name . " - " . $users[$us]->toRole->name . ")";
                                                                 }
                                                             }
                                                         }
@@ -241,578 +248,631 @@ use Illuminate\Support\Facades\Auth;
 
                                             ?>
 
-                                            <!-- <h5 style="text-align: center;" id="judul">
-                                                KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR), <br />
-                                                PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b>
-                                            </h5> -->
-                                            <br />
-
                                             <div class="table-responsive">
-                                                <table id="torx" class="table table-striped table-bordered">
+                                                <table id="torx" class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="5" style="text-align: center;"><b>
-                                                                    KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
-                                                                    PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></td>
+                                                            <td colspan="8">
+                                                                <h5 style="text-align: center;"><b>KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
+                                                                        PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></h5>
+                                                            </td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>1.</td>
-                                                            <td>Indikator Kinerja Utama</td>
-                                                            <td>:</td>
-                                                            <td>{{$iku}}</td>
-                                                            <td>{{$deskripsi_iku}}</td>
+                                                            <td width="2%"><b>1.</b></td>
+                                                            <td width="28%"><b>Indikator Kinerja Utama</b></td>
+                                                            <td width="3%">:</td>
+                                                            <td width="7%"><b>{{$iku}}</b></td>
+                                                            <td colspan="4" width="50%">{{$deskripsi_iku}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>2.</td>
-                                                            <td>Indikator Kegiatan (IK)</td>
+                                                            <td><b>2.</b></td>
+                                                            <td><b>Indikator Kegiatan (IK)</b></td>
                                                             <td>:</td>
-                                                            <td>{{$ik}}</td>
-                                                            <td>{{$deskripsi_ik}}</td>
+                                                            <td><b>{{$ik}}</b></td>
+                                                            <td colspan="4">{{$deskripsi_ik}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>3.</td>
-                                                            <td>Kegiatan</td>
+                                                            <td><b>3.</b></td>
+                                                            <td><b>Kegiatan</b></td>
                                                             <td>:</td>
-                                                            <td>{{$indikator_k}}</td>
-                                                            <td>{{$deskripsi_indikator_k}}</td>
+                                                            <td><b>{{$indikator_k}}</b></td>
+                                                            <td colspan="4">{{$deskripsi_indikator_k}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>4.</td>
-                                                            <td>Sub Kegiatan</td>
+                                                            <td><b>4.</b></td>
+                                                            <td><b>Sub Kegiatan</b></td>
                                                             <td>:</td>
-                                                            <td>{{$sub_k}}</td>
-                                                            <td>{{$deskripsi_sub_k}}</td>
+                                                            <td><b>{{$sub_k}}</b></td>
+                                                            <td colspan="4">{{$deskripsi_sub_k}}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['sub'])) {
+                                                                        buttonKomentar("#collapseExample1");
+                                                                    }
+                                                                    if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen4") ?>
+                                                                        @endif
+                                                                </p>
+                                                                <?php areaKomentar("komen4", "k_sub", "sub kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="collapseExample1">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['sub'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['sub'] as $subs)
+                                                                    <h6 style="color: #dc3545;">{{$subs}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>5.</td>
-                                                            <td>Judul Kegiatan</td>
+                                                            <td><b>5.</b></td>
+                                                            <td><b>Judul Kegiatan</b></td>
                                                             <td>:</td>
-                                                            <td colspan="2">{{$tor[$t]->nama_kegiatan}}</td>
+                                                            <td colspan="5">{{$tor[$t]->nama_kegiatan}}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['judul'])) {
+                                                                        buttonKomentar("#lihatkomen5");
+                                                                    } ?>
+                                                                    <?php if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen5") ?>
+                                                                        @endif
+                                                                </p>
+                                                                <?php areaKomentar("komen5", "k_judul", "Judul Kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="lihatkomen5">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['judul'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['judul'] as $juduls)
+                                                                    <h6 style="color: #dc3545;">{{$juduls}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            </td>
                                                         </tr>
 
                                                         <!-- Latar Belakang -->
                                                         <tr>
-                                                            <td>6.</td>
-                                                            <td colspan="4">Latar Belakang</td>
+                                                            <td><b>6.</b></td>
+                                                            <td colspan="7"><b>Latar Belakang</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4">{!!$tor[$t]->latar_belakang!!}</td>
+                                                            <td colspan="7">{!!$tor[$t]->latar_belakang!!}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['latarbelakang'])) {
+                                                                        buttonKomentar("#lihatkomen6");
+                                                                    } ?>
+                                                                    <?php if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen6") ?>
+                                                                        @endif
+                                                                </p>
+
+                                                                <?php areaKomentar("komen6", "k_latar_belakang", "latarbelakang Kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="lihatkomen6">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['latarbelakang'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['latarbelakang'] as $latarbelakangs)
+                                                                    <h6 style="color: #dc3545;">{{$latarbelakangs}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            </td>
                                                         </tr>
 
                                                         <!-- Rasionalisasi -->
                                                         <tr>
-                                                            <td>7.</td>
-                                                            <td colspan="4">Rasionalisasi</td>
+                                                            <td><b>7.</b></td>
+                                                            <td colspan="7"><b>Rasionalisasi</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Tujuan -->
-                                                        <tr>
-                                                            <td>8.</td>
-                                                            <td colspan="4">Tujuan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Mekanisme dan Rancangan -->
-                                                        <tr>
-                                                            <td>9.</td>
-                                                            <td colspan="4">Mekanisme dan Rancangan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Jadwal Pelaksanaan -->
-                                                        <tr>
-                                                            <td>10.</td>
-                                                            <td colspan="4">Jadwal Pelaksanaan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Indikator Kinerja Utama (IKU) -->
-                                                        <tr>
-                                                            <td>11.</td>
-                                                            <td colspan="4">Indikator Kinerja Utama (IKU)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Indikator Kinerja Kegiatan (IK) -->
-                                                        <tr>
-                                                            <td>12.</td>
-                                                            <td colspan="4">Indikator Kinerja Kegiatan (IK)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Keberlanjutan -->
-                                                        <tr>
-                                                            <td>14.</td>
-                                                            <td colspan="4">Keberlanjutan</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                        <!-- Penanggungjawab -->
-                                                        <tr>
-                                                            <td>15.</td>
-                                                            <td colspan="4">Penanggungjawab</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td colspan="4"></td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <?php collapseKomentar(); ?>
-                                            <h6><b>1. Indikator Kinerja Utama (IKU) : </b>{{$iku . " ".  $deskripsi_iku}}</h6><br />
-                                            <h6><b>2. Indikator Kinerja Kegiatan (IK) : </b>{{$ik ." ".$deskripsi_ik}}</h6><br />
-                                            <h6><b>3. Kegiatan : </b> {{$indikator_k . " ".    $deskripsi_indikator_k}} </h6><br />
-
-                                            <h6><b>4. Sub Kegiatan : </b>{{$sub_k . " ". $deskripsi_sub_k}}</h6>
-                                            <p>
-                                                <?php if (!empty($komentar['sub'])) {
-                                                    buttonKomentar("#collapseExample1");
-                                                }
-                                                if ($disetujui != 1) { ?>
-                                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                                    <?php buttonPlus("#komen4") ?>
-                                                    @endif
-                                            </p>
-                                            <?php areaKomentar("komen4", "k_sub", "sub kegiatan"); ?>
-                                        <?php } ?>
-                                        <div class="collapse" id="collapseExample1">
-                                            <div id="validasi" class="container col-sm-12">
-                                                <?php
-                                                if (!empty($komentar['sub'])) {
-                                                    echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                                }
-                                                ?>
-                                                @foreach($komentar['sub'] as $subs)
-                                                <h6 style="color: #dc3545;">{{$subs}}</h6>
-                                                <hr class="mt-3">
-                                                @endforeach
-                                            </div>
-                                        </div>
-
-                                        <h6 id="judul"><b>5. Judul Kegiatan : </b><br />{{$tor[$t]->nama_kegiatan}}</h6>
-                                        <p>
-                                            <?php if (!empty($komentar['judul'])) {
-                                                buttonKomentar("#lihatkomen5");
-                                            } ?>
-                                            <?php if ($disetujui != 1) { ?>
-                                                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                                <?php buttonPlus("#komen5") ?>
-                                                @endif
-                                        </p>
-                                        <?php areaKomentar("komen5", "k_judul", "Judul Kegiatan"); ?>
-                                    <?php } ?>
-                                    <div class="collapse" id="lihatkomen5">
-                                        <div id="validasi" class="container col-sm-12">
-                                            <?php
-                                            if (!empty($komentar['judul'])) {
-                                                echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                            }
-                                            ?>
-                                            @foreach($komentar['judul'] as $juduls)
-                                            <h6 style="color: #dc3545;">{{$juduls}}</h6>
-                                            <hr class="mt-3">
-                                            @endforeach
-                                        </div>
-                                    </div>
-
-                                    <h6 id="latar"><b>6. Latar Belakang : </b><br />{!!$tor[$t]->latar_belakang!!}</h6>
-                                    <p>
-                                        <?php if (!empty($komentar['latarbelakang'])) {
-                                            buttonKomentar("#lihatkomen6");
-                                        } ?>
-                                        <?php if ($disetujui != 1) { ?>
-                                            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                            <?php buttonPlus("#komen6") ?>
-                                            @endif
-                                    </p>
-
-                                    <?php areaKomentar("komen6", "k_latar_belakang", "latarbelakang Kegiatan"); ?>
-                                <?php } ?>
-                                <div class="collapse" id="lihatkomen6">
-                                    <div id="validasi" class="container col-sm-12">
-                                        <?php
-                                        if (!empty($komentar['latarbelakang'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                                        ?>
-                                        @foreach($komentar['latarbelakang'] as $latarbelakangs)
-                                        <h6 style="color: #dc3545;">{{$latarbelakangs}}</h6>
-                                        <hr class="mt-3">
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                                <h6><b>7. Rasionalisasi : </b><br />{!!$tor[$t]->rasionalisasi!!}</h6>
-                                <p>
-                                    <?php if (!empty($komentar['rasionalisasi'])) {
-                                            buttonKomentar("#lihatkomen7");
-                                        } ?>
-                                    <?php if ($disetujui != 1) { ?>
-                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                        <?php buttonPlus("#komen7") ?>
-                                        @endif
-                                </p>
-                                <!-- <div class="container collapse col-6" id="komen7">
+                                                            <td colspan="7">{!!$tor[$t]->rasionalisasi!!}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['rasionalisasi'])) {
+                                                                        buttonKomentar("#lihatkomen7");
+                                                                    } ?>
+                                                                    <?php if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen7") ?>
+                                                                        @endif
+                                                                </p>
+                                                                <!-- <div class="container collapse col-6" id="komen7">
                                     <div id="validasi" class="form-group">
                                         <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_rasionalisasi" name="k_rasionalisasi" placeholder="Komentar rasionalisasi Kegiatan..."></textarea>
                                     </div>
                                 </div> -->
-                                <?php areaKomentar("komen7", "k_rasionalisasi", "rasionalisasi Kegiatan"); ?>
-                            <?php } ?>
-                            <div class="collapse" id="lihatkomen7">
-                                <div id="validasi" class="container col-sm-12">
-                                    <?php
-                                        if (!empty($komentar['rasionalisasi'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                                    ?>
-                                    @foreach($komentar['rasionalisasi'] as $rasionalisasis)
-                                    <h6 style="color: #dc3545;">{{$rasionalisasis}}</h6>
-                                    <hr class="mt-3">
-                                    @endforeach
-                                </div>
-                            </div>
+                                                                <?php areaKomentar("komen7", "k_rasionalisasi", "rasionalisasi Kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="lihatkomen7">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['rasionalisasi'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['rasionalisasi'] as $rasionalisasis)
+                                                                    <h6 style="color: #dc3545;">{{$rasionalisasis}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
 
-                            <h6><b>8. Tujuan : </b><br />{!!$tor[$t]->tujuan!!}</h6>
-                            <p>
-                                <?php if (!empty($komentar['tujuan'])) {
-                                            buttonKomentar("#lihatkomen8");
-                                        } ?>
-                                <?php if ($disetujui != 1) { ?>
-                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                    <?php buttonPlus("#komen8") ?>
-                                    @endif
-                            </p>
-                            <?php areaKomentar("komen8", "k_tujuan", "tujuan Kegiatan"); ?>
-                        <?php } ?>
-                        <div class="collapse" id="lihatkomen8">
-                            <div id="validasi" class="container col-sm-12">
-                                <?php
-                                        if (!empty($komentar['tujuan'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                                ?>
-                                @foreach($komentar['tujuan'] as $tujuans)
-                                <h6 style="color: #dc3545;">{{$tujuans}}</h6>
-                                <hr class="mt-3">
-                                @endforeach
-                            </div>
-                        </div>
+                                                        <!-- Tujuan -->
+                                                        <tr>
+                                                            <td><b>8.</b></td>
+                                                            <td colspan="7"><b>Tujuan</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="7">{!!$tor[$t]->tujuan!!}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['tujuan'])) {
+                                                                        buttonKomentar("#lihatkomen8");
+                                                                    } ?>
+                                                                    <?php if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen8") ?>
+                                                                        @endif
+                                                                </p>
+                                                                <?php areaKomentar("komen8", "k_tujuan", "tujuan Kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="lihatkomen8">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['tujuan'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['tujuan'] as $tujuans)
+                                                                    <h6 style="color: #dc3545;">{{$tujuans}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
 
-                        <h6><b>9. Mekanisme dan Rancangan : </b><br />{!!$tor[$t]->mekanisme!!}</h6>
-                        <p>
-                            <?php if (!empty($komentar['mekanisme'])) {
-                                            buttonKomentar("#lihatkomen9");
-                                        } ?>
-                            <?php if ($disetujui != 1) { ?>
-                                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                <?php buttonPlus("#komen9") ?>
-                                @endif
-                        </p>
-                        <!-- <div class="container collapse col-6" id="komen9">
+                                                        <!-- Mekanisme dan Rancangan -->
+                                                        <tr>
+                                                            <td><b>9.</b></td>
+                                                            <td colspan="7"><b>Mekanisme dan Rancangan</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="7">{!!$tor[$t]->mekanisme!!}
+                                                                <p>
+                                                                    <?php if (!empty($komentar['mekanisme'])) {
+                                                                        buttonKomentar("#lihatkomen9");
+                                                                    } ?>
+                                                                    <?php if ($disetujui != 1) { ?>
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        <?php buttonPlus("#komen9") ?>
+                                                                        @endif
+                                                                </p>
+                                                                <!-- <div class="container collapse col-6" id="komen9">
                             <div id="validasi" class="form-group">
                                 <textarea class="form-control" style="background:#c7c3c317" rows="1" id="k_mekanisme" name="k_mekanisme" placeholder="Komentar mekanisme Kegiatan..."></textarea>
                             </div>
                         </div> -->
-                        <?php areaKomentar("komen9", "k_mekanisme", "mekanisme Kegiatan"); ?>
-                    <?php } ?>
-                    <div class="collapse" id="lihatkomen9">
-                        <div id="validasi" class="container col-sm-12">
-                            <?php
-                                        if (!empty($komentar['mekanisme'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                            ?>
-                            @foreach($komentar['mekanisme'] as $mekanismes)
-                            <h6 style="color: #dc3545;">{{$mekanismes}}</h6>
-                            <hr class="mt-3">
-                            @endforeach
-                        </div>
-                    </div>
+                                                                <?php areaKomentar("komen9", "k_mekanisme", "mekanisme Kegiatan"); ?>
+                                                            <?php } ?>
+                                                            <div class="collapse" id="lihatkomen9">
+                                                                <div id="validasi" class="container col-sm-12">
+                                                                    <?php
+                                                                    if (!empty($komentar['mekanisme'])) {
+                                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                                    }
+                                                                    ?>
+                                                                    @foreach($komentar['mekanisme'] as $mekanismes)
+                                                                    <h6 style="color: #dc3545;">{{$mekanismes}}</h6>
+                                                                    <hr class="mt-3">
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
 
-                    <h6><b>10. Jadwal Pelaksanaan : </b>
-                        {{ date_format(date_create($tor[$t]->tgl_mulai_pelaksanaan), 'd-m-Y')." hingga " . date_format(date_create($tor[$t]->tgl_akhir_pelaksanaan), 'd-m-Y')}}
-                        <br />
-                        <?php
-                                        if (!empty($komponen_jadwal)) {
-                        ?>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" rowspan="2" class="align-middle">Komponen Input</th>
-                                        <th scope="col" colspan="12" style="text-align: center;">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>7</td>
-                                        <td>8</td>
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>11</td>
-                                        <td>12</td>
+                                                        <!-- Jadwal Pelaksanaan -->
+                                                        <tr>
+                                                            <td><b>10.</b></td>
+                                                            <td colspan="7"><b>Jadwal Pelaksanaan</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td colspan="7">
+                                                                <!-- {{ date_format(date_create($tor[$t]->tgl_mulai_pelaksanaan), 'd-m-Y')." hingga " . date_format(date_create($tor[$t]->tgl_akhir_pelaksanaan), 'd-m-Y')}} -->
+                                                                <br />
+                                                                <?php
+                                                                if (!empty($komponen_jadwal)) {
+                                                                ?>
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th scope="col" rowspan="2" class="align-middle">Komponen Input</th>
+                                                                                <th scope="col" colspan="12" style="text-align: center;">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>3</td>
+                                                                                <td>4</td>
+                                                                                <td>5</td>
+                                                                                <td>6</td>
+                                                                                <td>7</td>
+                                                                                <td>8</td>
+                                                                                <td>9</td>
+                                                                                <td>10</td>
+                                                                                <td>11</td>
+                                                                                <td>12</td>
+                                                            </td>
+                                                        </tr>
+                                                        </thead>
+                                                    <tbody>
+                                                        <?php
+                                                                    for ($j = 0; $j < count($komponen_jadwal); $j++) {
+                                                                        if ($komponen_jadwal[$j]->id_tor == $tor[$t]->id) { ?>
+                                                                <tr>
+                                                                    <td>{{$komponen_jadwal[$j]->komponen}}</td>
+                                                                    <?php for ($b = 1; $b < $komponen_jadwal[$j]->bulan_awal; $b++) { ?>
+                                                                        <td></td>
+                                                                    <?php } ?>
+                                                                    <?php for ($kj = 0; $kj <= ($komponen_jadwal[$j]->bulan_akhir - $komponen_jadwal[$j]->bulan_awal); $kj++) { ?>
+                                                                        <td style=" background-color:black!important; -webkit-print-color-adjust: exact; "></td>
+                                                                    <?php }
+                                                                            for ($c = 12; $c > $komponen_jadwal[$j]->bulan_akhir; $c--) { ?>
+                                                                        <td></td>
+                                                                    <?php } ?>
+                                                                </tr>
+                                                        <?php }
+                                                                    }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            <?php } ?>
+                                            <p>
+                                                <?php if (!empty($komentar['jadwal'])) {
+                                                    buttonKomentar("#lihatkomen10");
+                                                } ?>
+                                                <?php if ($disetujui != 1) { ?>
+                                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                    <?php buttonPlus("#komen10") ?>
+                                                    @endif
+                                            </p>
+                                            <?php areaKomentar("komen10", "k_jadwal", "jadwal Kegiatan"); ?>
+                                        <?php } ?>
+                                        <div class="collapse" id="lihatkomen10">
+                                            <div id="validasi" class="container col-sm-12">
+                                                <?php
+                                                if (!empty($komentar['jadwal'])) {
+                                                    echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                }
+                                                ?>
+                                                @foreach($komentar['jadwal'] as $jadwals)
+                                                <h6 style="color: #dc3545;">{{$jadwals}}</h6>
+                                                <hr class="mt-3">
+                                                @endforeach
+                                            </div>
+                                        </div>
                                         </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                            for ($j = 0; $j < count($komponen_jadwal); $j++) {
-                                                if ($komponen_jadwal[$j]->id_tor == $tor[$t]->id) { ?>
-                                            <tr>
-                                                <td>{{$komponen_jadwal[$j]->komponen}}</td>
-                                                <?php for ($b = 1; $b < $komponen_jadwal[$j]->bulan_awal; $b++) { ?>
-                                                    <td></td>
-                                                <?php } ?>
-                                                <?php for ($kj = 0; $kj <= ($komponen_jadwal[$j]->bulan_akhir - $komponen_jadwal[$j]->bulan_awal); $kj++) { ?>
-                                                    <td style=" background-color:black!important; -webkit-print-color-adjust: exact; "></td>
-                                                <?php }
-                                                    for ($c = 12; $c > $komponen_jadwal[$j]->bulan_akhir; $c--) { ?>
-                                                    <td></td>
-                                                <?php } ?>
-                                            </tr>
-                                    <?php }
-                                            }
-                                    ?>
-                                </tbody>
-                            </table>
-                        <?php } ?>
-                    </h6>
-                    <p>
-                        <?php if (!empty($komentar['jadwal'])) {
-                                            buttonKomentar("#lihatkomen10");
-                                        } ?>
-                        <?php if ($disetujui != 1) { ?>
-                            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                            <?php buttonPlus("#komen10") ?>
-                            @endif
-                    </p>
-                    <?php areaKomentar("komen10", "k_jadwal", "jadwal Kegiatan"); ?>
-                <?php } ?>
-                <div class="collapse" id="lihatkomen10">
-                    <div id="validasi" class="container col-sm-12">
-                        <?php
-                                        if (!empty($komentar['jadwal'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                        ?>
-                        @foreach($komentar['jadwal'] as $jadwals)
-                        <h6 style="color: #dc3545;">{{$jadwals}}</h6>
-                        <hr class="mt-3">
-                        @endforeach
-                    </div>
-                </div>
+                                        </tr>
 
-                <h6><b>11. Indikator Kinerja Utama : </b><br />
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Indikator</th>
-                                <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
-                                <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{$iku ." ".$deskripsi_iku}}</td>
-                                <td>{{$tor[$t]->realisasi_IKU ."%"}}</td>
-                                <td>{{$tor[$t]->target_IKU ."%"}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </h6>
-                <p>
-                    <?php if (!empty($komentar['iku'])) {
-                                            buttonKomentar("#lihatkomen11");
-                                        } ?>
-                    <?php if ($disetujui != 1) { ?>
-                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                        <?php buttonPlus("#komen11") ?>
-                        @endif
-                </p>
-                <?php areaKomentar("komen11", "k_iku", "iku Kegiatan"); ?>
-            <?php } ?>
-            <div class="collapse" id="lihatkomen11">
-                <div id="validasi" class="container col-sm-12">
-                    <?php
-                                        if (!empty($komentar['iku'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                    ?>
-                    @foreach($komentar['iku'] as $ikus)
-                    <h6 style="color: #dc3545;">{{$ikus}}</h6>
-                    <hr class="mt-3">
-                    @endforeach
-                </div>
-            </div>
+                                        <!-- Indikator Kinerja Utama (IKU) -->
+                                        <tr>
+                                            <td><b>11.</b></td>
+                                            <td colspan="7"><b>Indikator Kinerja Utama (IKU)</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="7">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Indikator</th>
+                                                            <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
+                                                            <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{$iku ." ".$deskripsi_iku}}</td>
+                                                            <td>{{$tor[$t]->realisasi_IKU ."%"}}</td>
+                                                            <td>{{$tor[$t]->target_IKU ."%"}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p>
+                                                    <?php if (!empty($komentar['iku'])) {
+                                                        buttonKomentar("#lihatkomen11");
+                                                    } ?>
+                                                    <?php if ($disetujui != 1) { ?>
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        <?php buttonPlus("#komen11") ?>
+                                                        @endif
+                                                </p>
+                                                <?php areaKomentar("komen11", "k_iku", "iku Kegiatan"); ?>
+                                            <?php } ?>
+                                            <div class="collapse" id="lihatkomen11">
+                                                <div id="validasi" class="container col-sm-12">
+                                                    <?php
+                                                    if (!empty($komentar['iku'])) {
+                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                    }
+                                                    ?>
+                                                    @foreach($komentar['iku'] as $ikus)
+                                                    <h6 style="color: #dc3545;">{{$ikus}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            </td>
+                                        </tr>
 
-            <h6><b>12. Indikator Kinerja Kegiatan : </b><br />
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Indikator</th>
-                            <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
-                            <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{$iku ." ".$deskripsi_ik}}</td>
-                            <td>{{$tor[$t]->realisasi_IK ."%"}}</td>
-                            <td>{{$tor[$t]->target_IK ."%"}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </h6>
-            <p>
-                <?php if (!empty($komentar['ik'])) {
-                                            buttonKomentar("#lihatkomen12");
-                                        } ?>
-                <?php if ($disetujui != 1) { ?>
-                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                    <?php buttonPlus("#komen12") ?>
-                    @endif
-            </p>
-            <?php areaKomentar("komen12", "k_ik", "ik Kegiatan"); ?>
-        <?php } ?>
-        <div class="collapse" id="lihatkomen12">
-            <div id="validasi" class="container col-sm-12">
-                <?php
-                                        if (!empty($komentar['ik'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                ?>
-                @foreach($komentar['ik'] as $iks)
-                <h6 style="color: #dc3545;">{{$iks}}</h6>
-                <hr class="mt-3">
-                @endforeach
-            </div>
-        </div>
+                                        <!-- Indikator Kinerja Kegiatan (IK) -->
+                                        <tr>
+                                            <td><b>12.</b></td>
+                                            <td colspan="7"><b>Indikator Kinerja Kegiatan (IK)</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="7">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Indikator</th>
+                                                            <th scope="col">Realisasi <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)-1}}</th>
+                                                            <th scope="col">Target <br /> {{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{$iku ." ".$deskripsi_ik}}</td>
+                                                            <td>{{$tor[$t]->realisasi_IK ."%"}}</td>
+                                                            <td>{{$tor[$t]->target_IK ."%"}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p>
+                                                    <?php if (!empty($komentar['ik'])) {
+                                                        buttonKomentar("#lihatkomen12");
+                                                    } ?>
+                                                    <?php if ($disetujui != 1) { ?>
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        <?php buttonPlus("#komen12") ?>
+                                                        @endif
+                                                </p>
+                                                <?php areaKomentar("komen12", "k_ik", "ik Kegiatan"); ?>
+                                            <?php } ?>
+                                            <div class="collapse" id="lihatkomen12">
+                                                <div id="validasi" class="container col-sm-12">
+                                                    <?php
+                                                    if (!empty($komentar['ik'])) {
+                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                    }
+                                                    ?>
+                                                    @foreach($komentar['ik'] as $iks)
+                                                    <h6 style="color: #dc3545;">{{$iks}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            </td>
+                                        </tr>
 
-        <h6><b>13. keberlanjutan : </b><br />{!!$tor[$t]->keberlanjutan!!}</h6>
-        <p>
-            <?php if (!empty($komentar['keberlanjutan'])) {
-                                            buttonKomentar("#lihatkomen13");
-                                        } ?>
-            <?php if ($disetujui != 1) { ?>
-                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                <?php buttonPlus("#komen13") ?>
-                @endif
-        </p>
-        <?php areaKomentar("komen13", "k_keberlanjutan", "keberlanjutan Kegiatan"); ?>
-    <?php } ?>
-    <div class="collapse" id="lihatkomen13">
-        <div id="validasi" class="container col-sm-12">
-            <?php
-                                        if (!empty($komentar['keberlanjutan'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-            ?>
-            @foreach($komentar['keberlanjutan'] as $keberlanjutans)
-            <h6 style="color: #dc3545;">{{$keberlanjutans}}</h6>
-            <hr class="mt-3">
-            @endforeach
-        </div>
-    </div>
+                                        <!-- Keberlanjutan -->
+                                        <tr>
+                                            <td><b>14.</b></td>
+                                            <td colspan="7"><b>Keberlanjutan</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="7">
+                                                <p>
+                                                    <?php if (!empty($komentar['keberlanjutan'])) {
+                                                        buttonKomentar("#lihatkomen13");
+                                                    } ?>
+                                                    <?php if ($disetujui != 1) { ?>
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        <?php buttonPlus("#komen13") ?>
+                                                        @endif
+                                                </p>
+                                                <?php areaKomentar("komen13", "k_keberlanjutan", "keberlanjutan Kegiatan"); ?>
+                                            <?php } ?>
+                                            <div class="collapse" id="lihatkomen13">
+                                                <div id="validasi" class="container col-sm-12">
+                                                    <?php
+                                                    if (!empty($komentar['keberlanjutan'])) {
+                                                        echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                    }
+                                                    ?>
+                                                    @foreach($komentar['keberlanjutan'] as $keberlanjutans)
+                                                    <h6 style="color: #dc3545;">{{$keberlanjutans}}</h6>
+                                                    <hr class="mt-3">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            </td>
+                                        </tr>
 
-    <h6><b>14. Penanggung Jawab : </b><br />{{$tor[$t]->nama_pic}}</h6>
-    <p>
-        <?php if (!empty($komentar['penanggung'])) {
-                                            buttonKomentar("#lihatkomen14");
-                                        } ?>
-        <?php if ($disetujui != 1) { ?>
-            @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-            <?php buttonPlus("#komen14") ?>
-            @endif
-    </p>
-                            </div><?php areaKomentar("komen14", "k_penanggung", "penanggung Kegiatan"); ?>
-                        <?php } ?>
-                        <div class="collapse" id="lihatkomen14">
-                            <div id="validasi" class="container col-sm-12">
-                                <?php
-                                        if (!empty($komentar['penanggung'])) {
-                                            echo $note; //isinya : "komentar sebelum perbaikan tor"
-                                        }
-                                ?>
-                                @foreach($komentar['penanggung'] as $penanggungs)
-                                <h6 style="color: #dc3545;">{{$penanggungs}}</h6>
-                                <hr class="mt-3">
-                                @endforeach
+                                        <!-- Penanggungjawab -->
+                                        <tr>
+                                            <td><b>15.</b></td>
+                                            <td colspan="7"><b>Penanggungjawab</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="7">
+                                                <p>
+                                                    <?php if (!empty($komentar['penanggung'])) {
+                                                        buttonKomentar("#lihatkomen14");
+                                                    } ?>
+                                                    <?php if ($disetujui != 1) { ?>
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        <?php buttonPlus("#komen14") ?>
+                                                        @endif
+                                                </p>
+                                            </div><?php areaKomentar("komen14", "k_penanggung", "penanggung Kegiatan"); ?>
+                                        <?php } ?>
+                                        <div class="collapse" id="lihatkomen14">
+                                            <div id="validasi" class="container col-sm-12">
+                                                <?php
+                                                if (!empty($komentar['penanggung'])) {
+                                                    echo $note; //isinya : "komentar sebelum perbaikan tor"
+                                                }
+                                                ?>
+                                                @foreach($komentar['penanggung'] as $penanggungs)
+                                                <h6 style="color: #dc3545;">{{$penanggungs}}</h6>
+                                                <hr class="mt-3">
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        </td>
+                                        </tr>
+
+                                        <!-- Total Anggaran -->
+                                        <tr>
+                                            <td><b>16.</b></td>
+                                            <td colspan="7"><b>Total Anggaran</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="7">
+                                                {{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}
+                                            </td>
+                                        </tr>
+                                        <!-- TANDA TANGAN -->
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;" width="50%">Kepala Program Studi
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <?php
+                                                foreach ($users as $us) {
+                                                    foreach ($unit as $un) {
+                                                        if ($un->id == $us->id_unit) {
+                                                            foreach ($roles as $ro) {
+                                                                if ($ro->id == $us->role) {
+                                                                    if ($ro->name == "Kaprodi") {
+                                                                        echo "<b>" . $us->name . "</b><br />";
+                                                                        echo "NIP. " . $us->nip;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
+                                            <td colspan="4" style="text-align: center;">Perencana/Penanggungjawab
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <b>{{$tor[$t]->nama_pic}}</b><br />
+                                                {{"NIP. ". Auth::user()->nip }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;">Menyetujui</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
+                                                NIP. 197408182000121001
+                                            </td>
+                                            <td colspan="3" width="30%">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
+                                                NIP. 198208112006041001
+                                            </td>
+                                            <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <b> Abdul Aziz, S.Kom., M.Cs.</b><br />
+                                                NIP. 198104132005011001
+                                            </td>
+                                        </tr>
+                                        <!-- TANDA TANGAN -->
+                                        </tbody>
+                                        </table>
                             </div>
-                        </div>
-                        <div class="container ml-1">
-                            <h6 id="validasi"><b>15. Total Ajuan : </b><br />{{"Rp. ".number_format($tor[$t]->jumlah_anggaran,2,',',',')}}</h6><br />
-                        </div>
 
+                            <?php collapseKomentar(); ?>
 
-
-                        <hr />
-                        <!-- R A B -->
-                        @include('perencanaan/validasi/detail_rab')
-                        <p>
-                            <?php if (!empty($komentar['komentar_rab'])) {
+                            <!-- R A B -->
+                            @include('perencanaan/validasi/detail_rab')
+                            <p>
+                                <?php if (!empty($komentar['komentar_rab'])) {
                                             buttonKomentar("#lihatkomentar12");
                                         } ?>
 
-                            <?php if ($disetujui != 1) { ?>
-                                @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
-                                <?php buttonPlus("#komenrab") ?>
-                                <?php areaKomentar("komenrab", "k_rab", "RAB"); ?>
-                                @endif
-                            <?php } ?>
-                        </p>
+                                <?php if ($disetujui != 1) { ?>
+                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                    <?php buttonPlus("#komenrab") ?>
+                                    <?php areaKomentar("komenrab", "k_rab", "RAB"); ?>
+                                    @endif
+                                <?php } ?>
+                            </p>
 
 
 
-                        <div class="collapse" id="lihatkomentar12">
-                            <div id="validasi" class="container col-sm-12">
-                                <?php
+                            <div class="collapse" id="lihatkomentar12">
+                                <div id="validasi" class="container col-sm-12">
+                                    <?php
                                         if (!empty($komentar['komentar_rab'])) {
                                             echo $note;
                                         }
-                                ?>
-                                @foreach($komentar['komentar_rab'] as $rab)
-                                <h6 style="color: #dc3545;">{{$rab}}</h6>
-                                <hr class="mt-3">
-                                @endforeach
+                                    ?>
+                                    @foreach($komentar['komentar_rab'] as $rab)
+                                    <h6 style="color: #dc3545;">{{$rab}}</h6>
+                                    <hr class="mt-3">
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <br />
-                        <!-- V A L I D A S I -->
-                        <br />
+                            <br />
+                            <!-- V A L I D A S I -->
+                            <br />
 
-                        <?php
+                            <?php
                                         //menyembunyikan option, jika user sudah memverif
                                         $userSudahKomentar;
                                         // foreach ($trx_status_tor as $trx3) {
@@ -829,11 +889,11 @@ use Illuminate\Support\Facades\Auth;
                                         //         }
                                         //     }
                                         // }
-                        ?>
-                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_revisi') || Gate::check('tor_validasi') )
-                        <?php if ($disetujui != 1) { ?>
-                            <div id="validasi" class="container center">
-                                <?php
+                            ?>
+                            @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_revisi') || Gate::check('tor_validasi') )
+                            <?php if ($disetujui != 1) { ?>
+                                <div id="validasi" class="container center">
+                                    <?php
                                             $blok = 0;
                                             $ada2 = 0;
                                             $tdkada2 = 0;
@@ -857,11 +917,11 @@ use Illuminate\Support\Facades\Auth;
                                                 } else {
                                                 }
                                             }
-                                ?>
-                                <h4 id="validasiplus"><b>
-                                        Verifikasi & Validasi TOR
-                                    </b></h4>
-                                <?php
+                                    ?>
+                                    <h4 id="validasiplus"><b>
+                                            Verifikasi & Validasi TOR
+                                        </b></h4>
+                                    <?php
                                             $muncul = ''; //memunculkan dan menyembunyika icon plus untuk kolom komentar
                                             $muncul1 = '';
                                             $muncul2 = '';
@@ -870,16 +930,16 @@ use Illuminate\Support\Facades\Auth;
                                                 if ($status[$s]->kategori == "TOR" && $status[$s]->nama_status != "Pengajuan Perbaikan") {
                                                     for ($r3 = 0; $r3 < count($roles); $r3++) {
                                                         if (Auth()->user()->role == $roles[$r3]->id) {
-                                ?>
+                                    ?>
 
-                                                <!-- K A P R O D I -->
-                                                <?php if ($roles[$r3]->name == "Kaprodi") {
+                                                    <!-- K A P R O D I -->
+                                                    <?php if ($roles[$r3]->name == "Kaprodi") {
                                                                 if (($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan") && $status[$s]->nama_status == "Verifikasi Kaprodi") {
                                                                     $muncul = 'ada';
                                                                     $buttonSubmit = 1; ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php } elseif ($currentStatus != "Proses Pengajuan" || $currentStatus != "Pengajuan Perbaikan") {
+                                                            <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                            <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <?php } elseif ($currentStatus != "Proses Pengajuan" || $currentStatus != "Pengajuan Perbaikan") {
                                                                     $muncul = 'tidak ada';
                                                                 }
                                                             }
@@ -889,35 +949,35 @@ use Illuminate\Support\Facades\Auth;
                                                                 if (($currentStatus == "Verifikasi Kaprodi") && $status[$s]->nama_status == "Verifikasi") {
                                                                     $muncul = 'ada';
                                                                     $buttonSubmit = 1; ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php } elseif ($currentStatus != "Verifikasi Kaprodi") {
+                                                            <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                            <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <?php } elseif ($currentStatus != "Verifikasi Kaprodi") {
                                                                     $muncul = 'tidak ada';
                                                                 }
 
                                                                 // W D 1
                                                             } elseif ($roles[$r3]->name == "WD 1") { ?>
-                                                    <?php
+                                                        <?php
                                                                 if ($currentStatus == "Verifikasi" && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
                                                                     $muncul1 = 'ada';
                                                                     if ($status[$s]->nama_status == "Revisi") {
-                                                    ?>
-                                                        <?php } ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php } elseif ($currentStatus != "Verifikasi") {
+                                                        ?>
+                                                            <?php } ?>
+                                                            <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                            <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <?php } elseif ($currentStatus != "Verifikasi") {
                                                                     $muncul1 = 'tidak ada';
                                                                 }
                                                                 // echo $muncul1;
                                                                 if ($muncul1 == 'tidak ada') { ?>
-                                                        <!-- <script>
+                                                            <!-- <script>
                                                             var n = document.getElementById("validasiplus");
                                                             while (n) {
                                                                 document.getElementById("validasiplus").remove();
                                                             }
                                                         </script> -->
-                                                    <?php }
+                                                        <?php }
 
                                                                 // W D 2
                                                             } elseif ($roles[$r3]->name == "WD 2") {
@@ -926,78 +986,78 @@ use Illuminate\Support\Facades\Auth;
                                                                     $buttonSubmit = 1;
                                                                     $muncul2 = 'ada';
                                                                     // echo "xx - " . $currentStatus . "-" . $currentStatusRole; 
-                                                    ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 1") {
+                                                        ?>
+                                                            <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                            <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 1") {
                                                                     $muncul2 = 'tidak ada';
                                                                 }
                                                                 // echo $muncul2;
                                                                 if ($muncul2 == 'tidak ada') { ?>
-                                                        <!-- <script>
+                                                            <!-- <script>
                                                             var n = document.getElementById("validasiplus");
                                                             while (n) {
                                                                 document.getElementById("validasiplus").remove();
                                                             }
                                                         </script> -->
-                                                    <?php }
+                                                        <?php }
 
                                                                 // W D 3
                                                             } elseif ($roles[$r3]->name == "WD 3") {
                                                                 if ($currentStatus == "Validasi" && $currentStatusRole == "WD 2"   && ($status[$s]->nama_status == "Validasi" || $status[$s]->nama_status == "Revisi")) {
                                                                     $buttonSubmit = 1;
                                                                     $muncul3 = 'ada'; ?>
-                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                                    <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 2") {
+                                                            <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                            <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                                        <?php } elseif ($currentStatus != "Validasi" && $currentStatusRole != "WD 2") {
                                                                     $muncul3 = 'tidak ada';
                                                                 }
                                                                 // echo $muncul3;
                                                                 if ($muncul3 == 'tidak ada') {
-                                                    ?>
-                                                        <!-- <script>
+                                                        ?>
+                                                            <!-- <script>
                                                             var n = document.getElementById("validasiplus");
                                                             while (n) {
                                                                 document.getElementById("validasiplus").remove();
                                                             }
                                                         </script> -->
-                                                    <?php }
+                                                        <?php }
 
                                                                 //
                                                             } else { ?>
-                                                    <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
-                                                    <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
-                                <?php }
+                                                        <input type="radio" class="btn-check" name="id_status" id="id_status" value="{{$status[$s]->id}}" autocomplete=" off">
+                                                        <label class="" for="danger-outlined">{{$status[$s]->nama_status}}</label><br />
+                                    <?php }
                                                         }
                                                     }
                                                 }
                                             } ?>
-                                <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
-                                @foreach($roles as $roleby)
-                                @if(Auth()->user()->role == $roleby->id)
-                                <input type="hidden" name="role_by" value="<?= $roleby->name ?>">
-                                @endif
-                                @endforeach
-                                <input type="hidden" name="id_tor" value="<?= $id ?>">
-                                <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
-                                <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
-                                <?php if ($buttonSubmit == 1) { ?>
-                                    <button class="btn btn-primary btn-sm" type="submit">Kirim</button>
-                                <?php } ?>
-                                <?php if ($buttonSubmit != 1) { ?>
-                                    <script>
-                                        var n = document.getElementById("validasiplus");
-                                        while (n) {
-                                            document.getElementById("validasiplus").remove();
-                                        }
-                                    </script>
-                                <?php } ?>
+                                    <input type="hidden" name="create_by" value="<?= Auth()->user()->id ?>">
+                                    @foreach($roles as $roleby)
+                                    @if(Auth()->user()->role == $roleby->id)
+                                    <input type="hidden" name="role_by" value="<?= $roleby->name ?>">
+                                    @endif
+                                    @endforeach
+                                    <input type="hidden" name="id_tor" value="<?= $id ?>">
+                                    <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">
+                                    <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
+                                    <?php if ($buttonSubmit == 1) { ?>
+                                        <button class="btn btn-primary btn-sm" type="submit">Kirim</button>
+                                    <?php } ?>
+                                    <?php if ($buttonSubmit != 1) { ?>
+                                        <script>
+                                            var n = document.getElementById("validasiplus");
+                                            while (n) {
+                                                document.getElementById("validasiplus").remove();
+                                            }
+                                        </script>
+                                    <?php } ?>
 
-                                <br />
-                            </div>
-                        <?php } ?>
-                        @endif
-                        </form>
+                                    <br />
+                                </div>
+                            <?php } ?>
+                            @endif
+                            </form>
                         </div>
                         <br />
 
@@ -1221,37 +1281,6 @@ use Illuminate\Support\Facades\Auth;
         window.print();
 
     };
-</script>
-<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $.noConflict();
-        <?php date_default_timezone_set('Asia/Jakarta'); ?>
-        $('#torx').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'print',
-                {
-                    extend: 'excelHtml5',
-                    title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
-                },
-
-                {
-                    extend: 'pdfHtml5',
-                    title: 'MonitoringUsulan_<?= date('Y-m-d H-i-s'); ?>'
-                }
-            ]
-        });
-    });
 </script>
 @include('dashboards/users/layouts/footer')
 

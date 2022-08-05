@@ -1,41 +1,80 @@
 <br />
+<br />
 <?php
 $totanggaran1 = 0;
 for ($r = 0; $r < count($rab); $r++) {
     if ($rab[$r]->id_tor == $tor[$t]->id) { ?>
         <div class="container center">
-            <h5 style="text-align: center;">RINCIAN ANGGARAN BELANJA</h5>
+            <!-- <h5 style="text-align: center;">RINCIAN ANGGARAN BELANJA</h5> -->
             <?php for ($u = 0; $u < count($unit2); $u++) {
                 if ($tor[$t]->id_unit == $unit2[$u]->id) {
                     $namaunit = $unit2[$u]->nama_unit;
                 }
             } ?>
-            <h5 style="text-align: center;">{{strtoupper($namaunit)}}</h5><br />
-            <br />
+            <!-- <h5 style="text-align: center;">{{strtoupper($namaunit)}}</h5><br /> -->
+            <!-- <br /> -->
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td colspan="7"><b>Unit Kerja</b> : {{$namaunit}}</td>
-                            <th>Tahun</th>
+                            <td colspan="8">
+                                <h5 style="text-align: center;"><b>RINCIAN ANGGARAN BELANJA</b></h5>
+                                <h5 style="text-align: center;"><b>{{strtoupper($namaunit)}}</h5>
+                            </td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Kegiatan</b> : {{$tor[$t]->nama_kegiatan}}</td>
-                            <td rowspan="2">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</td>
+                            <td width="28%"><b>Unit Kerja</b> </td>
+                            <td width="2%">:</td>
+                            <td colspan="5" width="50%">{{$namaunit}}</td>
+                            <td width="15%"><b>Tahun</b></td>
+                        </tr>
+
+                        <tr>
+                            <?php
+                            $id_subk = 0;
+                            $nama_subK = "";
+                            $desk_subK = "";
+                            $nama_k = "";
+                            $desk_k = "";
+                            foreach ($kategori_subK as $subK1) {
+                                if ($subK1->id == $tor[$t]->id_subK) {
+                                    $id_subk = $subK1->id;
+                                    $nama_subK = $subK1->subK;
+                                    $desk_subK = $subK1->deskripsi;
+                                    $nama_k = $subK1->K;
+                                    $desk_k = $subK1->deskripsi_k;
+                                }
+                            }
+                            ?>
+                            <td><b>Indikator Kegiatan</b> </td>
+                            <td>:</td>
+                            <td colspan="5">{{ $nama_k." : ".$desk_k}}</td>
+                            <td rowspan="3">{{substr($tor[$t]->tgl_mulai_pelaksanaan,0,4)}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Sub Kegiatan</b> : {{$tor[$t]->id_subK}}</td>
+                            <td><b>Sub Kegiatan</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$nama_subK." : ". $desk_subK}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Kegiatan</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$tor[$t]->nama_kegiatan}}</td>
                         </tr>
                         <tr>
                             <td colspan="7" style="text-align: center;"><b>Indikator</b></td>
-                            <th>Target Kinerja</th>
+                            <td><b>Target Kinerja</b></td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Input (Masukan)</b> : {{$rab[$r]->masukan }}</td>
+                            <td><b>Input (Masukan)</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$rab[$r]->masukan }}</td>
                             <td rowspan="2">{{$tor[$t]->target_IKU ."%"}}</td>
                         </tr>
                         <tr>
-                            <td colspan="7"><b>Output (Keluaran)</b> : {{$rab[$r]->keluaran}}</td>
+                            <td><b>Output (Keluaran)</b></td>
+                            <td>:</td>
+                            <td colspan="5">{{$rab[$r]->keluaran}}</td>
                         </tr>
                         <tr>
                             <th colspan="8" style="text-align: center;"><b>Anggaran Belanja</b></th>
@@ -97,6 +136,77 @@ for ($r = 0; $r < count($rab); $r++) {
                             <th colspan="7">Total</th>
                             <th>{{"Rp. ".number_format($totalAnggaranRab,2,',',',')}}</th>
                         </tr>
+                        <!-- TANDA TANGAN -->
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;" width="50%">Kepala Program Studi
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <?php
+                                foreach ($users as $us) {
+                                    foreach ($unit as $un) {
+                                        if ($un->id == $us->id_unit) {
+                                            foreach ($roles as $ro) {
+                                                if ($ro->id == $us->role) {
+                                                    if ($ro->name == "Kaprodi") {
+                                                        echo "<b>" . $us->name . "</b><br />";
+                                                        echo "NIP. " . $us->nip;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td colspan="4" style="text-align: center;" width="50%">Perencana/Penanggungjawab
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b>{{$tor[$t]->nama_pic}}</b><br />
+                                {{"NIP. ". Auth::user()->nip }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="text-align: center;">Menyetujui</td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
+                                NIP. 197408182000121001
+                            </td>
+                            <td colspan="2">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                <br />
+                                <br />
+                                <br />
+                                <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
+                                NIP. 198208112006041001
+                            </td>
+                            <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <b> Abdul Aziz, S.Kom., M.Cs.</b><br />
+                                NIP. 198104132005011001
+                            </td>
+                        </tr>
+                        <!-- TANDA TANGAN -->
                     </tfoot>
                 </table>
 

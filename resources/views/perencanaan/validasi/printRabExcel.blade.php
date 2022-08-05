@@ -73,7 +73,7 @@
                             <td width="82px"></td>
                         </tr>
                         <tr>
-                            <td height="40px"><b>Unit Kerja</b></td>
+                            <td height="40px" style="vertical-align: middle;"><b>Unit Kerja</b></td>
                             <td colspan="1"> : </td>
                             <td colspan="7"> {{$namaunit}}
                             </td>
@@ -118,7 +118,7 @@
                             <td colspan="1" height="40px"><b>Input (Masukan)</b></td>
                             <td colspan="1">:</td>
                             <td colspan="7">{{$rab[$r]->masukan }}</td>
-                            <td rowspan="2" colspan="3">{{$tor[$t]->target_IKU ."%"}}</td>
+                            <td rowspan="2">{{$tor[$t]->target_IKU ."%"}}</td>
                         </tr>
                         <tr>
                             <td colspan="1" height="40px"><b>Output (Keluaran)</b></td>
@@ -170,17 +170,17 @@
                                             }
                                             ?>
                                             <tr>
-                                                <td colspan="3" height="80px" style="word-wrap: break-word;">
+                                                <td colspan="3" style="word-wrap: break-word;">
                                                     <b>{{$kodeKelompok}} </b>
                                                     {{$detail_mak[$j]->detail. " ".  $anggaran[$i]->catatan}}
                                                 </td>
-                                                <td>{{$anggaran[$i]->kebutuhan_vol}}</td>
+                                                <td height="80px">{{$anggaran[$i]->kebutuhan_vol}}</td>
                                                 <td>{{$anggaran[$i]->kebutuhan_sat}}</td>
                                                 <td>{{$anggaran[$i]->frek}}</td>
                                                 <td>{{$anggaran[$i]->perhitungan_vol}}</td>
                                                 <td>{{$anggaran[$i]->perhitungan_sat}}</td>
-                                                <td width="100px" height="80%">{{"Rp. ".number_format($anggaran[$i]->harga_satuan,2,',',',')}}</td>
-                                                <td width="100px" height="80%">{{"Rp. ".number_format($anggaran[$i]->anggaran,2,',',',')}}</td>
+                                                <td width="100px">{{"Rp. ".number_format($anggaran[$i]->harga_satuan,2,',',',')}}</td>
+                                                <td width="100px">{{"Rp. ".number_format($anggaran[$i]->anggaran,2,',',',')}}</td>
                                             </tr>
 
                         <?php
@@ -197,17 +197,14 @@
                             <td colspan="9">Total</td>
                             <td colspan="1">{{"Rp. ".number_format($totalAnggaranRab,2,',',',')}}</td>
                         </tr>
-                        <?php for ($j = 0; $j < 5; $j++) { ?>
-                            <tr>
-                                <?php for ($i = 0; $i < 10; $i++) { ?>
-                                    <td></td>
-                                <?php } ?>
-                            </tr>
-                        <?php } ?>
+                        <tr>
+                            <?php for ($i = 0; $i < 10; $i++) { ?>
+                                <td></td>
+                            <?php } ?>
+                        </tr>
                         <!-- TANDA TANGAN -->
                         <tr>
-                            <td colspan="1">Kepala Program Studi</td>
-                            <td></td>
+                            <td colspan="3">Kepala Program Studi</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -223,7 +220,7 @@
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td colspan="3">
+                            <td colspan="3" height="45px">
                                 <?php
                                 foreach ($users as $us) {
                                     foreach ($unit as $un) {
@@ -244,8 +241,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td colspan="4">
-                                {{$tor[$t]->nama_pic."<br />"}}
+                            <td></td>
+                            <td colspan="3" height="45px">
+                                {{$tor[$t]->nama_pic}} <br />
                                 {{"NIP. ". Auth::user()->nip }}
                             </td>
                         </tr>

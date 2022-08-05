@@ -94,14 +94,14 @@
                     </thead> -->
                         <tbody>
                             <tr>
-                                <td style="border:1px solid #000; text-align: center;" colspan="8"><b>
+                                <td style="border:1px solid #000; text-align: center; margin-right: 3cm;" colspan="8" width="100%"><b>
                                         KERANGKA ACUAN KERJA (KAK) / TERM OF REFERENCE (ToR) <br />
                                         PROGRAM STUDI {{strtoupper($prodi)}}<br />SEKOLAH VOKASI UNIVERSITAS SEBELAS</b></td>
                             </tr>
                             <tr>
-                                <td>1.</td>
+                                <td width="5%">1.</td>
                                 <td>Indikator Kinerja Utama</td>
-                                <td width="23px">:</td>
+                                <td width="5%">:</td>
                                 <td>{{$iku}}</td>
                                 <td colspan="4">{{$deskripsi_iku}}</td>
                             </tr>
@@ -356,7 +356,7 @@
                                     <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
                                     NIP. 197408182000121001
                                 </td>
-                                <td colspan="3">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                                <td colspan="2">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
                                     <br />
                                     <br />
                                     <br />
@@ -364,7 +364,7 @@
                                     <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
                                     NIP. 198208112006041001
                                 </td>
-                                <td colspan="2">Wakil Dekan SDM, Keuangan, dan Logistik
+                                <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
                                     <br />
                                     <br />
                                     <br />
@@ -387,14 +387,14 @@
                             <table id="datatable" class="table table-striped table-bordered" style="border-collapse:collapse;">
                                 <thead>
                                     <tr>
-                                        <td colspan="8">
-                                            <h5 style="text-align: center;">RINCIAN ANGGARAN BELANJA</h5>
+                                        <td colspan="8" style="text-align: center;">RINCIAN ANGGARAN BELANJA</h5>
                                             <?php for ($u = 0; $u < count($unit2); $u++) {
                                                 if ($tor[$t]->id_unit == $unit2[$u]->id) {
                                                     $namaunit = $unit2[$u]->nama_unit;
                                                 }
                                             } ?>
-                                            <h5 style="text-align: center;">{{strtoupper($namaunit)}}</h5>
+                                            <br />
+                                            {{strtoupper($namaunit)}}
                                         </td>
                                     </tr>
                                     <tr>

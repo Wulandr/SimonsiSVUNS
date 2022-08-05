@@ -88,4 +88,9 @@ class User extends Authenticatable
             ->get('*');
         return $joinUser;
     }
+    public function toRole()
+    {
+        // $this->relationsType("Model","Foreign_key","Local_key");
+        return $this->belongsTo('Spatie\Permission\Models\Role', 'role', 'id');
+    }
 }

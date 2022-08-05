@@ -35,4 +35,15 @@ class SubKegiatan extends Model
             ->get('*');
         return $k;
     }
+    // public function nilai()
+    // {
+    //     // $this->relationsType("Model","Foreign_key","Local_key");
+    //     return $this->hasMany('App\Models\Nilai', 'nim', 'nim');
+    // }
+
+    public function Kegiatan()
+    {
+        // $this->relationsType("Model","Foreign_key","Local_key");
+        return $this->belongsTo('App\Models\KModel', 'id_k', 'id');
+    }
 }

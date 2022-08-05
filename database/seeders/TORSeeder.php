@@ -21,7 +21,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '6',
                 'id_subK' => '1',
                 'nama_kegiatan' => 'Keikutsertaan Prodi dalam Asosiasi Perguruan Tinggi Vokasi K3',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => 'Permasalahan di bidang K3 terus berkembang, program studi perlu menjalin
                 komunikasi dan networking yang baik dengan Program Studi K3 lainnya dalam Asosiasi untuk penyelesaian
                 masalah-masalah K3.',
@@ -417,7 +417,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '2',
                 'id_subK' => '9',
                 'nama_kegiatan' => 'Pengiriman Mahasiswa Untuk Melakukan Sertifikasi Kompetensi',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => '<p>Sertifikasi di bidang TI bagi dunia pendidikan sangat berguna dalam memperlancar kegiatan belajar mengajar, khususnya bagi mahasiswa untuk mengetahui kemampuannya di bidang TI serta sebagai bekal dalam menghadapi dunia kerja selepas meneyelesaikan pendidikannya di perguruan tinggi. Mahasisswa vokasi diharapkan ketika lulus perkuliahan diharapkan langsung dapat bekerja. Pengajuan kemampuan seseorang dapat bekerja dapat melalui dua jalur. Jalur pertama adalah jalur akademis yaitu berupa ijazah setelah mahasiswa menyelesaikan perkuliahannya. Jalur kedua adalah melalui pengujian kompetensi. Pengujian kompetensi dapat diberikan oleh provider produk tertentu atau oleh badan yang didirikan oleh pemerintah yaitu BNSP (Badan Nasional Sertifikasi Profesi) sesuai dengan PP No.23 tahun 2004. Dengan pemberian sertifikasi kompetensi maka mahasiswa memiliki 2 pengakuan atas kompetensi sekaligus sehingga diharapkan dapat langsung diakui oleh perusahaan untuk diterima menjadi karyawan. Dengan tingkat terserapnya mahasiswa di dunia kerja setelah lulus sesuai dengan IKU 1 yaitu serapan lulusan dalam bekerja kurang dari 6 bulan dan juga berwirausaha. Sertifikasi kompetensi utamanya bidang TI ditujukan untuk menunjukkan jika lulusan merupakan lulusan yang berkompeten di bidang TI, dan adanya sertifikat akan memudahkan perusahaan memilah alumni D3TI berkompeten disuatu bidang yang dibutuhkan.</p>',
                 'rasionalisasi' => '<p>Dengan mahasisswa diikutkan dalam ujian kompetensi yang diadakan oleh BNSP sebgai badan yang dibentuk ooleh pemerintah untuk dapat memberikan Sertifikat kompetensi maka telah melaksankan IKK K03-05. Penyelenggaraan uji sertifikasi kompetensi mahasiswa.</p>',
                 'tujuan' => '<p>1. Pengukuran kompetensi spesifik mahasiswa</p>
@@ -454,7 +454,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '6',
                 'id_subK' => '1',
                 'nama_kegiatan' => 'Coba Kegiatan 2',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
                 <caption>tabel x</caption>
                 <tbody>
@@ -499,7 +499,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '5',
                 'id_subK' => '1',
                 'nama_kegiatan' => 'Coba Kegiatan 4',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
                 <caption>tabel x</caption>
                 <tbody>
@@ -544,7 +544,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '5',
                 'id_subK' => '1',
                 'nama_kegiatan' => 'Coba Kegiatan 5',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => '<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:500px">
                 <caption>tabel x</caption>
                 <tbody>
@@ -589,7 +589,7 @@ class TORSeeder extends Seeder
                 'id_tw' => '6',
                 'id_subK' => '143',
                 'nama_kegiatan' => 'Membangung Sistem Penjaminan Mutu',
-                'jenis_ajuan' => 'baru',
+                'jenis_ajuan' => 'Baru',
                 'latar_belakang' => '<p>Sumber daya manusia yang kompeten akan semakin banyak dibutuhkan oleh dunia usaha dan dunia industri pada masa kini hingga mendatang. Untuk memenuhi kebutuhan tersebut, Direktorat Jenderal Pendidikan Vokasi Kemendikbud terus berupaya melakukan berbagai macam terobosan baru melalui berbagai program dan kebijakan.</p>',
                 'rasionalisasi' => '<p>Sebagai upaya untuk mewujudkan pengembangan Program studi melalui proses upgrade D3 menjadi Sarjana Terapan (D4) maka dilakukan beberapa tahapan.</p>',
                 'tujuan' => '<ol>

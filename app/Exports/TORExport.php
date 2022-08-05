@@ -15,6 +15,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -33,7 +34,8 @@ use Maatwebsite\Excel\Events\AfterSheet;
 // }
 class TORExport implements
     FromView,
-    WithTitle
+    WithTitle,
+    ShouldAutoSize
 {
     protected $ids;
 
@@ -84,19 +86,30 @@ class TORExport implements
     {
 
         return [
-
             AfterSheet::class    => function (AfterSheet $event) {
-
-
 
                 $event->sheet->getDelegate()->getRowDimension('6', '7', '8', '9', '12', '14', '16', '32')
                     ->setRowHeight(200);
 
                 // $event->sheet->getDelegate()->getColumnDimension('A')->setWidth(50);
+                $event->sheet->getDelegate()->getStyle('A13:A15', 'J6:J8', 'J10:J11')
+                    ->getAlignment()
+                    ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                // Set border for range
+                $event->sheet->setAllBorders('bold');
 
-
-
+                $event->sheet->getStyle('A13:A15')->applyFromArray([
+                    'borders' => [
+                        'outline' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => '000000'],
+                        ],
+                    ]
+                ]);
+                // Set auto size for sheet
+                $event->sheet->setAutoSize(true);
             },
+
 
         ];
     }
