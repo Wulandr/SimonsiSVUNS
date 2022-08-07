@@ -227,7 +227,7 @@
                                         if ($un->id == $us->id_unit) {
                                             foreach ($roles as $ro) {
                                                 if ($ro->id == $us->role) {
-                                                    if ($ro->name == "Kaprodi") {
+                                                    if ($ro->name == "Kaprodi" && $un->nama_unit == $namaunit) {
                                                         echo  $us->name . "<br />";
                                                         echo "NIP. " . $us->nip;
                                                     }

@@ -35,6 +35,10 @@ class StatusKegAngSeeder extends Seeder
                 'nama_status' => 'Pengajuan Perbaikan',
                 'kategori' => 'TOR'
             ],
+            [
+                'nama_status' => 'Verifikasi Kaprodi',
+                'kategori' => 'TOR'
+            ],
             // [
             //     'nama_status' => 'Review',
             //     'kategori' => 'TOR'

@@ -38,12 +38,14 @@
                                                         <div class="form-group">
                                                             <label>Nama User</label>
                                                             <input name="name" id="name" type="text" class="form-control">
-
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>NIP</label>
+                                                            <input name="nip" id="nip" type="text" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Email</label>
                                                             <input name="email" id="email" type="email" class="form-control">
-
                                                         </div>
                                                         <!-- <div class="form-group">
                                                             <label>Password</label>
@@ -95,6 +97,7 @@
                                                     <th width="5%">No.</th>
                                                     <th>Foto</th>
                                                     <th>Nama</th>
+                                                    <th>NIP</th>
                                                     <th>Email</th>
                                                     <th>Role</th>
                                                     <th>Multirole</th>
@@ -110,6 +113,7 @@
                                                     <td><a href="#">{{$num}}</a></td>
                                                     <td><img src="{{asset('imageprofil/'.$u->image)}}" class="avatar-35 rounded img-fluid"></img></td>
                                                     <td class="font-weight-600">{{$u -> name}}</td>
+                                                    <td class="font-weight-600">{{$u->nip}}</td>
                                                     <td class="font-weight-600">{{$u->email}}</td>
                                                     <?php foreach ($role as $roleindex) { ?>
                                                         <?php if ($u->role == $roleindex->id) { ?>
@@ -193,6 +197,10 @@
                                                                     <div class="form-group">
                                                                         <label>Nama User</label>
                                                                         <input name="name" id="name" value="{{old('name',$u->name)}}" type=" text" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>NIP</label>
+                                                                        <input name="nip" id="nip" value="{{old('nip',$u->nip)}}" type="text" class="form-control">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Email</label>

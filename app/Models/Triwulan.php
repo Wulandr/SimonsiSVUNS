@@ -18,4 +18,8 @@ class Triwulan extends Model
         // $this->relationsType("Model","Foreign_key","Local_key");
         return $this->belongsTo('App\Models\Tahun', 'id_tahun', 'id');
     }
+    public function tor()
+    {
+        return $this->hasMany('App\Models\Tor', 'id_tw', 'id');
+    }
 }

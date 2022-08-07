@@ -59,4 +59,9 @@ class Tor extends Model
     {
         return $this->hasOne(SPJ::class, 'id_tor', 'id');
     }
+
+    public function triwulan()
+    {
+        return $this->belongsTo('App\Models\Triwulan', 'id_tw', 'id');
+    }
 }

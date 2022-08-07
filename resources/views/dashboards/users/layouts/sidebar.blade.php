@@ -39,11 +39,13 @@
                     </a>
 
                     <ul id="perencanaan" class="iq-submenu {{ Request::is('monitoringUsulan', 'torab', 'validasi', 'detailtor', 'steppengajuantor') ? 'collapse show' : 'collapse' }}" data-parent="#iq-sidebar-toggle">
-                        @can('ajuan_monitoring')
+                        @can('ajuan_monitoringUsulan')
                         <li class="sub-menu-perencanaan {{ Request::is('monitoringUsulan') ? 'active' : '' }}">
                             <a href="{{ url('/monitoringUsulan') }}">
                                 <i class="las la-chalkboard" data-toggle="tooltip" data-placement="right" title="Monitoring Usulan"></i>Monitoring Usulan</a>
                         </li>
+                        @endcan
+                        @can('ajuan_monitoringIKU')
                         <li class="sub-menu-perencanaan {{ Request::is('monitoringIKU') ? 'active' : '' }}">
                             <a href="{{ url('/monitoringIKU') }}">
                                 <i class="las la-chalkboard" data-toggle="tooltip" data-placement="right" title="Monitoring IKU"></i>Monitoring IKU</a>

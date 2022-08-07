@@ -36,6 +36,7 @@ function ngecekWulan($awal, $akhir)
 
                                 </div>
                                 <div class="iq-card-body">
+
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
                                             <span class="table-add float-right mb-3 mr-2">
@@ -47,7 +48,82 @@ function ngecekWulan($awal, $akhir)
                                         <div class="iq-header-title">
                                             <h4 class="card-title text-center">Distribusi Anggaran DIPA Sekolah Vokasi UNS</h4>
                                         </div>
+                                        <div class="form-group row float-right mb-3 mr-2">
+                                            <span class="table-add float-right mb-3 mr-2">
+                                                <div class="form-group row">
+                                                    <form action="{{ url('/monitoringIKU/filterTw') }}" method="GET">
+                                                        <div class="row mr-3">
+                                                            <div class="col mr-1">
+                                                                <select class="form-control filter sm-8" name="filterTahun" id="selectnya" onchange="Ganti()">
+                                                                    <!-- <option value="0">All</option> -->
+                                                                    <?php foreach ($tahun as $thn) {
+                                                                        if ($thn->is_aktif == 1) { ?>
+                                                                            <option value="{{ base64_encode($thn->id) }}" {{$filterTahun==$thn->id ? 'selected':''}}>{{$thn->tahun}}</option>
+                                                                    <?php
+                                                                        }
+                                                                    } ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col mr-1">
+                                                                <select class="form-control filter sm-8" name="filterTw" id="filterTw" onchange="GantiTahun()">
+                                                                    <option value="0">All</option>
+                                                                    <?php
+                                                                    for ($tw1 = 0; $tw1 < count($triwulan); $tw1++) {
+                                                                        foreach ($tahun as $thn) {
+                                                                            if ($thn->is_aktif == 1) {
+                                                                                if ($thn->tahun == substr($triwulan[$tw1]->triwulan, 0, 4)) {  ?>
+                                                                                    <option value="{{ base64_encode($triwulan[$tw1]->id) }}" id="options" {{$filtertw==$triwulan[$tw1]->id ? 'selected':''}}>{{$triwulan[$tw1]->triwulan}}</option>
+                                                                    <?php   }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <input type="submit" class="btn btn-primary btn-sm" value="Filter">
+                                                        </div>
+                                                    </form>
+                                                    <script>
+                                                        function Ganti() {
+                                                            var id_thn = document.getElementById('selectnya').value;
+                                                            $.ajax({
+                                                                url: '/getTwByTahun/' + id_thn,
+                                                                type: "GET",
+                                                                data: {
+                                                                    "_token": "{{ csrf_token() }}",
+                                                                },
+                                                                dataType: "json",
+                                                                success: function(data) {
+                                                                    $('select[id="filterTw"]').empty();
+                                                                    $('select[id="filterTw"]').append('<option value=0>All</option>');
+                                                                    $.each(data, function(key, tws) {
+                                                                        $('select[id="filterTw"]').append('<option value="' + btoa(tws.id) + '">' + tws.triwulan + '</option>');
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
 
+                                                        function GantiTahun() {
+                                                            var id_triwulan = document.getElementById('filterTw').value;
+                                                            $.ajax({
+                                                                url: '/getTahunByTw/' + id_triwulan,
+                                                                type: "GET",
+                                                                data: {
+                                                                    "_token": "{{ csrf_token() }}",
+                                                                },
+                                                                dataType: "json",
+                                                                success: function(data) {
+                                                                    $('select[id="selectnya"]').empty();
+                                                                    $.each(data, function(key, thn) {
+                                                                        $('select[id="selectnya"]').append('<option value="' + btoa(thn.id) + '">' + thn.tahun + '</option>');
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </span>
+                                        </div>
                                         <table id="monitoring" class="table table-striped table table-bordered" style="width:100%">
                                             <thead class="bg-primary">
                                                 <tr>
@@ -105,7 +181,7 @@ function ngecekWulan($awal, $akhir)
                                                                 foreach ($pengajuan as $pengajuans) {
                                                                     foreach ($status as $stat) {
                                                                         foreach ($triwulan as $tw) {
-                                                                            if ($pengajuans->id_status == $stat->id && $stat->nama_status == 'Proses Pengajuan' && $pengajuans->id_tor == $anggaran_iku->id && $tw->id == $anggaran_iku->id_tw && $tw->tahun->tahun == date('Y')) {
+                                                                            if ($pengajuans->id_status == $stat->id && $stat->nama_status == 'Proses Pengajuan' && $pengajuans->id_tor == $anggaran_iku->id && $tw->id == $anggaran_iku->id_tw) {
                                                                                 // $stat->nama_status;
 
 
@@ -115,7 +191,7 @@ function ngecekWulan($awal, $akhir)
                                                                                         if ($sk->id == $anggaran_iku->id_subK) {
                                                                                             foreach ($ik as $iks) {
                                                                                                 if ($sk->Kegiatan->id_ik == $iks->id) {
-                                                                                                    // $p->nama_unit . " " . $iks->IndikatorIKU->IKU . ' Rp. ' . number_format($anggaran_iku->jumlah_anggaran) . " <br />";
+                                                                                                    // echo  $p->nama_unit . " " . $iks->IndikatorIKU->IKU . ' Rp. ' . number_format($anggaran_iku->jumlah_anggaran) . " - " . $tw->tahun->tahun . " <br />";
                                                                                                     if ($iks->IndikatorIKU->IKU == "IKU001") {
                                                                                                         $tot_iku1 += $anggaran_iku->jumlah_anggaran;
                                                                                                     }

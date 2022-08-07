@@ -51,7 +51,8 @@ return [
 
         //penambahan
         'manage_buttonpengajuan' => [
-            'ajuan_monitoring',
+            'ajuan_monitoringUsulan',
+            'ajuan_monitoringIKU',
             'ajuan_torrab',
             'ajuan_validasi'
         ],

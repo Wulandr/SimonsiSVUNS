@@ -47,10 +47,20 @@ class PermissionTableSeeder extends Seeder
                     'manage_roles', 'manage_users'
                 ])) {
                     $adminPermissions[] = [
-                        'ajuan_monitoring', 'tahun_show', 'triwulan_show', 'unit_show', 'pagu_show', 'mak_show',
+                        'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'tahun_show', 'triwulan_show', 'unit_show', 'pagu_show', 'mak_show',
                         'kelompokmak_show', 'belanjamak_show', 'detailmak_show', 'iku_show', 'ik_show', 'k_show',
                         'subk_show', 'role_show', 'role_create', 'role_update', 'role_detail', 'role_delete',
                         'user_show', 'user_create', 'user_update', 'user_detail', 'user_delete'
+                    ];
+                }
+
+                //kaprodi
+                if (in_array($label, ['manage_tor', 'manage_rab', 'manage_anggaran', 'manage_buttonpengajuan'])) {
+                    $kaprodiPermissions[] = [
+                        'tor_show', 'tor_create', 'tor_update', 'tor_detail', 'tor_delete', 'tor_ajuan',
+                        'rab_show', 'rab_create', 'rab_update', 'rab_detail', 'rab_delete',
+                        'anggaran_show', 'anggaran_create', 'anggaran_update', 'anggaran_detail', 'anggaran_delete',
+                        'ajuan_torrab', 'tor_verifikasi_kaprodi'
                     ];
                 }
 
@@ -81,7 +91,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $bpuPermissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show', 'anggaran_detail',
-                        'tor_verifikasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'tor_verifikasi', 'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];
                 }
                 //wd3
@@ -93,7 +103,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $wd3Permissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail',  'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail',  'tor_validasi', 'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];;
                 }
                 //staf_perencanaan
@@ -105,7 +115,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $stafperencanaanPermissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show', 'anggaran_detail',
-                        'ajuan_monitoring', 'ajuan_validasi'
+                        'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];;
                 }
                 //staf_keuangan
@@ -117,7 +127,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $stafkeuPermissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail', 'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];;
                 }
                 //wd2
@@ -129,7 +139,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $wd2Permissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail', 'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail', 'tor_validasi', 'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];
                 }
                 //wd1
@@ -141,7 +151,7 @@ class PermissionTableSeeder extends Seeder
                 ])) {
                     $wd1Permissions[] = [
                         'tor_show', 'tor_detail', 'rab_show', 'rab_detail', 'anggaran_show',
-                        'anggaran_detail', 'tor_validasi', 'ajuan_monitoring', 'ajuan_validasi'
+                        'anggaran_detail', 'tor_validasi', 'ajuan_monitoringUsulan', 'ajuan_monitoringIKU', 'ajuan_validasi'
                     ];
                 }
             }
@@ -210,6 +220,13 @@ class PermissionTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
+        $kaprodi = Role::create([
+            'name' => "Kaprodi",
+            'guard_name' => 'web',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
         // Role -> permission
         $admin->givePermissionTo($adminPermissions);
         $prodi->givePermissionTo($prodiPermissions);
@@ -220,6 +237,7 @@ class PermissionTableSeeder extends Seeder
         $wd2->givePermissionTo($wd2Permissions);
         $wd1->givePermissionTo($wd1Permissions);
         $pic->givePermissionTo($picPermissions);
+        $kaprodi->givePermissionTo($kaprodiPermissions); //revisi : penambahan role kaprodi
 
         // User::find(1)->assignRole("Admin");
         $useradmin = User::create([
@@ -335,6 +353,23 @@ class PermissionTableSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
+
+        // kaprodi d3 ti
+        $userkaprodi = User::create([
+            'id' => 25,
+            'id_unit' => '2',
+            'name' => 'Hartatik, S.Si., M.Si.',
+            'email' => 'hartatik@gmail.com',
+            'role' => 10, //kaprodi
+            'multirole' => 10,
+            'is_aktif' => 1,
+            'email_verified_at' => now(),
+            'password' => Hash::make('vokasibergerak'),
+            'remember_token' => Str::random(10),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
         $userprodi = User::create([
             'id' => 9,
             'id_unit' => '3',
@@ -528,5 +563,6 @@ class PermissionTableSeeder extends Seeder
         $user10->assignRole([$pic]);
         $user10->assignRole([$pic]);
         $user10->assignRole([$prodi]);
+        $userkaprodi->assignRole([$kaprodi]);
     }
 }

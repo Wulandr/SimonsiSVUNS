@@ -451,46 +451,54 @@ class TorController extends Controller
             redirect('/tor');
         }
         if (auth()->user()->id_unit != 1) {
-            $torcount = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->get();
-            if ($torcount->count() % 2 == 0) {
-                $h = 4;
-            }
-            if ($torcount->count() % 2 != 0) {
-                $h = 6;
-            }
             if (!empty($request->tahun)) {
-                $tor = Tor::where('id_unit', auth()->user()->id_unit)
-                    ->where('tgl_mulai_pelaksanaan', 'LIKE',  '%' . $request->tahun . '%')
-                    ->orderBy('created_at', 'desc')
-                    ->cursorPaginate($h);
-            }
-            if (empty($request->tahun)) {
-                $tor = DB::table('tor')->where('id_unit', auth()->user()->id_unit)
-                    ->orderBy('created_at', 'desc')
-                    ->cursorPaginate($h);
-            }
-        }
-        if (auth()->user()->id_unit == 1) {
-            if (!empty($request->tahun) && empty($request->prodi)) {
-                $torcount = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->get();
+                $torcount = Tor::where('id_unit', auth()->user()->id_unit)
+                    ->where('tgl_mulai_pelaksanaan', 'LIKE',  '%' . $request->tahun . '%')->get();
                 if ($torcount->count() % 2 == 0) {
                     $h = 4;
                 }
                 if ($torcount->count() % 2 != 0) {
                     $h = 6;
                 }
-                $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->orderBy('id')->cursorPaginate($h);
-            } elseif (empty($request->tahun) && !empty($request->prodi)) {
-                $tor = Tor::where('id_unit', 'LIKE', $request->prodi . '%')->simplepaginate(2);
-            } elseif (!empty($request->prodi) && !empty($request->tahun)) {
-                $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')
-                    ->where('id_unit', 'LIKE', $request->prodi . '%')
-                    ->simplepaginate(2);
-            } elseif (empty($request->tahun && empty($request->prodi))) {
-                $tor = DB::table('tor')->orderBy('id')->cursorPaginate(2);
-                // redirect('/tor');
+                $tor = DB::table('tor')->where('id_unit', auth()->user()->id_unit)
+                    ->where('tgl_mulai_pelaksanaan', 'LIKE',  '%' . $request->tahun . '%')
+                    ->orderBy('created_at', 'desc')
+                    ->simplePaginate($h);
+            }
+            if (empty($request->tahun) || $request->tahun == 0) {
+                $torcount = DB::table('tor')->where('id_unit', auth()->user()->id_unit)->get();
+                if ($torcount->count() % 2 == 0) {
+                    $h = 4;
+                }
+                if ($torcount->count() % 2 != 0) {
+                    $h = 6;
+                }
+                $tor = DB::table('tor')->where('id_unit', auth()->user()->id_unit)
+                    ->orderBy('created_at', 'desc')
+                    ->simplePaginate($h);
             }
         }
+        // if (auth()->user()->id_unit == 1) {
+        //     if (!empty($request->tahun) && empty($request->prodi)) {
+        //         $torcount = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->get();
+        //         if ($torcount->count() % 2 == 0) {
+        //             $h = 4;
+        //         }
+        //         if ($torcount->count() % 2 != 0) {
+        //             $h = 6;
+        //         }
+        //         $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->orderBy('id')->cursorPaginate($h);
+        //     } elseif (empty($request->tahun) && !empty($request->prodi)) {
+        //         $tor = Tor::where('id_unit', 'LIKE', $request->prodi . '%')->simplepaginate(2);
+        //     } elseif (!empty($request->prodi) && !empty($request->tahun)) {
+        //         $tor = Tor::where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')
+        //             ->where('id_unit', 'LIKE', $request->prodi . '%')
+        //             ->simplepaginate(2);
+        //     } elseif (empty($request->tahun && empty($request->prodi))) {
+        //         $tor = DB::table('tor')->orderBy('id')->cursorPaginate(2);
+        //         // redirect('/tor');
+        //     }
+        // }
 
         $filterpagu = $request->pagu;
         $filtertahun = $request->tahun;
@@ -531,7 +539,6 @@ class TorController extends Controller
                 'subkeg' => $subkeg, 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'filterpagu' => $filterpagu,
                 'indikator_iku' => $indikator_iku, 'trx_status_tor' => $trx_status_tor, 'pedoman' => $pedoman, 'tabelRole' => $tabelRole
             ]
-
         );
         // return $tor;
     }

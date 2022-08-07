@@ -396,7 +396,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->latar_belakang!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->latar_belakang!!}
                                                                 <?php if (!empty($komentar['latarbelakang'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenlatar" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -422,7 +422,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->rasionalisasi!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->rasionalisasi!!}
                                                                 <?php if (!empty($komentar['rasionalisasi'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenrasionalisasi" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -448,7 +448,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7"> {!!$tor[$t]->tujuan!!}
+                                                            <td colspan="7" style="text-align: justify;"> {!!$tor[$t]->tujuan!!}
                                                                 <?php if (!empty($komentar['tujuan'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komentujuan" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -474,7 +474,7 @@ use Illuminate\Support\Facades\Auth;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->mekanisme!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->mekanisme!!}
                                                                 <?php if (!empty($komentar['mekanisme'])) { ?>
                                                                     <p><a id="validasi" class="badge badge-danger btn-sm shadow" data-toggle="collapse" href="#komenmekanisme" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                             Lihat Komentar
@@ -872,7 +872,7 @@ use Illuminate\Support\Facades\Auth;
                                                                         if ($un->id == $us->id_unit) {
                                                                             foreach ($roles as $ro) {
                                                                                 if ($ro->id == $us->role) {
-                                                                                    if ($ro->name == "Kaprodi") {
+                                                                                    if ($ro->name == "Kaprodi" && $un->nama_unit == $prodi) {
                                                                                         echo "<b>" . $us->name . "</b><br />";
                                                                                         echo "NIP. " . $us->nip;
                                                                                     }

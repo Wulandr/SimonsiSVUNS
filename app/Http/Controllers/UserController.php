@@ -81,6 +81,7 @@ class UserController extends Controller
             $inserting = new User;
             $inserting->id_unit = $request->id_unit;
             $inserting->name = $request->name;
+            $inserting->nip = $request->nip;
             $inserting->email = $request->email;
             $inserting->role = $request->role[0];
             $inserting->multirole = implode(',', $rol);
@@ -156,15 +157,6 @@ class UserController extends Controller
 
     public function processUpdate(Request $request, User $user)
     {
-        // $request->validate([]);
-
-        // $process = User::findOrFail($id)->update($request->except('_token'));
-        // if ($process) {
-        //     return redirect()->back()->with("success", "Data berhasil diperbarui");
-        // } else {
-        //     return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-        // }
-        // bismillah
         $validator = Validator::make(
             $request->all(),
             [
@@ -189,14 +181,14 @@ class UserController extends Controller
 
         try {
             $user->name = $request->name;
+            $user->nip = $request->nip;
             $user->email = $request->email;
             $user->id_unit = $request->id_unit;
 
             $input = $request->all();
-            $hobby = $input['role'];
-            // $input['hobby'] = implode(',', $hobby);
+            $therole = $input['role'];
 
-            $user->multirole = implode(',', $hobby);
+            $user->multirole = implode(',', $therole);
             if (empty($request->password)) {
             }
             if (!empty($request->password)) {

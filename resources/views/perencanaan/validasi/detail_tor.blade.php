@@ -352,7 +352,7 @@ use Spatie\Permission\Contracts\Role;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->latar_belakang!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->latar_belakang!!}
                                                                 <p>
                                                                     <?php if (!empty($komentar['latarbelakang'])) {
                                                                         buttonKomentar("#lihatkomen6");
@@ -388,7 +388,7 @@ use Spatie\Permission\Contracts\Role;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->rasionalisasi!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->rasionalisasi!!}
                                                                 <p>
                                                                     <?php if (!empty($komentar['rasionalisasi'])) {
                                                                         buttonKomentar("#lihatkomen7");
@@ -428,7 +428,7 @@ use Spatie\Permission\Contracts\Role;
                                                         </tr>
                                                         <tr>
                                                             <td></td>
-                                                            <td colspan="7">{!!$tor[$t]->tujuan!!}
+                                                            <td colspan="7" style="text-align: justify;">{!!$tor[$t]->tujuan!!}
                                                                 <p>
                                                                     <?php if (!empty($komentar['tujuan'])) {
                                                                         buttonKomentar("#lihatkomen8");
@@ -690,6 +690,7 @@ use Spatie\Permission\Contracts\Role;
                                         <tr>
                                             <td></td>
                                             <td colspan="7">
+                                                {!!$tor[$t]->keberlanjutan!!}
                                                 <p>
                                                     <?php if (!empty($komentar['keberlanjutan'])) {
                                                         buttonKomentar("#lihatkomen13");
@@ -725,6 +726,7 @@ use Spatie\Permission\Contracts\Role;
                                         <tr>
                                             <td></td>
                                             <td colspan="7">
+                                                Penanggung jawab dari kegiatan ini adalah {{$tor[$t]->nama_pic }}
                                                 <p>
                                                     <?php if (!empty($komentar['penanggung'])) {
                                                         buttonKomentar("#lihatkomen14");
@@ -776,7 +778,7 @@ use Spatie\Permission\Contracts\Role;
                                                         if ($un->id == $us->id_unit) {
                                                             foreach ($roles as $ro) {
                                                                 if ($ro->id == $us->role) {
-                                                                    if ($ro->name == "Kaprodi") {
+                                                                    if ($ro->name == "Kaprodi" && $un->nama_unit == $prodi) {
                                                                         echo "<b>" . $us->name . "</b><br />";
                                                                         echo "NIP. " . $us->nip;
                                                                     }

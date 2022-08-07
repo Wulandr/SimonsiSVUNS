@@ -91,6 +91,33 @@ foreach ($role as $roles) {
     <button class="badge {{$detail == 'Lengkapi Data' ? 'badge-danger' : 'badge-warning'}} rounded">{{ $detail}}</button>
 </a>
 
+<?php
+$currentStatus = '';
+for ($stk2 = 0; $stk2 < count($trx_status_tor); $stk2++) {
+    if ($trx_status_tor[$stk2]->id_tor == $tor[$t]->id) {
+        $trx_status_tor[$stk2]->id_status;
+
+        foreach ($status as $statusTor) {
+            if ($statusTor->id == $trx_status_tor[$stk2]->id_status) {
+                $currentStatus = $statusTor->nama_status;
+                foreach ($user as $userrole) {
+                    $currentStatusRole =  $trx_status_tor[$stk2]->role_by;
+                }
+            }
+        }
+    } else {
+    }
+}
+?>
+<!-- VERIFIKASI OLEH KAPRODI  -->
+@can('tor_verifikasi_kaprodi')
+@if($currentStatus == "Proses Pengajuan" || $currentStatus == "Pengajuan Perbaikan")
+<a href="{{url('/detailtor/'.  base64_encode($tor[$t]->id))}}">
+    <button class="badge badge-warning rounded">Verifikasi Kaprodi</button>
+</a>
+@endif
+@endcan
+
 <!-- Jika belum diajukan oleh prodi atau pic, dan nama pic sama dengan user login, maka tampilkan aksi -->
 <?php if ($pengajuan == 0 && ($tor[$t]->nama_pic == Auth::user()->name || $RoleLogin == "Prodi" || $RoleLogin == "Admin")) { ?>
     @can('tor_update')

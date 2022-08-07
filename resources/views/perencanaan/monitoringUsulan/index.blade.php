@@ -97,12 +97,13 @@ function ngecekWulan($awal, $akhir)
                                                                             }
                                                                         }
                                                                         if ($tor[$m2]->id != $cekId) {
-                                                                            $count1 += 1;
                                                                             $jml_ang_ajuan += $tor[$m2]->jumlah_anggaran; //penjumlahan anggaran yg diajukan
+                                                                            $count1 += 1;
 
                                                                             // TOTAL ANGGARAN TIAP TW BERAPA -----------------------------------------------------
                                                                             foreach ($tw as $twS) {
-                                                                                if ($tor[$m2]->id_tw == $twS->id && substr($twS->triwulan, 0, 4) == date('Y')) {
+                                                                                // && substr($twS->triwulan, 0, 4) == date('Y')
+                                                                                if ($tor[$m2]->id_tw == $twS->id) {
                                                                                     if (substr($twS->triwulan, -1, 1) == 1) {
                                                                                         $ajuanTw1 += $tor[$m2]->jumlah_anggaran;
                                                                                     }
@@ -146,7 +147,8 @@ function ngecekWulan($awal, $akhir)
                                                                     for ($e = 0; $e < count($disetujui['tw']); $e++) { // echo $disetujui['tw'][$e];
                                                                         //----- TIAP TRIWULAN ADA BERAPA ANGGARAN -----
                                                                         foreach ($tw as $twS) {
-                                                                            if ($disetujui['tw'][$e] == $twS->id && substr($twS->triwulan, 0, 4) == date('Y')) {
+                                                                            // && substr($twS->triwulan, 0, 4) == date('Y')
+                                                                            if ($disetujui['tw'][$e] == $twS->id) {
                                                                                 if (substr($twS->triwulan, -1, 1) == 1) {
                                                                                     $setujuTw1 += $disetujui['anggaran'][$e];
                                                                                 }
@@ -154,7 +156,7 @@ function ngecekWulan($awal, $akhir)
                                                                                     $setujuTw2 += $disetujui['anggaran'][$e];
                                                                                 }
                                                                                 if (substr($twS->triwulan, -1, 1) == 3) {
-                                                                                    $setujuTw2 += $disetujui['anggaran'][$e];
+                                                                                    $setujuTw3 += $disetujui['anggaran'][$e];
                                                                                 }
                                                                                 if (substr($twS->triwulan, -1, 1) == 4) {
                                                                                     $setujuTw4 += $disetujui['anggaran'][$e];
@@ -278,6 +280,13 @@ function ngecekWulan($awal, $akhir)
                                                 }
                                             ]
                                         };
+                                        <?php
+                                        foreach ($tahun as $tampil) {
+                                            if ($tampil->id == $filterTahun) {
+                                                $tahunTampil = $tampil->tahun;
+                                            }
+                                        }
+                                        ?>
                                         const config = {
                                             type: 'line',
                                             data: data,
@@ -317,10 +326,11 @@ function ngecekWulan($awal, $akhir)
                                                         }
                                                     }]
                                                 },
+
                                                 plugins: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Diagram Monitoring Usulan Anggaran'
+                                                        text: 'Diagram Monitoring Usulan Anggaran ' + <?= $tahunTampil ?>
                                                     },
                                                 }
                                             }
@@ -331,7 +341,7 @@ function ngecekWulan($awal, $akhir)
                                         );
                                     </script>
 
-
+                                    <br />
                                     <div class="table-responsive">
                                         <div class="form-group row float-right mb-3 mr-2">
                                             <span class="table-add float-right mb-3 mr-2">
@@ -339,22 +349,73 @@ function ngecekWulan($awal, $akhir)
                                                     <form action="{{ url('/monitoringUsulan/filterTw') }}" method="GET">
                                                         <div class="row mr-3">
                                                             <div class="col mr-1">
-                                                                <select class="form-control filter sm-8" name="filterTw" id="filterTw">
+                                                                <select class="form-control filter sm-8" name="filterTahun" id="selectnya" onchange="Ganti()">
+                                                                    <!-- <option value="0">All</option> -->
+                                                                    <?php foreach ($tahun as $thn) {
+                                                                        if ($thn->is_aktif == 1) { ?>
+                                                                            <option value="{{ base64_encode($thn->id) }}" {{$filterTahun==$thn->id ? 'selected':''}}>{{$thn->tahun}}</option>
+                                                                    <?php
+                                                                        }
+                                                                    } ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col mr-1">
+                                                                <select class="form-control filter sm-8" name="filterTw" id="filterTw" onchange="GantiTahun()">
                                                                     <option value="0">All</option>
-                                                                    <?php for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
+                                                                    <?php
+                                                                    for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
                                                                                 if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
-                                                                                    <option value="{{ base64_encode($tw[$tw1]->id) }}" {{$filtertw==$tw[$tw1]->id ? 'selected':''}}>{{$tw[$tw1]->triwulan}}</option>
-                                                                    <?php }
+                                                                                    <option value="{{ base64_encode($tw[$tw1]->id) }}" id="options" {{$filtertw==$tw[$tw1]->id ? 'selected':''}}>{{$tw[$tw1]->triwulan}}</option>
+                                                                    <?php   }
                                                                             }
                                                                         }
-                                                                    } ?>
+                                                                    }
+                                                                    ?>
                                                                 </select>
                                                             </div>
                                                             <input type="submit" class="btn btn-primary btn-sm" value="Filter">
                                                         </div>
                                                     </form>
+                                                    <script>
+                                                        function Ganti() {
+                                                            var id_thn = document.getElementById('selectnya').value;
+                                                            $.ajax({
+                                                                url: '/getTwByTahun/' + id_thn,
+                                                                type: "GET",
+                                                                data: {
+                                                                    "_token": "{{ csrf_token() }}",
+                                                                },
+                                                                dataType: "json",
+                                                                success: function(data) {
+                                                                    $('select[id="filterTw"]').empty();
+                                                                    $('select[id="filterTw"]').append('<option value=0>All</option>');
+                                                                    $.each(data, function(key, tws) {
+                                                                        $('select[id="filterTw"]').append('<option value="' + btoa(tws.id) + '">' + tws.triwulan + '</option>');
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+
+                                                        function GantiTahun() {
+                                                            var id_triwulan = document.getElementById('filterTw').value;
+                                                            $.ajax({
+                                                                url: '/getTahunByTw/' + id_triwulan,
+                                                                type: "GET",
+                                                                data: {
+                                                                    "_token": "{{ csrf_token() }}",
+                                                                },
+                                                                dataType: "json",
+                                                                success: function(data) {
+                                                                    $('select[id="selectnya"]').empty();
+                                                                    $.each(data, function(key, thn) {
+                                                                        $('select[id="selectnya"]').append('<option value="' + btoa(thn.id) + '">' + thn.tahun + '</option>');
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
                                                 </div>
                                             </span>
                                         </div>
@@ -420,34 +481,6 @@ function ngecekWulan($awal, $akhir)
                                                         }
                                                     }
 
-                                                    // APAKAH SUDAH ADA MEMO CAIR ?
-                                                    // for ($dm = 0; $dm < count($dokMemo); $dm++) {
-                                                    //     if ($dokMemo[$dm]->id_tor == $tor[$m]->id && $dokMemo[$dm]->jenis == "Memo Cair") {
-                                                    //         $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
-                                                    //     }
-                                                    // }
-
-                                                    // // STATUS LPJ DAN SPJ ?
-                                                    // for ($tr2 = 0; $tr2 < count($trx_status_keu); $tr2++) {
-                                                    //     if ($trx_status_keu[$tr2]->id_tor == $tor[$m]->id) {
-                                                    //         for ($s2 = 0; $s2 < count($status_keu); $s2++) {
-                                                    //             if ($trx_status_keu[$tr2]->id_status == $status_keu[$s2]->id) {
-                                                    //                 if ($status_keu[$s2]->kategori == 'LPJ') {
-                                                    //                     $statusTor[0]['statusLPJ'] = $status_keu[$s2]->nama_status . " LPJ";
-                                                    //                 }
-                                                    //                 if ($status_keu[$s2]->kategori == 'SPJ') {
-                                                    //                     $statusTor[0]['statusSPJ'] = $status_keu[$s2]->nama_status . " SPJ";
-                                                    //                 }
-                                                    //                 // if ($status_keu[$s2]->kategori == 'Memo Cair') {
-                                                    //                 //     $statusTor[0]['statusMemo'] = "Memo sudah diunggah";
-                                                    //                 // }
-                                                    //                 if ($status_keu[$s2]->kategori == 'Persekot Kerja') {
-                                                    //                     $statusTor[0]['persekotKerja'] = $status_keu[$s2]->nama_status . " Persekot Kerja";
-                                                    //                 }
-                                                    //             }
-                                                    //         }
-                                                    //     }
-                                                    // }
 
                                                 ?>
                                                     <?php if ($ada == 1) { ?>

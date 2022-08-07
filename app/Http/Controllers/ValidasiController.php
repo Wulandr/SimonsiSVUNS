@@ -90,7 +90,7 @@ class ValidasiController extends Controller
             ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
             ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
             ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->get();
-        $filtertahun = 0;
+        $filterTahun = 0;
         $filterprodi = $prodi;
         $filtertw = 0;
         $unit = Unit::all();
@@ -116,7 +116,7 @@ class ValidasiController extends Controller
             "perencanaan.validasi.ajuan3",
             [
                 'tabeltor' => $tabeltor, 'join' => $join, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'tw2' => $tw2, 'userrole' => $userrole, 'rab' => $rab, 'anggaran' => $anggaran, 'detail_mak' => $detail_mak,
-                'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status, 'filtertahun' => $filtertahun, 'triwulan' => $triwulan,
+                'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status, 'filterTahun' => $filterTahun, 'triwulan' => $triwulan,
                 'prodi' => $prodipilih, 'tabeltahun' => $tabeltahun, 'user' => $user, 'role' => $role, 'ajuanTW' => $ajuanTW, 'filtertw' => $filtertw, 'filterprodi' => $filterprodi,
                 'tabelRole' => $tabelRole
             ]
@@ -187,8 +187,9 @@ class ValidasiController extends Controller
         $rab = DB::table('rab')->get();
         $userrole = User::join();
         $tw = Triwulan::all();
+        $kelompok_mak = DB::table('kelompok_mak')->get();
+        $belanja_mak = DB::table('belanja_mak')->get();
         $detail_mak = DB::table('detail_mak')->get();
-        // $tahun = DB::table('tor')->get();
         $status = DB::table('status')->get();
         $roles = DB::table('roles')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
@@ -206,7 +207,8 @@ class ValidasiController extends Controller
         return view(
             "perencanaan.validasi.detail_tor",
             [
-                'tor' => $tor, 'rab' => $rab, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'userrole' => $userrole,  'detail_mak' => $detail_mak,
+                'tor' => $tor, 'rab' => $rab, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'userrole' => $userrole,
+                'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'detail_mak' => $detail_mak,
                 'status' => $status, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'users' => $users,
                 'indikator_iku' => $indikator_iku, 'id' => $id, 'trx_status_tor' => $trx_status_tor, 'roles' => $roles,
@@ -233,13 +235,16 @@ class ValidasiController extends Controller
         $unit2 = Unit::all();
         $userrole = User::join();
         $user = User::all();
+        $kelompok_mak = DB::table('kelompok_mak')->get();
+        $belanja_mak = DB::table('belanja_mak')->get();
         $detail_mak = DB::table('detail_mak')->get();
         $subkeg = DB::table('indikator_subK')->get();
         $rab_ang = Anggaran::Rab_Ang();
         return view(
             "perencanaan.validasi.detail_rab",
             [
-                'id' => $id, 'tor' => $tor, 'unit' => $unit, 'unit2' => $unit2,  'userrole' => $userrole,  'detail_mak' => $detail_mak,
+                'id' => $id, 'tor' => $tor, 'unit' => $unit, 'unit2' => $unit2,  'userrole' => $userrole,
+                'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'detail_mak' => $detail_mak,
                 'rab' => $rab, 'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang,
                 'user' => $user, 'status' => $status
             ]
@@ -256,12 +261,17 @@ class ValidasiController extends Controller
             abort(403);
         }
 
-        $filterprodi = $request->prodi;
+        $filterprodi = base64_decode($request->prodi);
+        $filterTw =  base64_decode($request->filterTw);
+        $filterTahun =  base64_decode($request->filterTahun);
+        $filterNamaTw = DB::table('triwulan')->select('triwulan')->where('id', $filterTw)->get();
+        $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+
         if ($filterprodi == 0) {
-            if ($request->triwulan == 0) {
+            if ($filterTw == 0 && $filterTahun == 0) {
                 redirect('back');
             }
-            if (!empty($request->triwulan)) {
+            if ($filterTw != 0 && $filterTahun != 0) {
                 // $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->simplepaginate(3);
                 $join = DB::table('tor')
                     ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
@@ -269,34 +279,36 @@ class ValidasiController extends Controller
                     ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
                     ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
                     ->where('status.nama_status', "Proses Pengajuan")
-                    ->where('triwulan.triwulan', 'LIKE', $request->triwulan)
-                    ->simplepaginate(4);
+                    ->where('triwulan.triwulan', 'LIKE', $filterNamaTw[0]->triwulan)
+                    ->get();
             }
-            if (empty($request->triwulan)) {
+            if ($filterTw == 0 && $filterTahun != 0) {
                 $join = DB::table('tor')
                     ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
                     ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
                     ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
-                    ->where('status.nama_status', "Proses Pengajuan")
                     ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
-                    ->simplepaginate(4);
+                    ->where('status.nama_status', "Proses Pengajuan")
+                    ->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')
+                    ->get();
             }
         } elseif ($filterprodi != 0) {
-            if ($request->triwulan == 0) {
+            if ($filterTw == 0 && $filterTahun == 0) {
                 redirect('back');
             }
-            if (!empty($request->triwulan)) {
+            if ($filterTw != 0 && $filterTahun != 0) {
+                // $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $request->tahun . '%')->simplepaginate(3);
                 $join = DB::table('tor')
                     ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
                     ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
-                    ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
                     ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
+                    ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
                     ->where('status.nama_status', "Proses Pengajuan")
                     ->where('id_unit', $filterprodi)
-                    ->where('triwulan.triwulan', 'LIKE', $request->triwulan)
-                    ->simplepaginate(5);
+                    ->where('triwulan.triwulan', 'LIKE', $filterNamaTw[0]->triwulan)
+                    ->get();
             }
-            if (empty($request->triwulan)) {
+            if ($filterTw == 0 && $filterTahun != 0) {
                 $join = DB::table('tor')
                     ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
                     ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
@@ -304,12 +316,11 @@ class ValidasiController extends Controller
                     ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')
                     ->where('status.nama_status', "Proses Pengajuan")
                     ->where('id_unit', $filterprodi)
-                    ->simplepaginate(5);
+                    ->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')
+                    ->get();
             }
         }
 
-        $filtertahun = 0;
-        $filtertw = $request->triwulan;
         $unit = Unit::all();
         $unit2 = Unit::all();
         $userrole = User::join();
@@ -331,10 +342,11 @@ class ValidasiController extends Controller
             "perencanaan.validasi.ajuan3",
             [
                 'tabeltor' => $tabeltor, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'tw2' => $tw2, 'userrole' => $userrole, 'rab' => $rab, 'anggaran' => $anggaran, 'detail_mak' => $detail_mak,
-                'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status,  'filterprodi' => $filterprodi, 'filtertahun' => $filtertahun,
-                'tabeltahun' => $tabeltahun, 'join' => $join, 'user' => $user, 'role' => $role, 'filtertw' => $filtertw, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
+                'totalpertw' => $totalpertw, 'trx_status_tor' => $trx_status_tor, 'status' => $status,  'filterprodi' => $filterprodi, 'filterTahun' => $filterTahun,
+                'tabeltahun' => $tabeltahun, 'join' => $join, 'user' => $user, 'role' => $role, 'filtertw' => $filterTw, 'triwulan' => $triwulan, 'tabelRole' => $tabelRole
             ]
         );
+        // return $join;
     }
 
     // Generate PDF
@@ -349,6 +361,8 @@ class ValidasiController extends Controller
         $rab = DB::table('rab')->get();
         $userrole = User::join();
         $tw = Triwulan::all();
+        $belanja_mak = DB::table('belanja_mak')->get();
+        $kelompok_mak = DB::table('kelompok_mak')->get();
         $detail_mak = DB::table('detail_mak')->get();
         // $tahun = DB::table('tor')->get();
         $status = DB::table('status')->get();
@@ -367,12 +381,12 @@ class ValidasiController extends Controller
         $tabelRole =  Role::all();
         $data =
             [
-                'tor' => $tor, 'rab' => $rab, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'userrole' => $userrole,  'detail_mak' => $detail_mak,
+                'tor' => $tor, 'rab' => $rab, 'unit' => $unit, 'unit2' => $unit2, 'tw' => $tw, 'userrole' => $userrole,
+                'kelompok_mak' => $kelompok_mak, 'belanja_mak' => $belanja_mak, 'detail_mak' => $detail_mak,
                 'status' => $status, 'tabeltahun' => $tabeltahun, 'pagu' => $pagu, 'subkeg' => $subkeg,
                 'kategori_subK' => $kategori_subK, 'komponen_jadwal' => $komponen_jadwal, 'users' => $users,
                 'indikator_iku' => $indikator_iku, 'id' => $id, 'trx_status_tor' => $trx_status_tor, 'roles' => $roles,
-                'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang, 'detail_mak' => $detail_mak,
-                'tabelRole' => $tabelRole, 'id' => $id
+                'anggaran' => $anggaran, 'subkeg' => $subkeg,  'rab_ang' => $rab_ang, 'tabelRole' => $tabelRole, 'id' => $id
             ];
         $datas =  view(
             "perencanaan.validasi.printPDF",

@@ -241,7 +241,15 @@
                 </tr>
                 <tr>
                     <td style="font-weight: bold;"></td>
-                    <td style="word-wrap: break-word;" colspan="20" height="30px">Penanggung jawab dari kegiatan ini adalah {{$tor[$t]->nama_pic }}</td>
+                    <?php
+                    $usernip = '';
+                    foreach ($users as $usnip) {
+                        if ($usnip->name == $tor[$t]->nama_pic) {
+                            $usernip = $usnip->nip;
+                        }
+                    }
+                    ?>
+                    <td style="word-wrap: break-word;" colspan="20" height="30px">Penanggung jawab dari kegiatan ini adalah {{$tor[$t]->nama_pic ." NIP.". $usernip}} </td>
                 </tr>
                 <tr>
                     <td colspan="21"></td>
@@ -290,7 +298,7 @@
                         if ($un->id == $us->id_unit) {
                             foreach ($roles as $ro) {
                                 if ($ro->id == $us->role) {
-                                    if ($ro->name == "Kaprodi") {
+                                    if ($ro->name == "Kaprodi"  && $un->nama_unit == $prodi) {
                                         $kaprodi = $us->name;
                                         $NIP = $us->nip;
                                     }

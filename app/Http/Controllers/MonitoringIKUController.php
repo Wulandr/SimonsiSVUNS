@@ -19,8 +19,27 @@ use Spatie\Permission\Models\Role;
 class MonitoringIKUController extends Controller
 {
 
+    private $filtertw = 0;
+    private $filterTahun = 0;
+
+    private function cekWulan()
+    {
+        $model = Tor::all();
+        if (!isset($_REQUEST['filterTahun']) && !isset($_REQUEST['filterTw'])) {
+            $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
+            $thn = DB::table('tahun')->where('tahun', date('Y'))->first();
+            $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+            $this->filtertw = $tw->id;
+            $this->filterTahun = $thn->id;
+        }
+
+        return $model;
+    }
+
     public function index()
     {
+        $filtertw = $this->filtertw;
+        $filterTahun = $this->filterTahun;
         $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
         $prodi = Unit::all();
         $pagus = Pagu::all();
@@ -35,6 +54,7 @@ class MonitoringIKUController extends Controller
             ->select('id_tor', 'id_status')
             ->get();
         $status = DB::table('status')->get();
+        $tahun = DB::table('tahun')->get();
         return view(
             "perencanaan.monitoringIKU.index",
             compact(
@@ -47,8 +67,76 @@ class MonitoringIKUController extends Controller
                 'ik',
                 'pengajuan',
                 'status',
-                'triwulan'
+                'triwulan',
+                'tahun',
+                'filtertw',
+                'filterTahun'
             )
         );
+    }
+    public function filter_tw(Request $request)
+    {
+        // $filtertw = $request->filterTw;
+        $filtertw = base64_decode($request->filterTw);
+        $filterTahun = base64_decode($request->filterTahun);
+        // $tor = Tor::all();
+
+        $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
+        $prodi = Unit::all();
+        $pagus = Pagu::all();
+        $subk = SubKegiatan::all();
+
+        $iku = IKUModel::all();
+        $ik = IKModel::all();
+        $triwulan = Triwulan::all();
+        $pengajuan = DB::table('trx_status_tor') //tor yg sudah diajukan
+            ->select('id_tor', 'id_status')
+            ->get();
+        $status = DB::table('status')->get();
+        $tahun = DB::table('tahun')->get();
+
+        $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+        if ($filterTahun != 0 && $filtertw != 0) {
+            $ang_iku = DB::table('tor')
+                ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
+                ->where('id_tw', $filtertw)
+                ->get();
+        } elseif ($filterTahun != 0 && $filtertw == 0) {
+            $ang_iku = DB::table('tor')
+                ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
+                ->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')
+                ->get();
+        } elseif ($filterTahun == 0 && $filtertw != 0) {
+            $ang_iku = DB::table('tor')
+                ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
+                ->where('id_tw', $filtertw)
+                ->get();
+            $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+        } elseif ($filterTahun == 0 && $filtertw == 0) {
+            $ang_iku = DB::table('tor')
+                ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
+                ->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')
+                ->where('id_tw', $filtertw)
+                ->get();
+        }
+        return view(
+            "perencanaan.monitoringIKU.index",
+            compact(
+                'tabelRole',
+                'prodi',
+                'pagus',
+                'ang_iku',
+                'subk',
+                'iku',
+                'ik',
+                'pengajuan',
+                'status',
+                'triwulan',
+                'tahun',
+                'filtertw',
+                'filterTahun'
+            )
+        );
+        // return $tor;
     }
 }

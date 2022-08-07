@@ -107,10 +107,10 @@ for ($r = 0; $r < count($rab); $r++) {
                             <th rowspan="2" class="align-middle" style="text-align: center;">Harga Satuan</th>
                         </tr>
                         <tr>
-                            <th>Vol.</th>
-                            <th>Sat.</th>
-                            <th>Vol.</th>
-                            <th>Sat.</th>
+                            <th width="10%">Vol.</th>
+                            <th width="10%">Sat.</th>
+                            <th width="10%">Vol.</th>
+                            <th width="10%">Sat.</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,9 +125,23 @@ for ($r = 0; $r < count($rab); $r++) {
                                     for ($j = 0; $j < count($detail_mak); $j++) {
                                         if ($anggaran[$i]->id_detail_mak == $detail_mak[$j]->id) {
                         ?>
+                                            <?php
+                                            $kodeKelompok = '';
+                                            foreach ($belanja_mak as $belanja) {
+                                                if ($belanja->id == $detail_mak[$j]->id_belanja) {
+                                                    foreach ($kelompok_mak as $kelompoks) {
+                                                        if ($belanja->id_kelompok == $kelompoks->id) {
+                                                            $kodeKelompok = $kelompoks->kelompok;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                             <tr>
-                                                <td>{{$detail_mak[$j]->detail}}
-                                                    <h6><?= $anggaran[$i]->catatan ?></h6>
+                                                <td style="text-align: justify;">
+                                                    <b>{{$kodeKelompok}} </b><br />
+                                                    {{$detail_mak[$j]->detail}}
+                                                    <?= $anggaran[$i]->catatan ?>
                                                     <!-- MODAL UPDATE DI ANGGARAN -->
                                                     @include('perencanaan/modal2/update_anggaran')
                                                 </td>
@@ -177,7 +191,7 @@ for ($r = 0; $r < count($rab); $r++) {
                                         if ($un->id == $us->id_unit) {
                                             foreach ($roles as $ro) {
                                                 if ($ro->id == $us->role) {
-                                                    if ($ro->name == "Kaprodi") {
+                                                    if ($ro->name == "Kaprodi" && $un->nama_unit == $namaunit) {
                                                         echo "<b>" . $us->name . "</b><br />";
                                                         echo "NIP. " . $us->nip;
                                                     }
@@ -207,7 +221,7 @@ for ($r = 0; $r < count($rab); $r++) {
                             <td colspan="8"></td>
                         </tr>
                         <tr>
-                            <td colspan="3" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
+                            <td colspan="2" width="30%">Wakil Dekan Akademik, Riset, dan Kemahasiswaan
                                 <br />
                                 <br />
                                 <br />
@@ -215,14 +229,14 @@ for ($r = 0; $r < count($rab); $r++) {
                                 <b>Agus Dwi Priyanto, S.S., M.CALL</b><br />
                                 NIP. 197408182000121001
                             </td>
-                            <td colspan="2">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
+                            <td colspan="4">Wakil Dekan Perencanaan, Kerjasama, Bisnis dan Informasi
                                 <br />
                                 <br />
                                 <br />
                                 <b>Dr. Eng. Herman Saputro, S.Pd., M.Pd., M.T.</b><br />
                                 NIP. 198208112006041001
                             </td>
-                            <td colspan="3">Wakil Dekan SDM, Keuangan, dan Logistik
+                            <td colspan="2">Wakil Dekan SDM, Keuangan, dan Logistik
                                 <br />
                                 <br />
                                 <br />

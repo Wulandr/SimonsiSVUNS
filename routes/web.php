@@ -253,7 +253,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/monitoringUsulan', [MonitoringUsulanController::class, 'index'])->name('monitoringUsulan');
     Route::get('/monitoringUsulan/filterTw', [MonitoringUsulanController::class, 'filter_tw']);
+    Route::get('/getTwByTahun/{id_thn}', [MonitoringUsulanController::class, 'getTwByTahun']);
+    Route::get('/getTahunByTw/{id_triwulan}', [MonitoringUsulanController::class, 'getTahunByTw']);
+
     Route::get('/monitoringIKU', [MonitoringIKUController::class, 'index'])->name('monitoringIKU');
+    Route::get('/monitoringIKU/filterTw', [MonitoringIKUController::class, 'filter_tw']);
 
     // R O U T E    K E U A N G A N
 
