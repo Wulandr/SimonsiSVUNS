@@ -126,9 +126,9 @@ class PedomanSeeder extends Seeder
             [
                 'nama' => 'Template LPJ',
                 'jenis' => 'LPJ',
-                'file' => 'Sistematika Laporan Kegiatan 2022.pdf',
+                'file' => 'Sistematika Laporan Kegiatan 2022.docx',
                 'tahun' => '2022',
-                'path' => 'Sistematika Laporan Kegiatan 2022.pdf',
+                'path' => 'Sistematika Laporan Kegiatan 2022.docx',
                 'created_at' => '2022-06-05 10:15:58',
                 'updated_at' => '2022-06-05 10:15:58',
             ],

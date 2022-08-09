@@ -130,4 +130,20 @@ class PersekotKerjaController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
+
+    public function dana_sendiri(Request $request)
+    {
+        $change_status = TrxStatusKeu::create([
+            'id_status' => 4,
+            'id_tor' => base64_decode($request->idtor),
+            'create_by' => Auth()->user()->id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        if ($change_status) {
+            return redirect()->back()->with("success", "Status Berhasil diubah");
+        } else {
+            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
+        }
+    }
 }

@@ -9,7 +9,7 @@ class Status_KeuSeeder extends Seeder
 {
     public function run()
     {
-         DB::table('status_keu')->insert([
+        DB::table('status_keu')->insert([
             [
                 //Status Persekot Kerja
                 'nama_status' => 'Proses Pengajuan',
@@ -21,6 +21,10 @@ class Status_KeuSeeder extends Seeder
             ],
             [
                 'nama_status' => 'Transfer Uang', //oleh Staff Keuangan
+                'kategori' => 'Persekot Kerja'
+            ],
+            [
+                'nama_status' => 'Dana Prodi', //oleh Staff Keuangan
                 'kategori' => 'Persekot Kerja'
             ],
 
@@ -38,10 +42,18 @@ class Status_KeuSeeder extends Seeder
                 'kategori' => 'SPJ'
             ],
             [
-                'nama_status' => 'Pelunasan Pembayaran/SPJ Selesai',
+                'nama_status' => 'Pelunasan Pembayaran',
                 'kategori' => 'SPJ'
             ],
-            
+            [
+                'nama_status' => 'Pengembalian Dana',
+                'kategori' => 'SPJ'
+            ],
+            [
+                'nama_status' => 'SPJ Selesai',
+                'kategori' => 'SPJ'
+            ],
+
             //Status LPJ
             [
                 'nama_status' => 'Proses Pengajuan',

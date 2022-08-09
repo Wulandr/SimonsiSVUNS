@@ -415,8 +415,8 @@ class PermissionTableSeeder extends Seeder
         $userprodi4 = User::create([
             'id' => 12,
             'id_unit' => '2',
-            'name' => 'Sari N Marifah',
-            'email' => 'sarienm@gmail.com',
+            'name' => 'Sari Eka',
+            'email' => 'sarienm2001@gmail.com',
             'role' => 2, //prodi
             'multirole' => 2,
             'is_aktif' => 1,

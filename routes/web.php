@@ -267,6 +267,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Persekot Kerja
     Route::get('/persekot_kerja', [PersekotKerjaController::class, 'index']);
+    Route::get('/dana_sendiri', [PersekotKerjaController::class, 'dana_sendiri']);
     Route::post('/input_pk', [PersekotKerjaController::class, 'create']);
     Route::post('/persekot_kerja/validasi', [PersekotKerjaController::class, 'validasiPK']);
     Route::post('/persekot_kerja/input_buktitransfer', [PersekotKerjaController::class, 'input_transferPK']);
@@ -300,4 +301,7 @@ Route::group(['middleware' => 'auth'], function () {
     // MONITORING KAK
     Route::get('/monitoring_kak', [MonitoringKakController::class, 'index']);
     Route::get('/monitoring_kak/filterTw', [MonitoringKakController::class, 'filter_tw']);
+
+    // Datatable
+    Route::get('/home/datatable', [HomeController::class, 'datatable'])->name('home.data');
 });

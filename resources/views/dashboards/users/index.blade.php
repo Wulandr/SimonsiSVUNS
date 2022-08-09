@@ -136,37 +136,6 @@ use Illuminate\Support\Facades\Auth;
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <?php
-                                            $no = 0;
-                                            for ($m = 0; $m < count($tor); $m++) { 
-                                                $realisasi = 0;
-                                                $sisa = 0;
-                                                $anggaran = $tor[$m]->jumlah_anggaran;
-                                            ?>
-                                                <td>{{ $no + 1 }}</td><?php $no++; ?>
-                                                <td class="text-left">{{ $tor[$m]->nama_kegiatan }}</td>
-                                                <?php
-                                            for ($v = 0; $v < count($prodi); $v++) {
-                                                if ($prodi[$v]->id == $tor[$m]->id_unit) {
-                                                    $namaprodi = $prodi[$v]->nama_unit;
-                                            ?>
-                                                <td>{{ $namaprodi }}</td>
-                                                <?php }} ?>
-                                                <td>{{ $tor[$m]->nama_pic }}</td>
-                                                <td>{{ 'Rp ' . number_format($anggaran) }}</td>
-                                                @foreach ($spj as $nominal)
-                                                    @if ($tor[$m]->id == $nominal->id_tor)
-                                                        <?php $realisasi = $nominal->nilai_total; ?>
-                                                        <?php $sisa = $anggaran - $realisasi; ?>
-                                                    @endif
-                                                @endforeach
-                                                <td>{{ 'Rp ' . number_format($realisasi) }}</td>
-                                                <td>{{ 'Rp ' . number_format($sisa) }}</td>
-                                            </tr>
-                                            <?php
-                                        } 
-                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -182,7 +151,44 @@ use Illuminate\Support\Facades\Auth;
     <script>
         $(document).ready(function() {
             $.noConflict();
-            $('#datatable').DataTable();
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                search: false,
+                pageLength: 5,
+                ajax: "{{ route('home.data') }}",
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan'
+                    },
+                    {
+                        data: 'namaprodi',
+                        name: 'namaprodi'
+                    },
+                    {
+                        data: 'nama_pic',
+                        name: 'nama_pic'
+                    },
+                    {
+                        data: 'anggaran',
+                        name: 'anggaran'
+                    },
+                    {
+                        data: 'realisasi',
+                        name: 'realisasi'
+                    },
+                    {
+                        data: 'sisa',
+                        name: 'sisa',
+                        orderable: true,
+                        searchable: true
+                    },
+                ],
+            });
         });
     </script>
 

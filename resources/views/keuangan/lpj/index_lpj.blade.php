@@ -22,11 +22,17 @@
                         <div class="iq-card-body">
                             <div id="table" class="table-responsive">
                                 <span class="table-add float-right mb-3 mr-2">
-                                    <button class="btn btn-info mb-3" title="Template LPJ 2022" data-toggle="modal"
-                                        data-target="#template_lpj">
-                                        <i class="las la-file-alt"></i><span class="pl-1">Template LPJ
-                                            2022</span></i>
+                                    <?php 
+                                    foreach ($pedoman as $data){
+                                        if ($data->jenis == "LPJ") { 
+                                    ?>
+                                    <button class="btn btn-info mb-3" title="Template LPJ 2022" type="submit"
+                                        onclick="window.open('{{ asset('/pedoman/' . $data->file) }}')">
+                                        <i class="las la-file-alt"></i>
+                                        <span class="pl-1">Download Template LPJ</span>
+                                        </i>
                                     </button>
+                                    <?php }} ?>
                                 </span>
                                 <table id="datatable"
                                     class="table table-bordered table-responsive-md table-hover text-center">
@@ -118,10 +124,10 @@
 
                                                                 {{-- Jika Role Staf Perencanaan --}}
                                                                 @if ($RoleLogin === 'Staf Perencanaan')
-                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>&nbsp<span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Revisi')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-secondary" data-toggle="modal" data-target="#revisi_lpj' . $tor[$m]->id . '"><i class="las la-comment"></i></span><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>&nbsp<span type="button" class="badge badge-secondary" data-toggle="modal" data-target="#revisi_lpj' . $tor[$m]->id . '"><i class="las la-comment"></i></span><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'LPJ Selesai')
                                                                         <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
@@ -158,7 +164,7 @@
                                                                     ?>
                                                                     {{-- Jika Role Prodi --}}
                                                                 @elseif ($RoleLogin === 'Prodi')
-                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj' . $tor[$m]->id . '"><i class="las la-edit"></i></button>';
+                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj' . $tor[$m]->id . '"><i class="las la-edit"></i></button>';
                                                                     ?>
                                                                     @if ($b->nama_status == 'Revisi')
                                                                         <?php

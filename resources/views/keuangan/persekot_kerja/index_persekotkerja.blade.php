@@ -16,7 +16,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-center table-info">
                             <div class="iq-header-title">
-                                <h4 class="card-title">REKAPITULASI PERSEKOT KERJA</h4>
+                                <h4 class="card-title">REKAPITULASI PENCAIRAN DANA & AJUAN PERSEKOT KERJA</h4>
                             </div>
                         </div>
                         <div class="iq-card-body">
@@ -98,8 +98,14 @@
                                                             @if ($a->id_status == $b->id && $b->kategori == 'Persekot Kerja')
                                                                 <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
                                                                 ?>
-                                                                @if ($RoleLogin === 'WD 1')
-                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_pk' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
+                                                                @if ($b->nama_status == 'Dana Prodi')
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-dark text-dark" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                    ?>
+                                                                @elseif ($b->nama_status == 'Validasi')
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
+                                                                    ?>
+                                                                @elseif ($RoleLogin === 'WD 2')
+                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_pk' . $tor[$m]->id . '">' . $b->nama_status . '</button>&nbsp<span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_pk' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
                                                                     ?>
                                                                 @endif
                                                             @endif
@@ -117,8 +123,11 @@
                                             <td class="text-center">
                                                 @if ($RoleLogin === 'Prodi')
                                                     <?php
-                                                    $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
+                                                    $upload = '<button class="btn btn-sm bg-danger rounded-pill" title="Pilih Jenis Penggunaan Dana" data-toggle="modal" data-target="#jenis_ajuan' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
                                                     ?>
+                                                    {{-- <?php
+                                                    $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input Persekot Kerja" data-toggle="modal" data-target="#input_persekotkerja' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
+                                                    ?> --}}
                                                 @else
                                                     <?php $upload = '<span class="badge border border-danger text-danger">Prodi Belum Mengajukan PK</span>'; ?>
                                                 @endif
@@ -134,23 +143,29 @@
                                                                 {{-- Jika Role Prodi --}}
                                                                 @if ($RoleLogin === 'Prodi')
                                                                     <?php
-                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'Validasi')
+                                                                    @if ($b->nama_status == 'Dana Prodi')
+                                                                        <?php $upload = '-';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Validasi')
                                                                         <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Transfer Uang')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                        <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i>&nbsp</button>';
                                                                         ?>
                                                                     @endif
 
                                                                     {{-- Jika Role Staf Keuangan --}}
                                                                 @elseif ($RoleLogin === 'Staf Keuangan')
                                                                     <?php
-                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button><button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                    $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
                                                                     ?>
-                                                                    @if ($b->nama_status == 'Validasi')
-                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button><button class="btn btn-sm btn-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
+                                                                    @if ($b->nama_status == 'Dana Prodi')
+                                                                        <?php $upload = '-';
+                                                                        ?>
+                                                                    @elseif ($b->nama_status == 'Validasi')
+                                                                        <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm btn-info rounded-pill" title="Input Bukti Transfer" data-toggle="modal" data-target="#input_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
                                                                         ?>
                                                                     @elseif ($b->nama_status == 'Transfer Uang')
                                                                         <?php $upload = '<button class="btn btn-sm bg-success rounded-pill" title="Lihat Bukti Transfer" data-toggle="modal" data-target="#show_tf_pk' . $tor[$m]->id . '"><i class="las la-money-check-alt"></i></button>';
@@ -173,10 +188,10 @@
                                                 <!-- MODAL - Detail Persekot Kerja -->
                                                 @include('keuangan/persekot_kerja/detail_pk')
                                             </td>
-
-                                            <!-- MODAL - Input Persekot Kerja -->
-                                            @include('keuangan/persekot_kerja/input_pk')
-
+                                            
+                                            <!-- MODAL - Jenis Ajuan -->
+                                            @include('keuangan/persekot_kerja/jenis_inputPK')
+                                           
                                             <?php
                                                                                         }
                                                                                     }

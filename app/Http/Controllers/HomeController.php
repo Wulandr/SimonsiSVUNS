@@ -41,7 +41,7 @@ class HomeController extends Controller
         $filtertw = 0;
         $spj = SPJ::all();
         $userrole = Usernya::join();
-        $tor = Tor::all();
+        $tor = Tor::limit(1)->get();
 
         // if (auth()->user()->id_unit != 1) {
         //     $tor = Tor::where('id_unit', auth()->user()->id_unit)->orderBy('created_at', 'desc');
@@ -57,5 +57,45 @@ class HomeController extends Controller
                 'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj, 'tabelRole' => $tabelRole
             ]
         );
+    }
+
+    public function datatable()
+    {
+        $data = [];
+        $spj = SPJ::all();
+        $prodi = DB::table('unit')->get();
+        $start = $_REQUEST['start'];
+        $length = $_REQUEST['length'];
+        $tor = Tor::offset($start)->limit($length)->get();
+        $totalRecord = Tor::all()->count();
+
+        $no = $start + 1;
+        for ($m = 0; $m < count($tor); $m++) {
+            $realisasi = 0;
+            $sisa = 0;
+            $anggaran = $tor[$m]->jumlah_anggaran;
+
+            $data[$m]['no'] = $no++;
+            $data[$m]['nama_kegiatan'] = $tor[$m]->nama_kegiatan;
+            for ($v = 0; $v < count($prodi); $v++) {
+                if ($prodi[$v]->id == $tor[$m]->id_unit) {
+                    $namaprodi = $prodi[$v]->nama_unit;
+                    $data[$m]['namaprodi'] = $namaprodi;
+                }
+            }
+            $data[$m]['nama_pic'] = $tor[$m]->nama_pic;
+            $data[$m]['anggaran'] = 'Rp ' . number_format($anggaran);
+            list($realisasi, $sisa) = 0;
+            foreach ($spj as $nominal) :
+                if ($tor[$m]->id == $nominal->id_tor) :
+                    $realisasi = $nominal->nilai_total;
+                    $sisa = $anggaran - $realisasi;
+                endif;
+            endforeach;
+            $data[$m]['realisasi'] = 'Rp ' . number_format($realisasi);
+            $data[$m]['sisa'] = 'Rp ' . number_format($sisa);
+        }
+
+        return datatables()::of($data)->skipPaging()->setTotalRecords($totalRecord)->tojson();
     }
 }
