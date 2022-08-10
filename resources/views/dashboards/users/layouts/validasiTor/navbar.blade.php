@@ -134,7 +134,12 @@ use Illuminate\Support\Facades\Auth;
                                                                                                                 } ?>
                                                                                                                 {{$tor2->nama_kegiatan." "}}
                                                                                                             </h6>
+                                                                                                            @if($sts3->nama_status != 'Verifikasi Kaprodi')
                                                                                                             <small class="badge badge-warning">{{$sts3->nama_status." ".$tstor3->role_by}}</small>
+                                                                                                            @endif
+                                                                                                            @if($sts3->nama_status == 'Verifikasi Kaprodi')
+                                                                                                            <small class="badge badge-warning">{{$sts3->nama_status}}</small>
+                                                                                                            @endif
                                                                                                             <small class="float-right font-size-12">{{$tstor3->created_at}}</small>
                                                                                                             <p class="mb-0">
                                                                                                             </p>

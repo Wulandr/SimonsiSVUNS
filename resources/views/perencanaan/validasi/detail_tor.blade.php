@@ -291,7 +291,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#collapseExample1");
                                                                     }
                                                                     if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen4") ?>
                                                                         @endif
                                                                 </p>
@@ -323,7 +323,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#lihatkomen5");
                                                                     } ?>
                                                                     <?php if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen5") ?>
                                                                         @endif
                                                                 </p>
@@ -358,7 +358,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#lihatkomen6");
                                                                     } ?>
                                                                     <?php if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen6") ?>
                                                                         @endif
                                                                 </p>
@@ -394,7 +394,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#lihatkomen7");
                                                                     } ?>
                                                                     <?php if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen7") ?>
                                                                         @endif
                                                                 </p>
@@ -434,7 +434,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#lihatkomen8");
                                                                     } ?>
                                                                     <?php if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen8") ?>
                                                                         @endif
                                                                 </p>
@@ -469,7 +469,7 @@ use Spatie\Permission\Contracts\Role;
                                                                         buttonKomentar("#lihatkomen9");
                                                                     } ?>
                                                                     <?php if ($disetujui != 1) { ?>
-                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                                         <?php buttonPlus("#komen9") ?>
                                                                         @endif
                                                                 </p>
@@ -558,7 +558,7 @@ use Spatie\Permission\Contracts\Role;
                                                     buttonKomentar("#lihatkomen10");
                                                 } ?>
                                                 <?php if ($disetujui != 1) { ?>
-                                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                     <?php buttonPlus("#komen10") ?>
                                                     @endif
                                             </p>
@@ -609,7 +609,7 @@ use Spatie\Permission\Contracts\Role;
                                                         buttonKomentar("#lihatkomen11");
                                                     } ?>
                                                     <?php if ($disetujui != 1) { ?>
-                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                         <?php buttonPlus("#komen11") ?>
                                                         @endif
                                                 </p>
@@ -660,7 +660,7 @@ use Spatie\Permission\Contracts\Role;
                                                         buttonKomentar("#lihatkomen12");
                                                     } ?>
                                                     <?php if ($disetujui != 1) { ?>
-                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                         <?php buttonPlus("#komen12") ?>
                                                         @endif
                                                 </p>
@@ -696,7 +696,7 @@ use Spatie\Permission\Contracts\Role;
                                                         buttonKomentar("#lihatkomen13");
                                                     } ?>
                                                     <?php if ($disetujui != 1) { ?>
-                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                         <?php buttonPlus("#komen13") ?>
                                                         @endif
                                                 </p>
@@ -732,7 +732,7 @@ use Spatie\Permission\Contracts\Role;
                                                         buttonKomentar("#lihatkomen14");
                                                     } ?>
                                                     <?php if ($disetujui != 1) { ?>
-                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                                        @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                                         <?php buttonPlus("#komen14") ?>
                                                         @endif
                                                 </p>
@@ -848,7 +848,7 @@ use Spatie\Permission\Contracts\Role;
                                         } ?>
 
                                 <?php if ($disetujui != 1) { ?>
-                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_validasi'))
+                                    @if(Gate::check('tor_verifikasi') || Gate::check('tor_verifikasi_kaprodi') || Gate::check('tor_validasi'))
                                     <?php buttonPlus("#komenrab") ?>
                                     <?php areaKomentar("komenrab", "k_rab", "RAB"); ?>
                                     @endif

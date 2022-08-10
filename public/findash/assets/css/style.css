@@ -734,7 +734,8 @@ a:hover {
   top: 0;
   width: 260px;
   height: 100%;
-  background: #f5f7f8;
+  background: white;
+  /* background: linear-gradient(15deg, #ffffff34 0%, white 100%); */
 
   transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -811,6 +812,7 @@ a:hover {
   white-space: nowrap;
   display: block;
   color: var(--iq-body-text);
+  /* color: #7ecdc5; */
   position: relative;
   padding: 0;
   line-height: 18px;
@@ -948,7 +950,7 @@ body.sidebar-main .iq-sidebar .iq-menu li a[aria-expanded="false"].collapsed {
 .iq-sidebar-menu .iq-menu li a[aria-expanded="true"] i.iq-arrow-left,
 .iq-sidebar-menu .iq-menu li.active>a>i.iq-arrow-left,
 .iq-sidebar-menu .iq-menu li.active-menu>a>i.iq-arrow-left {
-  background: var(--iq-primary);
+  background: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);
   color: var(--iq-white);
 }
 
@@ -1018,11 +1020,18 @@ body.sidebar-main .iq-sidebar:hover .iq-sidebar-menu .iq-menu li ul.iq-submenu-d
   display: inline-block;
   z-index: 999;
   /* background: var(--iq-light-card); */
-  background: #3f768d;
+  /* background: #3f768d; */
+  background-color: #85144b;
+  background-image: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);
   /* background: #eceeef; */
   margin: 0;
   transition: all 0.45s ease 0s;
   box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1);
+}
+
+.iq-top-navbar:hover {
+  background-image: linear-gradient(15deg, #80d0c7 0%, #3f768d 100%);
+
 }
 
 body.sidebar-main .iq-top-navbar {
@@ -1398,7 +1407,8 @@ body.sidebar-main .iq-menu-bt-sidebar .iq-menu-bt {
   font-size: 20px;
   text-align: center;
   line-height: 15px;
-  color: var(--iq-body-text);
+  /* color: var(--iq-body-text); */
+  color: #7ccbc4;
   position: relative;
   display: flex;
   flex-direction: column;

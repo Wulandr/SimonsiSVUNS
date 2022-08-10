@@ -6,7 +6,7 @@ use Spatie\Permission\Contracts\Role;
 ?>
 <div class="iq-top-navbar">
     <div class="iq-navbar-custom">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
+        <nav class="navbar navbar-expand-lg navbar-light p-0 ">
             <div class="iq-menu-bt d-flex align-items-center">
                 <div class="wrapper-menu">
                     <div class="main-circle"><i class="ri-menu-line"></i></div>
@@ -161,3 +161,6 @@ use Spatie\Permission\Contracts\Role;
         </nav>
     </div>
 </div>
+<script>
+
+</script>

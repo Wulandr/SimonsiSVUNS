@@ -28,7 +28,10 @@ class MonitoringIKUController extends Controller
         if (!isset($_REQUEST['filterTahun']) && !isset($_REQUEST['filterTw'])) {
             $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
             $thn = DB::table('tahun')->where('tahun', date('Y'))->first();
-            $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+            $model = DB::table('tor')
+                ->where('id_tw', $tw->id)
+                ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
+                ->get();
             $this->filtertw = $tw->id;
             $this->filterTahun = $thn->id;
         }
@@ -38,6 +41,8 @@ class MonitoringIKUController extends Controller
 
     public function index()
     {
+        $tor = $this->cekWulan();
+
         $filtertw = $this->filtertw;
         $filterTahun = $this->filterTahun;
         $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
@@ -46,6 +51,8 @@ class MonitoringIKUController extends Controller
         $subk = SubKegiatan::all();
         $ang_iku = DB::table('tor')
             ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
+            ->where('id_tw', $filtertw)
+            ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
             ->get();
         $iku = IKUModel::all();
         $ik = IKModel::all();
@@ -73,6 +80,7 @@ class MonitoringIKUController extends Controller
                 'filterTahun'
             )
         );
+        // return $filterTahun;
     }
     public function filter_tw(Request $request)
     {
@@ -83,7 +91,6 @@ class MonitoringIKUController extends Controller
 
         $tabelRole =  Role::all(); //untuk menampilkan pilihan multi role di topbar
         $prodi = Unit::all();
-        $pagus = Pagu::all();
         $subk = SubKegiatan::all();
 
         $iku = IKUModel::all();
@@ -96,15 +103,22 @@ class MonitoringIKUController extends Controller
         $tahun = DB::table('tahun')->get();
 
         $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+        $filteridThn = DB::table('triwulan')->select('id_tahun')->where('id', $filtertw)->get();
         if ($filterTahun != 0 && $filtertw != 0) {
             $ang_iku = DB::table('tor')
                 ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
                 ->where('id_tw', $filtertw)
                 ->get();
+            $pagus = DB::table('pagu')
+                ->where('id_tahun', $filterTahun)
+                ->get();
         } elseif ($filterTahun != 0 && $filtertw == 0) {
             $ang_iku = DB::table('tor')
                 ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
                 ->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')
+                ->get();
+            $pagus = DB::table('pagu')
+                ->where('id_tahun', $filterTahun)
                 ->get();
         } elseif ($filterTahun == 0 && $filtertw != 0) {
             $ang_iku = DB::table('tor')
@@ -112,11 +126,17 @@ class MonitoringIKUController extends Controller
                 ->where('id_tw', $filtertw)
                 ->get();
             $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+            $pagus = DB::table('pagu')
+                ->where('id_tahun', $filteridThn)
+                ->get();
         } elseif ($filterTahun == 0 && $filtertw == 0) {
             $ang_iku = DB::table('tor')
                 ->select('id', 'id_unit', 'id_subK', 'jumlah_anggaran', 'id_tw')
                 ->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')
                 ->where('id_tw', $filtertw)
+                ->get();
+            $pagus = DB::table('pagu')
+                ->where('id_tahun', $filteridThn)
                 ->get();
         }
         return view(

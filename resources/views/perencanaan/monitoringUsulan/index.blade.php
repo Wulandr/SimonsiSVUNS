@@ -28,13 +28,22 @@ function ngecekWulan($awal, $akhir)
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="iq-card">
-
                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                                <div class="iq-card-header d-flex justify-content-between table-primary">
+                                <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-header-title">
                                         <h4 class="card-title">Monitoring Usulan</h4>
                                     </div>
-
+                                    <div class="iq-card-header-toolbar d-flex align-items-center">
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle text-primary" id="dropdownMenuButton5" data-toggle="dropdown">
+                                                <i class="ri-more-fill"></i>
+                                            </span>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton5">
+                                                <a class="dropdown-item" href="" onclick="printDiv()"><i class="ri-printer-fill mr-2" onclick="printDiv()"></i>Print</a>
+                                                <!-- <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a> -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="iq-card-body">
                                     <!-- A N G G A R A N -->
@@ -281,6 +290,12 @@ function ngecekWulan($awal, $akhir)
                                             ]
                                         };
                                         <?php
+                                        // $show = "tr - 2";
+                                        foreach ($tw as $x) {
+                                            if ($x->id == $filtertw) {
+                                                // $show = $x->triwulan;
+                                            }
+                                        }
                                         foreach ($tahun as $tampil) {
                                             if ($tampil->id == $filterTahun) {
                                                 $tahunTampil = $tampil->tahun;
@@ -330,15 +345,26 @@ function ngecekWulan($awal, $akhir)
                                                 plugins: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Diagram Monitoring Usulan Anggaran ' + <?= $tahunTampil ?>
+                                                        text: 'Diagram Monitoring Usulan Anggaran ' + <?= $tahunTampil   ?>
+                                                    },
+                                                    datalabels: {
+                                                        anchor: "end",
+                                                        align: "top",
+                                                        formatter(data, context) {
+                                                            return getValueFormatted(data);
+                                                        },
                                                     },
                                                 }
+
                                             }
                                         };
                                         const myChart = new Chart(
                                             document.getElementById('myChart').getContext("2d"),
                                             config
                                         );
+                                        // Get the chart's base64 image string
+                                        var image = myChart.toBase64Image();
+                                        console.log(image);
                                     </script>
 
                                     <br />
@@ -419,11 +445,11 @@ function ngecekWulan($awal, $akhir)
                                                 </div>
                                             </span>
                                         </div>
-                                        <table id="monitoring" class="table table-striped responsive table table-striped table-bordered" style="display: block;
+                                        <table id="monitoring" class="table table-striped responsive table-bordered" style="display: block;
     overflow-y: auto;
     white-space: nowrap;
   max-height:500px;">
-                                            <thead class="bg-primary">
+                                            <thead class="" style="background: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);color:white">
                                                 <tr>
                                                     <th>No.</th>
                                                     <th scope="col">Triwulan</th>
@@ -639,6 +665,13 @@ function ngecekWulan($awal, $akhir)
                 "scrollX": true
             });
         });
+        //print page
+        function printDiv() {
+            var printContents = document.getElementById("content-page").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+        };
     </script>
 
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>

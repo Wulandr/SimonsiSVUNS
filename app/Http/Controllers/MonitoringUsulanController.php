@@ -55,7 +55,6 @@ class MonitoringUsulanController extends Controller
         $roles = DB::table('roles')->get();
         $tw = DB::table('triwulan')->get();
         $tahun = DB::table('tahun')->get();
-
         $dokMemo = DB::table('dokumen')->get();
         $trx_status_keu = DB::table('trx_status_keu')->get();
         $status_keu = DB::table('status_keu')->get();

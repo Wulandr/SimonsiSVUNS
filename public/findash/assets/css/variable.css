@@ -6,6 +6,7 @@
   --iq-body-bg: #fbfbfb;
   /* --iq-primary: #1e3d73; */
   --iq-primary: #3f768d;
+  --iq-primary-gradient: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);
   --iq-secondary: #a09e9e;
   --iq-success: #19d429;
   --iq-warning: #ffbf43;
