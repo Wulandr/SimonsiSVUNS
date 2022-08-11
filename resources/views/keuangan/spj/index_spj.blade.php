@@ -28,7 +28,8 @@
                                         </span></i>
                                     </button>
                                 </span>
-                                <table class="table table-bordered table-responsive-md table-hover text-center">
+                                <table id="datatable"
+                                    class="table table-bordered table-responsive-md table-hover text-center">
                                     <thead class="bg-danger">
                                         <tr>
                                             <th rowspan="2" style="vertical-align : middle;text-align:center;">No
@@ -41,6 +42,7 @@
                                                 Judul Kegiatan</th>
                                             <th rowspan="2" style="vertical-align : middle;text-align:center;">
                                                 Penanggungjawab</th>
+                                            <th colspan="2" style="width: 35%">Aksi</th>
                                             <th colspan="2" style="width: 35%">Aksi</th>
                                         </tr>
                                         <tr>
@@ -242,6 +244,50 @@
     </div>
     <!-- MODAL - SPJ FILE -->
     @include('keuangan/spj/spj_file')
+
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                search: false,
+                pageLength: 5,
+                ajax: "{{ route('spj.data') }}",
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan'
+                    },
+                    {
+                        data: 'prodi',
+                        name: 'prodi'
+                    },
+                    {
+                        data: 'pic',
+                        name: 'pic'
+                    },
+                    {
+                        data: 'no_memo',
+                        name: 'no_memo'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'button',
+                        name: 'button'
+                    },
+                ],
+            });
+        });
+    </script>
+
 
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')

@@ -24,8 +24,9 @@
                     action="{{ url('/spj/input_buktitransfer') }}" novalidate>
                     {{ csrf_field() }}
                     <div class="form-group row">
-                        <label class="control-label col-sm-4 align-self-center mb-0">Nama
-                            Kegiatan</label>
+                        <label class="control-label col-sm-4 align-self-center mb-0">
+                            Nama Kegiatan
+                        </label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" value="{{ $tor[$m]->nama_kegiatan }}" disabled>
                         </div>

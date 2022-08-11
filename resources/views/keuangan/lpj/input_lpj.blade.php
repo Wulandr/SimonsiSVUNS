@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="id_tor" class="form-control" value="<?= $tor[$m]->id ?>">
-                    <input type="hidden" name="id_status" class="form-control" value="8">
+                    <input type="hidden" name="id_status" class="form-control" value="11">
                     <input type="hidden" name="create_by" class="form-control" value="<?= Auth()->user()->id ?>">
                     <?php date_default_timezone_set('Asia/Jakarta'); ?>
                     <input name="created_at" id="created_at" type="hidden" value="<?= date('Y-m-d H:i:s') ?>">

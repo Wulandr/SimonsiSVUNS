@@ -138,7 +138,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getdetailMak/{id}', [AnggaranController::class, 'getDetailMak']);
     Route::get('/getdetailHargaMak/{id}', [AnggaranController::class, 'getDetailHargaMak']);
 
-
     Route::get('/validasi', [ValidasiController::class, 'index']);
     Route::get('/validasi/ajuan/{prodi}', [ValidasiController::class, 'ajuan']);
     Route::get('/validasi/filter', [ValidasiController::class, 'filter_tahun']);
@@ -304,4 +303,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Datatable
     Route::get('/home/datatable', [HomeController::class, 'datatable'])->name('home.data');
+    Route::get('/memo_cair/datatable', [MemoCairController::class, 'datatable'])->name('memo_cair.data');
+    Route::get('/persekot_kerja/datatable', [PersekotKerjaController::class, 'datatable'])->name('persekot_kerja.data');
+    Route::get('/spj/datatable', [SPJController::class, 'datatable'])->name('spj.data');
+    Route::get('/lpj/datatable', [LPJController::class, 'datatable'])->name('lpj.data');
 });

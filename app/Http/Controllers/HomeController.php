@@ -42,12 +42,6 @@ class HomeController extends Controller
         $spj = SPJ::all();
         $userrole = Usernya::join();
         $tor = Tor::limit(1)->get();
-
-        // if (auth()->user()->id_unit != 1) {
-        //     $tor = Tor::where('id_unit', auth()->user()->id_unit)->orderBy('created_at', 'desc');
-        // } else {
-        //     $tor = Tor::all();
-        // }
         return view(
             "dashboards.users.index",
             [

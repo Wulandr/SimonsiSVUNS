@@ -43,166 +43,11 @@
                                             <th>Nomor Memo Cair</th>
                                             <th>Judul Kegiatan</th>
                                             <th>Penanggungjawab</th>
-                                            <th colspan="2" style="width: 25%">Aksi</th>
+                                            <th style="width: 25%">Aksi</th>
+                                            <th style="width: 25%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <?php
-                                            $nomor = 0;
-                                            $namaprodi = '';
-                                            $namapj = '';
-                                            $namakeg = '';
-                                            for ($m = 0; $m < count($tor); $m++) {
-                                                $ada = 0; //sudah diajukan apa belum
-                                                $cektor = 0; //mengecek hanya ada 1 tor 
-                                                // S T A T U S
-                                                $torVallidasi = "";
-                                                $statusTor = [
-                                                    [
-                                                        'tor' => '',
-                                                        'status' => '',
-                                                        'sudahUpload' => 0
-                                                    ]
-                                                ];
-
-                                                // Mengambil data Nama Kegiatan yang SUDAH DIVALIDASI WD 1 dari tabel TOR
-                                                for ($tr = 0; $tr < count($trx_status_tor); $tr++) {
-                                                    if ($trx_status_tor[$tr]->id_tor == $tor[$m]->id) {
-                                                        for ($s = 0; $s < count($status); $s++) {
-                                                            if ($trx_status_tor[$tr]->id_status == $status[$s]->id) {
-                                                                $ada += 1;
-                                                                for ($u = 0; $u < count($users); $u++) {
-                                                                    if ($trx_status_tor[$tr]->create_by == $users[$u]->id) {
-                                                                        for ($r = 0; $r < count($roles); $r++) {
-                                                                            if ($users[$u]->role == $roles[$r]->id) {
-                                                                                $statusTor[0]['status'] = $status[$s]->nama_status . " - " . $roles[$r]->name;
-                                                                                for ($d = 0; $d < count($dokumen); $d++) {
-                                                                                    if ($dokumen[$d]->id_tor  == $tor[$m]->id) {
-                                                                                        $statusTor[$ada]['tor'] = "TOR" . $tor[$m]->id;
-                                                                                        $statusTor[0]['sudahUpload'] = 1;
-                                                                                    }
-                                                                                }
-                                                                                if ($statusTor[0]['sudahUpload'] == 1 && $cektor != $tor[$m]->id) {
-
-                                                                                    // Mengambil data Nama Unit (Prodi) dari tabel TOR
-                                                                                    for ($v = 0; $v < count($prodi); $v++) {
-                                                                                        if ($prodi[$v]->id == $tor[$m]->id_unit) {
-                                                                                            $namaprodi = $prodi[$v]->nama_unit;
-                                            ?>
-                                            <td>{{ $nomor + 1 }}</td><?php $nomor += 1; ?>
-                                            <td>{{ $namaprodi }}</td>
-                                            <?php for ($a = 0; $a < count($memo_cair); $a++) { 
-                                                if ($memo_cair[$a]->id_tor == $tor[$m]->id) {
-                                                ?>
-                                            <td>{{ $memo_cair[$a]->nomor }}</td>
-                                            <?php
-                                                }
-                                            } ?>
-                                            <td>{{ $tor[$m]->nama_kegiatan }}</td>
-                                            <td>{{ $tor[$m]->nama_pic }}</td>
-
-                                            {{-- Mengetahui role user --}}
-                                            <?php
-                                            foreach ($roles as $role) {
-                                                if ($role->id == Auth::user()->role) {
-                                                    $RoleLogin = $role->name;
-                                                }
-                                            }
-                                            ?>
-
-                                            <td class="text-center">
-                                                <?php
-                                                $tidakada_status = '<span class="badge border border-danger text-danger">Belum ada status</span>';
-                                                ?>
-                                                @foreach ($trx_status_keu as $a)
-                                                    @if ($a->id_tor == $tor[$m]->id)
-                                                        @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id && $b->kategori == 'LPJ')
-                                                                <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
-                                                                ?>
-
-                                                                {{-- Jika Role Staf Perencanaan --}}
-                                                                @if ($RoleLogin === 'Staf Perencanaan')
-                                                                    <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>&nbsp<span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
-                                                                    ?>
-                                                                    @if ($b->nama_status == 'Revisi')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-primary text-primary" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>&nbsp<span type="button" class="badge badge-secondary" data-toggle="modal" data-target="#revisi_lpj' . $tor[$m]->id . '"><i class="las la-comment"></i></span><span type="button" class="badge badge-dark" data-toggle="modal" data-target="#validasi_lpj' . $tor[$m]->id . '"><i class="ri-edit-fill"></i></span>';
-                                                                        ?>
-                                                                    @elseif ($b->nama_status == 'LPJ Selesai')
-                                                                        <?php $tidakada_status = '<button type="button" class="badge border border-success text-success" data-toggle="modal" data-target="#status_lpj' . $tor[$m]->id . '">' . $b->nama_status . '</button>';
-                                                                        ?>
-                                                                    @endif
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endforeach
-                                                <?= $tidakada_status ?>
-                                                <!-- MODAL - Validasi LPJ -->
-                                                @include('keuangan/lpj/validasi_lpj')
-                                                <!-- MODAL - Status LPJ -->
-                                                @include('keuangan/lpj/status_lpj')
-                                                <!-- MODAL - Revisi LPJ -->
-                                                @include('keuangan/lpj/showrevisi_lpj')
-                                            </td>
-                                            <td class="text-center">
-                                                @if ($RoleLogin === 'Prodi')
-                                                    <?php
-                                                    $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
-                                                    ?>
-                                                @else
-                                                    <?php $upload = '<span class="badge border border-danger text-danger">Prodi Belum Mengajukan SPJ</span>'; ?>
-                                                @endif
-
-                                                @foreach ($trx_status_keu as $a)
-                                                    @if ($a->id_tor == $tor[$m]->id)
-                                                        @foreach ($status_keu as $b)
-                                                            @if ($a->id_status == $b->id && $b->kategori == 'LPJ')
-                                                                @if ($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi')
-                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>';
-                                                                    ?>
-                                                                    {{-- Jika Role Prodi --}}
-                                                                @elseif ($RoleLogin === 'Prodi')
-                                                                    <?php $upload = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_lpj' . $tor[$m]->id . '"><i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal" data-target="#edit_lpj' . $tor[$m]->id . '"><i class="las la-edit"></i></button>';
-                                                                    ?>
-                                                                    @if ($b->nama_status == 'Revisi')
-                                                                        <?php
-                                                                        $upload = '<button class="btn btn-sm bg-dark rounded-pill" title="Input LPJ" data-toggle="modal" data-target="#input_lpj' . $tor[$m]->id . '"><i class="las la-upload"></i></button>';
-                                                                        ?>
-                                                                    @endif
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endforeach
-                                                <?= $upload ?>
-                                                <!-- MODAL - Edit LPJ -->
-                                                @include('keuangan/lpj/edit_lpj')
-                                                <!-- MODAL - Detail LPJ -->
-                                                @include('keuangan/lpj/detail_lpj')
-                                            </td>
-                                            <!-- MODAL - Input LPJ -->
-                                            @include('keuangan/lpj/input_lpj')
-                                            <?php
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                                $cektor = $tor[$m]->id;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
-
-                                                ?>
-                                        </tr>
-                                        <?php
-                                            } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -212,13 +57,53 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                search: false,
+                pageLength: 5,
+                ajax: "{{ route('lpj.data') }}",
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan'
+                    },
+                    {
+                        data: 'prodi',
+                        name: 'prodi'
+                    },
+                    {
+                        data: 'pic',
+                        name: 'pic'
+                    },
+                    {
+                        data: 'no_memo',
+                        name: 'no_memo'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'button',
+                        name: 'button'
+                    },
+                ],
+            });
+        });
+    </script>
+
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')
 
 </body>
-
-<!-- MODAL - Template LPJ -->
-@include('keuangan/lpj/lpj_template')
 
 </html>
 

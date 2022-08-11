@@ -9,6 +9,27 @@ function ngecekWulan($awal, $akhir)
     }
     return false;
 }
+
+function getIsi($data)
+{
+    if (!empty($data)) {
+        return $data;
+    } else {
+        return 'Semua';
+    }
+}
+
+$tahunTw = [];
+$triwulanTw = [];
+
+for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
+    foreach ($tahun as $thn) {
+        if ($thn->is_aktif == 1) {
+            $tahunTw[substr($tw[$tw1]->triwulan, 0, 4)] = substr($tw[$tw1]->triwulan, 0, 4);
+            $triwulanTw[substr($tw[$tw1]->triwulan, -1, 1)] = substr($tw[$tw1]->triwulan, -1, 1);
+        }
+    }
+}
 ?>
 
 <body>
@@ -78,7 +99,7 @@ function ngecekWulan($awal, $akhir)
                                 <h4><b>{{ 'Rp ' . number_format($total_realisasi) }}</b></h4>
                                 <div id="iq-chart-box2"></div>
                                 <span class="text-danger">
-                                    <b>{{ number_format(($total_realisasi / $total_pagu) * 100, 2, '.', '') }}%
+                                    <b>{{ !empty($total_pagu) ? number_format(($total_realisasi / $total_pagu) * 100, 2, '.', '') : number_format(0) }}%
                                     </b>
                                 </span>
                             </div>
@@ -96,7 +117,7 @@ function ngecekWulan($awal, $akhir)
                                 <h4><b>{{ 'Rp ' . number_format($total_sisa) }}</b></h4>
                                 <div id="iq-chart-box3"></div>
                                 <span
-                                    class="text-warning"><b>{{ number_format(($total_sisa / $total_pagu) * 100, 2, '.', '') }}%</b></span>
+                                    class="text-warning"><b>{{ !empty($total_pagu) ? number_format(($total_sisa / $total_pagu) * 100, 2, '.', '') : number_format(0) }}%</b></span>
                             </div>
                         </div>
                     </div>
@@ -104,34 +125,39 @@ function ngecekWulan($awal, $akhir)
                 <div class="col-sm-12">
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between table-primary">
-                            <div class="iq-header-title col-sm-8 align-items-center">
+                            <div class="iq-header-title col-sm-7 align-items-center">
                                 <h4 class="card-title">REKAPITULASI AJUAN KAK-RAB</h4>
                             </div>
 
                             {{-- Filter Triwulan --}}
-                            <div class="iq-header-toolbar col-sm-3 mt-3 d-flex justify-content-end">
+                            <div class="iq-header-toolbar col-sm-4 mt-3 d-flex justify-content-end">
                                 <div class="form-group row mb-0">
                                     <span class="table-add mb-0">
                                         <div class="form-group row">
                                             <form action="{{ url('/monitoring_kak/filterTw') }}" method="GET">
                                                 <div class="row mr-3">
+                                                    <div class="mr-1">
+                                                        <select class="form-control filter" name="tahunTw"
+                                                            id="tahunTw">
+                                                            <option value="">All</option>
+                                                            <?php foreach ($tahunTw as $key=>$isi) { ?>
+                                                            <option value="{{ base64_encode($key) }}"
+                                                                {{ !empty($getTahun) && $getTahun == $isi ? 'selected' : '' }}>
+                                                                {{ $isi }}
+                                                            </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
                                                     <div class="col mr-1">
-                                                        <select class="form-control filter" name="filterTw"
-                                                            id="filterTw">
-                                                            <option value="all">All</option>
-                                                            <?php
-                                                            for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
-                                                                        foreach ($tahun as $thn) {
-                                                                            if ($thn->is_aktif == 1) {
-                                                                                if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
-                                                            <option value="{{ base64_encode($tw[$tw1]->id) }}"
-                                                                {{ $filtertw == $tw[$tw1]->id ? 'selected' : '' }}
-                                                                {{ ngecekWulan($tw[$tw1]->periode_awal, $tw[$tw1]->periode_akhir) ? 'selected' : '' }}>
-                                                                {{ $tw[$tw1]->triwulan }}</option>
-                                                            <?php }
-                                                                            }
-                                                                        }
-                                                                    } ?>
+                                                        <select class="form-control filter" name="triwulanTw"
+                                                            id="triwulanTw">
+                                                            <option value="">All</option>
+                                                            <?php foreach ($triwulanTw as $isi) { ?>
+                                                            <option value="{{ base64_encode($isi) }}"
+                                                                {{ !empty($getTriwulan) && $getTriwulan == $isi ? 'selected' : '' }}>
+                                                                {{ 'Triwulan ' . $isi }}
+                                                            </option>
+                                                            <?php } ?>
                                                         </select>
                                                     </div>
                                                     <input type="submit" class="btn btn-primary btn-sm" value="Filter">
@@ -167,7 +193,9 @@ function ngecekWulan($awal, $akhir)
                                     <thead class="bg-primary">
                                         <tr>
                                             <th rowspan="2" style="vertical-align: middle; width: 3%">No</th>
-                                            <th rowspan="2" style="vertical-align: middle;">Program Studi
+                                            <th rowspan="2" style="vertical-align: middle; width: 20%">Program Studi
+                                            <th rowspan="2" style="vertical-align: middle; width: 12%">Pagu
+                                                {{ getIsi($getTahun) }}</th>
                                             </th>
                                             <?php
                                             $nomorTw = 0;
@@ -199,21 +227,19 @@ function ngecekWulan($awal, $akhir)
                                             }
                                             
                                             // Jika Filter Triwulan adalah ALL (menampilkan semua data)
-                                            if (!empty($filtertw) && $filtertw == 'jY') {
+                                            if (!empty($filtertw) && is_array($filtertw)) {
                                             ?>
-                                            <th colspan="8">
-                                                {{ 'Laporan Semua Triwulan (Semua Tahun)' }}
+                                            <th colspan="6">
+                                                {{ 'Laporan Tahun ' . getIsi($getTahun) . ' (Triwulan ' . getIsi($getTriwulan) . ')' }}
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th style="width: 12%">Pagu</th>
                                             <th style="width: 12%">RPD TW 1</th>
                                             <th style="width: 12%">RPD TW 2</th>
                                             <th style="width: 12%">RPD TW 3</th>
                                             <th style="width: 12%">RPD TW 4</th>
                                             <th style="width: 12%">KAK - Disetujui</th>
                                             <th style="width: 12%">Sisa Anggaran Pagu</th>
-                                            <th style="width: 5%">% Dana Digunakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -233,7 +259,7 @@ function ngecekWulan($awal, $akhir)
                                             $persen = 0;
                                             // ngambil tor
                                             foreach ($isi->tor as $tor) {
-                                                if (!empty($tor->spj->nilai_total)) {
+                                                if (!empty($tor->spj->nilai_total) && in_array($tor->id_tw,$filtertw)) {
                                                     // mengambil nilai total dari tabel spj yang memiliki id tor
                                                     $nominal += $tor->spj->nilai_total;
                                                 }
@@ -271,11 +297,11 @@ function ngecekWulan($awal, $akhir)
                                         </th>
                                         </tr>
                                         <tr>
-                                            <th>Pagu</th>
                                             <th>RPD</th>
                                             <th>KAK - Disetujui</th>
+                                            <th>KAK - Revisi</th>
+                                            <th>KAK - Review</th>
                                             <th>Sisa Anggaran Pagu</th>
-                                            <th>% Dana Digunakan</th>
                                         </tr>
                                         </thead>
                                     <tbody>
@@ -294,7 +320,7 @@ function ngecekWulan($awal, $akhir)
                                             $persen = 0;
                                             // ngambil tor
                                             foreach ($isi->tor as $tor) {
-                                                if (!empty($tor->spj->nilai_total)) {
+                                                if (!empty($tor->spj->nilai_total) && $tor->id_tw == $filtertw && !is_array($filtertw)) {
                                                     // mengambil nilai total dari tabel spj yang memiliki id tor
                                                     $nominal += $tor->spj->nilai_total;
                                                 }
@@ -314,8 +340,9 @@ function ngecekWulan($awal, $akhir)
                                             echo "<td>Rp {$pagu}</td>";
                                             echo "<td>Rp {$rpd}</td>";
                                             echo "<td>Rp {$nominal}</td>";
+                                            echo "<td>Rp sss </td>";
+                                            echo "<td>Rp sss </td>";
                                             echo "<td>Rp {$sisa}</td>";
-                                            echo "<td>{$persen}</td>";
                                             echo '</tr>';
                                             $i++;
                                         endforeach;

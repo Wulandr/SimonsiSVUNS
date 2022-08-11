@@ -59,6 +59,11 @@ class Tor extends Model
     {
         return $this->hasOne(SPJ::class, 'id_tor', 'id');
     }
+    
+    public function spj()
+    {
+        return $this->hasOne(SPJ::class, 'id_tor', 'id');
+    }
 
     public function triwulan()
     {
