@@ -188,18 +188,16 @@ function ngecekWulan($awal, $akhir)
                                                 ?>
 
                                                 <?php $i = 1;
-                                                $alokasi = 0;
                                                 foreach ($prodi as $p) {
+                                                    $alokasi = 0;
                                                     foreach ($pagus as $pagu) {
                                                         if ($pagu->id_unit == $p->id) {
                                                             $alokasi = $pagu->pagu;
-                                                        } else {
-                                                            $alokasi = 0;
                                                         }
                                                     }
                                                     if ($p->nama_unit != 'Sekolah Vokasi') { ?>
                                                         <tr>
-                                                            <td bgcolor="#e7ecee">{{$i-1}}</td>
+                                                            <td bgcolor="#e7ecee">{{$i}}</td>
                                                             <td bgcolor="#f1f1f1">{{$p->nama_unit}}</td>
                                                             <td>{{ 'Rp. ' . number_format($alokasi)}}</td>
                                                             <?php
@@ -229,7 +227,7 @@ function ngecekWulan($awal, $akhir)
                                                                                         if ($sk->id == $anggaran_iku->id_subK) {
                                                                                             foreach ($ik as $iks) {
                                                                                                 if ($sk->Kegiatan->id_ik == $iks->id) {
-                                                                                                    // echo  $p->nama_unit . " " . $iks->IndikatorIKU->IKU . ' Rp. ' . number_format($anggaran_iku->jumlah_anggaran) . " - " . $tw->tahun->tahun . " " . $tw->triwulan . " <br />";
+                                                                                                    // echo  $p->nama_unit . " - " . $anggaran_iku->nama_kegiatan . " - " . $iks->IndikatorIKU->IKU . ' Rp. ' . number_format($anggaran_iku->jumlah_anggaran) . " - " . $tw->tahun->tahun . " " . $tw->triwulan . " <br />";
                                                                                                     if ($iks->IndikatorIKU->IKU == "IKU001") {
                                                                                                         $tot_iku1 += $anggaran_iku->jumlah_anggaran;
                                                                                                     }
@@ -332,8 +330,9 @@ function ngecekWulan($awal, $akhir)
                                                                 @endif
                                                             </td>
                                                         </tr>
-                                                <?php }
-                                                    $i += 1;
+
+                                                <?php $i += 1;
+                                                    }
                                                 } ?>
                                             </tbody>
                                         </table>
