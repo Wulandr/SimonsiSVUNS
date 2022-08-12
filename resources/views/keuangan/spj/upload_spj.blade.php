@@ -136,87 +136,92 @@
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                    </div>
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center table-primary">
-                            <div class="iq-header-title">
-                                <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban (SPJ)</h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <p></p>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="nav flex-column nav-pills text-left" id="v-pills-tab" role="tablist"
-                                        aria-orientation="vertical">
-                                        <?php
-                                        for ($a = 0; $a < count($spj_kategori); $a++) {
-                                        ?>
-                                        <a class="nav-link" id="tab-spj_kategori[$a]->id }}" data-toggle="pill"
-                                            href="#content-{{ $spj_kategori[$a]->id }}" role="tab"
-                                            aria-controls="{{ $spj_kategori[$a]->id }}"
-                                            aria-selected="true">{{ $spj_kategori[$a]->nama_kategori }}
-                                        </a>
-                                        <?php } ?>
+
+                                <div class="iq-card">
+                                    <div class="iq-card-header d-flex justify-content-center table-primary">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban
+                                                (SPJ)</h4>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="iq-card-body">
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="nav flex-column nav-pills text-left" id="v-pills-tab"
+                                                    role="tablist" aria-orientation="vertical">
+                                                    <?php
+                                        for ($a = 0; $a < count($spj_kategori); $a++) {
+                                        ?>
+                                                    <a class="nav-link" id="tab-spj_kategori[$a]->id }}"
+                                                        data-toggle="pill" href="#content-{{ $spj_kategori[$a]->id }}"
+                                                        role="tab" aria-controls="{{ $spj_kategori[$a]->id }}"
+                                                        aria-selected="true">{{ $spj_kategori[$a]->nama_kategori }}
+                                                    </a>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
 
-                                <div class="col-sm-9">
-                                    <div class="tab-content mt-0" id="v-pills-tabContent">
-                                        <?php
+                                            <div class="col-sm-9">
+                                                <div class="tab-content mt-0" id="v-pills-tabContent">
+                                                    <?php
                                         for ($a = 0; $a < count($spj_kategori); $a++) {
 
                                         ?>
-                                        <div class="tab-pane fade show" role="tabpanel"
-                                            id="content-{{ $spj_kategori[$a]->id }}"
-                                            aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
-                                            <div class="col-12">
-                                                <h5 class="mb-2" style="color: #1E3D73">
-                                                    <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
-                                                </h5>
-                                                <?php $no = 1;
+                                                    <div class="tab-pane fade show" role="tabpanel"
+                                                        id="content-{{ $spj_kategori[$a]->id }}"
+                                                        aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
+                                                        <div class="col-12">
+                                                            <h5 class="mb-2" style="color: #1E3D73">
+                                                                <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
+                                                            </h5>
+                                                            <?php $no = 1;
                                                     for ($b = 0; $b < count($spj_subkategori); $b++) {
                                                         if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
-                                                <p>{!! $spj_subkategori[$b]->catatan !!}</p>
-                                                <table class="table">
-                                                    <tr class="form-group">
-                                                        <td>{{ $no }}</td>
-                                                        <td style="width: 65%" style="width: 65%">
-                                                            <label for="exampleFormControlFile1">
-                                                                {{ $spj_subkategori[$b]->nama_subkategori }}
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" class="form-control-file"
-                                                                name="file" id="file">
-                                                            <input type="hidden" class="form-control-file"
-                                                                name="id_subkategori" id="id_subkategori"
-                                                                value="{{ $spj_subkategori[$b]->id }}">
-                                                            <input type="hidden" name="id_tor" class="form-control"
-                                                                value="<?= $_GET['idtor'] ?>">
-                                                        </td>
-                                                    </tr>
-                                                    <?php $no += 1;
+                                                            <p>{!! $spj_subkategori[$b]->catatan !!}</p>
+                                                            <table class="table">
+                                                                <tr class="form-group">
+                                                                    <td>{{ $no }}</td>
+                                                                    <td style="width: 65%" style="width: 65%">
+                                                                        <label for="exampleFormControlFile1">
+                                                                            {{ $spj_subkategori[$b]->nama_subkategori }}
+                                                                        </label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="file"
+                                                                            class="form-control-file" name="file"
+                                                                            id="file">
+                                                                        <input type="hidden"
+                                                                            class="form-control-file"
+                                                                            name="id_subkategori" id="id_subkategori"
+                                                                            value="{{ $spj_subkategori[$b]->id }}">
+                                                                        <input type="hidden" name="id_tor"
+                                                                            class="form-control"
+                                                                            value="<?= $_GET['idtor'] ?>">
+                                                                    </td>
+                                                                </tr>
+                                                                <?php $no += 1;
                                                                 }
                                                             } ?>
-                                                </table>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                        } ?>
+                                                </div>
                                             </div>
                                         </div>
-                                        <?php
-                                        } ?>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="iq-card-footer float-right">
+                                        <button type="submit" class="btn btn-primary m-3">Upload</button>
+                                    </div>
+                            </form>
                         </div>
-                        <div class="iq-card-footer float-right">
-                            <button type="submit" class="btn btn-primary m-3">Upload</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')

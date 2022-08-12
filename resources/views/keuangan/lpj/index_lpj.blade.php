@@ -43,8 +43,8 @@
                                             <th>Nomor Memo Cair</th>
                                             <th>Judul Kegiatan</th>
                                             <th>Penanggungjawab</th>
-                                            <th style="width: 25%">Aksi</th>
-                                            <th style="width: 25%">Aksi</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

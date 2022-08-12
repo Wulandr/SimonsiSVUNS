@@ -315,14 +315,29 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                             $field = "tw$nomorTw";
                                             $rpd = number_format($isi->$field);
                                             $nominal = 0;
+                                            $revisi = 0;
+                                            $review = 0;
                                             $anggaran = 0;
                                             $sisa = 0;
                                             $persen = 0;
                                             // ngambil tor
                                             foreach ($isi->tor as $tor) {
-                                                if (!empty($tor->spj->nilai_total) && $tor->id_tw == $filtertw && !is_array($filtertw)) {
+                                                if(empty($tor->lastStatus)){
+                                                    $status_tor = 0;
+                                                } else {
+                                                    $status_tor = $tor->lastStatus->id_status;
+                                                }
+                                                if (!empty($tor->jumlah_anggaran) && $tor->id_tw == $filtertw && !is_array($filtertw)) {
                                                     // mengambil nilai total dari tabel spj yang memiliki id tor
-                                                    $nominal += $tor->spj->nilai_total;
+                                                    if($status_tor == 4) {
+                                                        $nominal += $tor->jumlah_anggaran;
+                                                    }
+                                                    if($status_tor == 3) {
+                                                        $revisi += $tor->jumlah_anggaran;
+                                                    }
+                                                    if($status_tor == 1) {
+                                                        $revisi += $tor->jumlah_anggaran;
+                                                    }
                                                 }
                                                 $anggaran = $tor->jumlah_anggaran;
                                             }
@@ -340,8 +355,8 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                             echo "<td>Rp {$pagu}</td>";
                                             echo "<td>Rp {$rpd}</td>";
                                             echo "<td>Rp {$nominal}</td>";
-                                            echo "<td>Rp sss </td>";
-                                            echo "<td>Rp sss </td>";
+                                            echo "<td>Rp {$review} </td>";
+                                            echo "<td>Rp {$revisi} </td>";
                                             echo "<td>Rp {$sisa}</td>";
                                             echo '</tr>';
                                             $i++;

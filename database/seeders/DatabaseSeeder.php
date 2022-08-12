@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             SubKSeeder::class,
             TORSeeder::class,
             RABSeeder::class,
+            SPJKategoriSeeder::class,
             MakSeeder::class,
             KelompokMakSeeder::class,
             BelanjaMakSeeder::class,
@@ -52,7 +53,7 @@ class DatabaseSeeder extends Seeder
             LPJSeeder::class,
             SPJSeeder::class,
             PedomanSeeder::class,
-            SPJKategoriSeeder::class,
+
             SPJSubKategoriSeeder::class,
             DokumenSPJSeeder::class,
 

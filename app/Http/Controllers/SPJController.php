@@ -321,28 +321,44 @@ class SPJController extends Controller
           if (!empty($request->file)) {
                //mengambil data file yang diupload
                $file           = $request->file('file');
-               //mengambil nama file
-               $nama_file      = $file->getClientOriginalName();
-               $id_subkategori = $request->id_subkategori;
-               $id_tor          = base64_decode($request->id_tor);
-               //memindahkan file ke folder tujuan
-               $file->move('documents', $file->getClientOriginalName());
+               // var_dump($file);
+               // exit;
+               foreach ($file as $key => $dokspj) {
+                    //mengambil nama file
+                    $nama_file      = $dokspj->getClientOriginalName();
+                    $id_subkategori = $request->id_subkategori[$key];
+                    // var_dump($request->id_subkategori);
+                    // exit;
+                    $id_tor          = base64_decode($request->id_tor);
+                    //memindahkan file ke folder tujuan
+                    $dokspj->move('documents', $dokspj->getClientOriginalName());
+
+                    $addfile_spj         = new DokumenSPJ;
+                    $addfile_spj->name   = $nama_file;
+                    $addfile_spj->path   = $nama_file;
+                    $addfile_spj->id_subkategori  = $id_subkategori;
+                    $addfile_spj->id_tor  = $id_tor;
+
+                    //menyimpan data ke database
+                    $addfile_spj->save();
+               }
           }
           if (empty($request->file)) {
                $file      = "null";
                $nama_file      = "null";
                $id_subkategori = $request->id_subkategori;
                $id_tor          = base64_decode($request->id_tor);
+               $addfile_spj         = new DokumenSPJ;
+               $addfile_spj->name   = $nama_file;
+               $addfile_spj->path   = $nama_file;
+               $addfile_spj->id_subkategori  = $id_subkategori;
+               $addfile_spj->id_tor  = $id_tor;
+
+               //menyimpan data ke database
+               $addfile_spj->save();
           }
 
-          $addfile_spj         = new DokumenSPJ;
-          $addfile_spj->name   = $nama_file;
-          $addfile_spj->path   = $nama_file;
-          $addfile_spj->id_subkategori  = $id_subkategori;
-          $addfile_spj->id_tor  = $id_tor;
 
-          //menyimpan data ke database
-          $addfile_spj->save();
 
           if ($addfile_spj) {
                return redirect()->action([SPJController::class, 'index'])->with("success", "Data berhasil ditambahkan");
@@ -486,6 +502,7 @@ class SPJController extends Controller
                                                                            }
                                                                       }
 
+                                                                      // STATUS
                                                                       if ($user->can('spj_create')) :
                                                                            $spj[$m]['status'] = "<span class='badge border border-danger text-danger'>Belum ada status</span>";
                                                                       endif;
@@ -540,9 +557,6 @@ class SPJController extends Controller
                                                                            }
                                                                       }
 
-                                                                      if ($user->can('spj_create')) :
-                                                                           echo $spj[$m]['status'];
-                                                                      endif;
                                                                       //    <!-- MODAL - Status spj -->
                                                                       //    include('keuangan/spj/status_spj')
                                                                       //    <!-- MODAL - Validasi spj -->
@@ -550,6 +564,7 @@ class SPJController extends Controller
                                                                       //    <!-- MODAL - Revisi spj -->
                                                                       //    include('keuangan/spj/showrevisi_spj')
 
+                                                                      // BUTTON
                                                                       if ($RoleLogin === 'Prodi') {
                                                                            $spj[$m]['button'] =
                                                                                 "<a href='" . url('/upload_spj/') . '?idtor=' . base64_encode($tor[$m]->id) . "'>
@@ -657,9 +672,6 @@ class SPJController extends Controller
                                                                                 }
                                                                            }
                                                                       }
-
-
-                                                                      echo $spj[$m]['button'];
 
                                                                       //     <!-- MODAL - Bukti TF spj -->
                                                                       //     include('keuangan/spj/input_tf_spj')

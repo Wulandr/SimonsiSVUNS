@@ -166,6 +166,7 @@ class PersekotKerjaController extends Controller
         $persekot_kerja = PersekotKerja::all();
         $nomor = 0;
         $namaprodi = '';
+        $memo_cair = MemoCair::all();
 
         // Untuk inisialisasi Role
         foreach ($roles as $role) {
@@ -266,11 +267,14 @@ class PersekotKerjaController extends Controller
                                                         }
                                                         // echo $pk[$m]['status'];
                                                         // <!-- MODAL - Validasi Persekot Kerja -->
-                                                        // @include('keuangan/persekot_kerja/validasi_pk')
+                                                        $pk[$m]['status'] .=
+                                                            view('keuangan.persekot_kerja.validasi_pk', compact('tor', 'm', 'status_keu'))->render();
                                                         // <!-- MODAL - Validasi Persekot Kerja -->
-                                                        // @include('keuangan/persekot_kerja/validasi_pk2')
+                                                        $pk[$m]['status'] .=
+                                                            view('keuangan/persekot_kerja/validasi_pk2', compact('tor', 'm', 'status_keu', 's'))->render();
                                                         // <!-- MODAL - Status Persekot Kerja -->
-                                                        // @include('keuangan/persekot_kerja/status_pk')
+                                                        $pk[$m]['status'] .=
+                                                            view('keuangan/persekot_kerja/status_pk', compact('tor', 'm', 'status_keu', 's'))->render();
 
                                                         // BUTTON
                                                         // $pk[$m]['button'] = '';
@@ -370,16 +374,20 @@ class PersekotKerjaController extends Controller
                                                         // echo $pk[$m]['button'];
 
                                                         // <!-- MODAL - Input Bukti TF Persekot Kerja -->
-                                                        // include('keuangan/persekot_kerja/input_tf_pk')
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/input_tf_pk', compact('tor', 'm', 'status_keu', 's'))->render();
                                                         // <!-- MODAL - Show Bukti TF Persekot Kerja -->
-                                                        // include('keuangan/persekot_kerja/show_tf_pk')
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/show_tf_pk', compact('tor', 'm', 'status_keu', 's', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
                                                         // <!-- MODAL - Edit Persekot Kerja -->
-                                                        // include('keuangan/persekot_kerja/edit_pk')
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/edit_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
                                                         // <!-- MODAL - Detail Persekot Kerja -->
-                                                        // include('keuangan/persekot_kerja/detail_pk')
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/detail_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
                                                         // <!-- MODAL - Jenis Ajuan -->
-                                                        // include('keuangan/persekot_kerja/jenis_inputPK')
-
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/jenis_inputPK', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
                                                     }
                                                 }
                                             }
@@ -393,8 +401,6 @@ class PersekotKerjaController extends Controller
                 }
             }
         }
-        // var_dump($pk);
-        // exit;
         return datatables()::of($pk)->rawColumns(['status', 'button'])->tojson();
     }
 }

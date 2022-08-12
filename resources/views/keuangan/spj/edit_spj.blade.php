@@ -65,8 +65,7 @@ use App\Models\DokumenSPJ;
                                         Total SPJ</label>
                                     <div class="col-sm-7">
                                         <input type="text" name="nilai_total" class="form-control"
-                                            id="validationCustom01" value="{{ 'Rp ' . number_format($nilai_total) }}"
-                                            required>
+                                            id="validationCustom01" value="{{ $nilai_total }}" required>
                                     </div>
                                     <div class="invalid-feedback">
                                         Required!
@@ -88,13 +87,14 @@ use App\Models\DokumenSPJ;
                                         <small style="color: darkred"><b>(Jika Ada)</b></small></label>
                                     <div class="col-sm-7">
                                         <input type="text" name="nilai_kembali" class="form-control"
-                                            id="validationCustom01" value="{{ 'Rp ' . number_format($nilai_kembali) }}"
-                                            required>
+                                            id="validationCustom01" value="{{ $nilai_kembali }}" required>
                                     </div>
                                     <div class="invalid-feedback">
                                         Required!
                                     </div>
                                 </div>
+
+                                {{-- Unggah Bukti SPJ --}}
                                 <div class="iq-card" style="box-shadow: none">
                                     <div class="iq-card-header d-flex justify-content-center table-warning my-1">
                                         <div class="iq-header-title">
@@ -147,11 +147,11 @@ use App\Models\DokumenSPJ;
                                                                     </td>
                                                                     <td rowspan="2">
                                                                         <input type="file"
-                                                                            class="form-control-file" name="file"
+                                                                            class="form-control-file" name="file[]"
                                                                             id="file">
                                                                         <input type="hidden"
                                                                             class="form-control-file"
-                                                                            name="id_subkategori" id="id_subkategori"
+                                                                            name="id_subkategori[]" id="id_subkategori"
                                                                             value="{{ $spj_subkategori[$b]->id }}">
                                                                         <input type="hidden" name="id_tor"
                                                                             class="form-control"

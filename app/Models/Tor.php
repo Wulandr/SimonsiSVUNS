@@ -59,10 +59,10 @@ class Tor extends Model
     {
         return $this->hasOne(SPJ::class, 'id_tor', 'id');
     }
-    
-    public function spj()
+
+    public function lastStatus()
     {
-        return $this->hasOne(SPJ::class, 'id_tor', 'id');
+        return $this->hasOne(TrxStatusTor::class, 'id_tor', 'id')->orderBy('id', 'desc');
     }
 
     public function triwulan()

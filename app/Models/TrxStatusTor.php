@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class TrxStatusTor extends Model
 {
     use HasFactory;
-
+    protected $table = 'trx_status_tor';
     public function TrxStatus($id)
     {
         $trx = DB::table('trx_status_tor')

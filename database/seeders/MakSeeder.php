@@ -23,8 +23,9 @@ class MakSeeder extends Seeder
             if (!$firstline) {
                 Mak::create([
                     "id" => $data['0'],
-                    "jenis_belanja" => $data['1'],
-                    "is_aktif" => $data['2']
+                    "id_spjkategori" => $data['1'],
+                    "jenis_belanja" => $data['2'],
+                    "is_aktif" => $data['3']
                 ]);
             }
             $firstline = false;
