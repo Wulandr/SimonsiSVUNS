@@ -124,10 +124,10 @@ use Illuminate\Support\Facades\Auth;
               </div>
 
               <div class="iq-card-body">
-                <div id="table" class="table-editable table table-striped table-bordered">
+                <div id="table" class="">
                   <span class="table-add float-left ml-3 mr-2">
                     @can('tor_create')
-                    <a href="http://127.0.0.1:8000/steppengajuantor"><button class="btn btn-sm bg-primary"><i class="las la-plus"></i><span class="pl-1">Tambah TOR</span>
+                    <a href="http://127.0.0.1:8000/steppengajuantor"><button class="btn btn-sm btn-primary"><i class="las la-plus"></i><span class="pl-1">Tambah TOR</span>
                       </button></a>
                     @endcan
                   </span>
@@ -156,7 +156,7 @@ use Illuminate\Support\Facades\Auth;
                               </select>
                             </div> -->
                           <?php } ?>
-                          <input type="submit" class="btn btn-sm bg-primary" value="Filter">
+                          <input type="submit" class="btn btn-sm btn-primary" value="Filter">
                         </div>
                       </form>
                     </div>

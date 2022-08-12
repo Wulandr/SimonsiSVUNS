@@ -47,19 +47,46 @@
             overflow-y: auto;
         }
 
-        /* @media print {
-            #validasi {
-                display: none !important;
-            }
-        } */
-        /* .iq-bg-warning {
-            background: #f5c43559 !important;
-            color: #f1a003 !important;
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            color: #fff !important;
+            border: 1px solid #447d92;
         }
 
-        .iq-bg-danger {
-            background: #fd18183d !important;
-        } */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            color: #fff !important;
+            border: 1px solid #4a8495;
+            background-color: white;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dcdcdc));
+            background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+            background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+            background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+            background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+            background: linear-gradient(to bottom, #7ecdc5 0%, #4a8495 100%);
+        }
+
+        button.dt-button,
+        div.dt-button,
+        a.dt-button,
+        input.dt-button {
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, rgb(72 131 149) 0%, rgb(124 203 196) 100%);
+        }
+
+        button.dt-button:hover,
+        div.dt-button:hover,
+        a.dt-button:hover,
+        input.dt-button:hover {
+            color: rgb(124 203 196);
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, rgb(72 131 149) 0%, rgb(124 203 196) 100%);
+        }
     </style>
 </head>
 

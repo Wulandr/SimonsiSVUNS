@@ -954,6 +954,7 @@ body.sidebar-main .iq-sidebar .iq-menu li a[aria-expanded="false"].collapsed {
   color: var(--iq-white);
 }
 
+
 .iq-sidebar-menu .iq-menu li li a i {
   font-size: 15px;
 }
