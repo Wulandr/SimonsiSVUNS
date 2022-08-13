@@ -23,15 +23,15 @@ function ngecekWulan($awal, $akhir)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-center table-info">
+                        <div class="iq-card-header d-flex justify-content-between table-info">
                             <div class="iq-header-title">
                                 <h4 class="card-title">REKAPITULASI PENCAIRAN DANA & AJUAN PERSEKOT KERJA</h4>
                             </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <div class="table-editable">
-                                <div class="form-group row float-right mb-3 mr-2">
-                                    <span class="table-add float-right mb-3 mr-2">
+
+                            {{-- Filter Tahun dan Triwulan --}}
+                            <div class="iq-header-toolbar col-sm-4 mt-3 d-flex justify-content-end">
+                                <div class="form-group row mb-0">
+                                    <span class="table-add mb-0">
                                         <div class="form-group row">
                                             <form action="{{ url('/persekot_kerja/filterTw') }}" method="GET">
                                                 <div class="row mr-3">
@@ -70,7 +70,7 @@ function ngecekWulan($awal, $akhir)
                                                                     ?>
                                                         </select>
                                                     </div>
-                                                    <input type="submit" class="btn btn-primary btn-sm" value="Filter">
+                                                    <input type="submit" class="btn btn-info btn-sm" value="Filter">
                                                 </div>
                                             </form>
                                             <script>
@@ -116,6 +116,11 @@ function ngecekWulan($awal, $akhir)
                                         </div>
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <div class="table-editable">
+
                                 <table id="datatable" class="table table-bordered table-responsive-md table-hover">
                                     <thead class="text-center align-center">
                                         <tr class="bg-info">

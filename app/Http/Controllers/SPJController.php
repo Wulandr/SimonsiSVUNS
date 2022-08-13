@@ -20,9 +20,30 @@ use Illuminate\Support\Facades\Auth;
 
 class SPJController extends Controller
 {
+     private $filtertw = 0;
+     private $filterTahun = 0;
+
+     private function cekWulan()
+     {
+          $model = Tor::all();
+          if (!isset($_REQUEST['filterTahun']) && !isset($_REQUEST['filterTw'])) {
+               $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
+               $thn = DB::table('tahun')->where('tahun', date('Y'))->first();
+               $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+               $this->filtertw = $tw->id;
+               $this->filterTahun = $thn->id;
+          }
+
+          return $model;
+     }
+
      public function index()
      {
-          $tor = Tor::all();
+          $tor = $this->cekWulan();
+          $filtertw = $this->filtertw;
+          $filterTahun = $this->filterTahun;
+          $tw = DB::table('triwulan')->get();
+          $tahun = DB::table('tahun')->get();
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
           $prodi = DB::table('unit')->get();
@@ -60,7 +81,11 @@ class SPJController extends Controller
                     'spj_kategori',
                     'spj_subkategori',
                     'pedoman',
-                    'tabelRole'
+                    'tabelRole',
+                    'filtertw',
+                    'filterTahun',
+                    'tw',
+                    'tahun'
                )
           );
      }
@@ -428,12 +453,94 @@ class SPJController extends Controller
           }
      }
 
+     public function filter_tw(Request $request)
+     {
+          // $filtertw = $request->filterTw;
+          $filtertw = base64_decode($request->filterTw);
+          $filterTahun = base64_decode($request->filterTahun);
+          // $tor = Tor::all();
+
+          $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+          if ($filterTahun != 0 && $filtertw != 0) {
+               $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+          } elseif ($filterTahun != 0 && $filtertw == 0) {
+               $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')->get();
+          } elseif ($filterTahun == 0 && $filtertw != 0) {
+               $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+          } elseif ($filterTahun == 0 && $filtertw == 0) {
+               $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')->get();
+          }
+
+          $tahun = DB::table('tahun')->get();
+          $tw = DB::table('triwulan')->get();
+
+          $tor = Tor::all();
+          $pedoman = Pedoman::all();
+          $trx_status_tor = DB::table('trx_status_tor')->get();
+          $status = DB::table('status')->get();
+          $prodi = DB::table('unit')->get();
+          $users = DB::table('users')->get();
+          $roles = DB::table('roles')->get();
+          $triwulan = DB::table('triwulan')->get();
+          $dokumen = DB::table('dokumen')->get();
+          $data = MemoCair::all();
+          $tabelRole =  Role::all();
+          return view('keuangan.spj.index_spj', compact(
+               'data',
+               'tor',
+               'trx_status_tor',
+               'status',
+               'prodi',
+               'users',
+               'roles',
+               'triwulan',
+               'dokumen',
+               'tabelRole',
+               'filtertw',
+               'filterTahun',
+               'filterNamaTahun',
+               'tahun',
+               'tw',
+               'pedoman'
+          ));
+     }
+
+     public function getTwByTahun($id_thn)
+     {
+          $id_thn = base64_decode($id_thn);
+          $tws = DB::table('triwulan')->where('id_tahun', $id_thn)->get();
+          return response()->json($tws);
+     }
+
+     public function getTahunByTw($id_triwulan)
+     {
+          $id_triwulan = base64_decode($id_triwulan);
+          if ($id_triwulan == 0 || empty($id_triwulan)) {
+               $thn = DB::table('tahun')->get();
+          } elseif ($id_triwulan != 0 || !empty($id_triwulan)) {
+               $tahun = DB::table('triwulan')->select('id_tahun')->where('id', $id_triwulan)->get();
+               $thn = DB::table('tahun')->where('id', $tahun[0]->id_tahun)->get();
+          }
+          return response()->json($thn);
+     }
+
      public function datatable()
      {
+          $filtertw = $_REQUEST['filtertw'];
+          $filterTahun = $_REQUEST['filterTahun'];
+          $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+          if ($filterTahun != 0 && $filtertw != 0) {
+               $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+          } elseif ($filterTahun != 0 && $filtertw == 0) {
+               $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')->get();
+          } elseif ($filterTahun == 0 && $filtertw != 0) {
+               $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+          } elseif ($filterTahun == 0 && $filtertw == 0) {
+               $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')->get();
+          }
+
           $user = auth()->user();
-          $totalRecord = Tor::all()->count();
-          $pk = [];
-          $tor = Tor::all();
+          $spj = [];
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
           $prodi = DB::table('unit')->get();

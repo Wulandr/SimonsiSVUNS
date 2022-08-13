@@ -20,6 +20,9 @@ class PersekotKerjaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $filtertw = 0;
+    private $filterTahun = 0;
+
     private function cekWulan()
     {
         $model = Tor::all();
@@ -94,6 +97,7 @@ class PersekotKerjaController extends Controller
         }
 
         $tahun = DB::table('tahun')->get();
+
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();
@@ -128,6 +132,24 @@ class PersekotKerjaController extends Controller
                 'tahun'
             )
         );
+    }
+
+    public function getTwByTahun($id_thn)
+    {
+        $id_thn = base64_decode($id_thn);
+        $tws = DB::table('triwulan')->where('id_tahun', $id_thn)->get();
+        return response()->json($tws);
+    }
+    public function getTahunByTw($id_triwulan)
+    {
+        $id_triwulan = base64_decode($id_triwulan);
+        if ($id_triwulan == 0 || empty($id_triwulan)) {
+            $thn = DB::table('tahun')->get();
+        } elseif ($id_triwulan != 0 || !empty($id_triwulan)) {
+            $tahun = DB::table('triwulan')->select('id_tahun')->where('id', $id_triwulan)->get();
+            $thn = DB::table('tahun')->where('id', $tahun[0]->id_tahun)->get();
+        }
+        return response()->json($thn);
     }
 
     public function create(Request $request)
@@ -227,10 +249,22 @@ class PersekotKerjaController extends Controller
 
     public function datatable()
     {
+        $filtertw = $_REQUEST['filtertw'];
+        $filterTahun = $_REQUEST['filterTahun'];
+        $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+        if ($filterTahun != 0 && $filtertw != 0) {
+            $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+        } elseif ($filterTahun != 0 && $filtertw == 0) {
+            $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')->get();
+        } elseif ($filterTahun == 0 && $filtertw != 0) {
+            $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+        } elseif ($filterTahun == 0 && $filtertw == 0) {
+            $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')->get();
+        }
+        
         $user = auth()->user();
         $totalRecord = Tor::all()->count();
         $pk = [];
-        $tor = Tor::all();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();

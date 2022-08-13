@@ -311,5 +311,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/monitoring_kak/datatableTw', [MonitoringKakController::class, 'datatableTw'])->name('kak.dataTw');
 
     // Filter
+    Route::get('/memo_cair/filterTw', [MemoCairController::class, 'filter_tw']);
     Route::get('/persekot_kerja/filterTw', [PersekotKerjaController::class, 'filter_tw']);
+    Route::get('/spj/filterTw', [SPJController::class, 'filter_tw']);
+    Route::get('/lpj/filterTw', [LPJController::class, 'filter_tw']);
 });
