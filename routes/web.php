@@ -307,4 +307,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/persekot_kerja/datatable', [PersekotKerjaController::class, 'datatable'])->name('persekot_kerja.data');
     Route::get('/spj/datatable', [SPJController::class, 'datatable'])->name('spj.data');
     Route::get('/lpj/datatable', [LPJController::class, 'datatable'])->name('lpj.data');
+
+    // Filter
+    Route::get('/persekot_kerja/filterTw', [PersekotKerjaController::class, 'filter_tw']);
 });

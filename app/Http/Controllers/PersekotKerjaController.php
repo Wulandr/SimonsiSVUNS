@@ -20,15 +20,32 @@ class PersekotKerjaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private function cekWulan()
+    {
+        $model = Tor::all();
+        if (!isset($_REQUEST['filterTahun']) && !isset($_REQUEST['filterTw'])) {
+            $tw = DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first();
+            $thn = DB::table('tahun')->where('tahun', date('Y'))->first();
+            $model = DB::table('tor')->where('id_tw', $tw->id)->get();
+            $this->filtertw = $tw->id;
+            $this->filterTahun = $thn->id;
+        }
+
+        return $model;
+    }
+
     public function index()
     {
-        $tor = Tor::all();
+        $tor = $this->cekWulan();
+        $filtertw = $this->filtertw;
+        $filterTahun = $this->filterTahun;
+        $tahun = DB::table('tahun')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
         $prodi = DB::table('unit')->get();
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
-        $triwulan = DB::table('triwulan')->get();
+        $tw = DB::table('triwulan')->get();
         $dokumen = DB::table('dokumen')->get();
         $memo_cair = MemoCair::all();
         $persekot_kerja = PersekotKerja::all();
@@ -38,6 +55,8 @@ class PersekotKerjaController extends Controller
         return view(
             'keuangan.persekot_kerja.index_persekotkerja',
             compact(
+                'filtertw',
+                'filterTahun',
                 'memo_cair',
                 'persekot_kerja',
                 'tor',
@@ -46,14 +65,71 @@ class PersekotKerjaController extends Controller
                 'prodi',
                 'users',
                 'roles',
-                'triwulan',
+                'tw',
                 'dokumen',
                 'status_keu',
                 'trx_status_keu',
-                'tabelRole'
+                'tabelRole',
+                'tahun'
             )
         );
     }
+
+    public function filter_tw(Request $request)
+    {
+        // $filtertw = $request->filterTw;
+        $filtertw = base64_decode($request->filterTw);
+        $filterTahun = base64_decode($request->filterTahun);
+        // $tor = Tor::all();
+
+        $filterNamaTahun = DB::table('tahun')->select('tahun')->where('id', $filterTahun)->get();
+        if ($filterTahun != 0 && $filtertw != 0) {
+            $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+        } elseif ($filterTahun != 0 && $filtertw == 0) {
+            $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', $filterNamaTahun[0]->tahun . '%')->get();
+        } elseif ($filterTahun == 0 && $filtertw != 0) {
+            $tor = DB::table('tor')->where('id_tw', $filtertw)->get();
+        } elseif ($filterTahun == 0 && $filtertw == 0) {
+            $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')->get();
+        }
+
+        $tahun = DB::table('tahun')->get();
+        $trx_status_tor = DB::table('trx_status_tor')->get();
+        $status = DB::table('status')->get();
+        $prodi = DB::table('unit')->get();
+        $users = DB::table('users')->get();
+        $roles = DB::table('roles')->get();
+        $tw = DB::table('triwulan')->get();
+        $dokumen = DB::table('dokumen')->get();
+        $memo_cair = MemoCair::all();
+        $persekot_kerja = PersekotKerja::all();
+        $status_keu =  DB::table('status_keu')->get();
+        $trx_status_keu = TrxStatusKeu::all();
+        $tabelRole =  Role::all();
+        return view(
+            'keuangan.persekot_kerja.index_persekotkerja',
+            compact(
+                'filtertw',
+                'filterTahun',
+                'filterNamaTahun',
+                'memo_cair',
+                'persekot_kerja',
+                'tor',
+                'trx_status_tor',
+                'status',
+                'prodi',
+                'users',
+                'roles',
+                'tw',
+                'dokumen',
+                'status_keu',
+                'trx_status_keu',
+                'tabelRole',
+                'tahun'
+            )
+        );
+    }
+
     public function create(Request $request)
     {
         $request->validate([]);
@@ -77,6 +153,7 @@ class PersekotKerjaController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
+
     public function validasiPK(Request $request)
     {
         $userLogin = Auth()->user()->id;

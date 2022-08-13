@@ -189,11 +189,11 @@
                                                                     </td>
                                                                     <td>
                                                                         <input type="file"
-                                                                            class="form-control-file" name="file"
+                                                                            class="form-control-file" name="file[]"
                                                                             id="file">
                                                                         <input type="hidden"
                                                                             class="form-control-file"
-                                                                            name="id_subkategori" id="id_subkategori"
+                                                                            name="id_subkategori[]" id="id_subkategori"
                                                                             value="{{ $spj_subkategori[$b]->id }}">
                                                                         <input type="hidden" name="id_tor"
                                                                             class="form-control"
