@@ -143,4 +143,134 @@ class MonitoringKakController extends Controller
             ]
         );
     }
+
+    public function datatableAll()
+    {
+        $filtertw = $this->filtertw;
+        if (!empty($filtertw)) {
+            // $this->tahuntw = Triwulan::wherein('id', $filtertw)->first()->id_tahun;
+            foreach (Triwulan::wherein('id', $filtertw)->get() as $isi) :
+                $this->tahuntw[] = $isi->id_tahun;
+            endforeach;
+            $pagu = Pagu::wherein('id_tahun', $this->tahuntw)->get();
+        } else {
+            $pagu = Pagu::all();
+        };
+        $totalRecord = Tor::all()->count();
+        $i = 0;
+        $data1 = [];
+        // Pagu dialiaskan sebagai 'isi'
+        foreach ($pagu as $isi) :
+            $pagu = number_format($isi->pagu);
+            $unit = $isi->unit->nama_unit;
+            $rpd1 = number_format($isi->tw1);
+            $rpd2 = number_format($isi->tw2);
+            $rpd3 = number_format($isi->tw3);
+            $rpd4 = number_format($isi->tw4);
+            $nominal = 0;
+            $anggaran = 0;
+            $sisa = 0;
+            $persen = 0;
+            // ngambil tor
+            foreach ($isi->tor as $tor) {
+                if (!empty($tor->spj->nilai_total) && in_array($tor->id_tw, $filtertw)) {
+                    // mengambil nilai total dari tabel spj yang memiliki id tor
+                    $nominal += $tor->spj->nilai_total;
+                }
+                $anggaran = $tor->jumlah_anggaran;
+            }
+            // nilai sisa = pagu - realisasi
+            $sisa = $isi->pagu - $nominal;
+            $sisa = number_format($sisa);
+            // nilai persentase
+            $persen = ($nominal / $isi->pagu) * 100;
+            $persen = number_format($persen, 2) . ' %';
+            // nilai realisasi anggaran dari spj
+            $nominal = number_format($nominal);
+
+            $data1[$pagu]['no'] = $i + 1;
+            $i += 1;
+            $data1[$pagu]['unit'] = $unit;
+            $data1[$pagu]['pagu'] = $pagu;
+            $data1[$pagu]['rpd1'] = $rpd1;
+            $data1[$pagu]['rpd2'] = $rpd2;
+            $data1[$pagu]['rpd3'] = $rpd3;
+            $data1[$pagu]['rpd4'] = $rpd4;
+            $data1[$pagu]['nominal'] = $nominal;
+            $data1[$pagu]['sisa'] = $sisa;
+        endforeach;
+        return datatables()::of($data1)->tojson();
+    }
+
+    public function datatableTw()
+    {
+        $filtertw = $this->filtertw;
+        if (!empty($filtertw)) {
+            // $this->tahuntw = Triwulan::wherein('id', $filtertw)->first()->id_tahun;
+            foreach (Triwulan::wherein('id', $filtertw)->get() as $isi) :
+                $this->tahuntw[] = $isi->id_tahun;
+            endforeach;
+            $pagu = Pagu::wherein('id_tahun', $this->tahuntw)->get();
+        } else {
+            $pagu = Pagu::all();
+        };
+        $totalRecord = Tor::all()->count();
+        $nomorTw = 0;
+        $i = 0;
+        $data2 = [];
+
+        // Pagu dialiaskan sebagai 'isi'
+        foreach ($pagu as $isi) :
+            $pagu = number_format($isi->pagu);
+            $unit = $isi->unit->nama_unit;
+            $field = "tw$nomorTw";
+            $rpd = number_format($isi->$field);
+            $nominal = 0;
+            $revisi = 0;
+            $review = 0;
+            $anggaran = 0;
+            $sisa = 0;
+            $persen = 0;
+            // ngambil tor
+            foreach ($isi->tor as $tor) {
+                if (empty($tor->lastStatus)) {
+                    $status_tor = 0;
+                } else {
+                    $status_tor = $tor->lastStatus->id_status;
+                }
+                if (!empty($tor->jumlah_anggaran) && $tor->id_tw == $filtertw && !is_array($filtertw)) {
+                    // mengambil nilai total dari tabel spj yang memiliki id tor
+                    if ($status_tor == 4) {
+                        $nominal += $tor->jumlah_anggaran;
+                    }
+                    if ($status_tor == 3) {
+                        $revisi += $tor->jumlah_anggaran;
+                    }
+                    if ($status_tor == 1) {
+                        $revisi += $tor->jumlah_anggaran;
+                    }
+                }
+                $anggaran = $tor->jumlah_anggaran;
+            }
+            // nilai sisa = pagu - realisasi
+            $sisa = $isi->pagu - $nominal;
+            $sisa = number_format($sisa);
+            // nilai persentase
+            $persen = ($nominal / $isi->pagu) * 100;
+            $persen = number_format($persen, 2) . ' %';
+            // nilai realisasi anggaran dari spj
+            $nominal = number_format($nominal);
+
+            $data2[$pagu]['no'] = $i + 1;
+            $i += 1;
+            $data2[$pagu]['unit'] = $unit;
+            $data2[$pagu]['pagu'] = $pagu;
+            $data2[$pagu]['rpd'] = $rpd;
+            $data2[$pagu]['nominal'] = $nominal;
+            $data2[$pagu]['review'] = $review;
+            $data2[$pagu]['revisi'] = $revisi;
+            $data2[$pagu]['sisa'] = $sisa;
+        endforeach;
+        return datatables()::of($data2)->tojson();
+    }
 }

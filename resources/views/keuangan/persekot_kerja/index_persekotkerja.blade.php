@@ -1,4 +1,13 @@
 @include('dashboards/users/layouts/script')
+<?php
+function ngecekWulan($awal, $akhir)
+{
+    if (new datetime(date('Y-m-d')) >= new datetime($awal) && new datetime(date('Y-m-d')) <= new datetime($akhir) && !empty($_REQUEST['filterTw'])) {
+        return true;
+    }
+    return false;
+}
+?>
 
 <body>
     <div id="loading">
@@ -52,7 +61,8 @@
                                                             <option value="{{ base64_encode($tw[$tw1]->id) }}"
                                                                 id="options"
                                                                 {{ $filtertw == $tw[$tw1]->id ? 'selected' : '' }}>
-                                                                {{ $tw[$tw1]->triwulan }}</option>
+                                                                {{ 'Triwulan ' . substr($tw[$tw1]->triwulan, -1, 1) }}
+                                                            </option>
                                                             <?php   }
                                                                             }
                                                                         }
@@ -139,7 +149,13 @@
                 serverSide: true,
                 search: false,
                 pageLength: 5,
-                ajax: "{{ route('persekot_kerja.data') }}",
+                ajax: {
+                    "url": "{{ route('persekot_kerja.data') }}",
+                    "data": {
+                        "filtertw": "{{ $filtertw }}",
+                        "filterTahun": "{{ $filterTahun }}"
+                    }
+                },
                 columns: [{
                         data: 'no',
                         name: 'no'

@@ -44,19 +44,6 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
     <div id="content-page" class="content-page">
         <div class="container-fluid">
             <div class="row">
-                {{-- <div class="col-sm-12">
-                    <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between table-primary">
-                            <div class="iq-header-title">
-                                <h4 class="card-title">Monitoring Rekapitulasi Chart's</h4>
-                            </div>
-                        </div>
-                        <div class="iq-card-body">
-                            <div id="apex-column"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <?php
                 // Ambil data Total Pagu Fakultas SV dari tabel Pagu
                 $total_pagu = 0;
@@ -167,26 +154,9 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                     </span>
                                 </div>
                             </div>
-
-                            {{-- Download dan Print --}}
-                            <div class="iq-card-header-toolbar align-items-center">
-                                <div class="dropdown">
-                                    <span class="dropdown-toggle text-primary" id="dropdownMenuButton5"
-                                        data-toggle="dropdown">
-                                        <i class="ri-more-2-fill"></i>
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right"
-                                        aria-labelledby="dropdownMenuButton5">
-                                        <a class="dropdown-item" href="#"><i
-                                                class="ri-printer-fill mr-2"></i>Print</a>
-                                        <a class="dropdown-item" href="#"><i
-                                                class="ri-file-download-fill mr-2"></i>Download</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="iq-card-body">
-                            <div id="table" class="table-editable">
+                            <div class="table-editable">
                                 <table id="datatable"
                                     class="table table-bordered table-responsive-md table-hover
                                     text-center">
@@ -244,49 +214,6 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i = 1;
-                                        // Pagu dialiaskan sebagai 'isi'
-                                        foreach ($pagu as $isi):
-                                            $pagu = number_format($isi->pagu);
-                                            $unit = $isi->unit->nama_unit;
-                                            $rpd1 = number_format($isi->tw1);
-                                            $rpd2 = number_format($isi->tw2);
-                                            $rpd3 = number_format($isi->tw3);
-                                            $rpd4 = number_format($isi->tw4);
-                                            $nominal = 0;
-                                            $anggaran = 0;
-                                            $sisa = 0;
-                                            $persen = 0;
-                                            // ngambil tor
-                                            foreach ($isi->tor as $tor) {
-                                                if (!empty($tor->spj->nilai_total) && in_array($tor->id_tw,$filtertw)) {
-                                                    // mengambil nilai total dari tabel spj yang memiliki id tor
-                                                    $nominal += $tor->spj->nilai_total;
-                                                }
-                                                $anggaran = $tor->jumlah_anggaran;
-                                            }
-                                            // nilai sisa = pagu - realisasi
-                                            $sisa = $isi->pagu - $nominal;
-                                            $sisa = number_format($sisa);
-                                            // nilai persentase
-                                            $persen = ($nominal / $isi->pagu) * 100;
-                                            $persen = number_format($persen, 2) . ' %';
-                                            // nilai realisasi anggaran dari spj
-                                            $nominal = number_format($nominal);
-                                            echo '<tr>';
-                                            echo "<td>{$i}</td>";
-                                            echo "<td>{$unit}</td>";
-                                            echo "<td>Rp {$pagu}</td>";
-                                            echo "<td>Rp {$rpd1}</td>";
-                                            echo "<td>Rp {$rpd2}</td>";
-                                            echo "<td>Rp {$rpd3}</td>";
-                                            echo "<td>Rp {$rpd4}</td>";
-                                            echo "<td>Rp {$nominal}</td>";
-                                            echo "<td>Rp {$sisa}</td>";
-                                            echo "<td>{$persen}</td>";
-                                            echo '</tr>';
-                                            $i++;
-                                        endforeach;
                                             } 
 
                                             // Jika Filter Triwulan adalah Triwulan tertentu
@@ -306,61 +233,6 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                         </thead>
                                     <tbody>
                                         <?php
-                                        $i = 1;
-                                        
-                                        // Pagu dialiaskan sebagai 'isi'
-                                        foreach ($pagu as $isi):
-                                            $pagu = number_format($isi->pagu);
-                                            $unit = $isi->unit->nama_unit;
-                                            $field = "tw$nomorTw";
-                                            $rpd = number_format($isi->$field);
-                                            $nominal = 0;
-                                            $revisi = 0;
-                                            $review = 0;
-                                            $anggaran = 0;
-                                            $sisa = 0;
-                                            $persen = 0;
-                                            // ngambil tor
-                                            foreach ($isi->tor as $tor) {
-                                                if(empty($tor->lastStatus)){
-                                                    $status_tor = 0;
-                                                } else {
-                                                    $status_tor = $tor->lastStatus->id_status;
-                                                }
-                                                if (!empty($tor->jumlah_anggaran) && $tor->id_tw == $filtertw && !is_array($filtertw)) {
-                                                    // mengambil nilai total dari tabel spj yang memiliki id tor
-                                                    if($status_tor == 4) {
-                                                        $nominal += $tor->jumlah_anggaran;
-                                                    }
-                                                    if($status_tor == 3) {
-                                                        $revisi += $tor->jumlah_anggaran;
-                                                    }
-                                                    if($status_tor == 1) {
-                                                        $revisi += $tor->jumlah_anggaran;
-                                                    }
-                                                }
-                                                $anggaran = $tor->jumlah_anggaran;
-                                            }
-                                            // nilai sisa = pagu - realisasi
-                                            $sisa = $isi->pagu - $nominal;
-                                            $sisa = number_format($sisa);
-                                            // nilai persentase
-                                            $persen = ($nominal / $isi->pagu) * 100;
-                                            $persen = number_format($persen, 2) . ' %';
-                                            // nilai realisasi anggaran dari spj
-                                            $nominal = number_format($nominal);
-                                            echo '<tr>';
-                                            echo "<td>{$i}</td>";
-                                            echo "<td>{$unit}</td>";
-                                            echo "<td>Rp {$pagu}</td>";
-                                            echo "<td>Rp {$rpd}</td>";
-                                            echo "<td>Rp {$nominal}</td>";
-                                            echo "<td>Rp {$review} </td>";
-                                            echo "<td>Rp {$revisi} </td>";
-                                            echo "<td>Rp {$sisa}</td>";
-                                            echo '</tr>';
-                                            $i++;
-                                        endforeach;
                                         }
                                         ?>
                                     </tbody>
@@ -374,12 +246,117 @@ for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
     </div>
     {{-- Script Datatable --}}
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+
+    <?php if (!empty($filtertw) && is_array($filtertw)) { ?>
     <script>
         $(document).ready(function() {
             $.noConflict();
-            $('#datatable').DataTable();
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                search: false,
+                pageLength: 5,
+                ajax: {
+                    "url": "{{ route('kak.dataAll') }}",
+                    "data": {
+                        "filtertw": "{{ $filtertw }}"
+                    }
+                },
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'unit',
+                        name: 'unit'
+                    },
+                    {
+                        data: 'pagu',
+                        name: 'pagu'
+                    },
+                    {
+                        data: 'rpd1',
+                        name: 'rpd1'
+                    },
+                    {
+                        data: 'rpd2',
+                        name: 'rpd2'
+                    },
+                    {
+                        data: 'rpd3',
+                        name: 'rpd3'
+                    },
+                    {
+                        data: 'rpd4',
+                        name: 'rpd4'
+                    },
+                    {
+                        data: 'nominal',
+                        name: 'nominal'
+                    },
+                    {
+                        data: 'sisa',
+                        name: 'sisa'
+                    },
+                ],
+            });
         });
     </script>
+    <?php    
+    } else {
+    ?>
+    <script>
+        $(document).ready(function() {
+            $.noConflict();
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                search: false,
+                pageLength: 5,
+                ajax: {
+                    "url": "{{ route('kak.dataTw') }}",
+                    "data": {
+                        "filtertw": "{{ $filtertw }}"
+                    }
+                },
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'unit',
+                        name: 'unit'
+                    },
+                    {
+                        data: 'pagu',
+                        name: 'pagu'
+                    },
+                    {
+                        data: 'rpd',
+                        name: 'rpd'
+                    },
+                    {
+                        data: 'nominal',
+                        name: 'nominal'
+                    },
+                    {
+                        data: 'review',
+                        name: 'review'
+                    },
+                    {
+                        data: 'revisi',
+                        name: 'revisi'
+                    },
+                    {
+                        data: 'sisa',
+                        name: 'sisa'
+                    },
+                ],
+
+            });
+        });
+    </script>
+    <?php } ?>
     <!-- Footer -->
     @include('dashboards/users/layouts/footer')
 </body>
