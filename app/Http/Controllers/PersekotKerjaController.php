@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use StatusKeu;
 use App\Models\Tor;
+use App\Models\Unit;
 use App\Models\Dokumen;
 use App\Models\MemoCair;
 use App\Models\TrxStatusKeu;
@@ -45,7 +46,7 @@ class PersekotKerjaController extends Controller
         $tahun = DB::table('tahun')->get();
         $trx_status_tor = DB::table('trx_status_tor')->get();
         $status = DB::table('status')->get();
-        $prodi = DB::table('unit')->get();
+        // $prodi = DB::table('unit')->get();
         $users = DB::table('users')->get();
         $roles = DB::table('roles')->get();
         $tw = DB::table('triwulan')->get();
@@ -55,6 +56,28 @@ class PersekotKerjaController extends Controller
         $status_keu =  DB::table('status_keu')->get();
         $trx_status_keu = TrxStatusKeu::all();
         $tabelRole =  Role::all();
+
+        $userLogin = Auth()->user()->id;
+        $unitUser = Auth()->user()->id_unit; //prodi mana?
+        $roleUser = Auth()->user()->role;
+
+        if (Auth::user()->getroleNames()[0] == 'Kaprodi' || Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
+            $toShow = DB::table('tor')
+                ->select('id', 'nama_kegiatan', 'id_unit', 'id_tw')
+                ->where('id_tw', $filtertw)
+                ->where('id_unit', $unitUser)
+                ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
+                ->get();
+            $prodi = Unit::all()->where('id', $unitUser);
+        } else {
+            $toShow = DB::table('tor')
+                ->select('id', 'nama_kegiatan', 'id_unit', 'id_tw')
+                ->where('id_tw', $filtertw)
+                ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
+                ->get();
+            $prodi = Unit::all();
+        }
+
         return view(
             'keuangan.persekot_kerja.index_persekotkerja',
             compact(
@@ -73,7 +96,8 @@ class PersekotKerjaController extends Controller
                 'status_keu',
                 'trx_status_keu',
                 'tabelRole',
-                'tahun'
+                'tahun',
+                'toShow'
             )
         );
     }
@@ -261,7 +285,7 @@ class PersekotKerjaController extends Controller
         } elseif ($filterTahun == 0 && $filtertw == 0) {
             $tor = DB::table('tor')->where('tgl_mulai_pelaksanaan', 'LIKE', date('Y') . '%')->get();
         }
-        
+
         $user = auth()->user();
         $totalRecord = Tor::all()->count();
         $pk = [];
@@ -376,7 +400,6 @@ class PersekotKerjaController extends Controller
                                                                 }
                                                             }
                                                         }
-                                                        // echo $pk[$m]['status'];
                                                         // <!-- MODAL - Validasi Persekot Kerja -->
                                                         $pk[$m]['status'] .=
                                                             view('keuangan.persekot_kerja.validasi_pk', compact('tor', 'm', 'status_keu'))->render();
@@ -388,8 +411,6 @@ class PersekotKerjaController extends Controller
                                                             view('keuangan/persekot_kerja/status_pk', compact('tor', 'm', 'status_keu', 's'))->render();
 
                                                         // BUTTON
-                                                        // $pk[$m]['button'] = '';
-
                                                         if ($RoleLogin === 'Prodi') {
                                                             $pk[$m]['button'] =
                                                                 "<button class='btn btn-sm bg-danger rounded-pill' 
