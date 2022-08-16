@@ -63,7 +63,6 @@ class PersekotKerjaController extends Controller
 
         if (Auth::user()->getroleNames()[0] == 'Kaprodi' || Auth::user()->getroleNames()[0] == 'Prodi' || Auth::user()->getroleNames()[0] == 'PIC') {
             $toShow = DB::table('tor')
-                ->select('id', 'nama_kegiatan', 'id_unit', 'id_tw')
                 ->where('id_tw', $filtertw)
                 ->where('id_unit', $unitUser)
                 ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
@@ -71,7 +70,6 @@ class PersekotKerjaController extends Controller
             $prodi = Unit::all()->where('id', $unitUser);
         } else {
             $toShow = DB::table('tor')
-                ->select('id', 'nama_kegiatan', 'id_unit', 'id_tw')
                 ->where('id_tw', $filtertw)
                 ->where('tgl_mulai_pelaksanaan', 'LIKE',  date('Y') . '%')
                 ->get();
@@ -362,39 +360,39 @@ class PersekotKerjaController extends Controller
                                                                     if ($a->id_status == $b->id && $b->kategori == 'Persekot Kerja') {
                                                                         $pk[$m]['status'] =
                                                                             "<button type='button' 
-                                                                            class='badge border border-primary text-primary' 
-                                                                            data-toggle='modal' 
-                                                                            data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
-                                                                        </button>";
+                                                                                class='badge border border-primary text-primary' 
+                                                                                data-toggle='modal' 
+                                                                                data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
+                                                                            </button>";
                                                                         // jika status Dana Prodi
                                                                         if ($b->nama_status == 'Dana Prodi') {
                                                                             $pk[$m]['status'] =
                                                                                 "<button type='button' 
-                                                                                class='badge border border-dark text-dark' 
-                                                                                data-toggle='modal' 
-                                                                                data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
-                                                                            </button>";
-                                                                            // jika statys Validasi
+                                                                                    class='badge border border-dark text-dark' 
+                                                                                    data-toggle='modal' 
+                                                                                    data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
+                                                                                </button>";
+                                                                            // jika status Validasi
                                                                         } elseif ($b->nama_status == 'Validasi') {
                                                                             $pk[$m]['status'] =
                                                                                 "<button type='button' 
-                                                                                class='badge border border-success text-success' 
-                                                                                data-toggle='modal' 
-                                                                                data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
-                                                                            </button>";
+                                                                                    class='badge border border-success text-success' 
+                                                                                    data-toggle='modal' 
+                                                                                    data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
+                                                                                </button>";
                                                                             // jika Role yang login adalah WD 2
-                                                                        } elseif ($RoleLogin === 'WD 2') {
+                                                                        } elseif ($RoleLogin === 'WD 1') {
                                                                             $pk[$m]['status'] =
                                                                                 "<button type='button' 
-                                                                                class='badge border border-primary text-primary' 
-                                                                                data-toggle='modal' 
-                                                                                data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
-                                                                            </button>&nbsp
-                                                                            <span type='button' 
-                                                                                class='badge badge-dark' 
-                                                                                data-toggle='modal' 
-                                                                                data-target='#validasi_pk{$tor[$m]->id}'><i class='ri-edit-fill'></i>
-                                                                            </span>";
+                                                                                    class='badge border border-primary text-primary' 
+                                                                                    data-toggle='modal' 
+                                                                                    data-target='#status_pk{$tor[$m]->id}'>{$b->nama_status}
+                                                                                </button>&nbsp" .
+                                                                                "<span type='button' 
+                                                                                    class='badge badge-dark' 
+                                                                                    data-toggle='modal' 
+                                                                                    data-target='#validasi_pk{$tor[$m]->id}'><i class='ri-edit-fill'></i>
+                                                                                </span>";
                                                                         }
                                                                     }
                                                                 }
@@ -403,12 +401,9 @@ class PersekotKerjaController extends Controller
                                                         // <!-- MODAL - Validasi Persekot Kerja -->
                                                         $pk[$m]['status'] .=
                                                             view('keuangan.persekot_kerja.validasi_pk', compact('tor', 'm', 'status_keu'))->render();
-                                                        // <!-- MODAL - Validasi Persekot Kerja -->
-                                                        $pk[$m]['status'] .=
-                                                            view('keuangan/persekot_kerja/validasi_pk2', compact('tor', 'm', 'status_keu', 's'))->render();
                                                         // <!-- MODAL - Status Persekot Kerja -->
                                                         $pk[$m]['status'] .=
-                                                            view('keuangan/persekot_kerja/status_pk', compact('tor', 'm', 'status_keu', 's'))->render();
+                                                            view('keuangan/persekot_kerja/status_pk', compact('tor', 'm', 'trx_status_keu', 'users', 'roles', 'status_keu'))->render();
 
                                                         // BUTTON
                                                         if ($RoleLogin === 'Prodi') {
@@ -430,14 +425,24 @@ class PersekotKerjaController extends Controller
                                                                         // Semua Role selain Prodi dan Staf Keu
                                                                         $pk[$m]['button'] =
                                                                             "<button class='btn btn-sm bg-info rounded-pill' 
-                                                                            title='Detail' data-toggle='modal' 
-                                                                            data-target='#detail_pk{$tor[$m]->id}'>
-                                                                            <i class='las la-external-link-alt'></i>
-                                                                        </button>";
+                                                                                title='Detail' data-toggle='modal' 
+                                                                                data-target='#detail_pk{$tor[$m]->id}'>
+                                                                                <i class='las la-external-link-alt'></i>
+                                                                            </button>";
 
                                                                         // Jika Role Prodi
                                                                         if ($RoleLogin === 'Prodi') {
-                                                                            $pk[$m]['button'] = '<button class="btn btn-sm bg-info rounded-pill" title="Detail" data-toggle="modal" data-target="#detail_pk' . $tor[$m]->id . '"> <i class="las la-external-link-alt"></i></button>&nbsp<button class="btn btn-sm bg-warning rounded-pill" title="Edit" data-toggle="modal data-target="#edit_pk' . $tor[$m]->id . '"><i class=" las la-edit"></i></button>';
+                                                                            $pk[$m]['button'] =
+                                                                                "<button class='btn btn-sm bg-info rounded-pill' 
+                                                                                    title='Detail' data-toggle='modal' 
+                                                                                    data-target='#detail_pk{$tor[$m]->id}'>
+                                                                                    <i class='las la-external-link-alt'></i>
+                                                                                </button>&nbsp" .
+                                                                                "<button class='btn btn-sm bg-warning rounded-pill' 
+                                                                                    title='Edit' data-toggle='modal 
+                                                                                    data-target='#edit_pk{$tor[$m]->id}>
+                                                                                    <i class='las la-edit'></i>
+                                                                                </button>";
                                                                             // Jika status Dana Prodi
                                                                             if ($b->nama_status == 'Dana Prodi') {
                                                                                 $pk[$m]['button'] = '-';
@@ -445,18 +450,18 @@ class PersekotKerjaController extends Controller
                                                                             } elseif ($b->nama_status == 'Validasi') {
                                                                                 $pk[$m]['button'] =
                                                                                     "<button class='btn btn-sm bg-info rounded-pill' 
-                                                                                    title='Detail' data-toggle='modal' 
-                                                                                    data-target='#detail_pk' . $tor[$m]->id . ''>
-                                                                                    <i class='las la-external-link-alt'></i>
-                                                                                </button>";
+                                                                                        title='Detail' data-toggle='modal' 
+                                                                                        data-target='#detail_pk{$tor[$m]->id}'>
+                                                                                        <i class='las la-external-link-alt'></i>
+                                                                                    </button>";
                                                                                 // Jika status Transfer Uang
                                                                             } elseif ($b->nama_status == 'Transfer Uang') {
                                                                                 $pk[$m]['button'] =
                                                                                     "<button class='btn btn-sm bg-success rounded-pill' 
-                                                                                    title='Lihat Bukti Transfer' data-toggle='modal' 
-                                                                                    data-target='#show_tf_pk' . $tor[$m]->id . ''>
-                                                                                    <i class='las la-money-check-alt'></i>&nbsp
-                                                                                </button>";
+                                                                                        title='Lihat Bukti Transfer' data-toggle='modal' 
+                                                                                        data-target='#show_tf_pk{$tor[$m]->id}'>
+                                                                                        <i class='las la-money-check-alt'></i>&nbsp
+                                                                                    </button>";
                                                                             }
 
                                                                             // Jika Role Staf Keuangan
@@ -466,11 +471,6 @@ class PersekotKerjaController extends Controller
                                                                                     title='Detail' data-toggle='modal' 
                                                                                     data-target='#detail_pk{$tor[$m]->id}'>
                                                                                     <i class='las la-external-link-alt'></i>
-                                                                                </button>" .
-                                                                                "<button class='btn btn-sm bg-warning rounded-pill' 
-                                                                                    title='Edit' data-toggle='modal 
-                                                                                    data-target='#edit_pk{$tor[$m]->id}'>
-                                                                                    <i class=' las la-edit'></i>
                                                                                 </button>";
                                                                             // Jika status Dana Prodi
                                                                             if ($b->nama_status == 'Dana Prodi') {
@@ -480,12 +480,12 @@ class PersekotKerjaController extends Controller
                                                                                 $pk[$m]['button'] =
                                                                                     "<button class='btn btn-sm bg-info rounded-pill' 
                                                                                     title='Detail' data-toggle='modal' 
-                                                                                    data-target='#detail_pk'$tor[$m]->id'}>
+                                                                                    data-target='#detail_pk{$tor[$m]->id}'>
                                                                                     <i class='las la-external-link-alt'></i>
                                                                                 </button>&nbsp" .
                                                                                     "<button class='btn btn-sm btn-info rounded-pill' 
                                                                                     title='Input Bukti Transfer' data-toggle='modal' 
-                                                                                    data-target='#input_tf_pk'$tor[$m]->id'}>
+                                                                                    data-target='#input_tf_pk{$tor[$m]->id}'>
                                                                                     <i class='las la-money-check-alt'></i>
                                                                                 </button>";
                                                                                 // Jika status Transfer Uang
@@ -502,21 +502,18 @@ class PersekotKerjaController extends Controller
                                                                 }
                                                             }
                                                         }
-
-                                                        // echo $pk[$m]['button'];
-
                                                         // <!-- MODAL - Input Bukti TF Persekot Kerja -->
                                                         $pk[$m]['button'] .=
                                                             view('keuangan/persekot_kerja/input_tf_pk', compact('tor', 'm', 'status_keu', 's'))->render();
                                                         // <!-- MODAL - Show Bukti TF Persekot Kerja -->
                                                         $pk[$m]['button'] .=
                                                             view('keuangan/persekot_kerja/show_tf_pk', compact('tor', 'm', 'status_keu', 's', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
-                                                        // <!-- MODAL - Edit Persekot Kerja -->
-                                                        $pk[$m]['button'] .=
-                                                            view('keuangan/persekot_kerja/edit_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
                                                         // <!-- MODAL - Detail Persekot Kerja -->
                                                         $pk[$m]['button'] .=
-                                                            view('keuangan/persekot_kerja/detail_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();
+                                                            view('keuangan/persekot_kerja/detail_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja'))->render();
+                                                        // <!-- MODAL - Edit Persekot Kerja -->
+                                                        $pk[$m]['button'] .=
+                                                            view('keuangan/persekot_kerja/edit_pk', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja'))->render();
                                                         // <!-- MODAL - Jenis Ajuan -->
                                                         $pk[$m]['button'] .=
                                                             view('keuangan/persekot_kerja/jenis_inputPK', compact('tor', 'm', 'namaprodi', 'memo_cair', 'persekot_kerja', 'dokumen'))->render();

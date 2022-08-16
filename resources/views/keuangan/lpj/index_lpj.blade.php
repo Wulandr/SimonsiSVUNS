@@ -134,7 +134,7 @@ function ngecekWulan($awal, $akhir)
                                     <?php }} ?>
                                 </span>
                                 <table id="datatable"
-                                    class="table table-bordered table-responsive-md table-hover text-center">
+                                    class="table table-bordered table-responsive-md table-hover text-left">
                                     <thead>
                                         <tr class="bg-dark">
                                             <th>No</th>
@@ -177,20 +177,20 @@ function ngecekWulan($awal, $akhir)
                         name: 'no'
                     },
                     {
-                        data: 'nama_kegiatan',
-                        name: 'nama_kegiatan'
-                    },
-                    {
                         data: 'prodi',
                         name: 'prodi'
                     },
                     {
-                        data: 'pic',
-                        name: 'pic'
-                    },
-                    {
                         data: 'no_memo',
                         name: 'no_memo'
+                    },
+                    {
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan'
+                    },
+                    {
+                        data: 'pic',
+                        name: 'pic'
                     },
                     {
                         data: 'status',

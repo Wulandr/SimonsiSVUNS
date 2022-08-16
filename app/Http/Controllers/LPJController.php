@@ -83,14 +83,22 @@ class LPJController extends Controller
 
     public function create(Request $request)
     {
-        //mengambil data file yang diupload
-        $file           = $request->file('file');
-        //mengambil nama file
-        $nama_file      = $file->getClientOriginalName();
-        $jenis          = $request->jenis;
-        $id_tor          = $request->id_tor;
-        //memindahkan file ke folder tujuan
-        $file->move('documents', $file->getClientOriginalName());
+        if (!empty($request->file)) {
+            //mengambil data file yang diupload
+            $file           = $request->file('file');
+            //mengambil nama file
+            $nama_file      = $file->getClientOriginalName();
+            $jenis          = $request->jenis;
+            $id_tor          = $request->id_tor;
+            //memindahkan file ke folder tujuan
+            $file->move('documents', $file->getClientOriginalName());
+        }
+        if (empty($request->file)) {
+            $file      = "null";
+            $nama_file      = "null";
+            $jenis          = $request->jenis;
+            $id_tor          = $request->id_tor;
+        }
 
         $upload         = new Dokumen;
         $upload->name   = $nama_file;
@@ -111,6 +119,7 @@ class LPJController extends Controller
         $upload2 = TrxStatusKeu::create([
             'id_status' => 11,
             'id_tor' => $request->id_tor,
+            'catatan' => $request->catatan,
             'create_by' => $request->create_by,
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at,
@@ -291,15 +300,15 @@ class LPJController extends Controller
 
                                                         $dataTabel[$m]['no'] = $nomor + 1;
                                                         $nomor += 1;
+                                                        for ($memo = 0; $memo < count($memo_cair); $memo++) {
+                                                            if ($memo_cair[$memo]->id_tor == $tor[$m]->id) {
+                                                                $dataTabel[$m]['no_memo'] = $memo_cair[$memo]->nomor;
+                                                            }
+                                                        }
                                                         $dataTabel[$m]['nama_kegiatan'] = $tor[$m]->nama_kegiatan;
                                                         $dataTabel[$m]['prodi'] = $namaprodi;
                                                         $dataTabel[$m]['pic'] = $tor[$m]->nama_pic;
 
-                                                        for ($a = 0; $a < count($memo_cair); $a++) {
-                                                            if ($memo_cair[$a]->id_tor == $tor[$m]->id) {
-                                                                $dataTabel[$m]['no_memo'] = $memo_cair[$a]->nomor;
-                                                            }
-                                                        }
 
                                                         // STATUS
                                                         $dataTabel[$m]['status'] = "<span class='badge border border-danger text-danger'>Belum ada status</span>";
@@ -357,11 +366,11 @@ class LPJController extends Controller
                                                         }
                                                     }
                                                     // <!-- MODAL - Validasi LPJ -->
-                                                    // include('keuangan/lpj/validasi_lpj')
+                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.validasi_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu'))->render();
                                                     // <!-- MODAL - Status LPJ -->
-                                                    // include('keuangan/lpj/status_lpj')
+                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.status_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu', 'users', 'roles'))->render();
                                                     // <!-- MODAL - Revisi LPJ -->
-                                                    // include('keuangan/lpj/showrevisi_lpj')
+                                                    // $dataTabel[$m]['status'] = view('keuangan.lpj.showrevisi_lpj', compact('tor', 'm', 'trx_status_keu', 'a'))->render();
 
                                                     // BUTTON
                                                     if ($RoleLogin === 'Prodi') {
@@ -416,12 +425,13 @@ class LPJController extends Controller
                                                         }
                                                     }
                                                     // <!-- MODAL - Edit LPJ -->
-                                                    // include('keuangan/lpj/edit_lpj')
+                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.edit_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
+
                                                     // <!-- MODAL - Detail LPJ -->
-                                                    // include('keuangan/lpj/detail_lpj')
+                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.detail_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
 
                                                     // <!-- MODAL - Input LPJ -->
-                                                    // include('keuangan/lpj/input_lpj')
+                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.input_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
                                                 }
                                             }
                                         }

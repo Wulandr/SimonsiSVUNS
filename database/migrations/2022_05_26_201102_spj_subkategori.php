@@ -14,6 +14,7 @@ class SpjSubkategori extends Migration
             $table->longText(
                 'catatan'
             )->nullable();
+            $table->integer('is_aktif')->default(1);
             $table->timestamps();
         });
     }

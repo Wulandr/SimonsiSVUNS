@@ -1,5 +1,5 @@
-<div class="modal fade" id="validasi_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="validasi_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form method="post" action="/persekot_kerja/validasi">
+                <form id="form_validasiPk<?= $tor[$m]->id ?>" method="post"
+                    action="{{ url('/persekot_kerja/validasi') }}">
                     @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     <div class="form-group">
@@ -33,9 +34,14 @@
                     <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button id="validasiPk<?= $tor[$m]->id ?>" type="submit" class="btn btn-primary">Save</button>
             </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $("#validasiPk<?= $tor[$m]->id ?>").click(function() {
+        $("#form_validasiPk<?= $tor[$m]->id ?>").submit();
+    });
+</script>

@@ -136,16 +136,24 @@ class MemoCairController extends Controller
 
     public function store(Request $request)
     {
-        //memvalidasi inputan
-        $request->validate([]);
-        //mengambil data file yang diupload
-        $file           = $request->file('file');
-        //mengambil nama file
-        $nama_file      = $file->getClientOriginalName();
-        $jenis          = $request->jenis;
-        $id_tor          = $request->id_tor;
-        //memindahkan file ke folder tujuan
-        $file->move('documents', $file->getClientOriginalName());
+        if (!empty($request->file)) {
+            //memvalidasi inputan
+            $request->validate([]);
+            //mengambil data file yang diupload
+            $file           = $request->file('file');
+            //mengambil nama file
+            $nama_file      = $file->getClientOriginalName();
+            $jenis          = $request->jenis;
+            $id_tor          = $request->id_tor;
+            //memindahkan file ke folder tujuan
+            $file->move('documents', $file->getClientOriginalName());
+        }
+        if (empty($request->file)) {
+            $file      = "null";
+            $nama_file      = "null";
+            $jenis          = $request->jenis;
+            $id_tor          = $request->id_tor;
+        }
 
         $upload         = new Dokumen;
         $upload->name   = $nama_file;
@@ -168,18 +176,6 @@ class MemoCairController extends Controller
         }
         //kembali ke halaman sebelumnya
         return back();
-    }
-
-    public function edit(Request $request, $id)
-    {
-        $request->validate([]);
-
-        $process = Memocair::findOrFail($id)->update($request->except('_token'));
-        if ($process) {
-            return redirect()->back()->with("success", "Data berhasil diperbarui");
-        } else {
-            return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
-        }
     }
 
     public function datatable()
@@ -284,23 +280,26 @@ class MemoCairController extends Controller
                                                                 if ($statusTor[0]['sudahUpload'] == 1) {
                                                                     if ($user->can('memo_detail')) :
                                                                         $return[$m]['button'] .=
-                                                                            "<button class='btn btn-sm bg-info rounded-pill' title='Detail'
-                                                                                data-toggle='modal'
-                                                                                data-target='#detail_memocair{$tor[$m]->id}'><i
-                                                                                    class='las la-external-link-alt'></i></i>
+                                                                            "<button class='btn btn-sm bg-info rounded-pill' 
+                                                                                title='Detail' data-toggle='modal'
+                                                                                data-target='#detail_memocair{$tor[$m]->id}'>
+                                                                                <i class='las la-external-link-alt'></i></i>
                                                                             </button>";
-                                                                    // MODAL - Detail Memo Cair
-                                                                    // return view('keuangan/memo_cair/detail_memocair');
+                                                                        // MODAL - Detail Memo Cair
+                                                                        $return[$m]['button'] .=
+                                                                            view('keuangan.memo_cair.detail_memocair', compact('tor', 'm', 'data', 'dokumen', 'u'))->render();
                                                                     // include('keuangan/memo_cair/detail_memocair');
                                                                     endif;
                                                                     if ($user->can('memo_edit')) :
                                                                         $return[$m]['button'] .=
-                                                                            "<button class='btn btn-sm bg-warning rounded-pill' title='Edit'
-                                                                                data-toggle='modal'
-                                                                                data-target='#edit_memocair{$tor[$m]->id}'><i
-                                                                                    class=' las la-edit'></i></i>
+                                                                            "<button class='btn btn-sm bg-warning rounded-pill' 
+                                                                                title='Edit' data-toggle='modal'
+                                                                                data-target='#edit_memocair{$tor[$m]->id}'>
+                                                                                <i class='las la-edit'></i></i>
                                                                             </button>";
-                                                                    // <!-- MODAL - Edit Memo Cair -->
+                                                                        // <!-- MODAL - Edit Memo Cair -->
+                                                                        $return[$m]['button'] .=
+                                                                            view('keuangan.memo_cair.edit_memocair', compact('tor', 'm', 'data', 'dokumen'))->render();
                                                                     // @include('keuangan/memo_cair/edit_memocair')
                                                                     endif;
                                                                 } else {
@@ -309,11 +308,13 @@ class MemoCairController extends Controller
                                                                             $return[$m]['button'] .=
                                                                                 "<button type='button' class='btn bg-dark btn-rounded btn-sm my-0'
                                                                                     title='Upload File Memo Cair' data-toggle='modal'
-                                                                                    data-target='#upload_memocair{$tor[$m]->id}'><i
-                                                                                        class='las la-upload'></i>
+                                                                                    data-target='#upload_memocair{$tor[$m]->id}'>
+                                                                                    <i class='las la-upload'></i>
                                                                                 </button>";
 
-                                                                        // <!-- MODAL - Upload Memo Cair -->
+                                                                            // <!-- MODAL - Upload Memo Cair -->
+                                                                            $return[$m]['button'] .=
+                                                                                view('keuangan.memo_cair.upload_memocair', compact('tor', 'm'))->render();
                                                                         // @include('keuangan/memo_cair/upload_memocair')
                                                                         endif;
                                                                     } else {

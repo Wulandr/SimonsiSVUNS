@@ -1,9 +1,9 @@
-<div class="modal fade bd-example-modal-lg" id="edit_pk<?= $tor[$m]->id ?>" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-lg" id="edit_pk{{ $tor[$m]->id }}" tabindex="-1" role="dialog"
     aria-labelledby="Edit Persekot Kerja" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="edit_pk">Edit Formulir Permohonan Persekot Kerja</h5>
+                <h5 class="modal-title" id="edit_pk{{ $tor[$m]->id }}">Edit Formulir Permohonan Persekot Kerja</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
                 <p>Yang bertanda tangan di bawah ini menyatakan bertanggung-jawab tentang penggunaan,
                     pertanggungjawaban, dan pelaporan dana kegiatan sebagai berikut. </p>
                 <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/input_pk') }}" novalidate>
+                    action="{{ url('/input_pk') }}">
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="control-label col-sm-4 align-self-center mb-0">1. &ensp; Nama</label>

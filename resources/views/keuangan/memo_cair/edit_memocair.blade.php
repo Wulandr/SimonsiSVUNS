@@ -6,8 +6,8 @@
                 <h5 class="modal-title" id="edit_memocair">EDIT MEMO CAIR</h5>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('/memocair/edit') }}" novalidate>
+                <form class="needs-validation" enctype="multipart/form-data" method="post" action="{{ url('/store') }}"
+                    novalidate>
                     {{ csrf_field() }}
                     <?php
                     $cek=1;
@@ -29,12 +29,12 @@
                         <div class="invalid-feedback">
                             Tolong isikan nomor memo cair!
                         </div>
-                        <input type="hidden" name="jenis" value="Memo Cair" class="custom-file-input" required>
+                        <input type="hidden" name="jenis" value="Memo Cair" class="custom-file-input">
                     </div>
                     <div class="form-group">
                         <label for="validationCustom01">Nominal Memo Cair Valid</label>
                         <input type="text" name="nominal" class="form-control" id="validationCustom01"
-                            value="{{ 'Rp ' . number_format($data[$a]->nominal, 2, ',', '.') }}" required>
+                            value="{{ $data[$a]->nominal }}">
                         <div class="invalid-feedback">
                             Tolong isikan nominal memo cair yang sudah divalidasi!
                         </div>
@@ -44,8 +44,8 @@
                     </div>
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>
-                        <input type="file" class="form-control-file" name="file" id="file" required>
-                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair" required>
+                        <input type="file" class="form-control-file" name="file" id="file">
+                        <input type="hidden" name="jenis" class="custom-file-input" value="Memo Cair">
                         <small>File yang sudah diupload:
                             <a class="text-primary" href="{{ asset('documents/' . $dokumen[$b]->name) }}"
                                 target="_blank"><?= $dokumen[$b]->name ?></a>

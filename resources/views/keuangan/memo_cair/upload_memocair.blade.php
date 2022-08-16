@@ -19,8 +19,8 @@
                         })
                     </script>
                 @endif
-                <form class="needs-validation" enctype="multipart/form-data" method="post"
-                    action="{{ url('store') }}">
+                <form id="form_memo{{ $tor[$m]->id }}" class="needs-validation" enctype="multipart/form-data"
+                    method="post" action="{{ url('/store') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="validationCustom01">Nomor Memo Cair</label>
@@ -58,7 +58,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button id="submit_memo<?= $tor[$m]->id ?>" type="submit"
+                            class="btn btn-primary">Upload</button>
                     </div>
                 </form>
             </div>
@@ -66,6 +67,10 @@
     </div>
 </div>
 <script>
+    $("#submit_memo<?= $tor[$m]->id ?>").click(function() {
+        $("#form_memo<?= $tor[$m]->id ?>").submit();
+    });
+
     window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function() {
             $(this).remove();

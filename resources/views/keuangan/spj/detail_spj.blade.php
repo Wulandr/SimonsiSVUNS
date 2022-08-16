@@ -24,46 +24,72 @@ use App\Models\DokumenSPJ;
                             </div>
                         </div>
                         <div class="iq-card-body mx-5">
-                            <b>
-                                <table class="table">
-                                    <tr>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">
+                                    Nama Kegiatan</label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">: {{ $nama_kegiatan }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">
+                                    Nama Unit/Prodi/Ormawa</label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">: {{ $namaprodi }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">ID Ajuan Memo
+                                    Cair</label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">: {{ $memocair }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">Nama
+                                    Penanggungjawab Kegiatan</label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">: {{ $penanggung }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">Nominal Anggaran
+                                </label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">:
+                                        {{ 'Rp ' . number_format($anggaran) }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">Nominal
+                                    Total SPJ
+                                </label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">:
+                                        {{ 'Rp ' . number_format($nilai_total) }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">Nilai Pengembalian
 
-                                        <td style="width: 30%">Nama Unit/Prodi/Ormawa</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ $namaprodi }}</td>
-                                    </tr>
-                                    <tr>
+                                </label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">:
+                                        {{ 'Rp ' . number_format($nilai_kembali) }}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3 align-self-center mb-0">
+                                    Bukti Transfer Sisa Anggaran
+                                </label>
+                                <div class="col-sm-9">
+                                    <label style="font-weight: bold">: </label>
+                                    <a class="text-primary" href="{{ asset('documents/' . $dokumen_bukti) }}"
+                                        target="_blank">{{ $dokumen_bukti }}</a>
+                                </div>
+                            </div>
 
-                                        <td style="width: 30%">ID Ajuan Memo Cair</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ $memocair }}</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td style="width: 30%">Nama Penanggungjawab Kegiatan</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ $penanggung }}</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td style="width: 30%">Nomor HP Penanggungjawab Kegiatan</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ $kontak }}</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td style="width: 30%">Nilai Total SPJ</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ 'Rp ' . number_format($nilai_total) }}</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td style="width: 30%">Nilai Pengembalian</td>
-                                        <td class="text-center">:</td>
-                                        <td style="width: 60%">{{ 'Rp ' . number_format($nilai_kembali) }}</td>
-                                    </tr>
-                            </b>
-                            </table>
+                            {{-- Unggah BUKTI SPJ --}}
                             <div class="iq-card" style="box-shadow: none">
                                 <div class="iq-card-header d-flex justify-content-center table-secondary">
                                     <div class="iq-header-title">
@@ -93,9 +119,8 @@ use App\Models\DokumenSPJ;
                                         <div class="col-sm-9">
                                             <div class="tab-content mt-0" id="v-pills-tabContent">
                                                 <?php
-                                        for ($a = 0; $a < count($spj_kategori); $a++) {
-
-                                        ?>
+                                                    for ($a = 0; $a < count($spj_kategori); $a++) {
+                                                ?>
                                                 <div class="tab-pane fade show" role="tabpanel"
                                                     id="content-{{ $spj_kategori[$a]->id }}"
                                                     aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
@@ -108,9 +133,9 @@ use App\Models\DokumenSPJ;
                                                                 if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
                                                         <p>{!! $spj_subkategori[$b]->catatan !!}</p>
                                                         <table class="table">
-                                                            <tr class="form-group">
-                                                                <td rowspan="2">{{ $no }}</td>
-                                                                <td style="width: 65%">
+                                                            <tr>
+                                                                <td style="width: 5%">{{ $no }}</td>
+                                                                <td style="width: 45%">
                                                                     <label for="exampleFormControlFile1">
                                                                         {{ $spj_subkategori[$b]->nama_subkategori }}
                                                                     </label>
@@ -122,10 +147,8 @@ use App\Models\DokumenSPJ;
                                                                     $dokspj = $isi['name'];
                                                                 }
                                                                 ?>
-                                                                <td rowspan="2">
-                                                                    <small style="color: darkorange">File
-                                                                        yang
-                                                                        sudah diupload:
+                                                                <td style="width: 50%">
+                                                                    <small style="color: darkorange">File Bukti:
                                                                         <a class="text-primary"
                                                                             href="{{ asset('document_spj/' . $dokspj) }}"
                                                                             target="_blank">{{ $dokspj }}</a>

@@ -21,63 +21,53 @@
                         </div>
                         <div class="iq-card-body mx-5">
                             <form class="needs-validation" enctype="multipart/form-data" method="post"
-                                action="{{ url('/input_spj') }}" novalidate>
+                                action="{{ url('/input_spj') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
-                                        for="validationCustom01">
-                                        Nama Unit/Prodi/Ormawa</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" value="{{ $namaprodi }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                    <label class="control-label col-sm-3 align-self-center mb-0"
                                         for="validationCustom01">
                                         Nama Kegiatan</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" value="{{ $nama_kegiatan }}"
-                                            disabled>
+                                    <div class="col-sm-9">
+                                        <label style="font-weight: bold">: {{ $nama_kegiatan }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0">ID Ajuan Memo
+                                    <label class="control-label col-sm-3 align-self-center mb-0"
+                                        for="validationCustom01">
+                                        Nama Unit/Prodi/Ormawa</label>
+                                    <div class="col-sm-9">
+                                        <label style="font-weight: bold">: {{ $namaprodi }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0">ID Ajuan Memo
                                         Cair</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" value="{{ $memocair }}" disabled>
+                                    <div class="col-sm-9">
+                                        <label style="font-weight: bold">: {{ $memocair }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                    <label class="control-label col-sm-3 align-self-center mb-0"
                                         for="validationCustom01">Nama
                                         Penanggungjawab Kegiatan</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="validationCustom01"
-                                            value="{{ $penanggung }}" disabled>
+                                    <div class="col-sm-9">
+                                        <label style="font-weight: bold">: {{ $penanggung }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
-                                        for="validationCustom01">Nomor HP
-                                        Penanggungjawab Kegiatan</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="validationCustom01"
-                                            value="{{ $kontak }}" disabled>
+                                    <label class="control-label col-sm-3 align-self-center mb-0"
+                                        for="validationCustom01">Nominal Anggaran
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <label style="font-weight: bold">: {{ 'Rp ' . number_format($anggaran) }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
-                                        for="validationCustom01">Nominal Anggaran</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="validationCustom01"
-                                            value="{{ 'Rp ' . number_format($anggaran) }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0"
+                                    <label class="control-label col-sm-3 align-self-center mb-0"
                                         for="validationCustom01">Nominal
-                                        Total SPJ</label>
-                                    <div class="col-sm-7">
+                                        Total SPJ
+                                    </label>
+                                    <div class="col-sm-9">
                                         <input type="text" name="nilai_total" class="form-control"
                                             id="validationCustom01" required>
                                     </div>
@@ -86,7 +76,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_tor" class="form-control" value="<?= $_GET['idtor'] ?>">
-                                <input type="hidden" name="jenis" value="SPJ" class="custom-file-input" required>
+                                <input type="hidden" name="jenis" value="SPJ Bukti Transfer Pengembalian" class="custom-file-input" required>
                                 <input type="hidden" name="id_status" class="form-control" value="5">
                                 <input type="hidden" name="create_by" class="form-control"
                                     value="<?= Auth()->user()->id ?>">
@@ -96,9 +86,9 @@
                                 <input name="updated_at" id="updated_at" type="hidden" value="<?= date('Y-m-d') ?>">
 
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-5 align-self-center mb-0">Ada nominal sisa
+                                    <label class="control-label col-sm-3 align-self-center mb-0">Ada nominal sisa
                                         anggaran?</label>
-                                    <div class="col-sm-7 row">
+                                    <div class="col-sm-9 row">
                                         <div id="ada" class="col-sm-2">
                                             <input type="radio" name="adaNggak" class="btn-check" id="adaNggak"
                                                 autocomplete="off">
@@ -113,31 +103,32 @@
                                 </div>
                                 <div id="list">
                                     <div class="form-group row">
-                                        <label class="control-label col-sm-5 align-self-center mb-0"
+                                        <label class="control-label col-sm-3 align-self-center mb-0"
                                             for="validationCustom01">Nominal
                                             Pengembalian
                                             <small style="color: darkred"><b>(Jika Ada)</b></small></label>
-                                        <div class="col-sm-7">
+                                        <div class="col-sm-9">
                                             <input type="text" name="nilai_kembali" class="form-control"
                                                 value="0" id="validationCustom01">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="control-label col-sm-5 align-self-center mb-0">
-                                            Unggah Bukti Transfer Nominal Sisa Anggaran
+                                        <label class="control-label col-sm-3 align-self-center mb-0">
+                                            Unggah Bukti Transfer Sisa Anggaran
                                             <br>
                                             <small style="color: darkred">
-                                                Upload bukti transfer berupa file Dokumen maupun Gambar.
+                                                (Pdf. Doc. Images)
                                             </small>
                                         </label>
-                                        <div class="col-sm-7">
-                                            <input type="file" class="form-control-file" name="file"
-                                                id="file" accept="application/pdf, application/msword, image/*">
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control-file" name="file_bukti"
+                                                id="file_bukti" accept="application/pdf, application/msword, image/*">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="iq-card">
+                                {{-- Unggah Bukti SPJ --}}
+                                <div class="iq-card" style="box-shadow: none">
                                     <div class="iq-card-header d-flex justify-content-center table-primary">
                                         <div class="iq-header-title">
                                             <h4 class="card-title">Unggah Dokumen Pendukung Surat Pertanggungjawaban
@@ -145,14 +136,13 @@
                                         </div>
                                     </div>
                                     <div class="iq-card-body">
-                                        <p></p>
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="nav flex-column nav-pills text-left" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
                                                     <?php
-                                        for ($a = 0; $a < count($spj_kategori); $a++) {
-                                        ?>
+                                                        for ($a = 0; $a < count($spj_kategori); $a++) {
+                                                    ?>
                                                     <a class="nav-link" id="tab-spj_kategori[$a]->id }}"
                                                         data-toggle="pill" href="#content-{{ $spj_kategori[$a]->id }}"
                                                         role="tab" aria-controls="{{ $spj_kategori[$a]->id }}"
@@ -165,9 +155,8 @@
                                             <div class="col-sm-9">
                                                 <div class="tab-content mt-0" id="v-pills-tabContent">
                                                     <?php
-                                        for ($a = 0; $a < count($spj_kategori); $a++) {
-
-                                        ?>
+                                                        for ($a = 0; $a < count($spj_kategori); $a++) {
+                                                    ?>
                                                     <div class="tab-pane fade show" role="tabpanel"
                                                         id="content-{{ $spj_kategori[$a]->id }}"
                                                         aria-labelledby="tab-{{ $spj_kategori[$a]->id }}">
@@ -175,9 +164,11 @@
                                                             <h5 class="mb-2" style="color: #1E3D73">
                                                                 <b>{{ $spj_kategori[$a]->nama_kategori }}</b>
                                                             </h5>
-                                                            <?php $no = 1;
-                                                    for ($b = 0; $b < count($spj_subkategori); $b++) {
-                                                        if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { ?>
+                                                            <?php 
+                                                            $no = 1;
+                                                            for ($b = 0; $b < count($spj_subkategori); $b++) {
+                                                                if ($spj_subkategori[$b]->id_kategori == $spj_kategori[$a]->id) { 
+                                                            ?>
                                                             <p>{!! $spj_subkategori[$b]->catatan !!}</p>
                                                             <table class="table">
                                                                 <tr class="form-group">
@@ -190,7 +181,7 @@
                                                                     <td>
                                                                         <input type="file"
                                                                             class="form-control-file" name="file[]"
-                                                                            id="file">
+                                                                            id="file" required>
                                                                         <input type="hidden"
                                                                             class="form-control-file"
                                                                             name="id_subkategori[]" id="id_subkategori"
@@ -213,7 +204,7 @@
                                         </div>
                                     </div>
                                     <div class="iq-card-footer float-right">
-                                        <button type="submit" class="btn btn-primary m-3">Upload</button>
+                                        <button type="submit" class="btn btn-primary m-0">Upload</button>
                                     </div>
                             </form>
                         </div>

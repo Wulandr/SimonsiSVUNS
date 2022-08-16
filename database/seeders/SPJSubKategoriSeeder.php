@@ -14,7 +14,8 @@ class SPJSubKategoriSeeder extends Seeder
             [
                 'id_kategori' => 1,
                 'nama_subkategori' => 'Tambahkan File',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 2
@@ -26,84 +27,100 @@ class SPJSubKategoriSeeder extends Seeder
                 <ul>
 	                <li>Surat Pesanan dari Prodi (nomor dari SV)</li>
 	                <li>Surat Kesanggupan Rekanan</li>
-                </ul>'
+                </ul>',
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'Surat Penunjukan / Permohona Pelatihan atau Sertifikasi',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'Surat Tugas Mengikuti',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'Kuitansi',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'Fotocopy Sertifikat',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 2,
                 'nama_subkategori' => 'LPJ Kegiatan',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 3
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Undangan Kegiatan',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Undangan Narasumber',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Kesediaan Narasumber',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Daftar Hadir Narasumber dan Peserta',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Rundown Acara',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Kuitansi',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'Copy Buku Rekening + NPWP + KTP',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 3,
                 'nama_subkategori' => 'LPJ Kegiatan (Apabila Daring + Video Recordnya bentuk CD)',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 4
@@ -115,118 +132,140 @@ class SPJSubKategoriSeeder extends Seeder
                 <ul>
 	                <li>Surat Pesanan dari Prodi (nomor dari SV)</li>
 	                <li>Surat Kesanggupan Rekanan</li>
-                </ul>'
+                </ul>',
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 4,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 4,
                 'nama_subkategori' => 'Nota',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 4,
                 'nama_subkategori' => 'NPWP + KTP',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 4,
                 'nama_subkategori' => 'Referensi Bank',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 5
             [
                 'id_kategori' => 5,
                 'nama_subkategori' => 'SK Magang',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 5,
                 'nama_subkategori' => 'Daftar Hadir Mahasiswa',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 5,
                 'nama_subkategori' => 'Kuitansi/Tanda Terima Honor',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 5,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 5,
                 'nama_subkategori' => 'LPJ',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 6
             [
                 'id_kategori' => 6,
                 'nama_subkategori' => 'Surat Tugas (Dicap Instansi Yang dikunjungi)',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 6,
                 'nama_subkategori' => 'Kuitansi (Daftar Penerimaan Bantuan Transport)',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 6,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 6,
                 'nama_subkategori' => 'Bukti Pengeluaran Rill',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 6,
                 'nama_subkategori' => 'LPJ Kegiatan',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
 
             // Kategori 7
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'Surat Tugas',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'Lembar SPDD',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'Rincian Pembayaran',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'Kuitansi',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'SPBy',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'Nota (At Cost) (Apabila ada komponen Biaya Perjalanan)',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ],
             [
                 'id_kategori' => 7,
                 'nama_subkategori' => 'LPJ',
-                'catatan' => NULL
+                'catatan' => NULL,
+                'is_aktif' => 1
             ]
         ]);
     }

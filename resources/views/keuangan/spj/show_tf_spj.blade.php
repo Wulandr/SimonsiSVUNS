@@ -49,7 +49,7 @@
                 <?php
                     for ($z = 0; $z < count($spj); $z++) {
                         if ($spj[$z]->id_tor == $tor[$m]->id) {
-                    ?>
+                ?>
                 <div class="form-group row">
                     <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nilai
                         Total SPJ</label>
@@ -72,17 +72,15 @@
                 <?php
                     for ($b = 0; $b < count($dokumen); $b++) {
                         if ($dokumen[$b]->id_tor == $tor[$m]->id) { 
-                            if ($dokumen[$b]->jenis == "SPJ Bukti Transfer") {
+                            if ($dokumen[$b]->jenis == "SPJ Bukti Transfer Pelunasan") {
                 ?>
                 <div class="form-group">
-                    <h4 class="text-center"><b>Bukti Transfer</b></h4>
+                    <h4 class="text-center"><b>Bukti Transfer Pelunasan</b></h4>
                     <br>
                     <embed src="{{ asset('documents/' . $dokumen[$b]->name) }}" type="application/pdf" width="100%"
                         height="500px"></embed>
                 </div>
                 <?php 
-                    }
-                    else {
                     }}}
                 ?>
             </div>

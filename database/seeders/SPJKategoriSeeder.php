@@ -11,25 +11,32 @@ class SPJKategoriSeeder extends Seeder
     {
         DB::table('spj_kategori')->insert([
             [
-                'nama_kategori' => 'Konsumsi Kegiatan'
+                'nama_kategori' => 'Konsumsi Kegiatan',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'Kontribusi/Registrasi Pelatihan/Sekom'
+                'nama_kategori' => 'Kontribusi/Registrasi Pelatihan/Sekom',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'Honor Narasumber Kegiatan'
+                'nama_kategori' => 'Honor Narasumber Kegiatan',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'Pembelian Barang dan Jasa'
+                'nama_kategori' => 'Pembelian Barang dan Jasa',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'Honor Magang Mahasiswa/Asisten Praktikum'
+                'nama_kategori' => 'Honor Magang Mahasiswa/Asisten Praktikum',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'Bantuan Transport/Transport Lokal (Karesidenan Surakarta)'
+                'nama_kategori' => 'Bantuan Transport/Transport Lokal (Karesidenan Surakarta)',
+                'is_aktif' => 1
             ],
             [
-                'nama_kategori' => 'SPDD'
+                'nama_kategori' => 'SPDD',
+                'is_aktif' => 1
             ]
         ]);
     }

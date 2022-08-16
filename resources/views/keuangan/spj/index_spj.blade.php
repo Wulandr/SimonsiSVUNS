@@ -183,16 +183,16 @@ function ngecekWulan($awal, $akhir)
                         name: 'nama_kegiatan'
                     },
                     {
+                        data: 'no_memo',
+                        name: 'no_memo'
+                    },
+                    {
                         data: 'prodi',
                         name: 'prodi'
                     },
                     {
                         data: 'pic',
                         name: 'pic'
-                    },
-                    {
-                        data: 'no_memo',
-                        name: 'no_memo'
                     },
                     {
                         data: 'status',

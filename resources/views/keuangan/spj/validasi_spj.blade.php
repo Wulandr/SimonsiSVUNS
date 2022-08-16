@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body text-left">
-                <form method="post" action="/spj/validasi">
+                <form id="form_validasiSPJ<?= $tor[$m]->id ?>" method="post" action="/spj/validasi">
                     @csrf
                     <p>Pilih salah satu untuk memperbarui status:</p>
                     {{ $tombol = ''; }}
@@ -31,11 +31,12 @@
                                                     value="6">
                                                 <label for="verifikasi'. $tor[$m]->id .'" class=""> Verifikasi</label>
                                             </div>';?>
+                                        @elseif ($status_keu[$s]->nama_status === 'Revisi')
                                         <?php $tombol = '
                                             <div onclick="pengajuan('. $tor[$m]->id .')"
                                                 class="custom-control custom-radio custom-radio-color-checked">
                                                 <input type="radio" name="id_status" id="pengajuan'. $tor[$m]->id .'"
-                                                    value="5">
+                                                    value="6">
                                                 <label for="pengajuan'. $tor[$m]->id .'" class=""> Proses Pengajuan</label>
                                             </div>'; ?>
                                         @elseif ($status_keu[$s]->nama_status === 'Verifikasi')
@@ -65,7 +66,7 @@
                     <input name="updated_at" id="updated_at" type="hidden" value="{{ date('Y-m-d') }}">
             </div>
             <div class="modal-footer float-left">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button id="validasiSPJ<?= $tor[$m]->id ?>" type="submit" class="btn btn-primary">Save</button>
             </div>
             </form>
         </div>
@@ -75,5 +76,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.ckeditor').ckeditor();
+    });
+</script>
+<script>
+    $("#validasiSPJ<?= $tor[$m]->id ?>").click(function() {
+        $("#form_validasiSPJ<?= $tor[$m]->id ?>").submit();
     });
 </script>
