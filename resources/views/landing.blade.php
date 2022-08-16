@@ -83,7 +83,7 @@
     </section><!-- End Hero -->
 
     <main id="main">
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="mymod" aria-hidden="true">
+        <!-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="mymod" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#80d0c7 ">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- ======= About Section ======= -->
         <section id="about" class="about">

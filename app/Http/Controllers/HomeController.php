@@ -42,11 +42,12 @@ class HomeController extends Controller
         $spj = SPJ::all();
         $userrole = Usernya::join();
         $tor = Tor::limit(1)->get();
+        $torAll = Tor::all();
         return view(
             "dashboards.users.index",
             [
                 'userrole' => $userrole, 'tor' => $tor, 'trx_status_tor' => $trx_status_tor, 'prodi' => $prodi,
-                'status' => $status, 'unit' => $unit, 'users' => $users, 'role' => $role,
+                'status' => $status, 'unit' => $unit, 'users' => $users, 'role' => $role, 'torAll' => $torAll,
                 'dokMemo' => $dokMemo, 'trx_status_keu' => $trx_status_keu, 'status_keu' => $status_keu,
                 'tw' => $tw, 'filtertw' => $filtertw, 'tahun' => $tahun, 'spj' => $spj, 'tabelRole' => $tabelRole
             ]

@@ -91,50 +91,52 @@
                                 'timeline-dots border-info',
                             ];
                             $ada2 = 0;
-                            if (!empty($trx_status_keu)) {
-                                foreach ($trx_status_keu as $tsk) {
-                                    if ($tsk->id_tor == $tor[$t]->id) {
+                            // if (!empty($trx_status_keu)) {
+                            //     foreach ($trx_status_keu as $tsk) {
+                            //         if ($tsk->id_tor == $tor[$t]->id) {
                             ?>
                                         <li>
                                             <div class="{{ $warnaLingkar2[$indexwarna2] }}"><i class="ri-check-fill" style="color:black"></i></div>
                                             <?php
-                                            $indexwarna2 += 1;
-                                            if ($indexwarna2 > 3) {
-                                                $indexwarna2 = 0;
-                                            }
+                                            // $indexwarna2 += 1;
+                                            // if ($indexwarna2 > 3) {
+                                            //     $indexwarna2 = 0;
+                                            // }
                                             ?>
                                             <div class="row">
                                                 <div class="col-lg-7">
                                                     <h6 style="text-align:left;">
                                                         <?php
-                                                        foreach ($status_keu as $statusKeu) {
-                                                            if ($statusKeu->id == $tsk->id_status) {
-                                                                $statusMemo = 1;
-                                                                echo $statusKeu->nama_status . ' ' . $statusKeu->kategori;
-                                                                foreach ($user as $us) {
-                                                                    if ($us->id == $tsk->create_by) {
-                                                                        foreach ($role as $rl2) {
-                                                                            if ($rl2->id == $us->role) {
-                                                                                echo '<br/>' . ' - create by : ' . $us->name . ' - ' . $tsk->role_by;
-                                                                                // $pengvalidasi = $rl2->id;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+                                                        // foreach ($status_keu as $statusKeu) {
+                                                        //     if ($statusKeu->id == $tsk->id_status) {
+                                                        //         $statusMemo = 1;
+                                                        //         echo $statusKeu->nama_status . ' ' . $statusKeu->kategori;
+                                                        //         foreach ($user as $us) {
+                                                        //             if ($us->id == $tsk->create_by) {
+                                                        //                 foreach ($role as $rl2) {
+                                                        //                     if ($rl2->id == $us->role) {
+                                                        //                         echo '<br/>' . ' - create by : ' . $us->name . ' - ' . $tsk->role_by;
+                                                        // $pengvalidasi = $rl2->id;
+                                                        //                     }
+                                                        //                 }
+                                                        //             }
+                                                        //         }
+                                                        //     }
+                                                        // }
                                                         ?>
                                                     </h6>
                                                 </div>
                                                 <div class="col">
-                                                    <small style="font-size: smaller;color:grey" class="float-right mt-1">{{ $tsk->created_at }}</small>
+                                                    <small style="font-size: smaller;color:grey" class="float-right mt-1"> $tsk->created_at }}</small>
                                                 </div>
                                             </div>
                                         </li>
                                         <br />
-                            <?php }
-                                }
-                            } ?>
+                            <?php
+                            // }
+                            //     }
+                            // }
+                            ?>
 
                         </ul>
                     </div>

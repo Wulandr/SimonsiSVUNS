@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Auth;
                 <?php
                 // Ambil data Jumlah Anggaran dari TOR
                 $total_anggaran = 0;
-                foreach ($tor as $data) {
+                foreach ($torAll as $data) {
                     $total_anggaran += $data['jumlah_anggaran'];
                 }
 
@@ -64,6 +64,7 @@ use Illuminate\Support\Facades\Auth;
         </div>
     </div>
     </div> --}}
+
     <div class="col-sm-6 col-md-6 col-lg-3">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body iq-box-relative">
