@@ -107,7 +107,7 @@ function ngecekWulan($awal, $akhir)
                                                                     for ($tw1 = 0; $tw1 < count($triwulan); $tw1++) {
                                                                         foreach ($tahun as $thn) {
                                                                             if ($thn->is_aktif == 1) {
-                                                                                if ($thn->tahun == substr($triwulan[$tw1]->triwulan, 0, 4)) {  ?>
+                                                                                if ($thn->tahun == substr($triwulan[$tw1]->triwulan, 0, 4) && date('Y') == substr($triwulan[$tw1]->triwulan, 0, 4)) {  ?>
                                                                                     <option value="{{ base64_encode($triwulan[$tw1]->id) }}" id="options" {{$filtertw==$triwulan[$tw1]->id ? 'selected':''}}><?= str_replace("-", " ", $triwulan[$tw1]->triwulan) ?></option>
                                                                     <?php   }
                                                                             }

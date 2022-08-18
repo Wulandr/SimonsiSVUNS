@@ -65,6 +65,11 @@ Route::get('/', function () {
     return view('landing');
 });
 
+//portofolio utk demo TA
+Route::get('/portfolio', function () {
+    return view('perencanaan/portfolio');
+});
+
 // Unregiter user view
 Route::get('/unregister', function () {
     return view('unregister_user');

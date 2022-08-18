@@ -59,7 +59,7 @@ use Illuminate\Support\Facades\Auth;
                                                             for ($tw1 = 0; $tw1 < count($tw); $tw1++) {
                                                                 foreach ($tabeltahun as $thn) {
                                                                     if ($thn->is_aktif == 1) {
-                                                                        if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
+                                                                        if ($thn->tahun == substr($tw[$tw1]->triwulan, 0, 4) && date('Y') == substr($tw[$tw1]->triwulan, 0, 4)) {  ?>
                                                                             <option value="{{ base64_encode($tw[$tw1]->id) }}" id="options" {{$filtertw==$tw[$tw1]->id ? 'selected':''}}>{{$tw[$tw1]->triwulan}}</option>
                                                             <?php   }
                                                                     }

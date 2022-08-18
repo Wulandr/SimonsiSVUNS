@@ -70,12 +70,16 @@ class ValidasiController extends Controller
         // if (Auth::user()->getroleNames() == 'Prodi' || Auth::user()->getroleNames() == 'PIC') {
         //     abort(403);
         // }
+        $filterTahun = (DB::table('tahun')->where('tahun', date('Y'))->first())->id;
+        $filtertw = (DB::table('triwulan')->where('periode_awal', '<=', date('Y-m-d'))->where('periode_akhir', '>=', date('Y-m-d'))->first())->id;
+
         if ($prodi != 0) {
             $join = DB::table('tor')
                 ->where('id_unit', $prodi)
                 ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
                 ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
                 ->where('status.nama_status', "Proses Pengajuan")
+                ->where('tor.id_tw', $filtertw)
                 ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*')->get();
         }
         if ($prodi == 0) {
@@ -84,15 +88,15 @@ class ValidasiController extends Controller
                 ->join('status', 'trx_status_tor.id_status', '=', 'status.id')
                 ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
                 ->where('status.nama_status', "Proses Pengajuan")
+                ->where('tor.id_tw', $filtertw)
                 ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->get();
         }
         $ajuanTW =  DB::table('tor')
             ->join('trx_status_tor', 'tor.id', '=', 'trx_status_tor.id_tor')
             ->join('triwulan', 'tor.id_tw', '=', 'triwulan.id')
+            ->where('tor.id_tw', $filtertw)
             ->select('tor.id as tor_id', 'trx_status_tor.id as trx_id', 'tor.*', 'trx_status_tor.*', 'triwulan.triwulan')->get();
-        $filterTahun = 0;
         $filterprodi = $prodi;
-        $filtertw = 0;
         $unit = Unit::all();
         $unit2 = Unit::all();
         $userrole = User::join();

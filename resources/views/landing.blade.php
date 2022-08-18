@@ -83,8 +83,8 @@
     </section><!-- End Hero -->
 
     <main id="main">
-        <!-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="mymod" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade bd-example-modal" tabindex="-1" role="dialog" id="mymod" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#80d0c7 ">
                         <h5 class="modal-title" style="text-align: center;">Demo Produk Tugas Akhir</h5>
@@ -92,12 +92,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-
+                    <div class="modal-body" style="text-align: center;">
+                        <h6>SIMONSI MODUL : PERENCANAAN ANGGARAN</h6>
+                        <h6>Developer : Tri Wulandari</h6><br />
+                        <a href="{{url('/portfolio')}}"><button type="button" class="btn mr-1" style="text-align: center;background: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);color: white;" onMouseOver="this.style.color='linear-gradient(15deg, #80d0c7 0%, #3f768d 100%)'">Go To My Portfolio</button><br /></a><br />
+                        <h6>Note : untuk login memerlukan akun email yang telah didaftarkan oleh admin/developer, silahkan hubungi kontak di bawah untuk pembuatan akun.
+                        </h6><br />
+                        <a href="https://wa.me/6281910238817"><button type="button" class="btn mr-1" style="text-align: center;background: linear-gradient(15deg, #3f768d 0%, #80d0c7 100%);color: white;" onMouseOver="this.style.color='linear-gradient(15deg, #80d0c7 0%, #3f768d 100%)'">Contact Me</button>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
