@@ -595,6 +595,7 @@ class SPJController extends Controller
 
           $user = auth()->user();
           $spj = [];
+          $isiSPJ = SPJ::all();
           $trx_status_tor = DB::table('trx_status_tor')->get();
           $status = DB::table('status')->get();
           $prodi = DB::table('unit')->get();
@@ -848,7 +849,7 @@ class SPJController extends Controller
 
                                                                       //     <!-- MODAL - Bukti TF spj -->
                                                                       $spj[$m]['status'] .= view('keuangan.spj.input_tf_spj', compact('tor', 'm', 'status_keu', 's'))->render();
-                                                                      // $spj[$m]['status'] .= view('keuangan.spj.show_tf_spj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'spj', 'dokumen'))->render();
+                                                                      $spj[$m]['status'] .= view('keuangan.spj.show_tf_spj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'isiSPJ', 'dokumen'))->render();
                                                                  }
                                                             }
                                                        }

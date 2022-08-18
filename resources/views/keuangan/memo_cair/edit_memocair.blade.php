@@ -41,6 +41,8 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="id_tor" value="<?= $tor[$m]->id ?>" class="form-control">
+                        <input type="hidden" name="id_memo" value="<?= $data[$a]->id ?>" class="form-control">
+                        <input type="hidden" name="id_dokumen" value="<?= $dokumen[$b]->id ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Sertifikat Memo Cair</label>

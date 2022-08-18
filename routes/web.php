@@ -65,9 +65,13 @@ Route::get('/', function () {
     return view('landing');
 });
 
-//portofolio utk demo TA
+//Portfolio Wulan
 Route::get('/portfolio', function () {
     return view('perencanaan/portfolio');
+});
+// Portofolio Sari Eka
+Route::get('/portfolio_sari', function () {
+    return view('portfolio_sari/index');
 });
 
 // Unregiter user view

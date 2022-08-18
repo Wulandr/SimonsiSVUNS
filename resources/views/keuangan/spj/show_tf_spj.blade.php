@@ -47,15 +47,15 @@
                     </div>
                 </div>
                 <?php
-                    for ($z = 0; $z < count($spj); $z++) {
-                        if ($spj[$z]->id_tor == $tor[$m]->id) {
+                    for ($z = 0; $z < count($isiSPJ); $z++) {
+                        if ($isiSPJ[$z]->id_tor == $tor[$m]->id) {
                 ?>
                 <div class="form-group row">
                     <label class="control-label col-sm-5 align-self-center mb-0" for="validationCustom01">Nilai
                         Total SPJ</label>
                     <div class="col-sm-7">
                         <input type="text" name="nilai_total" class="form-control" id="validationCustom01"
-                            value="{{ $spj[$z]->nilai_total }}" disabled>
+                            value="{{ $isiSPJ[$z]->nilai_total }}" disabled>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -64,7 +64,7 @@
                         <small style="color: darkred"><b>(Jika Ada)</b></small></label>
                     <div class="col-sm-7">
                         <input type="text" name="nilai_kembali" class="form-control" id="validationCustom01"
-                            value="{{ $spj[$z]->nilai_kembali }}" disabled>
+                            value="{{ $isiSPJ[$z]->nilai_kembali }}" disabled>
                     </div>
                 </div>
                 <?php }} ?>

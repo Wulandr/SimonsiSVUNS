@@ -298,6 +298,7 @@ class LPJController extends Controller
                                                     if ($prodi[$v]->id == $tor[$m]->id_unit) {
                                                         $namaprodi = $prodi[$v]->nama_unit;
 
+                                                        // Menampilkan data
                                                         $dataTabel[$m]['no'] = $nomor + 1;
                                                         $nomor += 1;
                                                         for ($memo = 0; $memo < count($memo_cair); $memo++) {
@@ -317,121 +318,123 @@ class LPJController extends Controller
                                                             if ($a->id_tor == $tor[$m]->id) {
                                                                 foreach ($status_keu as $b) {
                                                                     // Jika semua Role kecuali Staf Perencanaan
-                                                                    if ($a->id_status == $b->id && $b->kategori == 'LPJ')
+                                                                    if ($a->id_status == $b->id && $b->kategori == 'LPJ') {
                                                                         $dataTabel[$m]['status'] =
                                                                             "<button type='button' 
                                                                                 class='badge border border-primary text-primary' 
                                                                                 data-toggle='modal' data-target='#status_lpj{$tor[$m]->id}'>{$b->nama_status}
                                                                             </button>";
 
-                                                                    // Jika Role Staf Perencanaan
-                                                                    if ($RoleLogin === 'Staf Perencanaan') {
-                                                                        $dataTabel[$m]['status'] =
-                                                                            "<button type='button' 
+                                                                        // Jika Role Staf Perencanaan
+                                                                        if ($RoleLogin === 'Staf Perencanaan') {
+                                                                            $dataTabel[$m]['status'] =
+                                                                                "<button type='button' 
                                                                                 class='badge border border-primary text-primary' 
                                                                                 data-toggle='modal' data-target='#status_lpj{$tor[$m]->id}'>{$b->nama_status}
                                                                             </button>&nbsp" .
-                                                                            "<span type='button' 
+                                                                                "<span type='button' 
                                                                                 class='badge badge-dark' 
                                                                                 data-toggle='modal' data-target='#validasi_lpj{$tor[$m]->id}'>
                                                                                 <i class='ri-edit-fill'></i>
                                                                             </span>";
 
-                                                                        if ($b->nama_status == 'Revisi') {
-                                                                            $dataTabel[$m]['status'] =
-                                                                                "<button type='button' 
+                                                                            if ($b->nama_status == 'Revisi') {
+                                                                                $dataTabel[$m]['status'] =
+                                                                                    "<button type='button' 
                                                                                     class='badge border border-primary text-primary' 
                                                                                     data-toggle='modal' data-target='#status_lpj{$tor[$m]->id}'>{$b->nama_status}
                                                                                 </button>&nbsp" .
-                                                                                "<span type='button' 
+                                                                                    "<span type='button' 
                                                                                     class='badge badge-secondary' data-toggle='modal' 
                                                                                     data-target='#revisi_lpj{$tor[$m]->id}'>
                                                                                     <i class='las la-comment'></i>
                                                                                 </span>" .
-                                                                                "<span type='button' 
+                                                                                    "<span type='button' 
                                                                                     class='badge badge-dark' 
                                                                                     data-toggle='modal' data-target='#validasi_lpj{$tor[$m]->id}'>
                                                                                     <i class='ri-edit-fill'></i>
                                                                                 </span>";
-                                                                        } elseif ($b->nama_status == 'LPJ Selesai') {
-                                                                            $dataTabel[$m]['status'] =
-                                                                                "<button type='button' 
+                                                                            } elseif ($b->nama_status == 'LPJ Selesai') {
+                                                                                $dataTabel[$m]['status'] =
+                                                                                    "<button type='button' 
                                                                                     class='badge border border-success text-success' 
-                                                                                    data-toggle='modal' data-target='#status_lpj{$tor[$m]->id}'>$b->nama_status}
+                                                                                    data-toggle='modal' data-target='#status_lpj{$tor[$m]->id}'>{$b->nama_status}
                                                                                 </button>";
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                    }
-                                                    // <!-- MODAL - Validasi LPJ -->
-                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.validasi_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu'))->render();
-                                                    // <!-- MODAL - Status LPJ -->
-                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.status_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu', 'users', 'roles'))->render();
-                                                    // <!-- MODAL - Revisi LPJ -->
-                                                    // $dataTabel[$m]['status'] = view('keuangan.lpj.showrevisi_lpj', compact('tor', 'm', 'trx_status_keu', 'a'))->render();
 
-                                                    // BUTTON
-                                                    if ($RoleLogin === 'Prodi') {
-                                                        $dataTabel[$m]['button'] =
-                                                            "<button class='btn btn-sm bg-dark rounded-pill' 
+                                                        // <!-- MODAL - Validasi LPJ -->
+                                                        $dataTabel[$m]['status'] .= view('keuangan.lpj.validasi_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu'))->render();
+                                                        // <!-- MODAL - Status LPJ -->
+                                                        $dataTabel[$m]['status'] .= view('keuangan.lpj.status_lpj', compact('tor', 'm', 'trx_status_keu', 'status_keu', 'users', 'roles'))->render();
+                                                        // <!-- MODAL - Revisi LPJ -->
+                                                        $dataTabel[$m]['status'] .= view('keuangan.lpj.showrevisi_lpj', compact('tor', 'm', 'trx_status_keu', 'a'))->render();
+
+                                                        // BUTTON
+                                                        if ($RoleLogin === 'Prodi') {
+                                                            $dataTabel[$m]['button'] =
+                                                                "<button class='btn btn-sm bg-dark rounded-pill' 
                                                                 title='Input LPJ' data-toggle='modal' 
                                                                 data-target='#input_lpj{$tor[$m]->id}'>
                                                                 <i class='las la-upload'></i>
                                                             </button>";
-                                                    } else {
-                                                        $dataTabel[$m]['button'] =
-                                                            "<span class='badge border border-danger text-danger'>Prodi Belum Mengajukan SPJ</span>";
-                                                    }
+                                                        } else {
+                                                            $dataTabel[$m]['button'] =
+                                                                "<span class='badge border border-danger text-danger'>Prodi Belum Mengajukan SPJ</span>";
+                                                        }
 
-                                                    foreach ($trx_status_keu as $a) {
-                                                        if ($a->id_tor == $tor[$m]->id) {
-                                                            foreach ($status_keu as $b) {
-                                                                if ($a->id_status == $b->id && $b->kategori == 'LPJ') {
-                                                                    if ($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi') {
-                                                                        $dataTabel[$m]['button'] =
-                                                                            "<button class='btn btn-sm bg-info rounded-pill' 
-                                                                                title='Detail' data-toggle='modal' 
-                                                                                data-target='#detail_lpj{$tor[$m]->id}'>
-                                                                                <i class='las la-external-link-alt'></i>
-                                                                            </button>";
-
-                                                                        // {{-- Jika Role Prodi --}}
-                                                                    } elseif ($RoleLogin === 'Prodi') {
-                                                                        $dataTabel[$m]['button'] =
-                                                                            "<button class='btn btn-sm bg-info rounded-pill' 
-                                                                                title='Detail' data-toggle='modal' 
-                                                                                data-target='#detail_lpj{$tor[$m]->id}'>
-                                                                                <i class='las la-external-link-alt'></i>
-                                                                            </button>&nbsp" .
-                                                                            "<button class='btn btn-sm bg-warning rounded-pill' 
-                                                                                title='Edit' data-toggle='modal' 
-                                                                                data-target='#edit_lpj{$tor[$m]->id}'>
-                                                                                <i class='las la-edit'></i>
-                                                                            </button>";
-
-                                                                        if ($b->nama_status == 'Revisi') {
+                                                        foreach ($trx_status_keu as $a) {
+                                                            if ($a->id_tor == $tor[$m]->id) {
+                                                                foreach ($status_keu as $b) {
+                                                                    if ($a->id_status == $b->id && $b->kategori == 'LPJ') {
+                                                                        if (($b->nama_status == 'Proses Pengajuan' || $b->nama_status == 'Revisi') && ($RoleLogin != 'Prodi' && $RoleLogin != 'PIC')) {
                                                                             $dataTabel[$m]['button'] =
-                                                                                "<button class='btn btn-sm bg-dark rounded-pill' 
+                                                                                "<button class='btn btn-sm bg-info rounded-pill' 
+                                                                                    title='Detail' data-toggle='modal' 
+                                                                                    data-target='#detail_lpj{$tor[$m]->id}'>
+                                                                                    <i class='las la-external-link-alt'></i>
+                                                                                </button>";
+
+                                                                            // {{-- Jika Role Prodi --}}
+                                                                        } elseif ($RoleLogin === 'Prodi' || $RoleLogin === 'PIC') {
+                                                                            $dataTabel[$m]['button'] =
+                                                                                "<button class='btn btn-sm bg-info rounded-pill' 
+                                                                                    title='Detail' data-toggle='modal' 
+                                                                                    data-target='#detail_lpj{$tor[$m]->id}'>
+                                                                                    <i class='las la-external-link-alt'></i>
+                                                                                </button>&nbsp" .
+                                                                                "<button class='btn btn-sm bg-warning rounded-pill' 
+                                                                                    title='Edit' data-toggle='modal' 
+                                                                                    data-target='#edit_lpj{$tor[$m]->id}'>
+                                                                                    <i class='las la-edit'></i>
+                                                                                </button>";
+
+                                                                            if ($b->nama_status == 'Revisi') {
+                                                                                $dataTabel[$m]['button'] =
+                                                                                    "<button class='btn btn-sm bg-dark rounded-pill' 
                                                                                     itle='Input LPJ' data-toggle='modal' 
                                                                                     data-target='#input_lpj{$tor[$m]->id}'>
                                                                                     <i class='las la-upload'></i>
                                                                                 </button>";
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
                                                             }
                                                         }
+                                                        // <!-- MODAL - Edit LPJ -->
+                                                        $dataTabel[$m]['button'] .= view('keuangan.lpj.edit_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
+
+                                                        // <!-- MODAL - Detail LPJ -->
+                                                        $dataTabel[$m]['button'] .= view('keuangan.lpj.detail_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
+
+                                                        // <!-- MODAL - Input LPJ -->
+                                                        $dataTabel[$m]['button'] .= view('keuangan.lpj.input_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
                                                     }
-                                                    // <!-- MODAL - Edit LPJ -->
-                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.edit_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
-
-                                                    // <!-- MODAL - Detail LPJ -->
-                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.detail_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
-
-                                                    // <!-- MODAL - Input LPJ -->
-                                                    $dataTabel[$m]['status'] = view('keuangan.lpj.input_lpj', compact('tor', 'm', 'namaprodi', 'memo_cair', 'dokumen', 'lpj'))->render();
                                                 }
                                             }
                                         }

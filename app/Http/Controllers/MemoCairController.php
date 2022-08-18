@@ -144,31 +144,40 @@ class MemoCairController extends Controller
             //mengambil nama file
             $nama_file      = $file->getClientOriginalName();
             $jenis          = $request->jenis;
-            $id_tor          = $request->id_tor;
+            $id_tor         = $request->id_tor;
             //memindahkan file ke folder tujuan
             $file->move('documents', $file->getClientOriginalName());
         }
         if (empty($request->file)) {
-            $file      = "null";
-            $nama_file      = "null";
+            $nama_file      = Dokumen::where('id', $request->id_dokumen)->first()->name;
             $jenis          = $request->jenis;
-            $id_tor          = $request->id_tor;
+            $id_tor         = $request->id_tor;
         }
 
-        $upload         = new Dokumen;
-        $upload->name   = $nama_file;
-        $upload->path   = $nama_file;
-        $upload->jenis  = $jenis;
+        if (empty($request->id_dokumen)) {
+            $upload         = new Dokumen;
+        } else {
+            $upload         = Dokumen::find($request->id_dokumen);
+        }
+        $upload->name    = $nama_file;
+        $upload->path    = $nama_file;
+        $upload->jenis   = $jenis;
         $upload->id_tor  = $id_tor;
 
         //menyimpan data ke database
         $upload->save();
 
-        $upload2 = new MemoCair;
-        $upload2->nomor = $request->nomor;
+        if (empty($request->id_memo)) {
+            $upload2 = new MemoCair;
+        }
+        if (!empty($request->id_memo)) {
+            $upload2 = MemoCair::findOrFail($request->id_memo);
+        }
+        $upload2->nomor   = $request->nomor;
         $upload2->nominal = $request->nominal;
-        $upload2->id_tor = $request->id_tor;
+        $upload2->id_tor  = $request->id_tor;
         $upload2->save();
+
         if ($upload2) {
             return redirect()->back()->with("success", "Sertifikat Memo Cair Sudah Terbit");
         } else {
